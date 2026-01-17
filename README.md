@@ -4,11 +4,7 @@ The IOTM design document is based on the template for requirements published by 
 Requirements are written in Markdown and transformed to HTML using the
 [Bikeshed preprocessor](https://tabatkins.github.io/bikeshed/).
 
-## Usage
-
-Changes to files are automatically processed by a Github action.
-
-## Generate HTML locally
+## Generate HTML
 
 To view HTML output locally (using a [Docker container](https://github.com/netwerk-digitaal-erfgoed/bikeshed-docker)),
 run:

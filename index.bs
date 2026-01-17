@@ -9,6 +9,7 @@ Editor:  Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret
 Abstract: Dit document is een verzameling van interessante ideeën omtrent het ontwerp van het IOTM platform. Het is bedoeld om discussie te stimuleren en kan op elk moment veranderen.
 </pre>
 <section boilerplate="conformance"></section>
+<link rel="shortcut icon" href="./favicon.ico">
 
 Introductie {#introductie}
 =====================

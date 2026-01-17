@@ -1,17 +1,69 @@
 <pre class='metadata'>
-Title: Your Spec Title
-Shortname: your-spec
+Title: Inside Out Time Machines (IOTM) Design
+Shortname: iotm-design
 Level: 1
-Status: LS
+Status: DREAM
 Markup Shorthands: css yes, markdown yes
-URL: http://example.com/url-this-spec-will-live-at
-Editor: Your Name, Your Company http://example.com/your-company, your-email@example.com, http://example.com/your-personal-website
-Abstract: A short description of your spec, one or two sentences.
+URL: https://github.com/inside-out-time-machines/design
+Editor:  Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Dit document is een verzameling van interessante ideeën omtrent het ontwerp van het IOTM platform. Het is bedoeld om discussie te stimuleren en kan op elk moment veranderen.
+</pre>
+<section boilerplate="conformance"></section>
+
+Introductie {#introductie}
+=====================
+<pre class="include">
+path: introductie.md
 </pre>
 
-Introduction {#intro}
-=====================
+Activiteitenplan {#activiteitenplan}
+====================================
+<pre class="include">
+path: activiteitenplan.md
+</pre>
 
-Introduction here.
+Praatplaten {#praatplaten}
+===========================
+<pre class="include">
+path: praatplaten.md
+</pre>
 
-Test build: d929bb9
+ERD diagram {#erd-diagram}
+==========================
+
+<pre class="include-raw">
+path: erd.mermaid.html
+</pre>
+
+API beschrijving {#api-beschrijving}
+====================================
+
+<div id="swagger-ui"></div>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run({ querySelector: ".mermaid" });
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css">
+
+<script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+
+<style>
+  .swagger-ui .opblock .opblock-summary .view-line-link.copy-to-clipboard,
+  .swagger-ui .info, .swagger-ui .scheme-container { display:none }
+  img, svg { max-width: 100% }
+</style>
+
+<script>
+  window.addEventListener("load", () => {
+    SwaggerUIBundle({
+      dom_id: "#swagger-ui",
+      url: "openapi.yaml", 
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+      layout: "BaseLayout",
+    });
+  });
+</script>

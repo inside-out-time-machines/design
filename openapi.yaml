@@ -1,0 +1,333 @@
+openapi: 3.0.0
+info:
+  title: IOTM API
+  description: >
+    Geconsolideerde API voor het beheren en ontsluiten van jottems en annotaties. 
+    Deze API ondersteunt IIIF Change Discovery, RSS feeds, Elasticsearch queries, W3C Web Annotations en NDE-conforme datasetbeschrijvingen.
+  version: "0.1"
+
+servers:
+  - url: https://api.iotm.nl/v1
+    description: Productie server
+
+paths:
+
+  /vereniging:
+    get:
+      tags: [Verenigingen]
+      summary: Haal een lijst van alle deelnemende verenigingen op
+      description: Geeft een overzicht van alle verenigingen met hun slug en naam.
+      responses:
+        '200':
+          description: Een lijst met verenigingen
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vereniging'
+              example:
+                - slug: "diegoude"
+                  naam: "Historische Vereniging Die Goude"
+                - slug: "onsamsterdam"
+                  naam: "Vereniging Ons Amsterdam"
+                - slug: "albertusperk"
+                  naam: "Hilversumse Historische Kring"
+                - slug: "oudutrecht"
+                  naam: "Oud Utrecht"
+
+  /vereniging/rss:
+    get:
+      tags: [Verenigingen, RSS]
+      summary: RSS-feed van nieuwe verenigingen op IOTM
+      responses:
+        '200':
+          description: RSS Feed (XML)
+          content:
+            application/rss+xml:
+              schema: { type: string }
+
+  /vereniging/{verenigingSlug}/jottems/iiif/change-discovery:
+    get:
+      tags: [Jottems, IIIF]
+      summary: IIIF Change Discovery Activity Stream
+      description: Voor het periodiek harvesten van nieuwe of gewijzigde jottems en annotaties.
+      parameters:
+        - $ref: '#/components/parameters/verenigingSlug'
+      responses:
+        '200':
+          description: IIIF Change Discovery Activity Stream
+          content:
+            application/json:
+              schema: { type: object }
+
+  /vereniging/{verenigingSlug}/jottem/rss:
+    get:
+      tags: [RSS]
+      summary: RSS-feed van nieuwe jottems
+      parameters:
+        - $ref: '#/components/parameters/verenigingSlug'
+      responses:
+        '200':
+          description: RSS Feed (XML)
+          content:
+            application/rss+xml:
+              schema: { type: string }
+
+  /vereniging/{verenigingSlug}/jottems/iiif/collection:
+    get:
+      tags: [Jottems, IIIF]
+      summary: IIIF Collection manifest per vereniging
+      parameters:
+        - $ref: '#/components/parameters/verenigingSlug'
+      responses:
+        '200':
+          description: IIIF Collection
+          content:
+            application/json: { schema: { type: object } }
+  
+  /jottem/{jottemId}:
+    get:
+      tags: [Jottems]
+      summary: Haal een specifieke jottem op (inclusief media, para- en metadata)
+      parameters:
+        - name: jottemId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Een volledige jottem resource
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Jottem'
+ 
+  /jottem/search:
+    post:
+      tags: [Jottems]
+      summary: Doorzoek jottems (Elasticsearch)
+      description: Voer complexe zoekopdrachten uit op jottem-metadata (NDE schema.org profiel).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+            example: 
+              query: { match: { "name": "markt" } }
+      responses:
+        '200':
+          description: Zoekresultaten
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Jottem' }
+
+  /jottem/{jottemId}/iiif/manifest:
+    get:
+      tags: [Jottems, IIIF]
+      summary: IIIF Manifest per jottem
+      parameters:
+        - name: jottemId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: IIIF Manifest
+          content:
+            application/json: { schema: { type: object } }
+
+  /vereniging/{verenigingSlug}/jottem:
+    get:
+      tags: [Jottems]
+      summary: Haal jottems op per vereniging
+      parameters:
+        - $ref: '#/components/parameters/verenigingSlug'
+      responses:
+        '200':
+          description: Lijst van jottems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Jottem'
+
+  /annotation/{annotationId}:
+    get:
+      tags: [Annotations]
+      summary: Haal specifieke annotatie op
+      parameters:
+        - name: annotationId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: W3C Web Annotation object
+          content:
+            application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
+              schema: { $ref: '#/components/schemas/Annotation' }
+
+  /vereniging/{verenigingSlug}/dataset:
+    get:
+      tags: [Datasetbeschrijvingen]
+      summary: Datasetbeschrijving met datadump distributie (schema.org)
+      description: >
+        Retourneert een metadata beschrijving van de vereniging-dataset 
+        conform het schema.org, inclusief een link naar de RDF datadump.
+      parameters:
+        - name: verenigingSlug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Datasetbeschrijving in JSON-LD (RDF)
+          content:
+            application/ld+json:
+              schema: { $ref: '#/components/schemas/Dataset' }
+
+  /datacatalog:
+    get:
+      tags: [Datasetbeschrijvingen]
+      summary: Datasetcatalogus(schema.org)
+      description: Catalogus van alle verenigings-datasets.
+      responses:
+        '200':
+          description: Datasetcatalogus in JSON-LD
+          content:
+            application/ld+json:
+              schema: { $ref: '#/components/schemas/DataCatalog' }
+
+components:
+  parameters:
+    verenigingSlug:
+      name: verenigingSlug
+      in: path
+      required: true
+      schema: { type: string }
+
+  schemas:
+    Jottem:
+      type: object
+      description: >
+        Een Jottem is een integraal digitaal erfgoedobject dat fungeert als een geaggregeerde resource, waarbij diverse media-uitingen zoals afbeeldingen, video’s of audiofragmenten worden gecombineerd met uitgebreide beschrijvende metadata conform het NDE-schema.org profiel. Naast deze inhoudelijke beschrijving omvat de definitie strikte technische specificaties en juridische licentie-informatie voor duurzaam hergebruik, aangevuld met gedetailleerde paradata die het digitaliseringsproces en de herkomst van de data (provenance) transparant maken. Bovendien dient een Jottem als ankerpunt voor een dynamische laag van verrijkingen, waarbij correcties, publieksreacties en vakinhoudelijke annotaties via het W3C Web Annotation-protocol naadloos worden gekoppeld, zodat het object gedurende zijn digitale levenscyclus voortdurend kan groeien en van nieuwe context kan worden voorzien.
+      required: ["@id", "@type", "name", "license"]
+      properties:
+        # Beschrijvende Metadata (NDE Schema.org)
+        "@context": { type: string, default: "https://schema.org/" }
+        "@id": { type: string, format: uri }
+        "@type": { type: string, enum: [VisualArtwork, AudioObject, VideoObject, ImageObject] }
+        name: { type: string }
+        description: { type: string }
+        creator: { $ref: '#/components/schemas/Agent' }
+        dateCreated: { type: string }
+        
+        # Media & Technische Metadata
+        associatedMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaObject'
+        license: { type: string, format: uri }
+        rightsHolder: { $ref: '#/components/schemas/Agent' }
+
+        # Paradata (Digitaliseringsproces & Provenance)
+        digitizationDetails:
+          type: object
+          properties:
+            digitizationDate: { type: string, format: date }
+            captureDevice: { type: string }
+            digitizer: { $ref: '#/components/schemas/Agent' }
+            processDescription: { type: string }
+
+        # Verrijkingen & Annotaties (Koppelingen)
+        annotations:
+          type: array
+          description: URI's naar gekoppelde W3C Annotaties (correcties, reacties, verrijkingen).
+          items: { type: string, format: uri }
+
+    MediaObject:
+      type: object
+      properties:
+        contentUrl: { type: string, format: uri }
+        encodingFormat: { type: string, example: "image/jp2" }
+        width: { type: integer }
+        height: { type: integer }
+        duration: { type: string } # Voor audio/video
+        technicalSpecs: { type: object, description: "Bijv. EXIF of ICC profiel data" }
+
+    Annotation:
+      type: object
+      description: W3C Web Annotation.
+      properties:
+        "@context": { type: string, example: "http://www.w3.org/ns/anno.jsonld" }
+        type: { type: string, example: "Annotation" }
+        motivation: { type: string }
+        body: { type: object }
+        target: { type: object }
+
+    Dataset:
+      type: object
+      description: NDE Dataset metadata.
+      properties:
+        "@type": { type: string, example: "Dataset" }
+        name: { type: string }
+        distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              encodingFormat: { type: string, example: "application/n-triples" }
+              contentUrl: { type: string, format: uri }
+
+    DataCatalog:
+      type: object
+      description: >
+        De overkoepelende catalogus die alle individuele datasets van de 
+        verschillende verenigingen bevat conform het NDE-profiel.
+      properties:
+        "@context": 
+          type: string
+          example: "https://schema.org/"
+        "@type": 
+          type: string
+          example: "DataCatalog"
+        name: 
+          type: string
+          description: Naam van de catalogus (bijv. "Jottem Centraal Register")
+        publisher:
+          $ref: '#/components/schemas/Agent'
+        dataset:
+          type: array
+          description: De lijst met datasets (per vereniging) die deel uitmaken van deze catalogus.
+          items:
+            $ref: '#/components/schemas/Dataset'
+
+    Agent:
+      type: object
+      properties:
+        "@type": { type: string, enum: [Person, Organization] }
+        name: { type: string }
+
+    Vereniging:
+      type: object
+      required:
+        - slug
+        - naam
+      properties:
+        slug:
+          type: string
+          description: De unieke URL-vriendelijke naam van de vereniging (gebruikt als ID in paden).
+          example: "diegoude"
+        naam:
+          type: string
+          description: De volledige naam van de vereniging.
+          example: "Historische Vereniging Die Goude"
+        logo:
+          type: string
+          format: uri
+          description: URL naar het logo van de vereniging.

@@ -1,22 +1,12 @@
-# Requirements Template
+# IOTM Design 
 
-This is the template for requirements published by Netwerk Digitaal Erfgoed.
-
+The IOTM design document is based on the template for requirements published by Netwerk Digitaal Erfgoed.
 Requirements are written in Markdown and transformed to HTML using the
 [Bikeshed preprocessor](https://tabatkins.github.io/bikeshed/).
 
-
 ## Usage
 
-1. Create a new repository using this template by clicking the green _Use this template_ button on Github.
-
-![](images/step-1.png)
-
-2. Fill in the necessary repository information.
-
-![](images/step-2.png)
-   
-1. Clone the new repository using `git clone https://github.com/<your_repository>` and edit the `index.bs` to start the requirements specification writing!
+Changes to files are automatically processed by a Github action.
 
 ## Generate HTML locally
 

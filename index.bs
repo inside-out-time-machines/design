@@ -5,10 +5,11 @@ Level: 1
 Status: DREAM
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
-Editor:  Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
-Abstract: Dit document is een verzameling van interessante ideeën omtrent het ontwerp van het IOTM platform. Het is bedoeld om discussie te stimuleren en kan op elk moment veranderen.
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Dit document beschrijft de plannen en ideeën van het project Inside Out Time Machines (IOTM). 
 </pre>
 <section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="./favicon.ico">
 
 Introductie {#introductie}
@@ -16,6 +17,7 @@ Introductie {#introductie}
 <pre class="include">
 path: introductie.md
 </pre>
+<img src="images/slide-1.svg">
 
 Activiteitenplan {#activiteitenplan}
 ====================================

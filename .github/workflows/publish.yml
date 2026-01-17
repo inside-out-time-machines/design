@@ -1,0 +1,12 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    uses: netwerk-digitaal-erfgoed/workflows/.github/workflows/spec.yml@main
+    with:
+      publish: true

@@ -326,7 +326,7 @@
 </g>
 </defs>
 <g id="surface1">
-<rect x="0" y="0" width="960" height="540" style="fill:rgb(95.298767%,95.698547%,96.499634%);fill-opacity:1;stroke:none;"/>
+<rect x="0" y="0" width="960" height="540" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <path style="fill-rule:evenodd;fill:rgb(15.699768%,66.699219%,20.799255%);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(95.298767%,95.698547%,96.499634%);stroke-opacity:1;stroke-miterlimit:10;" d="M 342.421875 63.636719 C 228.449219 63.636719 136.058594 156.03125 136.058594 270 C 136.058594 383.96875 228.449219 476.359375 342.421875 476.359375 Z M 342.421875 63.636719 " transform="matrix(1,0,0,-1,0,540)"/>
 <path style="fill-rule:evenodd;fill:rgb(95.298767%,95.698547%,96.499634%);fill-opacity:0.90196;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(15.699768%,66.699219%,20.799255%);stroke-opacity:1;stroke-miterlimit:10;" d="M 342.421875 63.636719 L 823.941406 63.636719 L 823.941406 476.367188 L 342.421875 476.367188 Z M 342.421875 63.636719 " transform="matrix(1,0,0,-1,0,540)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">

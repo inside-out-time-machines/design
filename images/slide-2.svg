@@ -281,7 +281,7 @@
 </g>
 </defs>
 <g id="surface1">
-<rect x="0" y="0" width="960" height="540" style="fill:rgb(95.298767%,95.698547%,96.499634%);fill-opacity:1;stroke:none;"/>
+<rect x="0" y="0" width="960" height="540" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <path style="fill-rule:evenodd;fill:rgb(15.699768%,66.699219%,20.799255%);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(15.699768%,66.699219%,20.799255%);stroke-opacity:1;stroke-miterlimit:10;" d="M 31.195312 337.359375 L 234.273438 337.359375 L 234.273438 411.632812 L 31.195312 411.632812 Z M 31.195312 337.359375 " transform="matrix(1,0,0,-1,0,540)"/>
 <g style="fill:rgb(95.298767%,95.698547%,96.499634%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="48.408" y="158.21"/>

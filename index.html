@@ -1901,7 +1901,7 @@ dfn > a.self-link::before      { content: "#"; }
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Inside Out Time Machines (IOTM) Design</h1>
    <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas,
-    <time class="dt-updated" datetime="2026-01-17">17 January 2026</time></span></h2>
+    <time class="dt-updated" datetime="2026-01-18">18 January 2026</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1914,7 +1914,7 @@ dfn > a.self-link::before      { content: "#"; }
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 17 January 2026,
+In addition, as of 18 January 2026,
 the editors have made this specification available under the
 <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
@@ -1965,8 +1965,27 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#praatplaat-annotations"><span class="secno">3.5</span> <span class="content">Annotations</span></a>
       <li><a href="#praatplaat-technology-parts"><span class="secno">3.6</span> <span class="content">Technology part</span></a>
      </ol>
-    <li><a href="#erd-diagram"><span class="secno">4</span> <span class="content">ERD diagram</span></a>
-    <li><a href="#api-beschrijving"><span class="secno">5</span> <span class="content">API beschrijving</span></a>
+    <li>
+     <a href="#requirements"><span class="secno">4</span> <span class="content">Requirements</span></a>
+     <ol class="toc">
+      <li><a href="#functional-requirements"><span class="secno">4.1</span> <span class="content">Functional requirements</span></a>
+      <li><a href="#standards"><span class="secno">4.2</span> <span class="content">Standaarden &amp; API’s</span></a>
+      <li><a href="#domains"><span class="secno">4.3</span> <span class="content">(Sub)domeinen</span></a>
+     </ol>
+    <li>
+     <a href="#usecases"><span class="secno">5</span> <span class="content">Usecases per rol</span></a>
+     <ol class="toc">
+      <li><a href="#platformbeheerder"><span class="secno">5.1</span> <span class="content">Als platformbeheerder kan ik</span></a>
+      <li><a href="#verenigingsbeheerder"><span class="secno">5.2</span> <span class="content">Als verenigingsbeheerder kan ik</span></a>
+      <li><a href="#moderator"><span class="secno">5.3</span> <span class="content">Als moderator kan ik</span></a>
+      <li><a href="#gebruiker"><span class="secno">5.4</span> <span class="content">Als gebruiker (binnen een vereniging) kan ik</span></a>
+      <li><a href="#gebruiker-uploader"><span class="secno">5.5</span> <span class="content">Als gebruiker/uploader (binnen een vereniging) kan ik</span></a>
+      <li><a href="#gebruiker-annoteerder"><span class="secno">5.6</span> <span class="content">Als gebruikers/annoteerder (binnen een vereniging) kan ik</span></a>
+      <li><a href="#bezoeker"><span class="secno">5.7</span> <span class="content">Als bezoeker kan ik</span></a>
+      <li><a href="#api-gebruiker"><span class="secno">5.8</span> <span class="content">Als API gebruiker kan ik</span></a>
+     </ol>
+    <li><a href="#erd-diagram"><span class="secno">6</span> <span class="content">ERD diagram</span></a>
+    <li><a href="#api-beschrijving"><span class="secno">7</span> <span class="content">API beschrijving</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
@@ -2127,7 +2146,166 @@ Er worden minimaal twee kennissessies georganiseerd:
    <p><img src="images/slide-6.svg"></p>
    <h3 class="heading settled" data-level="3.6" id="praatplaat-technology-parts"><span class="secno">3.6. </span><span class="content">Technology part</span><a class="self-link" href="#praatplaat-technology-parts"></a></h3>
    <p><img src="images/slide-7.svg"></p>
-   <h2 class="heading settled" data-level="4" id="erd-diagram"><span class="secno">4. </span><span class="content">ERD diagram</span><a class="self-link" href="#erd-diagram"></a></h2>
+   <h2 class="heading settled" data-level="4" id="requirements"><span class="secno">4. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
+   <h3 class="heading settled" data-level="4.1" id="functional-requirements"><span class="secno">4.1. </span><span class="content">Functional requirements</span><a class="self-link" href="#functional-requirements"></a></h3>
+   <ul>
+    <li data-md>
+     <p>inloggen door gebruikers moet zeer laagdrempelig zijn, dus inclusief social login</p>
+    <li data-md>
+     <p>inloggen door beheerders moet zijn te beveiligen via 2FA</p>
+    <li data-md>
+     <p>duurzame link op basis van ARK (met objectname op basis van NOID of UUID) per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation</p>
+   </ul>
+   <h3 class="heading settled" data-level="4.2" id="standards"><span class="secno">4.2. </span><span class="content">Standaarden &amp; API’s</span><a class="self-link" href="#standards"></a></h3>
+   <ul>
+    <li data-md>
+     <p><a href="https://archive.org/developers/index-apis.html">Internet Archive</a></p>
+    <li data-md>
+     <p><a href="https://docs.nde.nl/schema-profile/">Schema.org AP NDE</a></p>
+    <li data-md>
+     <p><a href="https://docs.nde.nl/requirements-datasets/">Datasetbeschrijvingen</a></p>
+    <li data-md>
+     <p><a href="https://www.rssboard.org/rss-specification">RSS</a></p>
+    <li data-md>
+     <p><a href="https://www.w3.org/TR/annotation-model/">W3C Web Annotations</a></p>
+    <li data-md>
+     <p><a href="https://www.w3.org/TR/annotation-protocol/">W3C Web Annotation Protocol</a></p>
+    <li data-md>
+     <p><a href="https://iiif.io/api/image/3.0/">IIIF Image API</a> (info.json)</p>
+    <li data-md>
+     <p><a href="https://iiif.io/api/presentation/3.0/">IIIF Presentation API</a> (manifest/collection)</p>
+    <li data-md>
+     <p><a href="https://iiif.io/api/discovery/1.0/">IIIF Change Discovery</a></p>
+   </ul>
+   <h3 class="heading settled" data-level="4.3" id="domains"><span class="secno">4.3. </span><span class="content">(Sub)domeinen</span><a class="self-link" href="#domains"></a></h3>
+   <ul>
+    <li data-md>
+     <p><a href="http://www.iotm.nl">www.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://api.iotm.nl">api.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://onsamsterdam.iotm.nl">onsamsterdam.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://diegoude.iotm.nl">diegoude.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://albertusperk.iotm.nl">albertusperk.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://oudutrecht.iotm.nl">oudutrecht.iotm.nl</a></p>
+   </ul>
+   <h2 class="heading settled" data-level="5" id="usecases"><span class="secno">5. </span><span class="content">Usecases per rol</span><a class="self-link" href="#usecases"></a></h2>
+   <h3 class="heading settled" data-level="5.1" id="platformbeheerder"><span class="secno">5.1. </span><span class="content">Als platformbeheerder kan ik</span><a class="self-link" href="#platformbeheerder"></a></h3>
+   <ul>
+    <li data-md>
+     <p>inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen</p>
+    <li data-md>
+     <p>een verenigingsjottem definiëren, deze heeft een naam, slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN</p>
+    <li data-md>
+     <p>gebruikers (naam, e-mail) in de rol verenigingsbeheerder van een verenigingsjottem toevoegen, bewerken en verwijderen</p>
+    <li data-md>
+     <p>bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden</p>
+    <li data-md>
+     <p>kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per vereniging</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.2" id="verenigingsbeheerder"><span class="secno">5.2. </span><span class="content">Als verenigingsbeheerder kan ik</span><a class="self-link" href="#verenigingsbeheerder"></a></h3>
+   <ul>
+    <li data-md>
+     <p>inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen</p>
+    <li data-md>
+     <p>gebruikers (naam, e-mail) in de rol moderater binnen de verenigingsjottem toevoegen, bewerken en verwijderen</p>
+    <li data-md>
+     <p>bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden</p>
+    <li data-md>
+     <p>kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.3" id="moderator"><span class="secno">5.3. </span><span class="content">Als moderator kan ik</span><a class="self-link" href="#moderator"></a></h3>
+   <ul>
+    <li data-md>
+     <p>alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken</p>
+    <li data-md>
+     <p>de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy en auteursrecht</p>
+    <li data-md>
+     <p>bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren</p>
+    <li data-md>
+     <p>bij goedkeuring wordt er een object identifier (bijv. NOID of UUID) gemaakt de ARK en wordt de afbeelding en metadata duurzaam opgeslagen bij het internet archive en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders</p>
+    <li data-md>
+     <p>kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.4" id="gebruiker"><span class="secno">5.4. </span><span class="content">Als gebruiker (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker"></a></h3>
+   <ul>
+    <li data-md>
+     <p>inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen</p>
+    <li data-md>
+     <p>kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden</p>
+    <li data-md>
+     <p>kan ik een overzicht krijgen van geuploadde afbeeldingen, status een \#annotaties en deellinks</p>
+    <li data-md>
+     <p>kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen</p>
+    <li data-md>
+     <p>kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.5" id="gebruiker-uploader"><span class="secno">5.5. </span><span class="content">Als gebruiker/uploader (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker-uploader"></a></h3>
+   <ul>
+    <li data-md>
+     <p>kan ik een “album” (of collectie) aanmaken naast het album “Alles”</p>
+    <li data-md>
+     <p>kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog), steekwoorden en in een album plaatsen</p>
+    <li data-md>
+     <p>kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.6" id="gebruiker-annoteerder"><span class="secno">5.6. </span><span class="content">Als gebruikers/annoteerder (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker-annoteerder"></a></h3>
+   <ul>
+    <li data-md>
+     <p>kan ik een extra metadata aan de gehele jottem toevoegen, zoals</p>
+    <li data-md>
+     <p>een plaatsnaam (label+URI)</p>
+    <li data-md>
+     <p>de plek waar de fotograaf stond (op de kaart) plus zichtveld (WKT)</p>
+    <li data-md>
+     <p>gebeurtenis (label+URI)</p>
+    <li data-md>
+     <p>vrije tekst: herinnering, aanvulling of correctie</p>
+    <li data-md>
+     <p>kan ik een extra metadata aan een getekend vlak op de jottem toevoegen, zoals</p>
+    <li data-md>
+     <p>identificatie van persoon, gebouw, bedrijf (naam+URI)</p>
+    <li data-md>
+     <p>kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)</p>
+    <li data-md>
+     <p>kan ik mijn annotatie bewerken en verwijderen ???</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.7" id="bezoeker"><span class="secno">5.7. </span><span class="content">Als bezoeker kan ik</span><a class="self-link" href="#bezoeker"></a></h3>
+   <ul>
+    <li data-md>
+     <p>lezen over het iotm platform, faq, privacy, auteursrecht</p>
+    <li data-md>
+     <p>de verenigingspagina’s lezen met informatie over doel, call-to-action</p>
+    <li data-md>
+     <p>mezelf registreren (waarmee je een gebruiker wordt)</p>
+    <li data-md>
+     <p>gepubliceerde jottems bekijken/doorzoeken</p>
+    <li data-md>
+     <p>favorieten van gebruikers bekijken</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.8" id="api-gebruiker"><span class="secno">5.8. </span><span class="content">Als API gebruiker kan ik</span><a class="self-link" href="#api-gebruiker"></a></h3>
+   <ul>
+    <li data-md>
+     <p>per vereniging nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD</p>
+    <li data-md>
+     <p>per vereniging nieuwe jottems via RSS</p>
+    <li data-md>
+     <p>kan ik jottems doorzoeken op basis van elasticsearch</p>
+    <li data-md>
+     <p>kan ik annotaties zoeken</p>
+    <li data-md>
+     <p>annotaties ophalen via het W3C Web Annotation Protocol</p>
+    <li data-md>
+     <p>per vereniging / album een IIIF collection opvragen</p>
+    <li data-md>
+     <p>per jottem IIIF info.json \+ manifest opvragen</p>
+    <li data-md>
+     <p>per vereniging een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen</p>
+   </ul>
+   <h2 class="heading settled" data-level="6" id="erd-diagram"><span class="secno">6. </span><span class="content">ERD diagram</span><a class="self-link" href="#erd-diagram"></a></h2>
 <pre class="mermaid">  erDiagram
 
   Vereniging {
@@ -2200,7 +2378,7 @@ Er worden minimaal twee kennissessies georganiseerd:
 
   Gebruiker ||--o{ Metadata : "maakt"
 </pre>
-   <h2 class="heading settled" data-level="5" id="api-beschrijving"><span class="secno">5. </span><span class="content">API beschrijving</span><a class="self-link" href="#api-beschrijving"></a></h2>
+   <h2 class="heading settled" data-level="7" id="api-beschrijving"><span class="secno">7. </span><span class="content">API beschrijving</span><a class="self-link" href="#api-beschrijving"></a></h2>
    <div id="swagger-ui"></div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

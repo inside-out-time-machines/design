@@ -31,6 +31,18 @@ Praatplaten {#praatplaten}
 path: praatplaten.md
 </pre>
 
+Requirements {#requirements}
+============================
+<pre class="include">
+path: requirements.md
+</pre>
+
+Usecases per rol {#usecases}
+============================
+<pre class="include">
+path: usecases.md
+</pre>
+
 ERD diagram {#erd-diagram}
 ==========================
 

@@ -19,6 +19,12 @@ path: introductie.md
 </pre>
 <img src="images/slide-1.svg">
 
+Sales pitch {#salespitch}
+=====================
+<pre class="include">
+path: salespitch.md
+</pre>
+
 Activiteitenplan {#activiteitenplan}
 ====================================
 <pre class="include">

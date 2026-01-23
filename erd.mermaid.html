@@ -1,7 +1,7 @@
 <pre class="mermaid">
   erDiagram
 
-  Vereniging {
+  Organisatie {
     int id PK
     string naam
     string slug
@@ -14,7 +14,7 @@
     string naam
     string email
     string rol
-    int verenigingsId FK
+    int organisatieId FK
     date bevestigingsDatum
     date registratieDatum
     date laatsteLoginDatum
@@ -28,7 +28,7 @@
     date creatieDatum
     date publicatieDatum
     int gebruikersId FK
-    int verenigingsId FK
+    int organisatieId FK
     int albumId FK
   }
 
@@ -56,8 +56,8 @@
   }
 
   %% Relationships
-  Vereniging ||--o{ Gebruiker : "heeft"
-  Vereniging ||--o{ Media : "bevat"
+  Organisatie ||--o{ Gebruiker : "heeft"
+  Organisatie ||--o{ Media : "bevat"
 
   Gebruiker ||--o{ Media : "uploadt"
   Gebruiker ||--o{ Album : "maakt"

@@ -12,20 +12,20 @@ servers:
 
 paths:
 
-  /vereniging:
+  /organisatie:
     get:
-      tags: [Verenigingen]
-      summary: Haal een lijst van alle deelnemende verenigingen op
-      description: Geeft een overzicht van alle verenigingen met hun slug en naam.
+      tags: [Organisaties]
+      summary: Haal een lijst van alle deelnemende organisaties (verenigingen, archiefinstellingen, instituten, ...) op
+      description: Geeft een overzicht van alle organisaties met hun slug en naam.
       responses:
         '200':
-          description: Een lijst met verenigingen
+          description: Een lijst met organisaties
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Vereniging'
+                  $ref: '#/components/schemas/organisatie'
               example:
                 - slug: "diegoude"
                   naam: "Historische Vereniging Die Goude"
@@ -36,10 +36,10 @@ paths:
                 - slug: "oudutrecht"
                   naam: "Oud Utrecht"
 
-  /vereniging/rss:
+  /organisatie/rss:
     get:
-      tags: [Verenigingen, RSS]
-      summary: RSS-feed van nieuwe verenigingen op IOTM
+      tags: [Organisaties, RSS]
+      summary: RSS-feed van nieuwe organisaties op IOTM
       responses:
         '200':
           description: RSS Feed (XML)
@@ -47,13 +47,13 @@ paths:
             application/rss+xml:
               schema: { type: string }
 
-  /vereniging/{verenigingSlug}/jottems/iiif/change-discovery:
+  /organisatie/{organisatieSlug}/jottems/iiif/change-discovery:
     get:
       tags: [Jottems, IIIF]
       summary: IIIF Change Discovery Activity Stream
       description: Voor het periodiek harvesten van nieuwe of gewijzigde jottems en annotaties.
       parameters:
-        - $ref: '#/components/parameters/verenigingSlug'
+        - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
           description: IIIF Change Discovery Activity Stream
@@ -61,12 +61,12 @@ paths:
             application/json:
               schema: { type: object }
 
-  /vereniging/{verenigingSlug}/jottem/rss:
+  /organisatie/{organisatieSlug}/jottem/rss:
     get:
       tags: [RSS]
       summary: RSS-feed van nieuwe jottems
       parameters:
-        - $ref: '#/components/parameters/verenigingSlug'
+        - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
           description: RSS Feed (XML)
@@ -74,12 +74,12 @@ paths:
             application/rss+xml:
               schema: { type: string }
 
-  /vereniging/{verenigingSlug}/jottems/iiif/collection:
+  /organisatie/{organisatieSlug}/jottems/iiif/collection:
     get:
       tags: [Jottems, IIIF]
-      summary: IIIF Collection manifest per vereniging
+      summary: IIIF Collection manifest per organisatie
       parameters:
-        - $ref: '#/components/parameters/verenigingSlug'
+        - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
           description: IIIF Collection
@@ -139,12 +139,12 @@ paths:
           content:
             application/json: { schema: { type: object } }
 
-  /vereniging/{verenigingSlug}/jottem:
+  /organisatie/{organisatieSlug}/jottem:
     get:
       tags: [Jottems]
-      summary: Haal jottems op per vereniging
+      summary: Haal jottems op per organisatie
       parameters:
-        - $ref: '#/components/parameters/verenigingSlug'
+        - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
           description: Lijst van jottems
@@ -171,15 +171,15 @@ paths:
             application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
               schema: { $ref: '#/components/schemas/Annotation' }
 
-  /vereniging/{verenigingSlug}/dataset:
+  /organisatie/{organisatieSlug}/dataset:
     get:
       tags: [Datasetbeschrijvingen]
       summary: Datasetbeschrijving met datadump distributie (schema.org)
       description: >
-        Retourneert een metadata beschrijving van de vereniging-dataset 
+        Retourneert een metadata beschrijving van de organisatie-dataset 
         conform het schema.org, inclusief een link naar de RDF datadump.
       parameters:
-        - name: verenigingSlug
+        - name: organisatieSlug
           in: path
           required: true
           schema:
@@ -195,7 +195,7 @@ paths:
     get:
       tags: [Datasetbeschrijvingen]
       summary: Datasetcatalogus(schema.org)
-      description: Catalogus van alle verenigings-datasets.
+      description: Catalogus van alle organisatie-datasets.
       responses:
         '200':
           description: Datasetcatalogus in JSON-LD
@@ -205,8 +205,8 @@ paths:
 
 components:
   parameters:
-    verenigingSlug:
-      name: verenigingSlug
+    organisatieSlug:
+      name: organisatieSlug
       in: path
       required: true
       schema: { type: string }
@@ -288,7 +288,7 @@ components:
       type: object
       description: >
         De overkoepelende catalogus die alle individuele datasets van de 
-        verschillende verenigingen bevat conform het NDE-profiel.
+        verschillende organisaties bevat conform het NDE-profiel.
       properties:
         "@context": 
           type: string
@@ -303,7 +303,7 @@ components:
           $ref: '#/components/schemas/Agent'
         dataset:
           type: array
-          description: De lijst met datasets (per vereniging) die deel uitmaken van deze catalogus.
+          description: De lijst met datasets (per organisatie) die deel uitmaken van deze catalogus.
           items:
             $ref: '#/components/schemas/Dataset'
 
@@ -313,7 +313,7 @@ components:
         "@type": { type: string, enum: [Person, Organization] }
         name: { type: string }
 
-    Vereniging:
+    organisatie:
       type: object
       required:
         - slug
@@ -321,13 +321,13 @@ components:
       properties:
         slug:
           type: string
-          description: De unieke URL-vriendelijke naam van de vereniging (gebruikt als ID in paden).
+          description: De unieke URL-vriendelijke naam van de organisatie (gebruikt als ID in paden).
           example: "diegoude"
         naam:
           type: string
-          description: De volledige naam van de vereniging.
+          description: De volledige naam van de organisatie.
           example: "Historische Vereniging Die Goude"
         logo:
           type: string
           format: uri
-          description: URL naar het logo van de vereniging.
+          description: URL naar het logo van de organisatie.

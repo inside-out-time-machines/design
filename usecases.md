@@ -1,4 +1,6 @@
-<h3 id="platformbeheerder">Als platformbeheerder kan ik</h3>
+# Usecases per rol # {#usecases}
+
+## Als platformbeheerder kan ik ## {#platformbeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  
 * een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN  
@@ -6,7 +8,7 @@
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie
 
-<h3 id="organisatiebeheerder">Als organisatiebeheerder kan ik</h3>
+## Als organisatiebeheerder kan ik ## {#organisatiebeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  
 * gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen  
@@ -14,7 +16,7 @@
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) toevoegen 
 
-<h3 id="moderator">Als moderator kan ik</h3>
+## Als moderator kan ik ## {#moderator}
 
 * alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken  
 * de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy en auteursrecht  
@@ -22,7 +24,7 @@
   * bij goedkeuring wordt er een object identifier (bijv. NOID of UUID) gemaakt de ARK en wordt de afbeelding en metadata duurzaam opgeslagen bij het internet archive en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
-<h3 id="gebruiker">Als gebruiker (binnen een organisatie) kan ik</h3>
+## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
 
 * inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen  
 * kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden  
@@ -30,13 +32,13 @@
 * kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen  
 * kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)
 
-<h3 id="gebruiker-uploader">Als gebruiker/uploader (binnen een organisatie) kan ik</h3>
+## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
 
 * kan ik een “album” (of collectie) aanmaken naast het album “Alles”  
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog), steekwoorden en in een album plaatsen  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)
 
-<h3 id="gebruiker-annoteerder">Als gebruikers/annoteerder (binnen een organisatie) kan ik</h3>
+## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
 
 * kan ik een extra metadata aan de gehele jottem toevoegen, zoals  
   * een plaatsnaam (label+URI)  
@@ -48,15 +50,7 @@
 * kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
 * kan ik mijn annotatie bewerken en verwijderen ???
 
-<h3 id="bezoeker">Als bezoeker kan ik</h3>
-
-* lezen over het iotm platform, faq, privacy, auteursrecht  
-* de organisatiepagina’s lezen met informatie over doel, call-to-action  
-  * mezelf registreren (waarmee je een gebruiker wordt)  
-  * gepubliceerde jottems bekijken/doorzoeken  
-  * favorieten van gebruikers bekijken
-
-<h3 id="api-gebruiker">Als API gebruiker kan ik</h3>
+## Als API gebruiker kan ik ## {#api-gebruiker}
 
 * per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD  
 * per organisatie nieuwe jottems via RSS  
@@ -66,3 +60,11 @@
 * per organisatie / album een IIIF collection opvragen  
 * per jottem IIIF info.json \+ manifest opvragen  
 * per organisatie een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen
+
+## Als bezoeker kan ik ## {#bezoeker}
+
+* lezen over het iotm platform, faq, privacy, auteursrecht  
+* de organisatiepagina’s lezen met informatie over doel, call-to-action  
+  * mezelf registreren (waarmee je een gebruiker wordt)  
+  * gepubliceerde jottems bekijken/doorzoeken  
+  * favorieten van gebruikers bekijken

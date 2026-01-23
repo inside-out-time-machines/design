@@ -1492,6 +1492,12 @@ Possible extra rowspan handling
   <link href="https://github.com/inside-out-time-machines/design" rel="canonical">
   <meta content="dark light" name="color-scheme">
   <link href="./favicon.ico" rel="shortcut icon">
+<style>
+img, svg {
+    background: white;
+    max-width: 100%;
+}
+</style>
   <link href="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css" rel="stylesheet">
 <style>
   .swagger-ui .opblock .opblock-summary .view-line-link.copy-to-clipboard,
@@ -1901,7 +1907,7 @@ dfn > a.self-link::before      { content: "#"; }
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Inside Out Time Machines (IOTM) Design</h1>
    <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas,
-    <time class="dt-updated" datetime="2026-01-18">18 January 2026</time></span></h2>
+    <time class="dt-updated" datetime="2026-01-23">23 January 2026</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1914,7 +1920,7 @@ dfn > a.self-link::before      { content: "#"; }
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 18 January 2026,
+In addition, as of 23 January 2026,
 the editors have made this specification available under the
 <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
@@ -1929,63 +1935,91 @@ Parts of this work may be from another specification document.  If so, those par
    <ol class="toc" role="directory">
     <li><a href="#introductie"><span class="secno">1</span> <span class="content">Introductie</span></a>
     <li>
-     <a href="#activiteitenplan"><span class="secno">2</span> <span class="content">Activiteitenplan</span></a>
+     <a href="#salespitch"><span class="secno">2</span> <span class="content">Salespitch voor het Jottem platform</span></a>
      <ol class="toc">
-      <li><a href="#activiteitenplan-hoofdactiviteit"><span class="secno">2.1</span> <span class="content">Hoofdactiviteit en doel</span></a>
-      <li><a href="#activiteitenplan-eindresultaat"><span class="secno">2.2</span> <span class="content">Beoogde eindresultaat</span></a>
+      <li><a href="#hoofdboodschap"><span class="secno">2.1</span> <span class="content">Hoofdboodschap</span></a>
+      <li><a href="#het-probleem"><span class="secno">2.2</span> <span class="content">Het probleem</span></a>
       <li>
-       <a href="#activiteitenplan-deelactiviteiten"><span class="secno">2.3</span> <span class="content">Deelactiviteiten</span></a>
+       <a href="#de-oplossing-het-jottem-platform"><span class="secno">2.3</span> <span class="content">De oplossing: het Jottem platform</span></a>
        <ol class="toc">
-        <li><a href="#activiteitenplan-behoefte"><span class="secno">2.3.1</span> <span class="content">Uitvraag behoefte</span></a>
-        <li><a href="#activiteitenplan-verkenning"><span class="secno">2.3.2</span> <span class="content">Verkenning technische oplossingsrichting</span></a>
-        <li><a href="#activiteitenplan-oplossingsrichting"><span class="secno">2.3.3</span> <span class="content">Keuze oplossingsrichting</span></a>
-        <li><a href="#activiteitenplan-implementatie"><span class="secno">2.3.4</span> <span class="content">Implementatie per tijdmachine</span></a>
-        <li><a href="#activiteitenplan-testen"><span class="secno">2.3.5</span> <span class="content">Testen en nazorg</span></a>
-        <li><a href="#activiteitenplan-evaluatie"><span class="secno">2.3.6</span> <span class="content">Evaluatie en leerpunten</span></a>
-        <li><a href="#activiteitenplan-communicatie"><span class="secno">2.3.7</span> <span class="content">Communicatie &amp; kennisdeling</span></a>
-        <li><a href="#activiteitenplan-beheer"><span class="secno">2.3.8</span> <span class="content">Beheer &amp; borging</span></a>
+        <li><a href="#kernfunctionaliteiten"><span class="secno">2.3.1</span> <span class="content">Kernfunctionaliteiten</span></a>
        </ol>
-      <li><a href="#activiteitenplan-faro"><span class="secno">2.4</span> <span class="content">Relatie met de Faro-kernwaarden</span></a>
-      <li><a href="#activiteitenplan-hoofdthema"><span class="secno">2.5</span> <span class="content">Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro</span></a>
-      <li><a href="#activiteitenplan-verandering"><span class="secno">2.6</span> <span class="content">Structurele verandering ten opzichte van het huidige functioneren van de erfgoedzorg</span></a>
       <li>
-       <a href="#activiteitenplan-kennisdeling"><span class="secno">2.7</span> <span class="content">Plan voor kennisontwikkeling en kennisdeling en de daarbij beoogde doelgroep(en)</span></a>
+       <a href="#unique-selling-points"><span class="secno">2.4</span> <span class="content">Unique selling points</span></a>
        <ol class="toc">
-        <li><a href="#activiteitenplan-doorlopende-communicati"><span class="secno">2.7.1</span> <span class="content">Doorlopende communicatie</span></a>
-        <li><a href="#activiteitenplan-kennissessies"><span class="secno">2.7.2</span> <span class="content">Kennissessies en webinars</span></a>
+        <li><a href="#participatie-in-de-volle-breedte"><span class="secno">2.4.1</span> <span class="content">Participatie in de volle breedte</span></a>
+        <li><a href="#duurzaam-en-betrouwbaar"><span class="secno">2.4.2</span> <span class="content">Duurzaam en betrouwbaar</span></a>
+        <li><a href="#open-en-herbruikbaar"><span class="secno">2.4.3</span> <span class="content">Open en herbruikbaar</span></a>
+        <li><a href="#bewezen-concept"><span class="secno">2.4.4</span> <span class="content">Bewezen concept</span></a>
+        <li><a href="#van-aanbod-naar-vraag"><span class="secno">2.4.5</span> <span class="content">Van aanbod naar vraag</span></a>
+       </ol>
+      <li>
+       <a href="#wat-levert-het-op"><span class="secno">2.5</span> <span class="content">Wat levert het op?</span></a>
+       <ol class="toc">
+        <li><a href="#voor-gemeenschappen"><span class="secno">2.5.1</span> <span class="content">Voor gemeenschappen:</span></a>
+        <li><a href="#voor-organisaties"><span class="secno">2.5.2</span> <span class="content">Voor organisaties:</span></a>
+        <li><a href="#voor-de-erfgoedsector"><span class="secno">2.5.3</span> <span class="content">Voor de erfgoedsector:</span></a>
+       </ol>
+      <li><a href="#call-to-action"><span class="secno">2.6</span> <span class="content">Call to action</span></a>
+      <li><a href="#slogan-opties"><span class="secno">2.7</span> <span class="content">Slogan opties</span></a>
+     </ol>
+    <li>
+     <a href="#activiteitenplan"><span class="secno">3</span> <span class="content">Activiteitenplan</span></a>
+     <ol class="toc">
+      <li><a href="#hoofdactiviteit-en-doel"><span class="secno">3.1</span> <span class="content">Hoofdactiviteit en doel</span></a>
+      <li><a href="#beoogde-eindresultaat"><span class="secno">3.2</span> <span class="content">Beoogde eindresultaat</span></a>
+      <li>
+       <a href="#deelactiviteiten"><span class="secno">3.3</span> <span class="content">Deelactiviteiten</span></a>
+       <ol class="toc">
+        <li><a href="#uitvraag-behoefte"><span class="secno">3.3.1</span> <span class="content">Uitvraag behoefte</span></a>
+        <li><a href="#verkenning-technische-oplossingsrichting"><span class="secno">3.3.2</span> <span class="content">Verkenning technische oplossingsrichting</span></a>
+        <li><a href="#keuze-oplossingsrichting"><span class="secno">3.3.3</span> <span class="content">Keuze oplossingsrichting</span></a>
+        <li><a href="#implementatie-per-tijdmachine"><span class="secno">3.3.4</span> <span class="content">Implementatie per tijdmachine</span></a>
+        <li><a href="#testen-en-nazorg"><span class="secno">3.3.5</span> <span class="content">Testen en nazorg</span></a>
+        <li><a href="#evaluatie-en-leerpunten"><span class="secno">3.3.6</span> <span class="content">Evaluatie en leerpunten</span></a>
+        <li><a href="#communicatie--kennisdeling"><span class="secno">3.3.7</span> <span class="content">Communicatie &amp; kennisdeling</span></a>
+        <li><a href="#beheer--borging"><span class="secno">3.3.8</span> <span class="content">Beheer &amp; borging</span></a>
+       </ol>
+      <li><a href="#relatie-met-de-faro-kernwaarden"><span class="secno">3.4</span> <span class="content">Relatie met de Faro-kernwaarden</span></a>
+      <li><a href="#omschrijving-hoofdthema-en-aanluiting-bij-de-uitvoeringsagenda-faro"><span class="secno">3.5</span> <span class="content">Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro</span></a>
+      <li><a href="#structurele-verandering-ten-opzichte-van-het-huidige-functioneren-van-de-erfgoedzorg"><span class="secno">3.6</span> <span class="content">Structurele verandering ten opzichte van het huidige functioneren van de erfgoedzorg</span></a>
+      <li>
+       <a href="#plan-voor-kennisontwikkeling-en-kennisdeling-en-de-daarbij-beoogde-doelgroep-en"><span class="secno">3.7</span> <span class="content">Plan voor kennisontwikkeling en kennisdeling en de daarbij beoogde doelgroep(en)</span></a>
+       <ol class="toc">
+        <li><a href="#doorlopende-communicatie"><span class="secno">3.7.1</span> <span class="content">Doorlopende communicatie</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#praatplaten"><span class="secno">3</span> <span class="content">Praatplaten</span></a>
+     <a href="#praatplaten"><span class="secno">4</span> <span class="content">Praatplaten</span></a>
      <ol class="toc">
-      <li><a href="#praatplaat-stakeholders"><span class="secno">3.1</span> <span class="content">Stakeholders</span></a>
-      <li><a href="#praatplaat-media-process"><span class="secno">3.2</span> <span class="content">Media process</span></a>
-      <li><a href="#praatplaat-process-steps"><span class="secno">3.3</span> <span class="content">Process steps</span></a>
-      <li><a href="#praatplaat-platform-parts"><span class="secno">3.4</span> <span class="content"> Platform parts</span></a>
-      <li><a href="#praatplaat-annotations"><span class="secno">3.5</span> <span class="content">Annotations</span></a>
-      <li><a href="#praatplaat-technology-parts"><span class="secno">3.6</span> <span class="content">Technology part</span></a>
+      <li><a href="#praatplaat-stakeholders"><span class="secno">4.1</span> <span class="content">Stakeholders</span></a>
+      <li><a href="#praatplaat-media-process"><span class="secno">4.2</span> <span class="content">Media process</span></a>
+      <li><a href="#praatplaat-process-steps"><span class="secno">4.3</span> <span class="content">Process steps</span></a>
+      <li><a href="#praatplaat-platform-parts"><span class="secno">4.4</span> <span class="content"> Platform parts</span></a>
+      <li><a href="#praatplaat-annotations"><span class="secno">4.5</span> <span class="content">Annotations</span></a>
+      <li><a href="#praatplaat-technology-parts"><span class="secno">4.6</span> <span class="content">Technology part</span></a>
      </ol>
     <li>
-     <a href="#requirements"><span class="secno">4</span> <span class="content">Requirements</span></a>
+     <a href="#requirements"><span class="secno">5</span> <span class="content">Requirements</span></a>
      <ol class="toc">
-      <li><a href="#functional-requirements"><span class="secno">4.1</span> <span class="content">Functional requirements</span></a>
-      <li><a href="#standards"><span class="secno">4.2</span> <span class="content">Standaarden &amp; API’s</span></a>
-      <li><a href="#domains"><span class="secno">4.3</span> <span class="content">(Sub)domeinen</span></a>
+      <li><a href="#functional-requirements"><span class="secno">5.1</span> <span class="content">Functional requirements</span></a>
+      <li><a href="#standards"><span class="secno">5.2</span> <span class="content">Standaarden &amp; API’s</span></a>
+      <li><a href="#domains"><span class="secno">5.3</span> <span class="content">(Sub)domeinen</span></a>
      </ol>
     <li>
-     <a href="#usecases"><span class="secno">5</span> <span class="content">Usecases per rol</span></a>
+     <a href="#usecases"><span class="secno">6</span> <span class="content">Usecases per rol</span></a>
      <ol class="toc">
-      <li><a href="#platformbeheerder"><span class="secno">5.1</span> <span class="content">Als platformbeheerder kan ik</span></a>
-      <li><a href="#verenigingsbeheerder"><span class="secno">5.2</span> <span class="content">Als verenigingsbeheerder kan ik</span></a>
-      <li><a href="#moderator"><span class="secno">5.3</span> <span class="content">Als moderator kan ik</span></a>
-      <li><a href="#gebruiker"><span class="secno">5.4</span> <span class="content">Als gebruiker (binnen een vereniging) kan ik</span></a>
-      <li><a href="#gebruiker-uploader"><span class="secno">5.5</span> <span class="content">Als gebruiker/uploader (binnen een vereniging) kan ik</span></a>
-      <li><a href="#gebruiker-annoteerder"><span class="secno">5.6</span> <span class="content">Als gebruikers/annoteerder (binnen een vereniging) kan ik</span></a>
-      <li><a href="#bezoeker"><span class="secno">5.7</span> <span class="content">Als bezoeker kan ik</span></a>
-      <li><a href="#api-gebruiker"><span class="secno">5.8</span> <span class="content">Als API gebruiker kan ik</span></a>
+      <li><a href="#platformbeheerder"><span class="secno">6.1</span> <span class="content">Als platformbeheerder kan ik</span></a>
+      <li><a href="#organisatiebeheerder"><span class="secno">6.2</span> <span class="content">Als organisatiebeheerder kan ik</span></a>
+      <li><a href="#moderator"><span class="secno">6.3</span> <span class="content">Als moderator kan ik</span></a>
+      <li><a href="#gebruiker"><span class="secno">6.4</span> <span class="content">Als gebruiker (binnen een organisatie) kan ik</span></a>
+      <li><a href="#gebruiker-uploader"><span class="secno">6.5</span> <span class="content">Als gebruiker/uploader (binnen een organisatie) kan ik</span></a>
+      <li><a href="#gebruiker-annoteerder"><span class="secno">6.6</span> <span class="content">Als gebruikers/annoteerder (binnen een organisatie) kan ik</span></a>
+      <li><a href="#api-gebruiker"><span class="secno">6.7</span> <span class="content">Als API gebruiker kan ik</span></a>
+      <li><a href="#bezoeker"><span class="secno">6.8</span> <span class="content">Als bezoeker kan ik</span></a>
      </ol>
-    <li><a href="#erd-diagram"><span class="secno">6</span> <span class="content">ERD diagram</span></a>
-    <li><a href="#api-beschrijving"><span class="secno">7</span> <span class="content">API beschrijving</span></a>
+    <li><a href="#erd-diagram"><span class="secno">7</span> <span class="content">ERD diagram</span></a>
+    <li><a href="#api-beschrijving"><span class="secno">8</span> <span class="content">API beschrijving</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
@@ -1999,15 +2033,171 @@ Parts of this work may be from another specification document.  If so, those par
 Het is bedoeld om discussie te stimuleren en kan op elk moment veranderen. 
 Het wordt samengesteld op basis van content in de <a href="https://github.com/inside-out-time-machines/design">Design</a> repository.</p>
    <p><img src="images/slide-1.svg"></p>
-   <h2 class="heading settled" data-level="2" id="activiteitenplan"><span class="secno">2. </span><span class="content">Activiteitenplan</span><a class="self-link" href="#activiteitenplan"></a></h2>
+   <h2 class="heading settled" data-level="2" id="salespitch"><span class="secno">2. </span><span class="content">Salespitch voor het Jottem platform</span><a class="self-link" href="#salespitch"></a></h2>
+   <h3 class="heading settled" data-level="2.1" id="hoofdboodschap"><span class="secno">2.1. </span><span class="content">Hoofdboodschap</span><a class="self-link" href="#hoofdboodschap"></a></h3>
+   <p><strong>Jottem: Maak erfgoed van iedereen, door iedereen</strong></p>
+   <p>Jottem is het participatieve digitale erfgoedplatform dat gemeenschappen in staat stelt hun eigen lokale geschiedenis te verzamelen, te delen en te verrijken. Van de homepage van je huis tot de verhalen van je buurt – Jottem brengt erfgoed terug waar het thuishoort: midden in de samenleving.</p>
+   <h3 class="heading settled" data-level="2.2" id="het-probleem"><span class="secno">2.2. </span><span class="content">Het probleem</span><a class="self-link" href="#het-probleem"></a></h3>
+   <p>Mensen voelen zich sterk verbonden met hun leefomgeving en willen graag hun verhalen delen. Maar traditionele erfgoedzorg is:</p>
+   <ul>
+    <li data-md>
+     <p><strong>Eenrichtingsverkeer</strong>: Instellingen bepalen wat erfgoed is en hoe het ontsloten wordt</p>
+    <li data-md>
+     <p><strong>Ontoegankelijk</strong>: Te veel technische en mentale drempels voor burgers om bij te dragen</p>
+    <li data-md>
+     <p><strong>Gefragmenteerd</strong>: Iedereen deelt via Facebook, WhatsApp of in eigen systemen – erfgoed verdwijnt</p>
+    <li data-md>
+     <p><strong>Niet duurzaam</strong>: Foto’s en verhalen gaan verloren omdat er geen beheersbare oplossing is</p>
+   </ul>
+   <h3 class="heading settled" data-level="2.3" id="de-oplossing-het-jottem-platform"><span class="secno">2.3. </span><span class="content">De oplossing: het Jottem platform</span><a class="self-link" href="#de-oplossing-het-jottem-platform"></a></h3>
+   <p>Jottem draait het perspectief om: <strong>niet de collectie staat centraal, maar de gemeenschap</strong>.</p>
+   <h4 class="heading settled" data-level="2.3.1" id="kernfunctionaliteiten"><span class="secno">2.3.1. </span><span class="content">Kernfunctionaliteiten</span><a class="self-link" href="#kernfunctionaliteiten"></a></h4>
+   <p><strong>Voor burgers (uploaders &amp; annoteerders):</strong></p>
+   <ul>
+    <li data-md>
+     <p>Upload eigen foto’s met metadata (wie, wat, waar, wanneer)</p>
+    <li data-md>
+     <p>Verrijk bestaande erfgoedmateriaal met herinneringen en kennis</p>
+    <li data-md>
+     <p>Annoteer foto’s: identificeer personen, gebouwen, bedrijven op afbeeldingen</p>
+    <li data-md>
+     <p>Markeer locaties op kaarten en koppel gebeurtenissen</p>
+    <li data-md>
+     <p>Reageer op elkaars bijdragen en bouw samen aan verhalen</p>
+   </ul>
+   <p><strong>Voor organisaties (historische verenigingen, Time Machines, archieven):</strong></p>
+   <ul>
+    <li data-md>
+     <p>Laagdrempelige moderatieomgeving voor kwaliteitscontrole</p>
+    <li data-md>
+     <p>Automatische duurzame opslag (Internet Archive integratie)</p>
+    <li data-md>
+     <p>Bestaande collecties eenvoudig importeren (IIIF-ondersteuning)</p>
+    <li data-md>
+     <p>Statistieken en community management tools</p>
+   </ul>
+   <p><strong>Voor hergebruik (API’s):</strong></p>
+   <ul>
+    <li data-md>
+     <p>IIIF Collection &amp; Manifest ondersteuning</p>
+    <li data-md>
+     <p>W3C Web Annotation Protocol</p>
+    <li data-md>
+     <p>RSS feeds en harvesting mogelijkheden</p>
+    <li data-md>
+     <p>Elasticsearch zoekfunctionaliteit</p>
+    <li data-md>
+     <p>Schema.org conforme datasets</p>
+   </ul>
+   <h3 class="heading settled" data-level="2.4" id="unique-selling-points"><span class="secno">2.4. </span><span class="content">Unique selling points</span><a class="self-link" href="#unique-selling-points"></a></h3>
+   <h4 class="heading settled" data-level="2.4.1" id="participatie-in-de-volle-breedte"><span class="secno">2.4.1. </span><span class="content">Participatie in de volle breedte</span><a class="self-link" href="#participatie-in-de-volle-breedte"></a></h4>
+   
+Van expert tot buurtbewoner – iedereen kan bijdragen op zijn eigen niveau. De visueel aantrekkelijke, laagdrempelige interface maakt meedoen makkelijk en leuk.
+
+
+   <h4 class="heading settled" data-level="2.4.2" id="duurzaam-en-betrouwbaar"><span class="secno">2.4.2. </span><span class="content">Duurzaam en betrouwbaar</span><a class="self-link" href="#duurzaam-en-betrouwbaar"></a></h4>
+   <ul>
+    <li data-md>
+     <p>Automatische ARK identifiers (permanente links)</p>
+    <li data-md>
+     <p>Internet Archive backup</p>
+    <li data-md>
+     <p>Professionele moderatie en kwaliteitscontrole</p>
+    <li data-md>
+     <p>Privacy en auteursrecht geborgd</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.4.3" id="open-en-herbruikbaar"><span class="secno">2.4.3. </span><span class="content">Open en herbruikbaar</span><a class="self-link" href="#open-en-herbruikbaar"></a></h4>
+   <ul>
+    <li data-md>
+     <p>Open source technologie</p>
+    <li data-md>
+     <p>Linked Data en standaarden (IIIF, W3C Annotations)</p>
+    <li data-md>
+     <p>Naadloze integratie met bestaande systemen</p>
+    <li data-md>
+     <p>Data harvesting voor aggregators (bijv. Netwerk Digitaal Erfgoed)</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.4.4" id="bewezen-concept"><span class="secno">2.4.4. </span><span class="content">Bewezen concept</span><a class="self-link" href="#bewezen-concept"></a></h4>
+   
+Ontwikkeld vanuit concrete behoefte van vier Time Machines:
+
+   <ul>
+    <li data-md>
+     <p>Amsterdam Time Machine (RingA10: "homepage van je huis")</p>
+    <li data-md>
+     <p>Utrecht (OUD Utrecht, Museum Van Zuilen)</p>
+    <li data-md>
+     <p>Hilversum (grafisch atelier, ontwerpers)</p>
+    <li data-md>
+     <p>Gouda (historische vereniging)</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.4.5" id="van-aanbod-naar-vraag"><span class="secno">2.4.5. </span><span class="content">Van aanbod naar vraag</span><a class="self-link" href="#van-aanbod-naar-vraag"></a></h4>
+   
+Niet: "Wat kunnen wij ontsluiten?"
+Maar: "Wat willen mensen delen, bewaren en doorgeven?"
+
+
+   <h3 class="heading settled" data-level="2.5" id="wat-levert-het-op"><span class="secno">2.5. </span><span class="content">Wat levert het op?</span><a class="self-link" href="#wat-levert-het-op"></a></h3>
+   <h4 class="heading settled" data-level="2.5.1" id="voor-gemeenschappen"><span class="secno">2.5.1. </span><span class="content">Voor gemeenschappen:</span><a class="self-link" href="#voor-gemeenschappen"></a></h4>
+   <ul>
+    <li data-md>
+     <p><strong>Meer verbondenheid</strong> met de leefomgeving</p>
+    <li data-md>
+     <p><strong>Gedeeld eigenaarschap</strong> van lokaal erfgoed</p>
+    <li data-md>
+     <p><strong>Intergenerationele samenwerking</strong>: jong helpt oud met digitaliseren, oud deelt kennis</p>
+    <li data-md>
+     <p><strong>Zingeving</strong>: erfgoed als bron van identiteit en welzijn</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.5.2" id="voor-organisaties"><span class="secno">2.5.2. </span><span class="content">Voor organisaties:</span><a class="self-link" href="#voor-organisaties"></a></h4>
+   <ul>
+    <li data-md>
+     <p><strong>Rijkere collecties</strong> door burgerparticipatie</p>
+    <li data-md>
+     <p><strong>Grotere betrokkenheid</strong> van de lokale gemeenschap</p>
+    <li data-md>
+     <p><strong>Lagere beheerslast</strong> door slimme workflows</p>
+    <li data-md>
+     <p><strong>Schaalvoordeel</strong> door herbruikbare componenten</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.5.3" id="voor-de-erfgoedsector"><span class="secno">2.5.3. </span><span class="content">Voor de erfgoedsector:</span><a class="self-link" href="#voor-de-erfgoedsector"></a></h4>
+   <ul>
+    <li data-md>
+     <p><strong>Democratisering</strong> van erfgoed</p>
+    <li data-md>
+     <p><strong>Nieuwe coalities</strong> tussen instellingen, vrijwilligers en burgers</p>
+    <li data-md>
+     <p><strong>Innovatie</strong> door kennisdeling en open source</p>
+    <li data-md>
+     <p><strong>Structurele verandering</strong>: van bewaren naar samen maken</p>
+   </ul>
+   <h3 class="heading settled" data-level="2.6" id="call-to-action"><span class="secno">2.6. </span><span class="content">Call to action</span><a class="self-link" href="#call-to-action"></a></h3>
+   <p><strong>Voor organisaties:</strong>
+Wil jouw historische vereniging, archief of Time Machine ook participatiever worden? Sluit je aan bij Jottem en geef je gemeenschap de tools om zelf erfgoed te maken.</p>
+   <p><strong>Voor gemeenschappen:</strong>
+Heb je verhalen, foto’s of herinneringen over je buurt? Word deel van een groeiende beweging die lokale geschiedenis levend houdt.</p>
+   <h3 class="heading settled" data-level="2.7" id="slogan-opties"><span class="secno">2.7. </span><span class="content">Slogan opties</span><a class="self-link" href="#slogan-opties"></a></h3>
+   <ul>
+    <li data-md>
+     <p><strong>"Jottem: Jouw verhaal, onze geschiedenis"</strong></p>
+    <li data-md>
+     <p><strong>"Maak erfgoed van iedereen, door iedereen"</strong></p>
+    <li data-md>
+     <p><strong>"Van de homepage van je huis tot het verhaal van je stad"</strong></p>
+    <li data-md>
+     <p><strong>"Samen bouwen aan lokale geschiedenis"</strong></p>
+    <li data-md>
+     <p><strong>"Erfgoed dat leeft, door mensen die delen"</strong></p>
+   </ul>
+   <h2 class="heading settled" data-level="3" id="activiteitenplan"><span class="secno">3. </span><span class="content">Activiteitenplan</span><a class="self-link" href="#activiteitenplan"></a></h2>
    <p>Dit deel komt uit het activiteitenplan (versie 31 augustus 2025, opgesteld door Ingeborg Verheul, Bob Coret, Toine Pieters, Elsbeth Kwant) dat onderdeel was van de aanvraag voor de Subsidieregeling Uitvoeringsagenda Faro.</p>
-   <h3 class="heading settled" data-level="2.1" id="activiteitenplan-hoofdactiviteit"><span class="secno">2.1. </span><span class="content">Hoofdactiviteit en doel</span><a class="self-link" href="#activiteitenplan-hoofdactiviteit"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="hoofdactiviteit-en-doel"><span class="secno">3.1. </span><span class="content">Hoofdactiviteit en doel</span><a class="self-link" href="#hoofdactiviteit-en-doel"></a></h3>
    <p>Mensen voelen zich vaak sterk verbonden met de omgeving waarin ze wonen en de geschiedenis daarvan. Ze vinden het interessant om erover te leren, maar ook om hun eigen verhalen te vertellen. De vier Time Machines die actief zijn in hun stad, ervaren deze behoefte regelmatig. Zo vertelde de Amsterdam Time Machine bij een event op de RingA10 (tijdens het jubileumjaar Amsterdam 750) over de ‘homepage van je huis’ en vroegen mensen of ze ook hun eigen foto’s daaraan konden toevoegen. In Hilversum is er een groep vrijwilligers die een grafisch atelier runt, dat allerlei erfgoedmateriaal van ontwerpers en drukkerijen bezit en dat graag zou digitaliseren op een makkelijke manier. In Utrecht zijn de vrijwilligers van OUD Utrecht, Museum Van Zuilen en het Utrechts Geveltekenfonds geïnteresseerd om zo bij te dragen en in Gouda deelt de historische vereniging momenteel vooral informatie via Facebook. Zij zouden graag bereid zijn dat in samenwerking met de Time Machine aan te leveren als het daarmee duurzamer toegankelijk is.</p>
    <p>De Time machines willen geschiedenis relevant maken voor de inwoners van hun steden / omgevingen. We willen bestaande tijdmachines participatiever maken door de mogelijkheid te creëren foto’s, verhalen en informatie te delen of bestaande informatie te verrijken. Dit project creëert een publieksvriendelijke en visueel aantrekkelijke interactie-omgeving (we denken aan een annotatieomgeving, zoals die nu in demo door het Netwerk Digitaal Erfgoed wordt gehost). We verkennen in dit project wat de meest laagdrempelige en beheersbare oplossing is, zowel aan de voor- als aan de achterkant. Ook wisselen we (open source) software uit om succesvolle applicaties van de ene Time Machine te kunnen hergebruiken in een andere. We maken het zo mogelijk dat inwoners zich meer verbinden met de geschiedenis van hun stad, wijk, straat en huis.</p>
-   <h3 class="heading settled" data-level="2.2" id="activiteitenplan-eindresultaat"><span class="secno">2.2. </span><span class="content">Beoogde eindresultaat</span><a class="self-link" href="#activiteitenplan-eindresultaat"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="beoogde-eindresultaat"><span class="secno">3.2. </span><span class="content">Beoogde eindresultaat</span><a class="self-link" href="#beoogde-eindresultaat"></a></h3>
    <p>​​We maken het mogelijk dat mensen zelf informatie gaan bijdragen aan lokale time machines. Door op deze manier technologie, lokale geschiedenis en burgerparticipatie te combineren, maken we het voor inwoners makkelijker en leuker om actief betrokken te zijn bij het erfgoed van hun eigen leefomgeving. Daarmee dragen we bij aan het gevoel van verbondenheid met die leefomgeving.</p>
-   <h3 class="heading settled" data-level="2.3" id="activiteitenplan-deelactiviteiten"><span class="secno">2.3. </span><span class="content">Deelactiviteiten</span><a class="self-link" href="#activiteitenplan-deelactiviteiten"></a></h3>
-   <h4 class="heading settled" data-level="2.3.1" id="activiteitenplan-behoefte"><span class="secno">2.3.1. </span><span class="content">Uitvraag behoefte</span><a class="self-link" href="#activiteitenplan-behoefte"></a></h4>
+   <h3 class="heading settled" data-level="3.3" id="deelactiviteiten"><span class="secno">3.3. </span><span class="content">Deelactiviteiten</span><a class="self-link" href="#deelactiviteiten"></a></h3>
+   <h4 class="heading settled" data-level="3.3.1" id="uitvraag-behoefte"><span class="secno">3.3.1. </span><span class="content">Uitvraag behoefte</span><a class="self-link" href="#uitvraag-behoefte"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Uitvoeren van gesprekken, workshops en digitale enquêtes met belanghebbenden in de vier steden (bewoners, erfgoedinstellingen, vrijwilligers bij historische vereniging, enz.).</p>
    <p>Onderzoek naar gebruiksbehoefte m.b.t. toevoegen van beeldmateriaal en verhalen, en het verrijken van bestaande erfgoeddata.</p>
@@ -2018,7 +2208,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
    <p><strong>Resultaten/Producten:</strong></p>
    <p>Uitgewerkte lijst met functionele en niet-functionele requirements.</p>
    <p>Aanpak auteursrecht &amp; participatie.</p>
-   <h4 class="heading settled" data-level="2.3.2" id="activiteitenplan-verkenning"><span class="secno">2.3.2. </span><span class="content">Verkenning technische oplossingsrichting</span><a class="self-link" href="#activiteitenplan-verkenning"></a></h4>
+   <h4 class="heading settled" data-level="3.3.2" id="verkenning-technische-oplossingsrichting"><span class="secno">3.3.2. </span><span class="content">Verkenning technische oplossingsrichting</span><a class="self-link" href="#verkenning-technische-oplossingsrichting"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Technische analyse op basis van de requirements.</p>
    <p>Verkenning bestaande oplossingen (bijv. via open source, Linked Data, crowdsourcing-tools). Gebruik maken van de kennis van het Netwerk Digitaal Erfgoed en de ervaringen van de Amsterdam Time Machine met Meaningful Memories in samenwerking met SURF.</p>
@@ -2032,7 +2222,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Applicatiebeschrijving per scenario (generiek of maatwerk per tijdmachine).</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.3" id="activiteitenplan-oplossingsrichting"><span class="secno">2.3.3. </span><span class="content">Keuze oplossingsrichting</span><a class="self-link" href="#activiteitenplan-oplossingsrichting"></a></h4>
+   <h4 class="heading settled" data-level="3.3.3" id="keuze-oplossingsrichting"><span class="secno">3.3.3. </span><span class="content">Keuze oplossingsrichting</span><a class="self-link" href="#keuze-oplossingsrichting"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Afweging van technische en functionele varianten op basis van geschiktheid, schaalbaarheid en duurzaamheid.</p>
    <p>Besluitvorming in overleg met lokale partners en gebruikers.</p>
@@ -2043,7 +2233,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Document met onderbouwing en selectie van gekozen oplossingsrichting.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.4" id="activiteitenplan-implementatie"><span class="secno">2.3.4. </span><span class="content">Implementatie per tijdmachine</span><a class="self-link" href="#activiteitenplan-implementatie"></a></h4>
+   <h4 class="heading settled" data-level="3.3.4" id="implementatie-per-tijdmachine"><span class="secno">3.3.4. </span><span class="content">Implementatie per tijdmachine</span><a class="self-link" href="#implementatie-per-tijdmachine"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Gefaseerde implementatie in vier steden (Amsterdam, Utrecht, Gouda, Hilversum), afhankelijk van lokale infrastructuur en partners.</p>
    <p>Aansluiten op bestaande platforms of ontwikkelen van aanvullende modules.</p>
@@ -2055,7 +2245,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Werkende participatievoorziening binnen elke tijdmachine.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.5" id="activiteitenplan-testen"><span class="secno">2.3.5. </span><span class="content">Testen en nazorg</span><a class="self-link" href="#activiteitenplan-testen"></a></h4>
+   <h4 class="heading settled" data-level="3.3.5" id="testen-en-nazorg"><span class="secno">3.3.5. </span><span class="content">Testen en nazorg</span><a class="self-link" href="#testen-en-nazorg"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Uitvoeren van gebruikerssessies met diverse doelgroepen (jong, oud, expert, leek)</p>
    <p>Inrichting aanspreekpunt per Time Machine bij knelpunten.</p>
@@ -2067,7 +2257,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Gebruikersrapportage met inzichten in gebruiksgemak, barrières en kansen.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.6" id="activiteitenplan-evaluatie"><span class="secno">2.3.6. </span><span class="content">Evaluatie en leerpunten</span><a class="self-link" href="#activiteitenplan-evaluatie"></a></h4>
+   <h4 class="heading settled" data-level="3.3.6" id="evaluatie-en-leerpunten"><span class="secno">3.3.6. </span><span class="content">Evaluatie en leerpunten</span><a class="self-link" href="#evaluatie-en-leerpunten"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Interne evaluatie met projectteam en partners.</p>
    <p>Reflectie op aanpak, werkwijze en samenwerking.</p>
@@ -2078,7 +2268,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Eindrapportage met conclusies, aanbevelingen en opschalingsopties.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.7" id="activiteitenplan-communicatie"><span class="secno">2.3.7. </span><span class="content">Communicatie &amp; kennisdeling</span><a class="self-link" href="#activiteitenplan-communicatie"></a></h4>
+   <h4 class="heading settled" data-level="3.3.7" id="communicatie--kennisdeling"><span class="secno">3.3.7. </span><span class="content">Communicatie &amp; kennisdeling</span><a class="self-link" href="#communicatie--kennisdeling"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Regelmatige updates via nieuwsbrieven, sociale media van de verschillende tijdmachines en partnersites.</p>
    <p>Organiseren van minimaal twee kennissessies/webinars over participatief digitaal erfgoed.</p>
@@ -2089,7 +2279,7 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Verspreide publicaties, presentaties en opnames van sessies.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.3.8" id="activiteitenplan-beheer"><span class="secno">2.3.8. </span><span class="content">Beheer &amp; borging</span><a class="self-link" href="#activiteitenplan-beheer"></a></h4>
+   <h4 class="heading settled" data-level="3.3.8" id="beheer--borging"><span class="secno">3.3.8. </span><span class="content">Beheer &amp; borging</span><a class="self-link" href="#beheer--borging"></a></h4>
    <p><strong>Aard &amp; wijze van uitvoering:</strong></p>
    <p>Afspraken maken over beheer en actualisatie van functionaliteit.</p>
    <p>Inbedding in organisatie/partnerstructuren (bijv. via erfgoedhuizen, bibliotheken of burgerinitiatieven).</p>
@@ -2100,54 +2290,51 @@ Het wordt samengesteld op basis van content in de <a href="https://github.com/in
     <li data-md>
      <p>Beheersplan en samenwerkingsovereenkomsten met lokale partners.</p>
    </ul>
-   <h3 class="heading settled" data-level="2.4" id="activiteitenplan-faro"><span class="secno">2.4. </span><span class="content">Relatie met de Faro-kernwaarden</span><a class="self-link" href="#activiteitenplan-faro"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="relatie-met-de-faro-kernwaarden"><span class="secno">3.4. </span><span class="content">Relatie met de Faro-kernwaarden</span><a class="self-link" href="#relatie-met-de-faro-kernwaarden"></a></h3>
    <p><strong>Participatie in de volle breedte</strong>: Door het delen en taggen van foto’s, verhalen en kennis ontstaat er een directe en laagdrempelige vorm van erfgoedparticipatie. Dit past bij het idee van “mee kunnen doen” en “mee mogen bepalen”. Door te werken aan een publieksvriendelijke, visuele annotatieomgeving verlagen we de drempel om deel te nemen – zowel technisch als mentaal. We creëren een webomgeving waarbij vrijwilligers zelf informatie kunnen toevoegen, verbeteren of kunnen linken naar andere bronnen. Niet alleen experts, maar ook buurtbewoners, jongeren of incidentele bezoekers kunnen meedoen, hun stem laten horen en hun perspectieven toevoegen. Daarmee groeit het besef dat iedereen eigenaar is van erfgoed en dat erfgoed gevormd wordt door de gemeenschap zelf.</p>
    <p><strong>Erfgoed midden in de samenleving</strong>: Dit initiatief plaatst erfgoed letterlijk en figuurlijk midden in de samenleving. De lokale Time Machines brengen de geschiedenis van de stad, wijk, straat of zelfs het huis dichtbij bewoners, en maken het tastbaar, zichtbaar én persoonlijk relevant. Door mensen uit te nodigen hun eigen foto’s en verhalen te delen, verandert erfgoed van iets ‘van een instelling’ in iets van en voor iedereen. Het project erkent dat erfgoed onlosmakelijk deel uitmaakt van de leefomgeving, en maakt dat zichtbaar op plekken waar mensen dagelijks zijn.</p>
    <p>De Time Machines functioneren als platforms voor ontmoeting, herinnering en kennisdeling, en sluiten daarmee aan op de gedachte dat erfgoed bijdraagt aan identiteit, zelfbewustzijn en gemeenschapszin. Inwoners herkennen hun eigen geschiedenis in het grotere verhaal van hun stad en voelen zich daardoor meer verbonden met hun omgeving. Dit versterkt het gevoel van eigenaarschap en draagt bij aan het welzijn van mensen — erfgoed als bron van zingeving en verbondenheid.</p>
-   <h3 class="heading settled" data-level="2.5" id="activiteitenplan-hoofdthema"><span class="secno">2.5. </span><span class="content">Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro</span><a class="self-link" href="#activiteitenplan-hoofdthema"></a></h3>
+   <h3 class="heading settled" data-level="3.5" id="omschrijving-hoofdthema-en-aanluiting-bij-de-uitvoeringsagenda-faro"><span class="secno">3.5. </span><span class="content">Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro</span><a class="self-link" href="#omschrijving-hoofdthema-en-aanluiting-bij-de-uitvoeringsagenda-faro"></a></h3>
    <p>Het Time Machine-initiatief sluit goed aan bij het kantelende perspectief op dienstverlening zoals geformuleerd in de NDE-agenda: niet de collectie of technologie staat centraal, maar de gemeenschap als belanghebbende. In dit project draait het om wat inwoners zelf belangrijk vinden in hun leefomgeving, welke verhalen ze willen vertellen en hoe ze dat digitaal willen doen. De vraag is niet: “Wat kunnen wij ontsluiten?” maar: “Wat willen mensen delen, bewaren en doorgeven?” Daarmee sluit het project direct aan op het idee om erfgoedgemeenschappen mede vorm te laten geven aan digitaal erfgoed.</p>
    <p>Het initiatief bevordert ‘Ondersteuning erfgoedparticipatie’ doordat het de voorwaarden schept voor inwoners, vrijwilligers en erfgoedgemeenschappen om actief bij te dragen aan het zichtbaar maken van erfgoed. Mensen kunnen laagdrempelig meedoen. Het project ondersteunt erfgoedparticipatie door mensen niet alleen te betrekken als publiek, maar hen daadwerkelijk in staat te stellen zelf mede-eigenaar, bijdrager en medevormgever van het erfgoed te worden.</p>
    <p>Tegelijkertijd is er ruimte voor intergenerationele samenwerking. Jongeren kunnen bijvoorbeeld ouderen helpen met het digitaliseren van oude foto’s, terwijl ouderen hun lokale historische kennis delen. Zo ontstaat een dynamische uitwisseling van digitale nieuwsgierigheid en historische ervaring, waarin beide groepen waardevol zijn voor het erfgoedproces.</p>
    <p>De Time Machines maken het mogelijk dat lokale bewoners — jong en oud, digitaal vaardig of juist minder — actief bijdragen aan erfgoed door eigen foto’s te delen, deze te taggen, of verhalen toe te voegen. Er is aandacht voor een laagdrempelige en beheersbare interactieomgeving, zodat mensen eenvoudig kunnen meedoen, zonder dat technische barrières hen uitsluiten. Dit draagt bij aan digitale inclusie en erkent dat niet iedereen dezelfde toegang of vaardigheden heeft. De tools die ontwikkeld en gedeeld worden binnen dit project zijn dan ook gericht op gebruiksvriendelijkheid, herbruikbaarheid en brede toepasbaarheid, zodat ook kleinere erfgoedinitiatieven of vrijwilligersgroepen ermee aan de slag kunnen. Dit maakt dat digitaal erfgoed het hoofdthema is waarbinnen we aanvragen.</p>
-   <h3 class="heading settled" data-level="2.6" id="activiteitenplan-verandering"><span class="secno">2.6. </span><span class="content">Structurele verandering ten opzichte van het huidige functioneren van de erfgoedzorg</span><a class="self-link" href="#activiteitenplan-verandering"></a></h3>
+   <h3 class="heading settled" data-level="3.6" id="structurele-verandering-ten-opzichte-van-het-huidige-functioneren-van-de-erfgoedzorg"><span class="secno">3.6. </span><span class="content">Structurele verandering ten opzichte van het huidige functioneren van de erfgoedzorg</span><a class="self-link" href="#structurele-verandering-ten-opzichte-van-het-huidige-functioneren-van-de-erfgoedzorg"></a></h3>
    <p>In plaats van erfgoed slechts te bewaren en ontsluiten, draait het in de lokale Time Machines om actieve betrokkenheid, samenwerking en gedeeld eigenaarschap. Inwoners kunnen hun eigen foto’s en verhalen toevoegen en taggen, waardoor erfgoed dynamisch, persoonlijk en meervoudig wordt. Dit vraagt om een systeemaanpassing: van aanbod- naar vraaggericht werken en van erfgoed beheren naar erfgoed samen maken.</p>
    <p>Het project ontwikkelt en test een laagdrempelige, visueel aantrekkelijke annotatieomgeving waarin burgers op toegankelijke wijze kunnen participeren. Dit instrument biedt een concrete methodiek voor participatieve digitale erfgoedzorg, die breed toepasbaar en herbruikbaar is. Door technische samenwerking en uitwisseling tussen Time Machines ontstaat bovendien een schaalsprong: succesvolle toepassingen kunnen eenvoudig elders worden ingezet. Dit maakt het mogelijk om met beperkte middelen meer gemeenschappen te bedienen.</p>
    <p>Daarnaast stimuleert het project nieuwe coalities tussen erfgoedinstellingen, vrijwilligersorganisaties, burgerinitiatieven, ontwerpers, techpartners en educatieve instellingen. Een voorbeeld is de samenwerking in Hilversum met Hilversummers.nl, een een online platform dat zich inzet voor het versterken van de lokale gemeenschap in Hilversum; of de samenwerking in Gouda met een game-ontwikkelaar. Deze netwerken zorgen voor verankering, maar ook voor verrijking van het erfgoed met diverse perspectieven en kennisvormen. Zo wordt het erfgoedveld inclusiever, creatiever en beter verbonden met de samenleving.</p>
    <p>Kortom, het initiatief is geen tijdelijk experiment, maar een bouwsteen voor een digitale, meer democratische en participatieve erfgoedsector. Het laat zien hoe erfgoed midden in de samenleving kan staan als iets dat mensen samen vormgeven, betekenis geven en levend houden.</p>
-   <h3 class="heading settled" data-level="2.7" id="activiteitenplan-kennisdeling"><span class="secno">2.7. </span><span class="content">Plan voor kennisontwikkeling en kennisdeling en de daarbij beoogde doelgroep(en)</span><a class="self-link" href="#activiteitenplan-kennisdeling"></a></h3>
+   <h3 class="heading settled" data-level="3.7" id="plan-voor-kennisontwikkeling-en-kennisdeling-en-de-daarbij-beoogde-doelgroep-en"><span class="secno">3.7. </span><span class="content">Plan voor kennisontwikkeling en kennisdeling en de daarbij beoogde doelgroep(en)</span><a class="self-link" href="#plan-voor-kennisontwikkeling-en-kennisdeling-en-de-daarbij-beoogde-doelgroep-en"></a></h3>
    <p>Het project zet actief in op kennisdeling met erfgoedprofessionals, burgers en beleidsmakers. Dit gebeurt via twee sporen: doorlopende communicatie via online kanalen van de participerende time machines (en partnerorganisaties) en het organiseren van kennissessies.</p>
-   <h4 class="heading settled" data-level="2.7.1" id="activiteitenplan-doorlopende-communicati"><span class="secno">2.7.1. </span><span class="content">Doorlopende communicatie</span><a class="self-link" href="#activiteitenplan-doorlopende-communicati"></a></h4>
+   <h4 class="heading settled" data-level="3.7.1" id="doorlopende-communicatie"><span class="secno">3.7.1. </span><span class="content">Doorlopende communicatie</span><a class="self-link" href="#doorlopende-communicatie"></a></h4>
    <p><strong>Nieuwsbrieven</strong>: Er verschijnen vier digitale nieuwsbrieven (elk kwartaal) met updates over het project, ervaringen uit de deelnemende steden, technische keuzes en leerpunten. De nieuwsbrieven worden verspreid via partnerorganisaties en netwerken in de erfgoedsector. De doelgroep wordt gevormd door erfgoedprofessionals.
 <strong>Sociale media</strong>: Via LinkedIn, Mastodon en Bluesky delen we regelmatig korte berichten met foto’s, citaten van deelnemers en aankondigingen. Dit is afhankelijk van het onderwerp communicatie naar vrijwilligers en naar erfgoed professionals. 
 <strong>Partnersites</strong>: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreërde participatieve mogelijkheden zal na het project plaatsvinden.</p>
-   <h4 class="heading settled" data-level="2.7.2" id="activiteitenplan-kennissessies"><span class="secno">2.7.2. </span><span class="content">Kennissessies en webinars</span><a class="self-link" href="#activiteitenplan-kennissessies"></a></h4>
-   
+   <p>###K ennissessies en webinars
 Er worden minimaal twee kennissessies georganiseerd: 
 <strong>Sessie 1 (halverwege het project)</strong>: Online bijeenkomst over het betrekken van burgers bij digitale erfgoedprojecten. Hier delen we ervaringen en eerste resultaten met andere professionals. 
-<strong>Sessie 2 (aan het einde van het project)</strong>: Fysieke bijeenkomst over de impact, leerpunten en toekomstmogelijkheden van participatief erfgoed. Met demonstraties en ruimte voor uitwisseling. Beide sessies worden opgenomen en gepubliceerd. Ook worden presentaties en samenvattingen online beschikbaar gesteld.
-
-
-   <h2 class="heading settled" data-level="3" id="praatplaten"><span class="secno">3. </span><span class="content">Praatplaten</span><a class="self-link" href="#praatplaten"></a></h2>
-   <h3 class="heading settled" data-level="3.1" id="praatplaat-stakeholders"><span class="secno">3.1. </span><span class="content">Stakeholders</span><a class="self-link" href="#praatplaat-stakeholders"></a></h3>
+<strong>Sessie 2 (aan het einde van het project)</strong>: Fysieke bijeenkomst over de impact, leerpunten en toekomstmogelijkheden van participatief erfgoed. Met demonstraties en ruimte voor uitwisseling. Beide sessies worden opgenomen en gepubliceerd. Ook worden presentaties en samenvattingen online beschikbaar gesteld.</p>
+   <h2 class="heading settled" data-level="4" id="praatplaten"><span class="secno">4. </span><span class="content">Praatplaten</span><a class="self-link" href="#praatplaten"></a></h2>
+   <h3 class="heading settled" data-level="4.1" id="praatplaat-stakeholders"><span class="secno">4.1. </span><span class="content">Stakeholders</span><a class="self-link" href="#praatplaat-stakeholders"></a></h3>
    
 <img src="images/slide-2.svg">
 
 
-   <h3 class="heading settled" data-level="3.2" id="praatplaat-media-process"><span class="secno">3.2. </span><span class="content">Media process</span><a class="self-link" href="#praatplaat-media-process"></a></h3>
+   <h3 class="heading settled" data-level="4.2" id="praatplaat-media-process"><span class="secno">4.2. </span><span class="content">Media process</span><a class="self-link" href="#praatplaat-media-process"></a></h3>
    <p><img src="images/slide-3.svg"></p>
-   <h3 class="heading settled" data-level="3.3" id="praatplaat-process-steps"><span class="secno">3.3. </span><span class="content">Process steps</span><a class="self-link" href="#praatplaat-process-steps"></a></h3>
+   <h3 class="heading settled" data-level="4.3" id="praatplaat-process-steps"><span class="secno">4.3. </span><span class="content">Process steps</span><a class="self-link" href="#praatplaat-process-steps"></a></h3>
    <p><img src="images/slide-4.svg"></p>
-   <h3 class="heading settled" data-level="3.4" id="praatplaat-platform-parts"><span class="secno">3.4. </span><span class="content"> Platform parts</span><a class="self-link" href="#praatplaat-platform-parts"></a></h3>
+   <h3 class="heading settled" data-level="4.4" id="praatplaat-platform-parts"><span class="secno">4.4. </span><span class="content"> Platform parts</span><a class="self-link" href="#praatplaat-platform-parts"></a></h3>
    
 <img src="images/slide-5.svg">
 
 
-   <h3 class="heading settled" data-level="3.5" id="praatplaat-annotations"><span class="secno">3.5. </span><span class="content">Annotations</span><a class="self-link" href="#praatplaat-annotations"></a></h3>
+   <h3 class="heading settled" data-level="4.5" id="praatplaat-annotations"><span class="secno">4.5. </span><span class="content">Annotations</span><a class="self-link" href="#praatplaat-annotations"></a></h3>
    <p><img src="images/slide-6.svg"></p>
-   <h3 class="heading settled" data-level="3.6" id="praatplaat-technology-parts"><span class="secno">3.6. </span><span class="content">Technology part</span><a class="self-link" href="#praatplaat-technology-parts"></a></h3>
+   <h3 class="heading settled" data-level="4.6" id="praatplaat-technology-parts"><span class="secno">4.6. </span><span class="content">Technology part</span><a class="self-link" href="#praatplaat-technology-parts"></a></h3>
    <p><img src="images/slide-7.svg"></p>
-   <h2 class="heading settled" data-level="4" id="requirements"><span class="secno">4. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
-   <h3 class="heading settled" data-level="4.1" id="functional-requirements"><span class="secno">4.1. </span><span class="content">Functional requirements</span><a class="self-link" href="#functional-requirements"></a></h3>
+   <h2 class="heading settled" data-level="5" id="requirements"><span class="secno">5. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
+   <h3 class="heading settled" data-level="5.1" id="functional-requirements"><span class="secno">5.1. </span><span class="content">Functional requirements</span><a class="self-link" href="#functional-requirements"></a></h3>
    <ul>
     <li data-md>
      <p>inloggen door gebruikers moet zeer laagdrempelig zijn, dus inclusief social login</p>
@@ -2156,7 +2343,7 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>duurzame link op basis van ARK (met objectname op basis van NOID of UUID) per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation</p>
    </ul>
-   <h3 class="heading settled" data-level="4.2" id="standards"><span class="secno">4.2. </span><span class="content">Standaarden &amp; API’s</span><a class="self-link" href="#standards"></a></h3>
+   <h3 class="heading settled" data-level="5.2" id="standards"><span class="secno">5.2. </span><span class="content">Standaarden &amp; API’s</span><a class="self-link" href="#standards"></a></h3>
    <ul>
     <li data-md>
      <p><a href="https://archive.org/developers/index-apis.html">Internet Archive</a></p>
@@ -2176,13 +2363,19 @@ Er worden minimaal twee kennissessies georganiseerd:
      <p><a href="https://iiif.io/api/presentation/3.0/">IIIF Presentation API</a> (manifest/collection)</p>
     <li data-md>
      <p><a href="https://iiif.io/api/discovery/1.0/">IIIF Change Discovery</a></p>
+    <li data-md>
+     <p><a href="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml">Miifi API</a></p>
    </ul>
-   <h3 class="heading settled" data-level="4.3" id="domains"><span class="secno">4.3. </span><span class="content">(Sub)domeinen</span><a class="self-link" href="#domains"></a></h3>
+   <h3 class="heading settled" data-level="5.3" id="domains"><span class="secno">5.3. </span><span class="content">(Sub)domeinen</span><a class="self-link" href="#domains"></a></h3>
    <ul>
     <li data-md>
      <p><a href="http://www.iotm.nl">www.iotm.nl</a></p>
     <li data-md>
      <p><a href="http://api.iotm.nl">api.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://api.iotm.nl">iiif.iotm.nl</a></p>
+    <li data-md>
+     <p><a href="http://api.iotm.nl">ark.iotm.nl</a></p>
     <li data-md>
      <p><a href="http://onsamsterdam.iotm.nl">onsamsterdam.iotm.nl</a></p>
     <li data-md>
@@ -2192,32 +2385,34 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p><a href="http://oudutrecht.iotm.nl">oudutrecht.iotm.nl</a></p>
    </ul>
-   <h2 class="heading settled" data-level="5" id="usecases"><span class="secno">5. </span><span class="content">Usecases per rol</span><a class="self-link" href="#usecases"></a></h2>
-   <h3 class="heading settled" data-level="5.1" id="platformbeheerder"><span class="secno">5.1. </span><span class="content">Als platformbeheerder kan ik</span><a class="self-link" href="#platformbeheerder"></a></h3>
+   <h2 class="heading settled" data-level="6" id="usecases"><span class="secno">6. </span><span class="content">Usecases per rol</span><a class="self-link" href="#usecases"></a></h2>
+   <h3 class="heading settled" data-level="6.1" id="platformbeheerder"><span class="secno">6.1. </span><span class="content">Als platformbeheerder kan ik</span><a class="self-link" href="#platformbeheerder"></a></h3>
    <ul>
     <li data-md>
      <p>inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen</p>
     <li data-md>
-     <p>een verenigingsjottem definiëren, deze heeft een naam, slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN</p>
+     <p>een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN</p>
     <li data-md>
-     <p>gebruikers (naam, e-mail) in de rol verenigingsbeheerder van een verenigingsjottem toevoegen, bewerken en verwijderen</p>
+     <p>gebruikers (naam, e-mail) in de rol organisatiebeheerder van een organisatiejottem toevoegen, bewerken en verwijderen</p>
     <li data-md>
      <p>bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden</p>
     <li data-md>
-     <p>kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per vereniging</p>
+     <p>kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie</p>
    </ul>
-   <h3 class="heading settled" data-level="5.2" id="verenigingsbeheerder"><span class="secno">5.2. </span><span class="content">Als verenigingsbeheerder kan ik</span><a class="self-link" href="#verenigingsbeheerder"></a></h3>
+   <h3 class="heading settled" data-level="6.2" id="organisatiebeheerder"><span class="secno">6.2. </span><span class="content">Als organisatiebeheerder kan ik</span><a class="self-link" href="#organisatiebeheerder"></a></h3>
    <ul>
     <li data-md>
      <p>inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen</p>
     <li data-md>
-     <p>gebruikers (naam, e-mail) in de rol moderater binnen de verenigingsjottem toevoegen, bewerken en verwijderen</p>
+     <p>gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen</p>
     <li data-md>
      <p>bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden</p>
     <li data-md>
      <p>kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties</p>
+    <li data-md>
+     <p>kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) toevoegen</p>
    </ul>
-   <h3 class="heading settled" data-level="5.3" id="moderator"><span class="secno">5.3. </span><span class="content">Als moderator kan ik</span><a class="self-link" href="#moderator"></a></h3>
+   <h3 class="heading settled" data-level="6.3" id="moderator"><span class="secno">6.3. </span><span class="content">Als moderator kan ik</span><a class="self-link" href="#moderator"></a></h3>
    <ul>
     <li data-md>
      <p>alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken</p>
@@ -2230,7 +2425,7 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties</p>
    </ul>
-   <h3 class="heading settled" data-level="5.4" id="gebruiker"><span class="secno">5.4. </span><span class="content">Als gebruiker (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker"></a></h3>
+   <h3 class="heading settled" data-level="6.4" id="gebruiker"><span class="secno">6.4. </span><span class="content">Als gebruiker (binnen een organisatie) kan ik</span><a class="self-link" href="#gebruiker"></a></h3>
    <ul>
     <li data-md>
      <p>inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen</p>
@@ -2243,7 +2438,7 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)</p>
    </ul>
-   <h3 class="heading settled" data-level="5.5" id="gebruiker-uploader"><span class="secno">5.5. </span><span class="content">Als gebruiker/uploader (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker-uploader"></a></h3>
+   <h3 class="heading settled" data-level="6.5" id="gebruiker-uploader"><span class="secno">6.5. </span><span class="content">Als gebruiker/uploader (binnen een organisatie) kan ik</span><a class="self-link" href="#gebruiker-uploader"></a></h3>
    <ul>
     <li data-md>
      <p>kan ik een “album” (of collectie) aanmaken naast het album “Alles”</p>
@@ -2252,7 +2447,7 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)</p>
    </ul>
-   <h3 class="heading settled" data-level="5.6" id="gebruiker-annoteerder"><span class="secno">5.6. </span><span class="content">Als gebruikers/annoteerder (binnen een vereniging) kan ik</span><a class="self-link" href="#gebruiker-annoteerder"></a></h3>
+   <h3 class="heading settled" data-level="6.6" id="gebruiker-annoteerder"><span class="secno">6.6. </span><span class="content">Als gebruikers/annoteerder (binnen een organisatie) kan ik</span><a class="self-link" href="#gebruiker-annoteerder"></a></h3>
    <ul>
     <li data-md>
      <p>kan ik een extra metadata aan de gehele jottem toevoegen, zoals</p>
@@ -2273,25 +2468,12 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>kan ik mijn annotatie bewerken en verwijderen ???</p>
    </ul>
-   <h3 class="heading settled" data-level="5.7" id="bezoeker"><span class="secno">5.7. </span><span class="content">Als bezoeker kan ik</span><a class="self-link" href="#bezoeker"></a></h3>
+   <h3 class="heading settled" data-level="6.7" id="api-gebruiker"><span class="secno">6.7. </span><span class="content">Als API gebruiker kan ik</span><a class="self-link" href="#api-gebruiker"></a></h3>
    <ul>
     <li data-md>
-     <p>lezen over het iotm platform, faq, privacy, auteursrecht</p>
+     <p>per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD</p>
     <li data-md>
-     <p>de verenigingspagina’s lezen met informatie over doel, call-to-action</p>
-    <li data-md>
-     <p>mezelf registreren (waarmee je een gebruiker wordt)</p>
-    <li data-md>
-     <p>gepubliceerde jottems bekijken/doorzoeken</p>
-    <li data-md>
-     <p>favorieten van gebruikers bekijken</p>
-   </ul>
-   <h3 class="heading settled" data-level="5.8" id="api-gebruiker"><span class="secno">5.8. </span><span class="content">Als API gebruiker kan ik</span><a class="self-link" href="#api-gebruiker"></a></h3>
-   <ul>
-    <li data-md>
-     <p>per vereniging nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD</p>
-    <li data-md>
-     <p>per vereniging nieuwe jottems via RSS</p>
+     <p>per organisatie nieuwe jottems via RSS</p>
     <li data-md>
      <p>kan ik jottems doorzoeken op basis van elasticsearch</p>
     <li data-md>
@@ -2299,92 +2481,105 @@ Er worden minimaal twee kennissessies georganiseerd:
     <li data-md>
      <p>annotaties ophalen via het W3C Web Annotation Protocol</p>
     <li data-md>
-     <p>per vereniging / album een IIIF collection opvragen</p>
+     <p>per organisatie / album een IIIF collection opvragen</p>
     <li data-md>
      <p>per jottem IIIF info.json \+ manifest opvragen</p>
     <li data-md>
-     <p>per vereniging een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen</p>
+     <p>per organisatie een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen</p>
    </ul>
-   <h2 class="heading settled" data-level="6" id="erd-diagram"><span class="secno">6. </span><span class="content">ERD diagram</span><a class="self-link" href="#erd-diagram"></a></h2>
-<pre class="mermaid">  erDiagram
+   <h3 class="heading settled" data-level="6.8" id="bezoeker"><span class="secno">6.8. </span><span class="content">Als bezoeker kan ik</span><a class="self-link" href="#bezoeker"></a></h3>
+   <ul>
+    <li data-md>
+     <p>lezen over het iotm platform, faq, privacy, auteursrecht</p>
+    <li data-md>
+     <p>de organisatiepagina’s lezen met informatie over doel, call-to-action</p>
+    <li data-md>
+     <p>mezelf registreren (waarmee je een gebruiker wordt)</p>
+    <li data-md>
+     <p>gepubliceerde jottems bekijken/doorzoeken</p>
+    <li data-md>
+     <p>favorieten van gebruikers bekijken</p>
+   </ul>
+   <h2 class="heading settled" data-level="7" id="erd-diagram"><span class="secno">7. </span><span class="content">ERD diagram</span><a class="self-link" href="#erd-diagram"></a></h2>
+<pre class="mermaid">erDiagram
 
-  Vereniging {
-    int id PK
-    string naam
-    string slug
-    string NAAN
-    string kleurenpalet
-  }
+Organisatie {
+  int id PK
+  string naam
+  string slug
+  string NAAN
+  string kleurenpalet
+}
 
-  Gebruiker {
-    int gebruikersId PK
-    string naam
-    string email
-    string rol
-    int verenigingsId FK
-    date bevestigingsDatum
-    date registratieDatum
-    date laatsteLoginDatum
-    bool favorietenPubliek
-  }
+Gebruiker {
+  int gebruikersId PK
+  string naam
+  string email
+  string rol
+  int organisatieId FK
+  date bevestigingsDatum
+  date registratieDatum
+  date laatsteLoginDatum
+  bool favorietenPubliek
+}
 
-  Media {
-    int mediaId PK
-    string bestandsnaam
-    string ark
-    date creatieDatum
-    date publicatieDatum
-    int gebruikersId FK
-    int verenigingsId FK
-    int albumId FK
-  }
+Media {
+  int mediaId PK
+  string bestandsnaam
+  string ark
+  date creatieDatum
+  date publicatieDatum
+  int gebruikersId FK
+  int organisatieId FK
+  int albumId FK
+}
 
-  Metadata {
-    int metadataId PK
-    int mediaId FK
-    int gebruikersId FK
-    string type
-    string label
-    string value
-    string uri
-  }
+Metadata {
+  int metadataId PK
+  int mediaId FK
+  int gebruikersId FK
+  string type
+  string label
+  string value
+  string uri
+}
 
-  Album {
-    int albumId PK
-    string naam
-    int gebruikersId FK
-  }
+Album {
+  int albumId PK
+  string naam
+  int gebruikersId FK
+}
 
-  Favoriet {
-    int favorietId PK
-    int gebruikersId FK
-    int mediaId FK
-    date creatieDatum
-  }
+Favoriet {
+  int favorietId PK
+  int gebruikersId FK
+  int mediaId FK
+  date creatieDatum
+}
 
-  %% Relationships
-  Vereniging ||--o{ Gebruiker : "heeft"
-  Vereniging ||--o{ Media : "bevat"
+%% Relationships
+Organisatie ||--o{ Gebruiker : "heeft"
+Organisatie ||--o{ Media : "bevat"
 
-  Gebruiker ||--o{ Media : "uploadt"
-  Gebruiker ||--o{ Album : "maakt"
+Gebruiker ||--o{ Media : "uploadt"
+Gebruiker ||--o{ Album : "maakt"
 
-  Album ||--o{ Media : "groepeert"
+Album ||--o{ Media : "groepeert"
 
-  Media ||--o{ Metadata : "heeft"
+Media ||--o{ Metadata : "heeft"
 
-  Gebruiker ||--o{ Favoriet : "maakt"
-  Media ||--o{ Favoriet : "wordt_gefavoriet"
+Gebruiker ||--o{ Favoriet : "maakt"
+Media ||--o{ Favoriet : "wordt_gefavoriet"
 
-  Gebruiker ||--o{ Metadata : "maakt"
+Gebruiker ||--o{ Metadata : "maakt"
 </pre>
-   <h2 class="heading settled" data-level="7" id="api-beschrijving"><span class="secno">7. </span><span class="content">API beschrijving</span><a class="self-link" href="#api-beschrijving"></a></h2>
-   <div id="swagger-ui"></div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
   mermaid.initialize({ startOnLoad: false });
   await mermaid.run({ querySelector: ".mermaid" });
 </script>
+   <h2 class="heading settled" data-level="8" id="api-beschrijving"><span class="secno">8. </span><span class="content">API beschrijving</span><a class="self-link" href="#api-beschrijving"></a></h2>
+   <div id="swagger-ui"></div>
    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
 <script>

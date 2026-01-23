@@ -1,3 +1,5 @@
+<h2 id="erd-diagram">ERD diagram</h2>
+
 <pre class="mermaid">
   erDiagram
 
@@ -72,3 +74,8 @@
   Gebruiker ||--o{ Metadata : "maakt"
 </pre>
 
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run({ querySelector: ".mermaid" });
+</script>

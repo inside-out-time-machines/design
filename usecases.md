@@ -12,6 +12,7 @@
 * gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
+* kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) toevoegen 
 
 <h3 id="moderator">Als moderator kan ik</h3>
 

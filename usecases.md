@@ -1,5 +1,7 @@
 # Usecases per rol # {#usecases}
 
+Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/index.html).
+
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  

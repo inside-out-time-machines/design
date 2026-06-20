@@ -19,7 +19,7 @@
 ## Als moderator kan ik ## {#moderator}
 
 * alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken  
-* de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy en auteursrecht  
+* de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy (incl. toestemming herkenbare personen), auteursrecht en het onderscheid tussen herinnering en verifieerbaar feit  
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
   * bij goedkeuring wordt er een object identifier (bijv. NOID of UUID) gemaakt de ARK en wordt de afbeelding en metadata duurzaam opgeslagen bij het internet archive en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
@@ -36,6 +36,8 @@
 
 * kan ik een “album” (of collectie) aanmaken naast het album “Alles”  
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog), steekwoorden en in een album plaatsen  
+* kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
+* kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)
 
 ## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
@@ -44,6 +46,7 @@
   * een plaatsnaam (label+URI)  
   * de plek waar de fotograaf stond (op de kaart) plus zichtveld (WKT)  
   * gebeurtenis (label+URI)   
+  * koppeling naar een externe archiefbron (label+URI)  
   * vrije tekst: herinnering, aanvulling of correctie  
 * kan ik een extra metadata aan een getekend vlak op de jottem toevoegen, zoals  
   * identificatie van persoon, gebouw, bedrijf (naam+URI)  
@@ -64,7 +67,10 @@
 ## Als bezoeker kan ik ## {#bezoeker}
 
 * lezen over het iotm platform, faq, privacy, auteursrecht  
-* de organisatiepagina’s lezen met informatie over doel, call-to-action  
+* de organisatiepagina’s lezen met informatie over doel, oproep tot actie  
   * mezelf registreren (waarmee je een gebruiker wordt)  
   * gepubliceerde jottems bekijken/doorzoeken  
   * favorieten van gebruikers bekijken
+* via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  
+* per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken  
+* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal

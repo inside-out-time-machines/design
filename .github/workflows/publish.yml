@@ -31,7 +31,7 @@ jobs:
             -v "${{ github.workspace }}:/spec" \
             -w /spec \
             netwerkdigitaalerfgoed/bikeshed:5.3.2 \
-            bikeshed spec index.bs index.html
+            bikeshed --no-update spec index.bs index.html
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3

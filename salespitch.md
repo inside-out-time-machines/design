@@ -40,7 +40,7 @@ Jottem draait het perspectief om: **niet de collectie staat centraal, maar de ge
 - Elasticsearch zoekfunctionaliteit
 - Schema.org conforme datasets
 
-## Unique selling points
+## Onderscheidende kenmerken
 
 ### Participatie in de volle breedte
 Van expert tot buurtbewoner – iedereen kan bijdragen op zijn eigen niveau. De visueel aantrekkelijke, laagdrempelige interface maakt meedoen makkelijk en leuk.
@@ -62,7 +62,7 @@ Ontwikkeld vanuit concrete behoefte van vier Time Machines:
 - Amsterdam Time Machine (RingA10: "homepage van je huis")
 - Utrecht (OUD Utrecht, Museum Van Zuilen)
 - Hilversum (grafisch atelier, ontwerpers)
-- Gouda (historische vereniging)
+- Gouda (historische vereniging) – met *Smaak van Gouda* als eerste concrete pilot
 
 ### Van aanbod naar vraag
 Niet: "Wat kunnen wij ontsluiten?"
@@ -88,7 +88,7 @@ Maar: "Wat willen mensen delen, bewaren en doorgeven?"
 - **Innovatie** door kennisdeling en open source
 - **Structurele verandering**: van bewaren naar samen maken
 
-## Call to action
+## Oproep tot actie
 
 **Voor organisaties:**
 Wil jouw historische vereniging, archief of Time Machine ook participatiever worden? Sluit je aan bij Jottem en geef je gemeenschap de tools om zelf erfgoed te maken.

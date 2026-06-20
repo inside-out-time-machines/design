@@ -26,6 +26,7 @@
   Media {
     int mediaId PK
     string bestandsnaam
+    string genre
     string ark
     date creatieDatum
     date publicatieDatum
@@ -56,6 +57,9 @@
     int mediaId FK
     date creatieDatum
   }
+
+  %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)
+  %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
 
   %% Relationships
   Organisatie ||--o{ Gebruiker : "heeft"

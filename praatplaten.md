@@ -7,24 +7,24 @@ img, svg {
 }
 </style>
 
-<h3 id="praatplaat-stakeholders">Stakeholders</h3>
+<h3 id="praatplaat-stakeholders">Belanghebbenden</h3>
 <img src="images/slide-2.svg">
 
-<h3 id="praatplaat-media-process">Media process</h3>
+<h3 id="praatplaat-media-process">Mediaproces</h3>
 
 <img src="images/slide-3.svg">
 
-<h3 id="praatplaat-process-steps">Process steps</h3>
+<h3 id="praatplaat-process-steps">Processtappen</h3>
 
 <img src="images/slide-4.svg">
 
-<h3 id="praatplaat-platform-parts"> Platform parts</h3>
+<h3 id="praatplaat-platform-parts"> Platformonderdelen</h3>
 <img src="images/slide-5.svg">
 
-<h3 id="praatplaat-annotations">Annotations</h3>
+<h3 id="praatplaat-annotations">Annotaties</h3>
 
 <img src="images/slide-6.svg">
 
-<h3 id="praatplaat-technology-parts">Technology part</h3>
+<h3 id="praatplaat-technology-parts">Technische onderdelen</h3>
 
 <img src="images/slide-7.svg">

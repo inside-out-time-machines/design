@@ -26,6 +26,10 @@ path: activiteitenplan.md
 </pre>
 
 <pre class="include">
+path: pilot-smaak-van-gouda.md
+</pre>
+
+<pre class="include">
 path: praatplaten.md
 </pre>
 

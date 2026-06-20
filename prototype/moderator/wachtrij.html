@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moderatiewachtrij — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="moderator">
+<div class="context">
+  <span class="pill role">Moderator</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Wachtrij</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Moderatiewachtrij</h2>
+    <a class="btn secondary" href="../shared/statistieken.html?rol=moderator">📊 Statistieken</a></div>
+
+  <div class="wrap-gap mb">
+    <div class="chips" data-single>
+      <span class="chip active">Nieuw (5)</span>
+      <span class="chip">Goedgekeurd</span>
+      <span class="chip">Afgekeurd</span>
+    </div>
+  </div>
+
+  <div class="grid cols-4" id="queue"></div>
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var q = JOTTEM.JOTTEMS.slice(0, 5).map(function (j) {
+      return '<a class="card card-link" href="beoordelen.html"><div class="thumb" style="border-radius:0">' +
+        '<span class="ph" data-seed="' + j.seed + '" data-kind="' + j.soort + '"></span>' +
+        '<span class="genre tag green">' + j.genre + '</span></div>' +
+        '<div class="pad"><b>' + j.titel + '</b><div class="meta">' + j.adres + ' · ' + j.jaar + '</div>' +
+        '<span class="tag amber mt">wacht op beoordeling</span></div></a>';
+    }).join("");
+    document.getElementById("queue").innerHTML = q;
+    fillPhotos();
+  });
+</script>
+</body>
+</html>

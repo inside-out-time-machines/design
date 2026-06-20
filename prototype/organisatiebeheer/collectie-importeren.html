@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collectie importeren — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="organisatiebeheerder">
+<div class="context">
+  <span class="pill role">Organisatiebeheerder</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Collectie importeren</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Bestaande collectie importeren</h2></div>
+
+  <div class="sidebar-layout" style="grid-template-columns:1fr 320px">
+    <form class="card" data-demo="Import gestart — 142 objecten worden ingelezen"><div class="pad">
+      <p class="muted">Voeg een bestaande collectie toe via een IIIF Collection of een metadata-bestand.
+        De objecten verschijnen daarna als jottems en kunnen door de gemeenschap verrijkt worden.</p>
+      <div class="field"><label>Bron</label>
+        <select><option>IIIF Collection (manifest-URL)</option><option>OAI-PMH endpoint</option>
+          <option>CSV / Excel met metadata</option></select></div>
+      <div class="field"><label>IIIF Collection URL</label>
+        <input type="url" value="https://images.memorix.nl/smh/iiif/collection.json"></div>
+
+      <h4 class="mt">Veldkoppeling (mapping)</h4>
+      <table class="data" style="box-shadow:none">
+        <thead><tr><th>Bronveld</th><th>→ Jottem-veld</th></tr></thead>
+        <tbody>
+          <tr><td>dc:title</td><td><select><option>titel</option><option>beschrijving</option></select></td></tr>
+          <tr><td>dc:date</td><td><select><option>datering</option></select></td></tr>
+          <tr><td>dc:creator</td><td><select><option>vervaardiger</option></select></td></tr>
+          <tr><td>dc:subject</td><td><select><option>steekwoorden</option><option>genre</option></select></td></tr>
+        </tbody>
+      </table>
+      <button class="btn mt" type="submit">Import starten</button>
+    </div></form>
+
+    <div>
+      <div class="card"><div class="pad">
+        <h3>Voorbeeld</h3>
+        <div class="grid cols-2" style="gap:8px">
+          <div class="thumb"><span class="ph" data-seed="imp1" data-kind="gevel"></span></div>
+          <div class="thumb"><span class="ph" data-seed="imp2" data-kind="interieur"></span></div>
+          <div class="thumb"><span class="ph" data-seed="imp3" data-kind="menukaart"></span></div>
+          <div class="thumb"><span class="ph" data-seed="imp4" data-kind="advertentie"></span></div>
+        </div>
+        <p class="hint mt">142 objecten gevonden in de bron.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijn jottems — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="gebruiker">
+<div class="context">
+  <span class="pill role">Gebruiker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Mijn jottems</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Mijn jottems</h2>
+    <a class="btn" href="../uploader/uploaden.html">⬆️ Nieuwe upload</a></div>
+
+  <div class="grid cols-3 mb">
+    <div class="stat"><div class="num">1</div><div class="lbl">goedgekeurd</div></div>
+    <div class="stat"><div class="num">1</div><div class="lbl">in behandeling</div></div>
+    <div class="stat"><div class="num">1</div><div class="lbl">afgekeurd</div></div>
+  </div>
+
+  <table class="data">
+    <thead><tr><th>Jottem</th><th>Genre</th><th>Jaar</th><th>Status</th><th>Annotaties</th><th>Deellink</th><th></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="hint mt">Goedgekeurde jottems kun je niet verwijderen (ze zijn duurzaam gepubliceerd).
+    Afgekeurde jottems kun je aanpassen en opnieuw indienen, of verwijderen.</p>
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var map = { goedgekeurd: ["ok", "green", "goedgekeurd"], nieuw: ["new", "amber", "in behandeling"], afgekeurd: ["no", "red", "afgekeurd"] };
+    document.getElementById("rows").innerHTML = JOTTEM.MIJN.map(function (j) {
+      var s = map[j.status];
+      var del = j.status === "afgekeurd"
+        ? '<button class="btn danger sm" data-demo="Jottem verwijderd">Verwijderen</button>'
+        : '<a class="btn secondary sm" href="../public/jottem.html">Bekijk</a>';
+      var deel = j.ark === "—" ? '<span class="muted">—</span>'
+        : '<button class="btn ghost sm" data-demo="Deellink gekopieerd">🔗 kopieer</button>';
+      var reden = j.reden ? '<div class="hint" style="color:#b23232">⚠ ' + j.reden + '</div>' : '';
+      return '<tr><td><b>' + j.titel + '</b>' + reden + '</td>' +
+        '<td><span class="tag green">' + j.genre + '</span></td><td>' + j.jaar + '</td>' +
+        '<td><span class="status-dot ' + s[0] + '"></span> <span class="tag ' + s[1] + '">' + s[2] + '</span></td>' +
+        '<td>' + j.annos + '</td><td>' + deel + '</td><td>' + del + '</td></tr>';
+    }).join("");
+  });
+</script>
+</body>
+</html>

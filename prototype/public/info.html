@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Over & voorwaarden — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="bezoeker">
+<div class="context">
+  <span class="pill role">Bezoeker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Over & voorwaarden</b></span>
+</div>
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="active" data-tab="t-over">Over Jottem</button>
+    <button data-tab="t-faq">Veelgestelde vragen</button>
+    <button data-tab="t-privacy">Privacy</button>
+    <button data-tab="t-recht">Auteursrecht</button>
+  </div>
+  <div>
+    <div class="tab-panel active" id="t-over">
+      <div class="card"><div class="pad">
+        <h3>Maak erfgoed van iedereen, door iedereen</h3>
+        <p class="muted">Jottem is een participatief digitaal erfgoedplatform waarmee gemeenschappen
+        hun eigen lokale geschiedenis verzamelen, delen en verrijken. Deze pilot, <b>Smaak van Gouda</b>,
+        legt de Goudse horecageschiedenis vast — samen met inwoners.</p>
+      </div></div>
+    </div>
+
+    <div class="tab-panel" id="t-faq">
+      <details class="acc" open><summary>Wat is een “jottem”?</summary><div class="acc-body">
+        Een jottem is een digitaal erfgoedobject: een afbeelding (of audio/video) met beschrijvende
+        metadata en een groeiende laag van annotaties en herinneringen.</div></details>
+      <details class="acc"><summary>Hoe draag ik materiaal bij?</summary><div class="acc-body">
+        Registreer je, upload een foto, menukaart of advertentie en voorzie deze van metadata. Een
+        moderator beoordeelt je bijdrage vóór publicatie.</div></details>
+      <details class="acc"><summary>Wat gebeurt er na goedkeuring?</summary><div class="acc-body">
+        Je jottem krijgt een duurzame ARK-link, wordt opgeslagen bij het Internet Archive en is
+        doorzoekbaar en herbruikbaar via open standaarden (IIIF, RDF).</div></details>
+    </div>
+
+    <div class="tab-panel" id="t-privacy">
+      <div class="card"><div class="pad">
+        <ul class="stack-sm">
+          <li>Persoonsgegevens worden verwerkt conform de AVG.</li>
+          <li>Recente foto's van herkenbare personen worden alleen gepubliceerd met toestemming.</li>
+          <li>Inzenders kunnen verzoeken om verwijdering van hun materiaal.</li>
+          <li>Persoonlijke herinneringen worden onderscheiden van verifieerbare feiten.</li>
+        </ul>
+        <button class="btn danger" data-open="m-verwijder" id="verwijdering">Verwijderingsverzoek indienen</button>
+      </div></div>
+    </div>
+
+    <div class="tab-panel" id="t-recht">
+      <div class="card"><div class="pad">
+        <ul class="stack-sm">
+          <li>Het auteursrecht blijft bij de inzender.</li>
+          <li>Door inzending geef je toestemming voor publicatie binnen het project.</li>
+          <li>Hergebruik door derden mag uitsluitend onder de aangegeven voorwaarden (licentie).</li>
+          <li>Bijdragen krijgen waar mogelijk een bronvermelding.</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- verwijderings-modal -->
+<div class="modal-back" id="m-verwijder">
+  <div class="modal">
+    <div class="head"><h3>Verwijderingsverzoek</h3><button class="x" data-close>×</button></div>
+    <form class="pad" data-demo="Verzoek ingediend — de redactie neemt contact op">
+      <div class="field"><label>Om welk materiaal gaat het? (titel of ARK)</label><input type="text" placeholder="bijv. ark:/27023/g8x2"></div>
+      <div class="field"><label>Je e-mailadres</label><input type="email" placeholder="naam@voorbeeld.nl" required></div>
+      <div class="field"><label>Reden</label><textarea placeholder="Licht je verzoek toe…"></textarea></div>
+      <div class="btn-row"><button class="btn danger" type="submit">Verzoek versturen</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/app.js"></script>
+<script>
+  // open juiste tab bij #verwijdering
+  if (location.hash === "#verwijdering") {
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelector('[data-tab="t-privacy"]').click();
+    });
+  }
+</script>
+</body>
+</html>

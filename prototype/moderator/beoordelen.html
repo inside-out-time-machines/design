@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beoordelen — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="moderator">
+<div class="context">
+  <span class="pill role">Moderator</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <a href="wachtrij.html">Wachtrij</a> › <b>Beoordelen</b></span>
+</div>
+<div class="wrap">
+  <div class="sidebar-layout" style="grid-template-columns:1fr 360px">
+    <div>
+      <div class="viewer">
+        <span class="ph" data-seed="lotus" data-kind="gevel"></span>
+        <div class="tools"><button data-demo="Inzoomen (demo)">+</button><button data-demo="Uitzoomen (demo)">−</button></div>
+      </div>
+      <div class="card mt"><div class="pad">
+        <h3>Metadata</h3>
+        <table class="data" style="box-shadow:none;border:0">
+          <tr><th>Titel</th><td>Chinees-Indisch restaurant Lotus</td></tr>
+          <tr><th>Genre</th><td>foto</td></tr>
+          <tr><th>Adres</th><td>Markt 41, Gouda · 1973–1996</td></tr>
+          <tr><th>Vervaardiger</th><td>Fotostudio Van Leeuwen</td></tr>
+          <tr><th>Ingediend door</th><td>Riet Bakker · 18 jun 2026</td></tr>
+        </table>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="card"><div class="pad">
+        <h3>Kwaliteitscontrole</h3>
+        <div class="checkrow"><input type="checkbox" checked> <span>Afbeelding is van voldoende kwaliteit</span></div>
+        <div class="checkrow"><input type="checkbox" checked> <span>Metadata is volledig en correct</span></div>
+        <div class="checkrow"><input type="checkbox" checked> <span>Privacy: toestemming herkenbare personen</span></div>
+        <div class="checkrow"><input type="checkbox" checked> <span>Auteursrecht / licentie in orde</span></div>
+        <div class="checkrow"><input type="checkbox"> <span>Herinnering vs. feit duidelijk onderscheiden</span></div>
+        <hr>
+        <button class="btn block mb" data-demo="Goedgekeurd ✓ — ARK aangemaakt, opgeslagen bij Internet Archive, uploader geïnformeerd">✓ Goedkeuren &amp; publiceren</button>
+        <button class="btn danger block" data-open="m-afkeur">✗ Afkeuren</button>
+        <p class="hint mt">Bij goedkeuren wordt een ARK aangemaakt (NOID), de jottem duurzaam
+          opgeslagen bij het Internet Archive en de uploader per e-mail geïnformeerd met een oproep
+          om te delen.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-back" id="m-afkeur">
+  <div class="modal">
+    <div class="head"><h3>Jottem afkeuren</h3><button class="x" data-close>×</button></div>
+    <form class="pad" data-demo="Afgekeurd — uploader krijgt de reden per e-mail en kan aanvullen">
+      <div class="field"><label>Reden (gaat naar de uploader)</label>
+        <select><option>Recente herkenbare personen — toestemming ontbreekt</option>
+          <option>Onvoldoende beeldkwaliteit</option><option>Auteursrecht onduidelijk</option>
+          <option>Metadata onvolledig</option><option>Buiten scope van het project</option></select></div>
+      <div class="field"><label>Toelichting</label><textarea placeholder="Optionele toelichting…"></textarea></div>
+      <div class="btn-row"><button class="btn danger" type="submit">Afkeuren &amp; e-mail sturen</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

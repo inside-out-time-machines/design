@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annoteren — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="annoteerder">
+<div class="context">
+  <span class="pill role">Annoteerder</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Annoteren</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Verrijk: restaurant Lotus (Markt 41, 1973)</h2></div>
+
+  <div class="sidebar-layout" style="grid-template-columns:1fr 360px">
+    <div>
+      <div class="notice mb" id="vlak">🖱️ <b>Teken een vlak</b>: sleep met de muis over de foto om een
+        persoon, gebouw of bedrijf te markeren en te identificeren.</div>
+      <div class="viewer" id="viewer" style="cursor:crosshair">
+        <span class="ph" data-seed="lotus" data-kind="gevel"></span>
+        <div class="region" style="left:14%;top:40%;width:24%;height:34%"><span class="lab">Ober (Theo Lotus)</span></div>
+      </div>
+      <p class="hint">Bestaande markeringen zijn van andere annoteerders. Jouw nieuwe vlak verschijnt
+        zodra je het identificeert.</p>
+
+      <div class="card mt" id="reactie"><div class="pad">
+        <div class="between"><h3 style="margin:0">Annotaties</h3></div>
+        <div id="annos" class="mt"></div>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="card"><div class="pad">
+        <h3>Jottem-brede annotatie</h3>
+        <form data-demo="Annotatie toegevoegd">
+          <div class="field"><label>Plaatsnaam (label + URI)</label>
+            <input type="text" value="Gouda" list="pl"><datalist id="pl"><option value="Gouda · geonames.org/2755419"></datalist>
+            <div class="hint">Gekoppeld aan een terminologiebron (Netwerk van Termen).</div></div>
+          <div class="field"><label>Gebeurtenis (label + URI)</label>
+            <input type="text" placeholder="bijv. Opening 1973"></div>
+          <div class="field"><label>Externe archiefbron (label + URI)</label>
+            <input type="url" placeholder="https://hdl.handle.net/…"></div>
+          <div class="field"><label>Herinnering / aanvulling / correctie</label>
+            <textarea placeholder="Deel je herinnering…"></textarea></div>
+          <button class="btn" type="submit">Toevoegen</button>
+        </form>
+      </div></div>
+
+      <div class="card mt"><div class="pad">
+        <h3>Fotograafpositie</h3>
+        <p class="meta">Markeer waar de fotograaf stond + zichtveld (WKT)</p>
+        <div class="map-wrap" style="aspect-ratio:4/3">
+          <img src="../assets/img/gouda-map.svg" alt="kaart" style="width:100%;height:100%;object-fit:cover">
+          <span class="map-pin cam active" style="left:50%;top:52%"></span>
+        </div>
+        <button class="btn secondary sm mt" data-demo="Positie & zichtveld opgeslagen (WKT)">Positie opslaan</button>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- vlak-identificatie modal -->
+<div class="modal-back" id="m-vlak">
+  <div class="modal">
+    <div class="head"><h3>Vlak identificeren</h3><button class="x" data-close>×</button></div>
+    <form class="pad" id="vlakForm">
+      <div class="field"><label>Wat staat hier?</label>
+        <select id="vlakType"><option>Persoon</option><option>Gebouw</option><option>Bedrijf</option></select></div>
+      <div class="field"><label>Naam (+ URI indien bekend)</label>
+        <input type="text" id="vlakNaam" placeholder="bijv. Theo Lotus" required></div>
+      <div class="btn-row"><button class="btn" type="submit">Opslaan</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // annotatielijst met reageren + eigen annotatie bewerken/verwijderen
+    var box = document.getElementById("annos");
+    box.innerHTML = JOTTEM.ANNOS.map(function (a, i) {
+      var mine = i === 1; // doe alsof annotatie 2 van mij is
+      var actions = mine
+        ? '<button class="btn ghost sm" data-demo="Annotatie bewerken (demo)">Bewerken</button> ' +
+          '<button class="btn ghost sm" data-demo="Annotatie verwijderd">Verwijderen</button>'
+        : '<button class="btn ghost sm" data-demo="Reactie geplaatst">Reageren</button>';
+      var reply = a.reply ? '<div class="reply anno" style="border-bottom:0;padding-bottom:0">' +
+        '<span class="avatar">' + a.reply.init + '</span><div class="body"><div class="who">' + a.reply.who +
+        ' <span class="when">· ' + a.reply.when + '</span></div><div class="txt">' + a.reply.txt + '</div></div></div>' : '';
+      return '<div class="anno"><span class="avatar">' + a.init + '</span><div class="body">' +
+        '<div class="who">' + a.who + (mine ? ' <span class="tag green">jij</span>' : '') +
+        ' <span class="when">· ' + a.when + '</span></div><div class="txt">' + a.txt + '</div>' +
+        actions + reply + '</div></div>';
+    }).join("");
+
+    // teken-een-vlak op de viewer
+    var v = document.getElementById("viewer"), draft = null, sx = 0, sy = 0, drawing = false, pending = null;
+    function pct(e, axis) {
+      var r = v.getBoundingClientRect();
+      return axis === "x" ? (e.clientX - r.left) / r.width * 100 : (e.clientY - r.top) / r.height * 100;
+    }
+    v.addEventListener("mousedown", function (e) {
+      if (e.target.closest(".tools") || e.target.closest(".region")) return;
+      drawing = true; sx = pct(e, "x"); sy = pct(e, "y");
+      draft = document.createElement("div"); draft.className = "region draft";
+      draft.style.left = sx + "%"; draft.style.top = sy + "%"; draft.style.width = "0"; draft.style.height = "0";
+      v.appendChild(draft); e.preventDefault();
+    });
+    window.addEventListener("mousemove", function (e) {
+      if (!drawing) return;
+      var x = pct(e, "x"), y = pct(e, "y");
+      draft.style.left = Math.min(sx, x) + "%"; draft.style.top = Math.min(sy, y) + "%";
+      draft.style.width = Math.abs(x - sx) + "%"; draft.style.height = Math.abs(y - sy) + "%";
+    });
+    window.addEventListener("mouseup", function () {
+      if (!drawing) return; drawing = false;
+      if (parseFloat(draft.style.width) < 4 || parseFloat(draft.style.height) < 4) { draft.remove(); return; }
+      pending = draft;
+      document.getElementById("m-vlak").classList.add("open");
+    });
+    document.getElementById("vlakForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (pending) {
+        pending.classList.remove("draft");
+        pending.innerHTML = '<span class="lab">' + document.getElementById("vlakType").value + ': ' +
+          (document.getElementById("vlakNaam").value || "?") + '</span>';
+        pending = null;
+      }
+      document.getElementById("m-vlak").classList.remove("open");
+      this.reset(); toast("Vlak-annotatie toegevoegd");
+    });
+  });
+</script>
+</body>
+</html>

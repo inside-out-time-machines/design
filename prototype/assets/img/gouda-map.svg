@@ -1,0 +1,33 @@
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Gestileerde kaart van de Goudse binnenstad">
+  <rect width="200" height="150" fill="#e7efe6"/>
+  <!-- groen / plantsoen -->
+  <path d="M0 0h40v34H0z" fill="#d6e8d2" opacity=".7"/>
+  <path d="M168 110h32v40h-32z" fill="#d6e8d2" opacity=".7"/>
+  <!-- water / singels -->
+  <g fill="none" stroke="#bcd8e8" stroke-width="6" stroke-linecap="round" opacity=".9">
+    <path d="M-4 18C40 26 60 8 96 14s70 30 112 22"/>
+    <path d="M20 150C24 110 12 92 30 64s8-46 -2-70"/>
+    <path d="M196 40c-30 6-44 30-44 56s10 40 30 58"/>
+  </g>
+  <!-- straten -->
+  <g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".95">
+    <path d="M10 120 L120 70 L190 92"/>
+    <path d="M40 18 L80 70 L70 140"/>
+    <path d="M150 16 L104 60 L120 70 L150 140"/>
+    <path d="M60 44 L150 70"/>
+    <path d="M30 86 L120 70"/>
+  </g>
+  <!-- bouwblokken -->
+  <g fill="#cfd6d0" opacity=".55">
+    <rect x="46" y="40" width="22" height="16" rx="2"/>
+    <rect x="80" y="40" width="18" height="14" rx="2"/>
+    <rect x="120" y="44" width="20" height="14" rx="2"/>
+    <rect x="44" y="92" width="18" height="20" rx="2"/>
+    <rect x="92" y="84" width="22" height="16" rx="2"/>
+    <rect x="132" y="92" width="20" height="18" rx="2"/>
+  </g>
+  <!-- Markt (driehoek) met Stadhuis -->
+  <path d="M92 40 L116 46 L100 62 Z" fill="#e3d9c2" stroke="#cdbf9e" stroke-width="1.5"/>
+  <rect x="100" y="46" width="8" height="9" fill="#b9a98a" rx="1"/>
+  <text x="103" y="40" font-family="sans-serif" font-size="5" fill="#8a7d63" text-anchor="middle">Markt</text>
+</svg>

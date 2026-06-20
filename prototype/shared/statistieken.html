@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistieken — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="">
+<script>
+  // rol uit query-param halen vóór de shell wordt gebouwd
+  (function () {
+    var rol = new URLSearchParams(location.search).get("rol") || "moderator";
+    var map = { moderator: "moderator", organisatie: "organisatiebeheerder", platform: "platformbeheerder" };
+    document.body.setAttribute("data-role", map[rol] || "moderator");
+    document.body.setAttribute("data-scope", rol);
+  })();
+</script>
+<div class="context">
+  <span class="pill role" id="rolePill">Statistieken</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b id="scopeLbl">Statistieken</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2 id="title">Statistieken</h2>
+    <select id="period" style="width:auto"><option>Laatste 7 dagen</option><option>Laatste 30 dagen</option><option>Dit jaar</option></select></div>
+
+  <div class="grid cols-4 mb">
+    <div class="stat"><div class="lbl">Logins (vandaag)</div><div class="num">48</div><div class="delta">▲ 12%</div></div>
+    <div class="stat"><div class="lbl">Nieuwe jottems</div><div class="num">23</div><div class="delta">▲ 8%</div></div>
+    <div class="stat"><div class="lbl">Goedgekeurd</div><div class="num">19</div><div class="delta">83%</div></div>
+    <div class="stat"><div class="lbl">Annotaties</div><div class="num">141</div><div class="delta">▲ 21%</div></div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card"><div class="pad">
+      <h3>Logins per dag</h3>
+      <div class="bars">
+        <div class="bar" style="height:45%"><span>ma</span></div>
+        <div class="bar" style="height:62%"><span>di</span></div>
+        <div class="bar" style="height:38%"><span>wo</span></div>
+        <div class="bar" style="height:80%"><span>do</span></div>
+        <div class="bar" style="height:70%"><span>vr</span></div>
+        <div class="bar" style="height:95%"><span>za</span></div>
+        <div class="bar" style="height:88%"><span>zo</span></div>
+      </div>
+      <div class="legend"><span><i></i> aantal logins</span></div>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>Uploads per maand</h3>
+      <div class="bars">
+        <div class="bar" style="height:30%"><span>jan</span></div>
+        <div class="bar" style="height:48%"><span>feb</span></div>
+        <div class="bar" style="height:55%"><span>mrt</span></div>
+        <div class="bar" style="height:72%"><span>apr</span></div>
+        <div class="bar" style="height:64%"><span>mei</span></div>
+        <div class="bar" style="height:90%"><span>jun</span></div>
+      </div>
+      <div class="legend"><span><i></i> ingediende jottems</span></div>
+    </div></div>
+  </div>
+
+  <div class="card mt"><div class="pad">
+    <h3>Moderatie</h3>
+    <table class="data" style="box-shadow:none;border:0">
+      <thead><tr><th>Status</th><th>Aantal</th><th>Aandeel</th></tr></thead>
+      <tbody>
+        <tr><td><span class="status-dot ok"></span> Goedgekeurd</td><td>248</td><td>79%</td></tr>
+        <tr><td><span class="status-dot new"></span> In behandeling</td><td>41</td><td>13%</td></tr>
+        <tr><td><span class="status-dot no"></span> Afgekeurd</td><td>23</td><td>8%</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var scope = document.body.getAttribute("data-scope");
+    var titles = { moderator: "Statistieken — moderatie", organisatie: "Statistieken — organisatie (Streekarchief MH)", platform: "Platformstatistieken — alle organisaties" };
+    var pills = { moderator: "Moderator", organisatie: "Organisatiebeheerder", platform: "Platformbeheerder" };
+    document.getElementById("title").textContent = titles[scope] || titles.moderator;
+    document.getElementById("scopeLbl").textContent = titles[scope] || titles.moderator;
+    document.getElementById("rolePill").textContent = pills[scope] || "Moderator";
+  });
+</script>
+</body>
+</html>

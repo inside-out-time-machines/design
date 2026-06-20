@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijn favorieten — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="gebruiker">
+<div class="context">
+  <span class="pill role">Gebruiker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Mijn favorieten</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Mijn favorieten</h2></div>
+
+  <div class="card mb"><div class="pad between">
+    <div><b>Favorieten openbaar maken</b>
+      <div class="hint" style="margin:0">Maakt een deelbare (niet-duurzame) link beschikbaar.</div></div>
+    <div class="flex">
+      <label class="switch"><input type="checkbox" id="pub"><span class="slider"></span></label>
+      <button class="btn secondary sm" id="copy" hidden data-demo="Deellink gekopieerd">🔗 Kopieer deellink</button>
+    </div>
+  </div></div>
+
+  <div class="grid cols-4" id="favs"></div>
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderThumbs("#favs", [JOTTEM.JOTTEMS[0], JOTTEM.JOTTEMS[2], JOTTEM.JOTTEMS[4], JOTTEM.JOTTEMS[7], JOTTEM.JOTTEMS[1]], "../public/jottem.html");
+    document.querySelectorAll("#favs .fav").forEach(function (f) { f.classList.add("on"); f.textContent = "♥"; });
+    var pub = document.getElementById("pub"), copy = document.getElementById("copy");
+    pub.addEventListener("change", function () {
+      copy.hidden = !pub.checked;
+      toast(pub.checked ? "Favorieten staan nu openbaar" : "Favorieten zijn weer privé");
+    });
+  });
+</script>
+</body>
+</html>

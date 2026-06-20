@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albums — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="uploader">
+<div class="context">
+  <span class="pill role">Uploader</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Albums</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Mijn albums</h2>
+    <button class="btn" data-open="m-album">+ Nieuw album</button></div>
+
+  <div class="grid cols-3">
+    <div class="card"><div class="pad">
+      <h3>📁 Alles</h3><p class="meta">Standaardalbum · 23 jottems</p>
+      <a class="btn secondary sm" href="../account/mijn-jottems.html">Openen</a></div></div>
+    <div class="card"><div class="pad">
+      <h3>📁 Markt &amp; omgeving</h3><p class="meta">9 jottems</p>
+      <a class="btn secondary sm" href="../account/mijn-jottems.html">Openen</a></div></div>
+    <div class="card"><div class="pad">
+      <h3>📁 Internationale keukens</h3><p class="meta">7 jottems</p>
+      <a class="btn secondary sm" href="../account/mijn-jottems.html">Openen</a></div></div>
+  </div>
+</div>
+
+<div class="modal-back" id="m-album">
+  <div class="modal">
+    <div class="head"><h3>Nieuw album</h3><button class="x" data-close>×</button></div>
+    <form class="pad" data-demo="Album aangemaakt">
+      <div class="field"><label>Naam van het album</label><input type="text" placeholder="bijv. Snackbars" required></div>
+      <div class="btn-row"><button class="btn" type="submit">Aanmaken</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

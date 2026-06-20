@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jottem — prototype Smaak van Gouda</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-root="." data-role="">
+<div class="wrap">
+
+  <section class="hero mb">
+    <span class="tag green">Klikbaar prototype · pilot Smaak van Gouda</span>
+    <h1>Jottem — maak erfgoed van iedereen, door iedereen</h1>
+    <p class="lead">Een rondleiding langs álle use-cases van het IOTM/Jottem-platform, uitgewerkt met
+    de Goudse horecageschiedenis als voorbeeld. Kies hieronder een rol en klik door de schermen — of
+    gebruik rechtsboven de <b>rol-switcher</b>.</p>
+    <div class="btn-row mt">
+      <a class="btn" href="public/organisatie.html">Start als bezoeker →</a>
+      <a class="btn secondary" href="public/kaart.html">Bekijk de kaart</a>
+    </div>
+  </section>
+
+  <div class="notice mb">ℹ️ Dit is een visueel prototype. Alle gegevens zijn fictieve voorbeelden en
+    acties (uploaden, modereren, instellingen) worden niet echt opgeslagen — ze tonen wel de bedoelde flow.</div>
+
+  <div class="section-title"><h2>Use-cases per rol</h2><span class="muted">8 rollen</span></div>
+  <div class="grid cols-4">
+
+    <div class="card"><div class="pad">
+      <h3>👀 Bezoeker</h3>
+      <p class="meta">De publieke website — zonder account.</p>
+      <ul class="stack-sm">
+        <li><a href="public/info.html">Lezen over platform, FAQ, privacy, auteursrecht</a></li>
+        <li><a href="public/organisatie.html">Organisatiepagina + oproep tot actie</a></li>
+        <li><a href="public/registreren.html">Zelf registreren</a></li>
+        <li><a href="public/verkennen.html">Jottems bekijken & doorzoeken</a></li>
+        <li><a href="public/jottem.html">Een jottem in detail</a></li>
+        <li><a href="public/kaart.html">Interactieve kaart + pand-tijdlijn</a></li>
+        <li><a href="public/favorieten-publiek.html">Favorieten van gebruikers</a></li>
+        <li><a href="public/info.html#verwijdering">Verwijderingsverzoek indienen</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>👤 Gebruiker</h3>
+      <p class="meta">Ingelogd account binnen een organisatie.</p>
+      <ul class="stack-sm">
+        <li><a href="account/inloggen.html">Inloggen (incl. social login)</a></li>
+        <li><a href="account/profiel.html">Profiel + 2FA beheren</a></li>
+        <li><a href="account/mijn-jottems.html">Overzicht uploads: status, #annotaties, deellinks</a></li>
+        <li><a href="account/favorieten.html">Favorieten beheren + openbaar maken</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>⬆️ Uploader</h3>
+      <p class="meta">Materiaal toevoegen aan de collectie.</p>
+      <ul class="stack-sm">
+        <li><a href="uploader/albums.html">Album / collectie aanmaken</a></li>
+        <li><a href="uploader/uploaden.html">Uploaden + metadata, genre & locatie</a></li>
+        <li><a href="account/mijn-jottems.html">Afgekeurde jottems verwijderen</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>✏️ Annoteerder</h3>
+      <p class="meta">Verrijken met kennis en herinneringen.</p>
+      <ul class="stack-sm">
+        <li><a href="annoteren/annoteren.html">Jottem-brede annotaties (plaats, gebeurtenis, archiefbron, herinnering)</a></li>
+        <li><a href="annoteren/annoteren.html#vlak">Vlak tekenen: persoon/gebouw/bedrijf identificeren</a></li>
+        <li><a href="annoteren/annoteren.html#reactie">Reageren, bewerken & verwijderen</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>🛡️ Moderator</h3>
+      <p class="meta">Kwaliteitscontrole en publicatie.</p>
+      <ul class="stack-sm">
+        <li><a href="moderator/wachtrij.html">Alle jottems & moderatiewachtrij</a></li>
+        <li><a href="moderator/beoordelen.html">Goedkeuren/afkeuren (→ ARK + Internet Archive)</a></li>
+        <li><a href="shared/statistieken.html?rol=moderator">Statistieken bekijken</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>🏛️ Organisatiebeheerder</h3>
+      <p class="meta">Beheer binnen één organisatiejottem.</p>
+      <ul class="stack-sm">
+        <li><a href="organisatiebeheer/moderators.html">Moderators toevoegen/bewerken/verwijderen</a></li>
+        <li><a href="organisatiebeheer/collectie-importeren.html">Bestaande collectie importeren (IIIF)</a></li>
+        <li><a href="shared/statistieken.html?rol=organisatie">Statistieken bekijken</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>⚙️ Platformbeheerder</h3>
+      <p class="meta">Het platform en de organisaties.</p>
+      <ul class="stack-sm">
+        <li><a href="platformbeheer/organisaties.html">Organisatiejottem definiëren (logo, kleurenpalet, ARK NAAN)</a></li>
+        <li><a href="platformbeheer/beheerders.html">Organisatiebeheerders beheren</a></li>
+        <li><a href="shared/statistieken.html?rol=platform">Platformstatistieken</a></li>
+      </ul>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h3>🔌 API-gebruiker</h3>
+      <p class="meta">Hergebruik via open standaarden.</p>
+      <ul class="stack-sm">
+        <li><a href="api/api.html#iiif-cd">IIIF Change Discovery harvesten</a></li>
+        <li><a href="api/api.html#rss">RSS-feed</a></li>
+        <li><a href="api/api.html#search">Elasticsearch zoeken</a></li>
+        <li><a href="api/api.html#anno">W3C Web Annotations</a></li>
+        <li><a href="api/api.html#iiif">IIIF Collection / Manifest</a></li>
+        <li><a href="api/api.html#dataset">Datasetbeschrijving (schema.org AP NDE)</a></li>
+      </ul>
+    </div></div>
+
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

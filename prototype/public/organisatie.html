@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smaak van Gouda — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="bezoeker">
+<div class="context">
+  <span class="pill role">Bezoeker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Organisatiepagina</b></span>
+</div>
+<div class="wrap">
+
+  <section class="hero mb">
+    <span class="tag green">Streekarchief Midden-Holland · pilot</span>
+    <h1>Smaak van Gouda</h1>
+    <p class="lead">Verhalen achter de verdwenen restaurants, cafés, snackbars en eethuizen van Gouda.
+    Van koffiehuizen en melkbars tot Chinese restaurants, shoarmazaken en moderne wereldkeukens —
+    help mee de Goudse horecageschiedenis vast te leggen.</p>
+    <div class="btn-row mt">
+      <a class="btn" href="registreren.html">Doe mee — registreer</a>
+      <a class="btn secondary" href="verkennen.html">Verken de collectie</a>
+      <a class="btn ghost" href="kaart.html">Op de kaart →</a>
+    </div>
+  </section>
+
+  <div class="grid cols-4 mb">
+    <div class="stat"><div class="num">312</div><div class="lbl">jottems</div></div>
+    <div class="stat"><div class="num">87</div><div class="lbl">eetgelegenheden</div></div>
+    <div class="stat"><div class="num">1 240</div><div class="lbl">annotaties</div></div>
+    <div class="stat"><div class="num">214</div><div class="lbl">deelnemers</div></div>
+  </div>
+
+  <div class="section-title"><h2>Uitgelicht</h2><a href="verkennen.html">Alles bekijken →</a></div>
+  <div class="grid cols-4" id="featured"></div>
+
+  <div class="card mt2"><div class="pad">
+    <h3>Doe mee</h3>
+    <p class="muted">Heb je foto's, menukaarten, advertenties of herinneringen over een Goudse eetzaak?
+    Registreer je, upload je materiaal of vul bestaande verhalen aan. Onze redactie beoordeelt elke
+    bijdrage vóór publicatie.</p>
+    <div class="btn-row"><a class="btn" href="registreren.html">Registreren</a>
+      <a class="btn secondary" href="info.html">Over privacy & auteursrecht</a></div>
+  </div></div>
+
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderThumbs("#featured", JOTTEM.JOTTEMS.slice(0, 4), "jottem.html");
+  });
+</script>
+</body>
+</html>

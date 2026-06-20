@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organisaties — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="platformbeheerder">
+<div class="context">
+  <span class="pill role">Platformbeheerder</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Organisaties</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Organisatiejottems</h2>
+    <div class="btn-row">
+      <a class="btn secondary" href="../shared/statistieken.html?rol=platform">📊 Statistieken</a>
+      <button class="btn" data-open="m-org">+ Organisatie toevoegen</button></div></div>
+
+  <table class="data mb">
+    <thead><tr><th>Naam</th><th>Slug</th><th>ARK NAAN</th><th>Jottems</th><th></th></tr></thead>
+    <tbody>
+      <tr><td><b>Streekarchief Midden-Holland</b></td><td>smh</td><td>27023</td><td>312</td>
+        <td><a class="btn ghost sm" href="beheerders.html">Beheerders</a></td></tr>
+      <tr><td>Historische Vereniging Die Goude</td><td>diegoude</td><td>27024</td><td>­—</td>
+        <td><a class="btn ghost sm" href="beheerders.html">Beheerders</a></td></tr>
+    </tbody>
+  </table>
+
+  <div class="card"><div class="pad">
+    <h3>Organisatie “Streekarchief Midden-Holland” bewerken</h3>
+    <div class="sidebar-layout" style="grid-template-columns:1fr 280px">
+      <form data-demo="Organisatie-instellingen opgeslagen">
+        <div class="inline-fields">
+          <div class="field"><label>Naam</label><input type="text" value="Streekarchief Midden-Holland"></div>
+          <div class="field"><label>Slug</label><input type="text" value="smh"></div>
+        </div>
+        <div class="inline-fields">
+          <div class="field"><label>ARK NAAN</label><input type="text" value="27023"></div>
+          <div class="field"><label>Subdomein</label><input type="text" value="smh.iotm.nl"></div>
+        </div>
+        <h4 class="mt">Kleurenpalet</h4>
+        <div class="inline-fields" style="grid-template-columns:repeat(3,1fr)">
+          <div class="field"><label>Primary</label><input type="color" value="#30ad41" style="height:42px;padding:4px"></div>
+          <div class="field"><label>Secondary</label><input type="color" value="#28aa35" style="height:42px;padding:4px"></div>
+          <div class="field"><label>Background</label><input type="color" value="#f3f4f6" style="height:42px;padding:4px"></div>
+        </div>
+        <div class="inline-fields">
+          <div class="field"><label>Logo</label><input type="file"></div>
+          <div class="field"><label>Favicon</label><input type="file"></div>
+        </div>
+        <button class="btn mt" type="submit">Opslaan</button>
+      </form>
+      <div>
+        <div class="card"><div class="pad center">
+          <div class="logo" style="width:54px;height:54px;font-size:1.6rem;margin:0 auto;background:var(--green);color:#fff;display:grid;place-items:center;border-radius:12px;font-weight:900">S</div>
+          <p class="hint mt">Voorbeeld van de huisstijl die bezoekers op de organisatiepagina zien.</p>
+        </div></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="modal-back" id="m-org">
+  <div class="modal">
+    <div class="head"><h3>Organisatie toevoegen</h3><button class="x" data-close>×</button></div>
+    <form class="pad" data-demo="Organisatiejottem aangemaakt">
+      <div class="field"><label>Naam</label><input type="text" placeholder="Vereniging / archief / instituut" required></div>
+      <div class="inline-fields">
+        <div class="field"><label>Slug</label><input type="text" placeholder="bijv. oudutrecht"></div>
+        <div class="field"><label>ARK NAAN</label><input type="text" placeholder="bijv. 27025"></div>
+      </div>
+      <div class="btn-row"><button class="btn" type="submit">Aanmaken</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

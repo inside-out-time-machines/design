@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijn profiel — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="gebruiker">
+<div class="context">
+  <span class="pill role">Gebruiker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Mijn profiel</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Mijn profiel</h2></div>
+  <div class="grid cols-2">
+
+    <div class="card"><div class="pad">
+      <h3>Gegevens</h3>
+      <form data-demo="Profiel opgeslagen">
+        <div class="flex mb"><span class="avatar lg">RB</span>
+          <button class="btn secondary sm" type="button" data-demo="Afbeelding gewijzigd (demo)">Foto wijzigen</button></div>
+        <div class="field"><label>Naam</label><input type="text" value="Riet Bakker"></div>
+        <div class="field"><label>E-mailadres</label><input type="email" value="riet@voorbeeld.nl"></div>
+        <h4 class="mt">Privacy</h4>
+        <div class="checkrow"><label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          <span>Mijn naam tonen bij mijn annotaties</span></div>
+        <div class="checkrow"><label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          <span>Mijn favorieten openbaar maken</span></div>
+        <button class="btn mt" type="submit">Opslaan</button>
+      </form>
+    </div></div>
+
+    <div>
+      <div class="card mb"><div class="pad">
+        <h3>Wachtwoord</h3>
+        <form data-demo="Wachtwoord gewijzigd">
+          <div class="field"><label>Huidig wachtwoord</label><input type="password"></div>
+          <div class="field"><label>Nieuw wachtwoord</label><input type="password"></div>
+          <button class="btn secondary" type="submit">Wachtwoord wijzigen</button>
+        </form>
+      </div></div>
+
+      <div class="card"><div class="pad">
+        <h3>Tweestapsverificatie (2FA)</h3>
+        <p class="muted">Scan de QR-code met je authenticator-app en voer de code in. Verplicht voor
+          beheerders en moderators.</p>
+        <div class="flex" style="align-items:flex-start;gap:18px">
+          <svg width="116" height="116" viewBox="0 0 29 29" shape-rendering="crispEdges" style="border:1px solid var(--line);border-radius:8px;background:#fff">
+            <rect width="29" height="29" fill="#fff"/>
+            <g fill="#16181d">
+              <path d="M0 0h7v7h-7zM22 0h7v7h-7zM0 22h7v7h-7z" fill="none"/>
+              <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+              <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+              <rect x="2" y="2" width="3" height="3"/>
+              <rect x="22" y="0" width="7" height="1"/><rect x="22" y="6" width="7" height="1"/>
+              <rect x="22" y="0" width="1" height="7"/><rect x="28" y="0" width="1" height="7"/>
+              <rect x="24" y="2" width="3" height="3"/>
+              <rect x="0" y="22" width="7" height="1"/><rect x="0" y="28" width="7" height="1"/>
+              <rect x="0" y="22" width="1" height="7"/><rect x="6" y="22" width="1" height="7"/>
+              <rect x="2" y="24" width="3" height="3"/>
+              <rect x="9" y="2" width="1" height="2"/><rect x="11" y="0" width="1" height="3"/><rect x="13" y="3" width="2" height="1"/>
+              <rect x="9" y="9" width="2" height="2"/><rect x="13" y="9" width="3" height="1"/><rect x="18" y="9" width="1" height="3"/>
+              <rect x="22" y="9" width="2" height="2"/><rect x="26" y="10" width="2" height="1"/>
+              <rect x="9" y="13" width="1" height="3"/><rect x="12" y="13" width="3" height="2"/><rect x="17" y="14" width="2" height="1"/>
+              <rect x="21" y="13" width="2" height="2"/><rect x="25" y="13" width="2" height="3"/>
+              <rect x="10" y="18" width="2" height="2"/><rect x="14" y="17" width="1" height="3"/><rect x="17" y="18" width="3" height="1"/>
+              <rect x="22" y="18" width="2" height="2"/><rect x="26" y="19" width="1" height="2"/>
+              <rect x="10" y="23" width="3" height="1"/><rect x="15" y="22" width="2" height="2"/><rect x="19" y="24" width="2" height="1"/>
+              <rect x="22" y="23" width="1" height="3"/><rect x="25" y="22" width="2" height="2"/><rect x="24" y="26" width="3" height="1"/>
+            </g>
+          </svg>
+          <form data-demo="2FA ingeschakeld" style="flex:1">
+            <div class="field"><label>6-cijferige code</label><input type="text" inputmode="numeric" maxlength="6" placeholder="000000"></div>
+            <button class="btn" type="submit">2FA inschakelen</button>
+          </form>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

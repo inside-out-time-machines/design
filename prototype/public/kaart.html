@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaart — Smaak van Gouda</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="bezoeker">
+<div class="context">
+  <span class="pill role">Bezoeker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Interactieve kaart</b></span>
+</div>
+<div class="wrap">
+
+  <div class="section-title"><h2>De Goudse horeca op de kaart</h2>
+    <span class="muted">gekoppeld aan de Gouda Tijdmachine</span></div>
+
+  <div class="sidebar-layout" style="grid-template-columns:1fr 360px">
+    <div>
+      <div class="map-wrap" id="map" style="aspect-ratio:16/10">
+        <img src="../assets/img/gouda-map.svg" alt="Kaart van Gouda" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="wrap-gap mt">
+        <strong style="font-size:.85rem">Tijdreis:</strong>
+        <input type="range" min="1930" max="2026" value="1975" id="year" style="flex:1">
+        <span class="tag green" id="yearLbl">1975</span>
+      </div>
+      <p class="hint">Klik op een pin om de eetgelegenheden door de tijd te zien. Schuif door de jaren
+      om te zien wat er op dat moment gevestigd was.</p>
+    </div>
+
+    <div class="card" id="panel"><div class="pad">
+      <h3 id="p-adres">Kies een pand</h3>
+      <p class="meta">Klik op een pin op de kaart om de tijdlijn van opvolgende eetgelegenheden te zien.</p>
+      <div id="p-timeline"></div>
+    </div></div>
+  </div>
+
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var map = document.getElementById("map");
+    JOTTEM.PANDEN.forEach(function (p, i) {
+      var pin = document.createElement("button");
+      pin.className = "map-pin";
+      pin.style.left = p.x + "%"; pin.style.top = p.y + "%";
+      pin.title = p.adres;
+      pin.addEventListener("click", function () {
+        document.querySelectorAll(".map-pin").forEach(function (x) { x.classList.remove("active"); });
+        pin.classList.add("active");
+        showPand(p);
+      });
+      map.appendChild(pin);
+    });
+    function showPand(p) {
+      document.getElementById("p-adres").textContent = p.adres;
+      document.querySelector("#panel .meta").textContent = p.vestigingen.length + " opeenvolgende eetgelegenheden";
+      document.getElementById("p-timeline").innerHTML =
+        '<div class="timeline mt">' + p.vestigingen.map(function (v) {
+          return '<div class="tl-item"><div class="yr">' + v.jaar + '</div>' + v.naam +
+            ' <span class="tag">' + v.genre + '</span></div>';
+        }).join("") + '</div><a class="btn ghost sm" href="jottem.html">Bekijk jottems →</a>';
+    }
+    var year = document.getElementById("year");
+    year.addEventListener("input", function () { document.getElementById("yearLbl").textContent = this.value; });
+    // open eerste pand als voorbeeld
+    document.querySelector(".map-pin").click();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  pre{background:#11151a;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  pre .k{color:#7ee787}.m{color:#79c0ff}.s{color:#a5d6ff}.c{color:#8b949e}
+  .ep{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:3px 9px}
+  .verb{font-weight:800;color:var(--green-700)}
+</style>
+</head>
+<body data-root=".." data-role="api">
+<div class="context">
+  <span class="pill role">API-gebruiker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>API's & hergebruik</b></span>
+</div>
+<div class="wrap">
+  <div class="hero mb">
+    <h1>Hergebruik via open standaarden</h1>
+    <p class="lead">Alle gepubliceerde jottems en annotaties zijn machineleesbaar beschikbaar via
+      IIIF, RSS, Elasticsearch, W3C Web Annotations en schema.org (AP NDE). Basis-URL
+      <span class="ep">https://api.iotm.nl/v1</span>.</p>
+  </div>
+
+  <div class="sidebar-layout" style="grid-template-columns:200px 1fr">
+    <nav class="card" style="position:sticky;top:80px"><div class="pad stack-sm">
+      <a href="#iiif-cd">IIIF Change Discovery</a>
+      <a href="#rss">RSS-feed</a>
+      <a href="#search">Elasticsearch zoeken</a>
+      <a href="#anno">W3C Web Annotations</a>
+      <a href="#iiif">IIIF Collection / Manifest</a>
+      <a href="#dataset">Datasetbeschrijving</a>
+    </div></nav>
+
+    <div>
+      <div class="card mb" id="iiif-cd"><div class="pad">
+        <h3>IIIF Change Discovery</h3>
+        <p class="meta">Periodiek nieuwe/gewijzigde jottems en annotaties harvesten.</p>
+        <span class="ep"><span class="verb">GET</span> /organisatie/smh/jottems/iiif/change-discovery</span>
+<pre><span class="c">// Activity Stream (OrderedCollection)</span>
+{ <span class="k">"type"</span>: <span class="s">"OrderedCollectionPage"</span>,
+  <span class="k">"orderedItems"</span>: [
+    { <span class="k">"type"</span>:<span class="s">"Update"</span>, <span class="k">"object"</span>:{ <span class="k">"id"</span>:<span class="s">"https://ark.iotm.nl/ark:/27023/g8x2"</span> } }
+  ] }</pre>
+      </div></div>
+
+      <div class="card mb" id="rss"><div class="pad">
+        <h3>RSS-feed</h3>
+        <p class="meta">Nieuwe jottems per organisatie volgen.</p>
+        <span class="ep"><span class="verb">GET</span> /organisatie/smh/jottem/rss</span>
+<pre>&lt;item&gt;
+  &lt;title&gt;Chinees-Indisch restaurant Lotus&lt;/title&gt;
+  &lt;link&gt;https://ark.iotm.nl/ark:/27023/g8x2&lt;/link&gt;
+&lt;/item&gt;</pre>
+      </div></div>
+
+      <div class="card mb" id="search"><div class="pad">
+        <h3>Elasticsearch zoeken</h3>
+        <span class="ep"><span class="verb">POST</span> /jottem/search</span>
+<pre>{ <span class="k">"query"</span>: { <span class="k">"match"</span>: { <span class="k">"name"</span>: <span class="s">"shoarma"</span> } } }</pre>
+      </div></div>
+
+      <div class="card mb" id="anno"><div class="pad">
+        <h3>W3C Web Annotations</h3>
+        <p class="meta">Annotaties ophalen via het W3C Web Annotation Protocol.</p>
+        <span class="ep"><span class="verb">GET</span> /annotation/{id}</span>
+<pre>{ <span class="k">"@context"</span>:<span class="s">"http://www.w3.org/ns/anno.jsonld"</span>,
+  <span class="k">"type"</span>:<span class="s">"Annotation"</span>,
+  <span class="k">"motivation"</span>:<span class="s">"commenting"</span>,
+  <span class="k">"body"</span>:{ <span class="k">"value"</span>:<span class="s">"Mijn vader begon dit restaurant in 1973."</span> },
+  <span class="k">"target"</span>:<span class="s">"https://ark.iotm.nl/ark:/27023/g8x2"</span> }</pre>
+      </div></div>
+
+      <div class="card mb" id="iiif"><div class="pad">
+        <h3>IIIF Collection / Manifest</h3>
+        <span class="ep"><span class="verb">GET</span> /organisatie/smh/jottems/iiif/collection</span><br>
+        <span class="ep" style="margin-top:6px"><span class="verb">GET</span> /jottem/g8x2/iiif/manifest</span>
+<pre>{ <span class="k">"@context"</span>:<span class="s">"http://iiif.io/api/presentation/3/context.json"</span>,
+  <span class="k">"type"</span>:<span class="s">"Manifest"</span>, <span class="k">"label"</span>:{ <span class="k">"nl"</span>:[<span class="s">"Restaurant Lotus"</span>] } }</pre>
+      </div></div>
+
+      <div class="card" id="dataset"><div class="pad">
+        <h3>Datasetbeschrijving (schema.org AP NDE)</h3>
+        <p class="meta">Volledige datadump als RDF, harvestbaar door aggregators (NDE).</p>
+        <span class="ep"><span class="verb">GET</span> /organisatie/smh/dataset</span>
+<pre>{ <span class="k">"@context"</span>:<span class="s">"https://schema.org/"</span>, <span class="k">"@type"</span>:<span class="s">"Dataset"</span>,
+  <span class="k">"name"</span>:<span class="s">"Smaak van Gouda"</span>,
+  <span class="k">"distribution"</span>:[{ <span class="k">"encodingFormat"</span>:<span class="s">"application/n-triples"</span> }] }</pre>
+        <p class="hint mt">De volledige OpenAPI-specificatie staat in het ontwerpdocument
+          (<code>openapi.yaml</code> · Swagger UI).</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moderators — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="organisatiebeheerder">
+<div class="context">
+  <span class="pill role">Organisatiebeheerder</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Moderators</b> · Streekarchief Midden-Holland</span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Moderators</h2>
+    <div class="btn-row">
+      <a class="btn secondary" href="collectie-importeren.html">Collectie importeren</a>
+      <a class="btn secondary" href="../shared/statistieken.html?rol=organisatie">📊 Statistieken</a>
+      <button class="btn" data-open="m-mod">+ Moderator toevoegen</button>
+    </div></div>
+
+  <table class="data">
+    <thead><tr><th>Naam</th><th>E-mail</th><th>Status</th><th>Laatste login</th><th></th></tr></thead>
+    <tbody>
+      <tr><td><div class="flex"><span class="avatar">JD</span> Jan Dekker</div></td><td>jan@streekarchiefmh.nl</td>
+        <td><span class="tag green">actief</span></td><td>vandaag</td>
+        <td><button class="btn ghost sm" data-demo="Bewerken (demo)">Bewerken</button>
+          <button class="btn ghost sm" data-demo="Moderator verwijderd">Verwijderen</button></td></tr>
+      <tr><td><div class="flex"><span class="avatar">MV</span> Marijke Vermeulen</div></td><td>marijke@diegoude.nl</td>
+        <td><span class="tag amber">uitnodiging verstuurd</span></td><td>—</td>
+        <td><button class="btn ghost sm" data-demo="Uitnodiging opnieuw verstuurd">Opnieuw uitnodigen</button>
+          <button class="btn ghost sm" data-demo="Moderator verwijderd">Verwijderen</button></td></tr>
+    </tbody>
+  </table>
+  <p class="hint mt">Een nieuwe moderator ontvangt een e-mail met de spelregels en een bevestigingslink
+    om een wachtwoord en 2FA in te stellen.</p>
+</div>
+
+<div class="modal-back" id="m-mod">
+  <div class="modal">
+    <div class="head"><h3>Moderator toevoegen</h3><button class="x" data-close>×</button></div>
+    <form class="pad" data-demo="Uitnodiging verstuurd per e-mail">
+      <div class="field"><label>Naam</label><input type="text" required></div>
+      <div class="field"><label>E-mailadres</label><input type="email" required></div>
+      <div class="btn-row"><button class="btn" type="submit">Uitnodiging versturen</button>
+        <button class="btn secondary" type="button" data-close>Annuleren</button></div>
+    </form>
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

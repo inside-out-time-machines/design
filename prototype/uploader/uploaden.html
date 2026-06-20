@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uploaden — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="uploader">
+<div class="context">
+  <span class="pill role">Uploader</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Uploaden</b></span>
+</div>
+<div class="wrap">
+  <div class="section-title"><h2>Materiaal toevoegen</h2></div>
+  <div class="sidebar-layout" style="grid-template-columns:1fr 320px">
+
+    <form class="card" data-demo="Jottem ingediend — een moderator beoordeelt je bijdrage"><div class="pad">
+      <div class="dropzone mb"><strong>Sleep een bestand hierheen</strong><br>
+        <small>of</small> <button class="btn secondary sm" type="button" data-demo="Bestandskiezer (demo)">Kies bestand</button>
+        <div class="hint">JPG, PNG, TIFF, PDF of audio — max. 50 MB</div></div>
+
+      <div class="field"><label>Materiaaltype / genre</label>
+        <select><option>foto</option><option>menukaart</option><option>advertentie</option>
+          <option>folder</option><option>krantenartikel</option><option>vergunning</option>
+          <option>audio (interview)</option></select></div>
+
+      <div class="field"><label>Titel / beschrijving</label>
+        <textarea placeholder="Bijv. Gevel van Chinees-Indisch restaurant Lotus aan de Markt"></textarea></div>
+
+      <div class="inline-fields">
+        <div class="field"><label>Vervaardiger</label><input type="text" placeholder="fotograaf / uitgever"></div>
+        <div class="field"><label>Datering</label><input type="text" placeholder="bijv. 1973 of ca. 1970"></div>
+      </div>
+
+      <h4>Locatie <span class="muted" style="font-weight:400;font-size:.8rem">— voor kaart & pand-tijdlijn</span></h4>
+      <div class="field"><label>Adres</label><input type="text" placeholder="Markt 41, Gouda"></div>
+      <div class="inline-fields">
+        <div class="field"><label>Openingsjaar</label><input type="number" placeholder="1973"></div>
+        <div class="field"><label>Sluitingsjaar</label><input type="number" placeholder="1996"></div>
+      </div>
+
+      <div class="field"><label>Personen op de afbeelding (mogelijk nog in leven?)</label>
+        <input type="text" placeholder="namen, gescheiden door komma's"></div>
+      <div class="field"><label>Steekwoorden</label><input type="text" placeholder="restaurant, Chinees-Indisch, Markt"></div>
+      <div class="field"><label>Album</label><select><option>Alles</option><option>Markt &amp; omgeving</option>
+        <option>Internationale keukens</option><option>+ Nieuw album…</option></select></div>
+
+      <button class="btn" type="submit">Indienen ter beoordeling</button>
+    </div></form>
+
+    <div>
+      <div class="card"><div class="pad">
+        <h3>Voorbeeld</h3>
+        <div class="thumb"><span class="ph" data-seed="nieuw" data-kind="gevel"></span>
+          <span class="genre tag green">foto</span></div>
+        <p class="hint mt">Zo verschijnt je jottem in de collectie zodra een moderator deze goedkeurt.</p>
+      </div></div>
+      <div class="notice mt">✅ Na goedkeuring krijgt je jottem een duurzame ARK-link en wordt deze
+        opgeslagen bij het Internet Archive.</div>
+    </div>
+
+  </div>
+</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Favorieten van Riet Bakker — Jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="bezoeker">
+<div class="context">
+  <span class="pill role">Bezoeker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <b>Openbare favorieten</b></span>
+</div>
+<div class="wrap">
+  <div class="flex mb">
+    <span class="avatar lg">RB</span>
+    <div><h2 style="margin:0">Favorieten van Riet Bakker</h2>
+      <span class="muted">Openbaar gedeelde lijst · 4 jottems</span></div>
+  </div>
+  <div class="notice mb">🔗 Dit is een deelbare weergave van iemands favorieten. De link is openbaar
+    maar niet duurzaam — de gebruiker kan de lijst weer privé maken.</div>
+  <div class="grid cols-4" id="favs"></div>
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderThumbs("#favs", [JOTTEM.JOTTEMS[0], JOTTEM.JOTTEMS[2], JOTTEM.JOTTEMS[4], JOTTEM.JOTTEMS[7]], "jottem.html");
+    document.querySelectorAll("#favs .fav").forEach(function (f) { f.classList.add("on"); f.textContent = "♥"; });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chinees-Indisch restaurant Lotus — jottem</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root=".." data-role="bezoeker">
+<div class="context">
+  <span class="pill role">Bezoeker</span>
+  <span class="crumb"><a href="../index.html">Rondleiding</a> › <a href="verkennen.html">Verkennen</a> › <b>Jottem</b></span>
+</div>
+<div class="wrap">
+
+  <div class="sidebar-layout" style="grid-template-columns:1fr 340px">
+    <div style="order:2">
+      <div class="card"><div class="pad">
+        <h3>Details</h3>
+        <table class="data" style="box-shadow:none;border:0">
+          <tr><th>Titel</th><td>Chinees-Indisch restaurant Lotus</td></tr>
+          <tr><th>Genre</th><td><span class="tag green">foto</span> gevelopname</td></tr>
+          <tr><th>Adres</th><td>Markt 41, Gouda</td></tr>
+          <tr><th>Datering</th><td>1973</td></tr>
+          <tr><th>Vervaardiger</th><td>Fotostudio Van Leeuwen</td></tr>
+          <tr><th>Rechten</th><td>CC BY-SA 4.0</td></tr>
+          <tr><th>ARK</th><td><code>ark:/27023/g8x2</code></td></tr>
+        </table>
+        <div class="btn-row mt">
+          <a class="btn" href="../annoteren/annoteren.html">✏️ Annoteren</a>
+          <button class="btn secondary" data-demo="Deellink gekopieerd naar klembord">🔗 Delen</button>
+        </div>
+        <p class="hint mt">Duurzame link · opgeslagen bij het Internet Archive · beschikbaar als
+        IIIF en RDF (schema.org AP NDE).</p>
+      </div></div>
+
+      <div class="card mt"><div class="pad">
+        <h3>Pand-tijdlijn</h3>
+        <p class="meta">Opvolgende eetgelegenheden op Markt 41</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="yr">1931–1958</div>Koffiehuis Het Centrum</div>
+          <div class="tl-item"><div class="yr">1958–1972</div>Cafetaria De Markt</div>
+          <div class="tl-item"><div class="yr">1973–1996</div><b>Chinees-Indisch restaurant Lotus</b></div>
+          <div class="tl-item"><div class="yr">1997–heden</div>Lunchroom Bij Saar</div>
+        </div>
+        <a class="btn ghost sm" href="kaart.html">Op de kaart bekijken →</a>
+      </div></div>
+    </div>
+
+    <div style="order:1">
+      <div class="viewer">
+        <span class="ph" data-seed="lotus" data-kind="gevel"></span>
+        <div class="region" style="left:14%;top:40%;width:24%;height:34%"><span class="lab">Ober (Theo Lotus)</span></div>
+        <div class="region" style="left:55%;top:18%;width:30%;height:18%"><span class="lab">Lichtreclame “Lotus”</span></div>
+        <div class="tools">
+          <button data-demo="Inzoomen (demo)">+</button>
+          <button data-demo="Uitzoomen (demo)">−</button>
+          <button data-demo="Volledig scherm (demo)">⤢</button>
+        </div>
+      </div>
+      <p class="hint">IIIF-viewer · sleep om te verschuiven, gebruik +/− om te zoomen. Gemarkeerde
+      vlakken zijn annotaties van bezoekers.</p>
+
+      <div class="card mt"><div class="pad">
+        <div class="between"><h3 style="margin:0">Annotaties &amp; herinneringen</h3>
+          <a class="btn sm" href="../annoteren/annoteren.html">Voeg toe</a></div>
+        <div id="annos" class="mt"></div>
+      </div></div>
+    </div>
+  </div>
+
+</div>
+<script src="../assets/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var box = document.getElementById("annos");
+    box.innerHTML = JOTTEM.ANNOS.map(function (a) {
+      var reply = a.reply ? '<div class="reply anno" style="border-bottom:0;padding-bottom:0">' +
+        '<span class="avatar">' + a.reply.init + '</span><div class="body"><div class="who">' + a.reply.who +
+        ' <span class="when">· ' + a.reply.when + '</span></div><div class="txt">' + a.reply.txt + '</div></div></div>' : '';
+      var reg = a.region ? '<span class="tag blue">' + a.region + '</span>' : '';
+      return '<div class="anno"><span class="avatar">' + a.init + '</span><div class="body">' +
+        '<div class="who">' + a.who + ' <span class="when">· ' + a.when + '</span></div>' +
+        '<div class="txt">' + a.txt + '</div>' + reg +
+        ' <a class="btn ghost sm" href="../annoteren/annoteren.html#reactie">Reageren</a>' + reply + '</div></div>';
+    }).join("");
+  });
+</script>
+</body>
+</html>

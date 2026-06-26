@@ -1,0 +1,17 @@
+<pre class='metadata'>
+Title: Infrastructuurkeuze voor Jottem: analyse van vier richtingen
+Shortname: iotm-infra
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Werkdocument voor de IOTM-projectgroep als basis voor een keuze over de infrastructuurrichting van het Jottem-platform. Het kan op elk moment veranderen.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="./favicon.ico">
+
+<pre class="include">
+path: iotm-infra.md
+</pre>

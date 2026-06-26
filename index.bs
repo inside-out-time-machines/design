@@ -48,3 +48,7 @@ path: erd.mermaid.md
 <pre class="include">
 path: api-beschrijving.md
 </pre>
+
+<pre class="include">
+path: infra.md
+</pre>

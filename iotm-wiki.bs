@@ -1,0 +1,17 @@
+<pre class='metadata'>
+Title: IOTM and the Wikimedia ecosystem: Commons and Wikidata as shared infrastructure
+Shortname: iotm-wiki
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: A project idea and exploration intended to stimulate discussion between the IOTM project group and Wikimedia Nederland. It can change at any time.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="./favicon.ico">
+
+<pre class="include">
+path: iotm-wiki.md
+</pre>

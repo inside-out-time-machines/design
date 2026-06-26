@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 618007319, updated Thu Jun 26 17:23:55 2025 -0700" name="generator">
   <link href="https://github.com/inside-out-time-machines/design" rel="canonical">
-  <meta content="a44531941b480b9ddc93866f7bcb065bd74cec0a" name="revision">
+  <meta content="3fb917dea1d27087aaafaaa1d9e2094e595c280d" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="./favicon.ico" rel="shortcut icon">
 <style>/* Boilerplate: style-autolinks */
@@ -1828,7 +1828,7 @@ a[href].issue-return {
 [data-md] > :first-child {
     margin-top: 0;
 }
-[data-md-md] > :last-child {
+[data-md] > :last-child {
     margin-bottom: 0;
 }
 </style>
@@ -1924,25 +1924,21 @@ Parts of this work may be from another specification document.  If so, those par
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
+    <li><a href="#waarom-dit-document"><span class="secno">1</span> <span class="content">Waarom dit document</span></a>
     <li>
-     <a href="#infrastructuurkeuze-voor-jottem-analyse-van-vier-richtingen"><span class="secno">1</span> <span class="content">Infrastructuurkeuze voor Jottem: analyse van vier richtingen</span></a>
+     <a href="#het-beoordelingskader"><span class="secno">2</span> <span class="content">Het beoordelingskader</span></a>
      <ol class="toc">
-      <li><a href="#waarom-dit-document"><span class="secno">1.1</span> <span class="content">Waarom dit document</span></a>
-      <li>
-       <a href="#het-beoordelingskader"><span class="secno">1.2</span> <span class="content">Het beoordelingskader</span></a>
-       <ol class="toc">
-        <li><a href="#het-jottem-doel-kort"><span class="secno">1.2.1</span> <span class="content">Het Jottem-doel, kort</span></a>
-        <li><a href="#de-drie-lagen-hebben-verschillende-behoeften"><span class="secno">1.2.2</span> <span class="content">De drie lagen hebben verschillende behoeften</span></a>
-       </ol>
-      <li><a href="#richting-1-wikimedia-commons-wikidata"><span class="secno">1.3</span> <span class="content">Richting 1: Wikimedia Commons / Wikidata</span></a>
-      <li><a href="#richting-2-internet-archive-europe"><span class="secno">1.4</span> <span class="content">Richting 2: Internet Archive (Europe)</span></a>
-      <li><a href="#richting-3-archiefinstellingen-e-depot"><span class="secno">1.5</span> <span class="content">Richting 3: Archiefinstellingen (e-Depot)</span></a>
-      <li><a href="#richting-4-alles-op-de-jottem-server"><span class="secno">1.6</span> <span class="content">Richting 4: Alles op de Jottem-server</span></a>
-      <li><a href="#vergelijking-in-n-oogopslag"><span class="secno">1.7</span> <span class="content">Vergelijking in één oogopslag</span></a>
-      <li><a href="#synthese-en-afwegingen"><span class="secno">1.8</span> <span class="content">Synthese en afwegingen</span></a>
-      <li><a href="#richting-voor-de-keuze-de-projectgroep-beslist"><span class="secno">1.9</span> <span class="content">Richting voor de keuze (de projectgroep beslist)</span></a>
-      <li><a href="#bronnen"><span class="secno">1.10</span> <span class="content">Bronnen</span></a>
+      <li><a href="#het-jottem-doel-kort"><span class="secno">2.1</span> <span class="content">Het Jottem-doel, kort</span></a>
+      <li><a href="#de-drie-lagen-hebben-verschillende-behoeften"><span class="secno">2.2</span> <span class="content">De drie lagen hebben verschillende behoeften</span></a>
      </ol>
+    <li><a href="#richting-1-wikimedia-commons-wikidata"><span class="secno">3</span> <span class="content">Richting 1: Wikimedia Commons / Wikidata</span></a>
+    <li><a href="#richting-2-internet-archive-europe"><span class="secno">4</span> <span class="content">Richting 2: Internet Archive (Europe)</span></a>
+    <li><a href="#richting-3-archiefinstellingen-e-depot"><span class="secno">5</span> <span class="content">Richting 3: Archiefinstellingen (e-Depot)</span></a>
+    <li><a href="#richting-4-alles-op-de-jottem-server"><span class="secno">6</span> <span class="content">Richting 4: Alles op de Jottem-server</span></a>
+    <li><a href="#vergelijking-in-n-oogopslag"><span class="secno">7</span> <span class="content">Vergelijking in één oogopslag</span></a>
+    <li><a href="#synthese-en-afwegingen"><span class="secno">8</span> <span class="content">Synthese en afwegingen</span></a>
+    <li><a href="#richting-voor-de-keuze-de-projectgroep-beslist"><span class="secno">9</span> <span class="content">Richting voor de keuze (de projectgroep beslist)</span></a>
+    <li><a href="#bronnen"><span class="secno">10</span> <span class="content">Bronnen</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
@@ -1951,25 +1947,24 @@ Parts of this work may be from another specification document.  If so, those par
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="infrastructuurkeuze-voor-jottem-analyse-van-vier-richtingen"><span class="secno">1. </span><span class="content">Infrastructuurkeuze voor Jottem: analyse van vier richtingen</span><a class="self-link" href="#infrastructuurkeuze-voor-jottem-analyse-van-vier-richtingen"></a></h2>
    <p><em>Werkdocument, juni 2026. Bedoeld voor de IOTM-projectgroep als basis voor een keuze over de infrastructuurrichting van het Jottem-platform. Het kan op elk moment veranderen.</em></p>
-   <h3 class="heading settled" data-level="1.1" id="waarom-dit-document"><span class="secno">1.1. </span><span class="content">Waarom dit document</span><a class="self-link" href="#waarom-dit-document"></a></h3>
+   <h2 class="heading settled" data-level="1" id="waarom-dit-document"><span class="secno">1. </span><span class="content">Waarom dit document</span><a class="self-link" href="#waarom-dit-document"></a></h2>
    <p>Jottem moet ergens draaien en, belangrijker nog, ergens duurzaam bewaard blijven. Dit document zet vier infrastructuurrichtingen naast elkaar, zodat de projectgroep een onderbouwde keuze kan maken:</p>
    <ol>
     <li data-md>
-     <p><strong>Wikimedia Commons / Wikidata</strong> (uitgewerkt in <a href="iotm-wiki.html">iotm-wiki.html</a>)</p>
+     <p><strong>Wikimedia Commons / Wikidata</strong> (uitgewerkt in <a href="iotm-wiki.md">iotm-wiki.md</a>)</p>
     <li data-md>
-     <p><strong>Internet Archive (Europe)</strong> (uitgewerkt in <a href="iotm-iae.html">iotm-iae.html</a>)</p>
+     <p><strong>Internet Archive (Europe)</strong> (uitgewerkt in <a href="iotm-iae.md">iotm-iae.md</a>)</p>
     <li data-md>
      <p><strong>Archiefinstellingen</strong> (e-Depot, bijvoorbeeld via Streekarchief Midden-Holland)</p>
     <li data-md>
      <p><strong>Alles op de Jottem-server</strong> (volledig in eigen beheer)</p>
    </ol>
    <p>Elke richting wordt belicht op vijf punten: duurzaamheid (met als kernvraag: wat als Jottem als project stopt), juridische risico’s (auteursrecht, AVG en aanverwant), herbruikbaarheid en standaarden, voor- en nadelen, en de bijdrage aan het Jottem-doel. Steeds bekijken we dat door de drie lagen waaruit een jottem bestaat: de <strong>afbeelding</strong> (het mediabestand), de <strong>metadata</strong> (beschrijvend, technisch, rechten) en de <strong>verrijkingen/annotaties</strong> (correcties, reacties, herinneringen volgens W3C Web Annotations).</p>
-   <h3 class="heading settled" data-level="1.2" id="het-beoordelingskader"><span class="secno">1.2. </span><span class="content">Het beoordelingskader</span><a class="self-link" href="#het-beoordelingskader"></a></h3>
-   <h4 class="heading settled" data-level="1.2.1" id="het-jottem-doel-kort"><span class="secno">1.2.1. </span><span class="content">Het Jottem-doel, kort</span><a class="self-link" href="#het-jottem-doel-kort"></a></h4>
+   <h2 class="heading settled" data-level="2" id="het-beoordelingskader"><span class="secno">2. </span><span class="content">Het beoordelingskader</span><a class="self-link" href="#het-beoordelingskader"></a></h2>
+   <h3 class="heading settled" data-level="2.1" id="het-jottem-doel-kort"><span class="secno">2.1. </span><span class="content">Het Jottem-doel, kort</span><a class="self-link" href="#het-jottem-doel-kort"></a></h3>
    <p>Jottem wil erfgoed participatiever maken: bewoners kunnen zelf foto’s, verhalen en kennis toevoegen en bestaande erfgoeddata verrijken, op een laagdrempelige en beheersbare manier. De kernbelofte is dat materiaal dat nu verspreid en vluchtig is (Facebook, WhatsApp, eigen schijven) duurzaam toegankelijk wordt. Drie eisen botsen daarbij voortdurend: lage drempel voor de inzender, lokaal redactioneel eigenaarschap, en duurzame bewaring. De infrastructuurkeuze bepaalt vooral hoe goed die derde eis wordt waargemaakt, zonder de eerste twee te beschadigen.</p>
-   <h4 class="heading settled" data-level="1.2.2" id="de-drie-lagen-hebben-verschillende-behoeften"><span class="secno">1.2.2. </span><span class="content">De drie lagen hebben verschillende behoeften</span><a class="self-link" href="#de-drie-lagen-hebben-verschillende-behoeften"></a></h4>
+   <h3 class="heading settled" data-level="2.2" id="de-drie-lagen-hebben-verschillende-behoeften"><span class="secno">2.2. </span><span class="content">De drie lagen hebben verschillende behoeften</span><a class="self-link" href="#de-drie-lagen-hebben-verschillende-behoeften"></a></h3>
    <p>Het is verleidelijk om "waar bewaren we Jottem" als één vraag te zien, maar de drie lagen stellen verschillende eisen:</p>
    <ul>
     <li data-md>
@@ -1980,37 +1975,37 @@ Parts of this work may be from another specification document.  If so, those par
      <p><strong>Verrijkingen/annotaties</strong> vragen om een levende, laagdrempelige omgeving waar mensen blijven bijdragen en reageren. Dit is een participatievraag, en het is juist de unieke meerwaarde van Jottem.</p>
    </ul>
    <p>Een richting kan sterk zijn op de ene laag en zwak op de andere. Dat is de belangrijkste reden waarom de uiteindelijke keuze waarschijnlijk niet "alles bij één partij" is, maar daarover beslist de projectgroep op basis van onderstaande analyse.</p>
-   <h3 class="heading settled" data-level="1.3" id="richting-1-wikimedia-commons-wikidata"><span class="secno">1.3. </span><span class="content">Richting 1: Wikimedia Commons / Wikidata</span><a class="self-link" href="#richting-1-wikimedia-commons-wikidata"></a></h3>
-   <p>Volledige uitwerking: <a href="iotm-wiki.html">iotm-wiki.html</a>.</p>
+   <h2 class="heading settled" data-level="3" id="richting-1-wikimedia-commons-wikidata"><span class="secno">3. </span><span class="content">Richting 1: Wikimedia Commons / Wikidata</span><a class="self-link" href="#richting-1-wikimedia-commons-wikidata"></a></h2>
+   <p>Volledige uitwerking: <a href="iotm-wiki.md">iotm-wiki.md</a>.</p>
    <p>Wikimedia Commons is de mediabank van de Wikimedia-beweging (vrij gelicentieerde bestanden, wereldwijd hergebruikt); Wikidata is de gekoppelde kennisbank. Sinds Structured Data on Commons (SDC) dragen bestanden machineleesbare statements, met als kernrelatie <code>depicts</code> (P180) naar Wikidata-items.</p>
    <p><strong>Duurzaamheid (en wat als Jottem stopt).</strong> Zeer sterk voor het deel dat erin past. Eenmaal op Commons/Wikidata leeft het materiaal volledig los van Jottem: het wordt door een wereldwijde vrijwilligersgemeenschap onderhouden, door Wikipedia en Europeana hergebruikt en is daardoor extreem robuust. Als Jottem stopt, blijft dit deel gewoon bestaan.</p>
    <p><strong>Juridische risico’s.</strong> Hier zit de grootste botsing. Commons accepteert uitsluitend vrije licenties (CC0, CC BY, CC BY-SA) of publiek domein, bruikbaar door iedereen voor elk doel, zonder fair use. Dat staat haaks op de Jottem-eis dat het auteursrecht bij de inzender blijft en hergebruik alleen onder voorwaarden mag. Alleen materiaal waarvoor de rechthebbende actief een vrije licentie kiest, kan hierheen. AVG: wereldwijd, feitelijk onomkeerbaar hergebruik maakt een latere verwijdering ("recht op vergetelheid") illusoir; recent en herkenbaar-persoonsmateriaal hoort hier niet.</p>
    <p><strong>Herbruikbaarheid en standaarden.</strong> Uitstekend. Open Linked Data, meertalige labels, MediaSearch, SPARQL. Voor metadata is dit de rijkste, best herbruikbare bestemming. Let op: Wikidata kent een notabiliteitsdrempel, en Commons een scope-eis (educatief bruikbaar), dus niet alles is welkom. Geen native IIIF.</p>
    <p><strong>De drie lagen.</strong> Afbeeldingen: alleen de vrij-gelicentieerde, educatief bruikbare subset. Metadata: zeer sterk via SDC en Wikidata-items (gebouwen, zaken, personen). Verrijkingen/annotaties: zwak als levende laag; persoonlijke herinneringen en vrije annotaties passen niet in het encyclopedische/notabele model.</p>
    <p><strong>Bijdrage aan het doel.</strong> Vergroot vooral de wereldwijde vindbaarheid en hergebruik van een nette subset. Draagt minder bij aan de participatieve kernfunctie en niet aan het bewaren van de "lange staart" aan persoonlijk materiaal.</p>
-   <h3 class="heading settled" data-level="1.4" id="richting-2-internet-archive-europe"><span class="secno">1.4. </span><span class="content">Richting 2: Internet Archive (Europe)</span><a class="self-link" href="#richting-2-internet-archive-europe"></a></h3>
-   <p>Volledige uitwerking: <a href="iotm-iae.html">iotm-iae.html</a>.</p>
+   <h2 class="heading settled" data-level="4" id="richting-2-internet-archive-europe"><span class="secno">4. </span><span class="content">Richting 2: Internet Archive (Europe)</span><a class="self-link" href="#richting-2-internet-archive-europe"></a></h2>
+   <p>Volledige uitwerking: <a href="iotm-iae.md">iotm-iae.md</a>.</p>
    <p>Het Internet Archive is een non-profit digitale bibliotheek met duurzame, redundante opslag, een officiële IIIF 3.0-dienst en automatische afgeleiden (thumbnails, OCR). Internet Archive Europe (IAE) is de Amsterdamse, ANBI-geregistreerde Europese entiteit, sterk verbonden met de Nederlandse erfgoedsector en sinds 2026 deels op Europese infrastructuur (Eurosky).</p>
    <p><strong>Duurzaamheid (en wat als Jottem stopt).</strong> Sterk. Items krijgen stabiele URLs en blijven los van Jottem bestaan; bitbewaring is redundant. Belangrijkste kanttekening: afhankelijkheid van één organisatie, die in de VS onder juridische en financiële druk staat. De Europese entiteit en EU-hosting verzachten dit, maar het blijft een aandachtspunt; een tweede preserveringskopie is verstandig.</p>
    <p><strong>Juridische risico’s.</strong> Veel comfortabeler dan Commons. Het Internet Archive vereist geen vrije licentie: het legt <code>licenseurl</code> vast waar van toepassing en een vrij <code>rights</code>-veld voor andere voorwaarden, waarbij de uploader verantwoordelijk is. Daarmee blijft het Jottem-rechtenmodel intact. Keerzijde: die uploader-verantwoordelijkheid komt bij IOTM te liggen voor wat het wegschrijft (denk aan auteursrecht van derden op oude menukaarten, advertenties, krantenartikelen). AVG: items kunnen "dark"/restricted of verwijderd worden, maar erasure is na publicatie beperkt; dataresidentie (VS versus EU/Eurosky) moet met IAE worden uitgeklaard.</p>
    <p><strong>Herbruikbaarheid en standaarden.</strong> Goed en praktisch. Native IIIF (Image + Presentation), open API’s (IAS3-upload, Metadata API), <code>internetarchive</code> Python-bibliotheek, OCR, zoek-API. Metadata is flexibel ("metadata-agnostisch") maar minder gestructureerd/gelinkt dan Wikidata.</p>
    <p><strong>De drie lagen.</strong> Afbeeldingen: sterk, de volledige collectie kan hier terecht onder eigen rechtenvoorwaarden, inclusief IIIF en OCR. Metadata: goed maar minder "linked" dan Wikidata. Verrijkingen/annotaties: geen levende annotatieomgeving; annotaties kunnen als bestand mee, of via IIIF-viewers, maar het is geen participatieplatform.</p>
    <p><strong>Bijdrage aan het doel.</strong> Levert de duurzame opslag- en beeldlaag (inclusief IIIF en OCR) voor de hele collectie, met behoud van het eigen rechtenmodel. Draagt sterk bij aan "duurzaam bewaren", niet aan de levende participatie zelf.</p>
-   <h3 class="heading settled" data-level="1.5" id="richting-3-archiefinstellingen-e-depot"><span class="secno">1.5. </span><span class="content">Richting 3: Archiefinstellingen (e-Depot)</span><a class="self-link" href="#richting-3-archiefinstellingen-e-depot"></a></h3>
+   <h2 class="heading settled" data-level="5" id="richting-3-archiefinstellingen-e-depot"><span class="secno">5. </span><span class="content">Richting 3: Archiefinstellingen (e-Depot)</span><a class="self-link" href="#richting-3-archiefinstellingen-e-depot"></a></h2>
    <p>Een e-Depot is het geheel van organisatie, beleid, processen en techniek waarmee een archiefinstelling digitaal materiaal duurzaam beheert en toegankelijk houdt, doorgaans volgens het OAIS-model (ISO). In de Jottem-context ligt dit dichtbij: Streekarchief Midden-Holland is al de organisatie achter de pilot Smaak van Gouda, en archieven hebben een wettelijke bewaartaak (Archiefwet).</p>
    <p><strong>Duurzaamheid (en wat als Jottem stopt).</strong> Op papier het sterkste institutionele fundament: een wettelijk mandaat, formele bewaarprocedures en een bestaande erfgoedpartner die er ook na het project nog is. Als Jottem stopt, blijft het materiaal in het e-Depot onder beheer van de instelling. Belangrijke kanttekening: de duurzaamheid hangt af van bestuurlijke en financiële afspraken, en die zijn niet onfeilbaar. Een waarschuwend voorbeeld is dat het Rijk zich terugtrok uit de gedeelde e-Depot-voorziening, waardoor de Groninger Archieven die per 2024 niet meer konden gebruiken. e-Depots verschillen bovendien sterk per instelling.</p>
    <p><strong>Juridische risico’s.</strong> Hier het sterkst. Archieven hebben een bestaand juridisch kader: schenkings-/bewaarovereenkomsten waarin het auteursrecht bij de inzender kan blijven, formele AVG-procedures, Nederlandse/EU-jurisdictie en geoefende verwijder- en embargoprocessen. Voor zowel auteursrecht als AVG is dit de meest beheerste route. Wel blijft auteursrecht van derden op aangeleverd materiaal een aandachtspunt, net als bij de andere richtingen.</p>
    <p><strong>Herbruikbaarheid en standaarden.</strong> Wisselend en doorgaans het minst open. e-Depots draaien op archiefstandaarden (OAIS, metadatamodellen als TMLO/MDTO) die gericht zijn op records­management en authenticiteit, niet op schema.org, IIIF of W3C-annotaties. Toegang en API’s (OAI-PMH, IIIF) verschillen per instelling. Mapping van het Jottem-model naar het archiefmodel is nodig en niet triviaal.</p>
    <p><strong>De drie lagen.</strong> Afbeeldingen: zeer duurzaam geborgd, maar een e-Depot is primair een preserveringsvoorziening, geen publieks- of participatieplatform; publieke toegang loopt via het archiefportaal. Metadata: duurzaam, maar in een ander (records-)model; minder direct herbruikbaar als Linked Data. Verrijkingen/annotaties: dit is de zwakke plek. Een levende, door burgers veranderbare annotatielaag past slecht bij de archieflogica van vaste, authentieke records; archieven nemen crowdsourced verrijkingen meestal niet als levende laag op.</p>
    <p><strong>Bijdrage aan het doel.</strong> Sterk op duurzaamheid, vertrouwen en lokaal eigenaarschap, en het past bij het decentrale NDE-model. Maar het knelt juist op de participatieve kern: de verrijkingen en de lage drempel, het hart van Jottem, krijgen hier het minst ruimte.</p>
-   <h3 class="heading settled" data-level="1.6" id="richting-4-alles-op-de-jottem-server"><span class="secno">1.6. </span><span class="content">Richting 4: Alles op de Jottem-server</span><a class="self-link" href="#richting-4-alles-op-de-jottem-server"></a></h3>
+   <h2 class="heading settled" data-level="6" id="richting-4-alles-op-de-jottem-server"><span class="secno">6. </span><span class="content">Richting 4: Alles op de Jottem-server</span><a class="self-link" href="#richting-4-alles-op-de-jottem-server"></a></h2>
    <p>In deze richting host en bewaart IOTM alles zelf: afbeeldingen, metadata en annotaties in één geïntegreerd systeem, precies zoals het ontwerp (ARK, IIIF, schema.org NDE, W3C Web Annotations, Change Discovery, Elasticsearch) het voorschrijft.</p>
    <p><strong>Duurzaamheid (en wat als Jottem stopt).</strong> Dit is de zwakste richting, en wel op precies het punt waar Jottem zijn bestaansrecht aan ontleent. Eén server, één project, één financieringsstroom: als het project of de subsidie stopt, gaat de server uit en is alles weg, exact het verdwijnen-van-erfgoed-probleem dat Jottem wil oplossen. Zonder expliciete exit- en exportstrategie (en een partij die die uitvoert) is dit een single point of failure.</p>
    <p><strong>Juridische risico’s.</strong> Op beheersbaarheid juist het sterkst: volledige controle over rechtenafspraken, eenvoudige verwijdering (AVG), en vrije keuze van dataresidentie (EU). Keerzijde: alle aansprakelijkheid en alle beheerlast liggen bij IOTM en de deelnemende organisaties, ook op de lange termijn.</p>
    <p><strong>Herbruikbaarheid en standaarden.</strong> Potentieel uitstekend zolang de server draait: IOTM implementeert open standaarden, dus de data is harvestbaar door NDE en Europeana en bruikbaar in IIIF-viewers. Maar herbruikbaarheid die afhangt van één draaiende server is fragiel; valt de server weg, dan vallen ook de standaard-endpoints weg.</p>
    <p><strong>De drie lagen.</strong> Afbeeldingen, metadata én verrijkingen/annotaties zitten hier integraal en optimaal bij elkaar, met de laagste drempel en de meeste functionaliteit. Dit is functioneel de beste thuisbasis voor de levende annotatielaag, en tegelijk de slechtste voor duurzame bewaring.</p>
    <p><strong>Bijdrage aan het doel.</strong> Maximaal op participatie, controle en laagdrempeligheid; minimaal op de belofte van duurzame bewaring. In zuivere vorm ondermijnt deze richting de kernbelofte van het project.</p>
-   <h3 class="heading settled" data-level="1.7" id="vergelijking-in-n-oogopslag"><span class="secno">1.7. </span><span class="content">Vergelijking in één oogopslag</span><a class="self-link" href="#vergelijking-in-n-oogopslag"></a></h3>
+   <h2 class="heading settled" data-level="7" id="vergelijking-in-n-oogopslag"><span class="secno">7. </span><span class="content">Vergelijking in één oogopslag</span><a class="self-link" href="#vergelijking-in-n-oogopslag"></a></h2>
    <p>Score: ++ sterk, + voldoende, +/- wisselend, - zwak.</p>
    <table class="data numbered">
     <thead>
@@ -2100,13 +2095,13 @@ Parts of this work may be from another specification document.  If so, those par
       <td>hoog
 
    </table>
-   <h3 class="heading settled" data-level="1.8" id="synthese-en-afwegingen"><span class="secno">1.8. </span><span class="content">Synthese en afwegingen</span><a class="self-link" href="#synthese-en-afwegingen"></a></h3>
+   <h2 class="heading settled" data-level="8" id="synthese-en-afwegingen"><span class="secno">8. </span><span class="content">Synthese en afwegingen</span><a class="self-link" href="#synthese-en-afwegingen"></a></h2>
    <p>Drie observaties komen uit de tabel naar voren.</p>
    <p>Ten eerste scoort <strong>geen enkele richting op alles</strong>. Wikimedia is sterk op herbruikbaarheid maar botst juridisch en sluit de lange staart uit. Het Internet Archive is sterk op duurzame opslag en IIIF en past bij het rechtenmodel, maar leunt op één organisatie en is geen participatieplatform. Archiefinstellingen zijn juridisch en institutioneel het sterkst, maar het zwakst op open standaarden en op de levende annotatielaag. De eigen server is functioneel het sterkst en duurzaam het zwakst.</p>
    <p>Ten tweede hebben <strong>de drie lagen verschillende optimale bestemmingen</strong>. De levende verrijkingen/annotaties horen dicht bij de gebruiker en passen alleen echt in de Jottem-server (richting 4). Duurzame bitbewaring van afbeeldingen hoort bij een preserverings­partij (Internet Archive of e-Depot). Maximale herbruikbaarheid van metadata hoort bij Linked Data (Wikidata, of Jottem-RDF die geoogst wordt). Eén richting voor alle drie de lagen kiezen betekent dus per definitie een compromis op minstens één laag.</p>
    <p>Ten derde is de scherpste tegenstelling die tussen <strong>richting 4 (functioneel het best, duurzaam het slechtst)</strong> en de drie externe richtingen (duurzaam sterker, functioneel beperkter). Dat is geen toeval: het is dezelfde spanning tussen "levend en laagdrempelig" en "duurzaam geborgd" die in het hele project zit.</p>
    <p>Hieruit volgt logisch een <strong>gelaagde aanpak</strong> als serieus te overwegen optie: Jottem-server als participatie- en annotatielaag én bron-van-waarheid, met daaronder een duurzame preserveringskopie bij een externe partij (Internet Archive/IAE of een e-Depot), en optioneel Wikimedia voor wereldwijde vindbaarheid van de vrij-gelicentieerde subset. De moderatiestap die Jottem toch al heeft, is dan precies het moment waarop materiaal wordt geklaard en doorgezet naar de duurzame laag.</p>
-   <h3 class="heading settled" data-level="1.9" id="richting-voor-de-keuze-de-projectgroep-beslist"><span class="secno">1.9. </span><span class="content">Richting voor de keuze (de projectgroep beslist)</span><a class="self-link" href="#richting-voor-de-keuze-de-projectgroep-beslist"></a></h3>
+   <h2 class="heading settled" data-level="9" id="richting-voor-de-keuze-de-projectgroep-beslist"><span class="secno">9. </span><span class="content">Richting voor de keuze (de projectgroep beslist)</span><a class="self-link" href="#richting-voor-de-keuze-de-projectgroep-beslist"></a></h2>
    <p>Als de projectgroep één richting moet aanwijzen, helpt het om eerst de vraag te beantwoorden: <em>wat is de belangrijkste eis?</em></p>
    <ul>
     <li data-md>
@@ -2119,8 +2114,12 @@ Parts of this work may be from another specification document.  If so, those par
      <p>Is dat <strong>maximale functionaliteit en regie op de korte termijn</strong>, dan is de <strong>Jottem-server</strong> aantrekkelijk, maar dan moet de duurzaamheidsvraag apart en expliciet worden opgelost, anders staat de kernbelofte op het spel.</p>
    </ul>
    <p>Het advies dat uit deze analyse volgt, is om de eigen Jottem-server niet als eindbestemming maar als participatielaag te zien, en daaronder bewust te kiezen voor minstens één duurzame externe laag. De zuivere "alles op één plek"-keuze is verdedigbaar, maar dan het beste richting een preserverings­partij (Internet Archive/IAE of e-Depot) voor afbeeldingen en metadata, in de wetenschap dat de verrijkingen­laag daar de minste ruimte krijgt en deels in Jottem zelf zal moeten blijven leven. De definitieve afweging, inclusief het gewicht van elk criterium, is aan de projectgroep.</p>
-   <h3 class="heading settled" data-level="1.10" id="bronnen"><span class="secno">1.10. </span><span class="content">Bronnen</span><a class="self-link" href="#bronnen"></a></h3>
+   <h2 class="heading settled" data-level="10" id="bronnen"><span class="secno">10. </span><span class="content">Bronnen</span><a class="self-link" href="#bronnen"></a></h2>
    <ul>
+    <li data-md>
+     <p><a href="iotm-wiki.md">iotm-wiki.md</a> - uitwerking Wikimedia Commons / Wikidata</p>
+    <li data-md>
+     <p><a href="iotm-iae.md">iotm-iae.md</a> - uitwerking Internet Archive (Europe)</p>
     <li data-md>
      <p><a href="https://www.nationaalarchief.nl/archiveren/kennisbank/wat-is-een-e-depot">Wat is een e-Depot? - Nationaal Archief</a></p>
     <li data-md>

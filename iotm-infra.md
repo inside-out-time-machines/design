@@ -1,8 +1,6 @@
-# Infrastructuurkeuze voor Jottem: analyse van vier richtingen
-
 *Werkdocument, juni 2026. Bedoeld voor de IOTM-projectgroep als basis voor een keuze over de infrastructuurrichting van het Jottem-platform. Het kan op elk moment veranderen.*
 
-## Waarom dit document
+# Waarom dit document
 
 Jottem moet ergens draaien en, belangrijker nog, ergens duurzaam bewaard blijven. Dit document zet vier infrastructuurrichtingen naast elkaar, zodat de projectgroep een onderbouwde keuze kan maken:
 
@@ -13,13 +11,13 @@ Jottem moet ergens draaien en, belangrijker nog, ergens duurzaam bewaard blijven
 
 Elke richting wordt belicht op vijf punten: duurzaamheid (met als kernvraag: wat als Jottem als project stopt), juridische risico's (auteursrecht, AVG en aanverwant), herbruikbaarheid en standaarden, voor- en nadelen, en de bijdrage aan het Jottem-doel. Steeds bekijken we dat door de drie lagen waaruit een jottem bestaat: de **afbeelding** (het mediabestand), de **metadata** (beschrijvend, technisch, rechten) en de **verrijkingen/annotaties** (correcties, reacties, herinneringen volgens W3C Web Annotations).
 
-## Het beoordelingskader
+# Het beoordelingskader
 
-### Het Jottem-doel, kort
+## Het Jottem-doel, kort
 
 Jottem wil erfgoed participatiever maken: bewoners kunnen zelf foto's, verhalen en kennis toevoegen en bestaande erfgoeddata verrijken, op een laagdrempelige en beheersbare manier. De kernbelofte is dat materiaal dat nu verspreid en vluchtig is (Facebook, WhatsApp, eigen schijven) duurzaam toegankelijk wordt. Drie eisen botsen daarbij voortdurend: lage drempel voor de inzender, lokaal redactioneel eigenaarschap, en duurzame bewaring. De infrastructuurkeuze bepaalt vooral hoe goed die derde eis wordt waargemaakt, zonder de eerste twee te beschadigen.
 
-### De drie lagen hebben verschillende behoeften
+## De drie lagen hebben verschillende behoeften
 
 Het is verleidelijk om "waar bewaren we Jottem" als één vraag te zien, maar de drie lagen stellen verschillende eisen:
 
@@ -29,7 +27,7 @@ Het is verleidelijk om "waar bewaren we Jottem" als één vraag te zien, maar de
 
 Een richting kan sterk zijn op de ene laag en zwak op de andere. Dat is de belangrijkste reden waarom de uiteindelijke keuze waarschijnlijk niet "alles bij één partij" is, maar daarover beslist de projectgroep op basis van onderstaande analyse.
 
-## Richting 1: Wikimedia Commons / Wikidata
+# Richting 1: Wikimedia Commons / Wikidata
 
 Volledige uitwerking: [iotm-wiki.md](iotm-wiki.md).
 
@@ -45,7 +43,7 @@ Wikimedia Commons is de mediabank van de Wikimedia-beweging (vrij gelicentieerde
 
 **Bijdrage aan het doel.** Vergroot vooral de wereldwijde vindbaarheid en hergebruik van een nette subset. Draagt minder bij aan de participatieve kernfunctie en niet aan het bewaren van de "lange staart" aan persoonlijk materiaal.
 
-## Richting 2: Internet Archive (Europe)
+# Richting 2: Internet Archive (Europe)
 
 Volledige uitwerking: [iotm-iae.md](iotm-iae.md).
 
@@ -61,7 +59,7 @@ Het Internet Archive is een non-profit digitale bibliotheek met duurzame, redund
 
 **Bijdrage aan het doel.** Levert de duurzame opslag- en beeldlaag (inclusief IIIF en OCR) voor de hele collectie, met behoud van het eigen rechtenmodel. Draagt sterk bij aan "duurzaam bewaren", niet aan de levende participatie zelf.
 
-## Richting 3: Archiefinstellingen (e-Depot)
+# Richting 3: Archiefinstellingen (e-Depot)
 
 Een e-Depot is het geheel van organisatie, beleid, processen en techniek waarmee een archiefinstelling digitaal materiaal duurzaam beheert en toegankelijk houdt, doorgaans volgens het OAIS-model (ISO). In de Jottem-context ligt dit dichtbij: Streekarchief Midden-Holland is al de organisatie achter de pilot Smaak van Gouda, en archieven hebben een wettelijke bewaartaak (Archiefwet).
 
@@ -75,7 +73,7 @@ Een e-Depot is het geheel van organisatie, beleid, processen en techniek waarmee
 
 **Bijdrage aan het doel.** Sterk op duurzaamheid, vertrouwen en lokaal eigenaarschap, en het past bij het decentrale NDE-model. Maar het knelt juist op de participatieve kern: de verrijkingen en de lage drempel, het hart van Jottem, krijgen hier het minst ruimte.
 
-## Richting 4: Alles op de Jottem-server
+# Richting 4: Alles op de Jottem-server
 
 In deze richting host en bewaart IOTM alles zelf: afbeeldingen, metadata en annotaties in één geïntegreerd systeem, precies zoals het ontwerp (ARK, IIIF, schema.org NDE, W3C Web Annotations, Change Discovery, Elasticsearch) het voorschrijft.
 
@@ -89,7 +87,7 @@ In deze richting host en bewaart IOTM alles zelf: afbeeldingen, metadata en anno
 
 **Bijdrage aan het doel.** Maximaal op participatie, controle en laagdrempeligheid; minimaal op de belofte van duurzame bewaring. In zuivere vorm ondermijnt deze richting de kernbelofte van het project.
 
-## Vergelijking in één oogopslag
+# Vergelijking in één oogopslag
 
 Score: ++ sterk, + voldoende, +/- wisselend, - zwak.
 
@@ -110,7 +108,7 @@ Score: ++ sterk, + voldoende, +/- wisselend, - zwak.
 <tr><th>Beheerslast voor IOTM<td>laag<td>laag<td>midden<td>hoog
 </table>
 
-## Synthese en afwegingen
+# Synthese en afwegingen
 
 Drie observaties komen uit de tabel naar voren.
 
@@ -122,7 +120,7 @@ Ten derde is de scherpste tegenstelling die tussen **richting 4 (functioneel het
 
 Hieruit volgt logisch een **gelaagde aanpak** als serieus te overwegen optie: Jottem-server als participatie- en annotatielaag én bron-van-waarheid, met daaronder een duurzame preserveringskopie bij een externe partij (Internet Archive/IAE of een e-Depot), en optioneel Wikimedia voor wereldwijde vindbaarheid van de vrij-gelicentieerde subset. De moderatiestap die Jottem toch al heeft, is dan precies het moment waarop materiaal wordt geklaard en doorgezet naar de duurzame laag.
 
-## Richting voor de keuze (de projectgroep beslist)
+# Richting voor de keuze (de projectgroep beslist)
 
 Als de projectgroep één richting moet aanwijzen, helpt het om eerst de vraag te beantwoorden: *wat is de belangrijkste eis?*
 
@@ -133,7 +131,7 @@ Als de projectgroep één richting moet aanwijzen, helpt het om eerst de vraag t
 
 Het advies dat uit deze analyse volgt, is om de eigen Jottem-server niet als eindbestemming maar als participatielaag te zien, en daaronder bewust te kiezen voor minstens één duurzame externe laag. De zuivere "alles op één plek"-keuze is verdedigbaar, maar dan het beste richting een preserverings­partij (Internet Archive/IAE of e-Depot) voor afbeeldingen en metadata, in de wetenschap dat de verrijkingen­laag daar de minste ruimte krijgt en deels in Jottem zelf zal moeten blijven leven. De definitieve afweging, inclusief het gewicht van elk criterium, is aan de projectgroep.
 
-## Bronnen
+# Bronnen
 
 - [iotm-wiki.md](iotm-wiki.md) - uitwerking Wikimedia Commons / Wikidata
 - [iotm-iae.md](iotm-iae.md) - uitwerking Internet Archive (Europe)

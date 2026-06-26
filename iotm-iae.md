@@ -1,14 +1,12 @@
-# IOTM and the Internet Archive: durable preservation, IIIF and access as shared infrastructure
-
 *A project idea and exploration. Draft, June 2026. Intended to stimulate discussion between the IOTM (Inside Out Time Machines) project group and Internet Archive Europe (IAE) in Amsterdam. It can change at any time.*
 
-## Purpose of this document
+# Purpose of this document
 
 This document explores an idea: what would it mean for IOTM / Jottem to use the Internet Archive, and specifically its European entity Internet Archive Europe, as part of its infrastructure? It is written for two audiences at once. For the Internet Archive Europe readers it introduces IOTM and the Jottem platform. For the IOTM readers it introduces the Internet Archive and IAE as technical and social infrastructure. It then looks at how the goals of both initiatives align, how the Internet Archive tools and APIs could fit the IOTM architecture, and what the legal and usability consequences would be.
 
 The conclusion in advance: the fit is strong. The Internet Archive accepts material under the contributor's own rights terms (not only free licenses) and provides a native IIIF service with automatic derivatives, which means it can durably hold and serve the *full* IOTM collection, not only a free-licensed subset. The natural model is therefore: the Internet Archive as IOTM's durable preservation and IIIF back-end, with IOTM remaining the participation environment and system of record.
 
-## Part 1: Introducing IOTM and Jottem (for Internet Archive Europe readers)
+# Part 1: Introducing IOTM and Jottem (for Internet Archive Europe readers)
 
 Inside Out Time Machines (IOTM) is a Dutch heritage participation project that grew out of four local Time Machines: Amsterdam, Utrecht, Gouda and Hilversum. The activity plan was prepared as part of an application to the Subsidieregeling Uitvoeringsagenda Faro, and the project is closely connected to the Netwerk Digitaal Erfgoed (NDE) and the Faro values of broad heritage participation.
 
@@ -22,7 +20,7 @@ The rights model is important and distinctive. IOTM's requirements state that co
 
 The first concrete pilot is **Smaak van Gouda** (Taste of Gouda): the history of disappeared restaurants, cafes, snack bars and other eateries in Gouda, running on the organisation jottem of Streekarchief Midden-Holland. It collects photos, menus, advertisements, permits, newspaper clippings and personal memories, with editorial moderation before publication, and a map coupled to the Gouda Tijdmachine so visitors can navigate through place and time, seeing the successive eateries per building as a timeline.
 
-## Part 2: Introducing the Internet Archive and Internet Archive Europe (for the IOTM project group)
+# Part 2: Introducing the Internet Archive and Internet Archive Europe (for the IOTM project group)
 
 The **Internet Archive** is a non-profit digital library founded in 1996, best known for the Wayback Machine and for hosting many millions of texts, images, audio and video items. For a project like IOTM three properties matter most. It offers durable, redundant storage at no charge for material kept publicly accessible, with persistent item URLs. It is metadata-agnostic: an item can carry the standard fields plus any number of custom fields, defined ad hoc at upload time. And it automatically "derives" useful secondary files from an upload, for example thumbnails, in-browser viewers, and OCR text for documents, which is directly relevant to menus, advertisements, permits and newspaper clippings.
 
@@ -30,7 +28,7 @@ Since 2023 the Internet Archive also runs an **official IIIF 3.0 Image and Prese
 
 **Internet Archive Europe (IAE)** is the Internet Archive's European entity, based in Amsterdam, with Dutch ANBI (public-benefit) status. It works where documentary heritage, digital preservation and open access converge, and it is unusually well embedded in the Dutch heritage ecosystem: it has co-hosted events in Amsterdam with Creative Commons and Open Nederland on equitable access to heritage, engages directly with the Ministry of Education, Culture and Science's National Strategy on Digital Heritage 2025-2028 and the NDE, and runs campaigns such as Our Future Memory (on the rights of memory institutions to preserve, lend, provide cross-border access, and support research and education). In June 2026 IAE moved parts of its own infrastructure to Eurosky, a European, EU-law-governed hosting initiative, reflecting a broader commitment to European digital sovereignty and data residency. For IOTM this means a local, Dutch-based, EU-oriented partner that already shares its language, network and legal context, rather than a purely US counterpart.
 
-## Part 3: How the goals align
+# Part 3: How the goals align
 
 The two initiatives share a clear mission and, unusually, an existing design link.
 
@@ -44,7 +42,7 @@ And both care about durable, manageable preservation as a first-order concern. I
 
 Where the emphasis differs is instructive but not conflicting. IOTM optimises for the lowest possible threshold for residents and for local editorial control over a collection that includes non-free and sometimes sensitive material. The Internet Archive optimises for durable preservation and broad access, and is comfortable hosting material under the contributor's own rights terms. These emphases are complementary: IOTM owns the front door and the editorial judgement; the Internet Archive provides the vault, the viewers and the long-term addresses.
 
-## Part 4: The project idea: the Internet Archive as part of the IOTM infrastructure
+# Part 4: The project idea: the Internet Archive as part of the IOTM infrastructure
 
 The proposal is to use the Internet Archive (through IAE) as IOTM's preservation and delivery back-end, in three roles.
 
@@ -56,7 +54,7 @@ The proposal is to use the Internet Archive (through IAE) as IOTM's preservation
 
 In this model the Internet Archive stores and serves the full collection under IOTM's own rights terms, while IOTM keeps the participation layer, the annotations, the editorial workflow and the canonical catalogue. The boundary between "draft in IOTM" and "preserved and served via the Internet Archive" is the moderation step IOTM already has. (This idea is complementary to, not in competition with, the separate idea of using Wikimedia Commons and Wikidata for global discovery of a free-licensed subset: the Internet Archive can be the preservation and delivery layer for everything, while Commons and Wikidata, if pursued, add reach for the openly licensed slice.)
 
-## Part 5: How the Internet Archive tools and APIs fit the IOTM architecture
+# Part 5: How the Internet Archive tools and APIs fit the IOTM architecture
 
 Almost every IOTM building block has a direct Internet Archive counterpart, so integration is mostly mapping and adapters rather than new invention. The Internet Archive maintains a developer portal and an official `internetarchive` Python library (and `ia` command-line tool) that wrap these APIs, which suits IOTM's batch and server-side needs.
 
@@ -79,7 +77,7 @@ Almost every IOTM building block has a direct Internet Archive counterpart, so i
 
 Two practical patterns follow. For the Smaak van Gouda pilot, the `ia` command-line tool and the Python library make it straightforward to script a first batch upload into a Streekarchief Midden-Holland collection and to confirm the derive, OCR and IIIF outputs before wiring them into the public view. For ongoing operation, IOTM keeps its own catalogue and Change Discovery / RSS as the source of truth and writes to the Internet Archive as a downstream preservation copy through IAS3 and the Metadata API, using the IOTM ARK and the Internet Archive identifier as the join keys between the two systems.
 
-## Part 6: Legal perspective
+# Part 6: Legal perspective
 
 This is where the Internet Archive route is notably more comfortable for IOTM than a free-license-only repository would be, but it still needs care, and IAE's legal and policy expertise is directly relevant.
 
@@ -93,7 +91,7 @@ This is where the Internet Archive route is notably more comfortable for IOTM th
 
 In short: the Internet Archive lets IOTM preserve and serve its material under its own rights terms, which removes the licensing incompatibility that a free-only platform creates, but it shifts rights and privacy responsibility onto IOTM as uploader. The moderation step becomes the rights-and-privacy gate, and IAE is well placed to help define it, including the EU-hosting and data-residency questions.
 
-## Part 7: Usability perspective
+# Part 7: Usability perspective
 
 IOTM's first design principle is the lowest possible threshold for residents, including social login. The Internet Archive's contribution tools (the S3-like API, the `ia` command line, the Python library) are developer-facing and should stay entirely behind IOTM. A resident uploads to Jottem exactly as designed; the Internet Archive upload happens server-side, after moderation, performed by IOTM through a service account. No contributor ever sees an Internet Archive login. This keeps the participation experience untouched while gaining preservation-grade storage behind the scenes.
 
@@ -101,7 +99,7 @@ For the project team, the operational usability is strong. Free, redundant stora
 
 A few coordination points are worth naming. Setting up per-organisation collections is done with the Internet Archive / IAE rather than fully self-service, so it is a conversation, not just an API call. The derive and IIIF behaviour, and the choice of public versus restricted state, should be decided once in the moderation workflow and applied consistently. And because preservation through the Internet Archive is most useful when it is genuinely automatic, the publish-to-archive step should be wired into the moderation UI as a default action (with the rights and privacy gate attached) rather than a manual afterthought.
 
-## Part 8: Risks, open questions and next steps
+# Part 8: Risks, open questions and next steps
 
 The main risks are: uploader rights responsibility shifting to IOTM (mitigated by clearing material at moderation, honest `rights` metadata, and dark/restricted states for uncertain items); the difficulty of true erasure once an item has been public (mitigated by keeping sensitive and recent-person material restricted or in IOTM only); data residency and jurisdiction for personal data (mitigated by clarifying the EU-hosting path with IAE); and dependence on a single preservation provider (mitigated by IOTM remaining the system of record and, optionally, keeping more than one preservation target).
 
@@ -109,7 +107,7 @@ Open questions worth resolving with Internet Archive Europe: whether an EU-hoste
 
 Suggested next steps: (1) a joint working session between the IOTM project group and Internet Archive Europe to validate this preservation-back-end model and the rights-and-privacy gate; (2) a small Smaak van Gouda proof of concept that uploads a cleared batch into a Streekarchief Midden-Holland collection via the `internetarchive` library, confirming derive, OCR, IIIF manifest and access-state behaviour; (3) a short rights-and-privacy note (already a planned IOTM deliverable) defining what may be pushed, with what `rights` and access state, and how removal requests are handled; and (4) a decision, taken with IAE, on data residency for personal data and on whether the Internet Archive is IOTM's sole or primary preservation target.
 
-## Sources
+# Sources
 
 - [Tools and APIs - Internet Archive Developer Portal](https://archive.org/developers/index-apis.html)
 - [IAS3 Internet Archive S3-like API - Internet Archive Developer Portal](https://archive.org/developers/ias3.html)

@@ -1,14 +1,12 @@
-# IOTM and the Wikimedia ecosystem: Commons and Wikidata as shared infrastructure
-
 *A project idea and exploration. Draft, June 2026. Intended to stimulate discussion between the IOTM (Inside Out Time Machines) project group and Wikimedia Nederland. It can change at any time.*
 
-## Purpose of this document
+# Purpose of this document
 
 This document explores an idea: what would it mean for IOTM / Jottem to use Wikimedia Commons and Wikidata as part of its infrastructure, rather than only as one of many external sources? It is written for two audiences at once. For the Wikimedia readers it introduces IOTM and the Jottem platform. For the IOTM readers it introduces Commons and Wikidata as technical and social infrastructure. It then looks at how the goals of both initiatives align, how the Wikimedia APIs and services could fit the IOTM architecture, and what the legal and usability consequences would be.
 
 The conclusion in advance: there is a strong alignment of mission and a good technical fit for a *curated subset* of IOTM content, but there is also a fundamental licensing tension and a scope mismatch that have to be designed around. The most realistic model is federation, not replacement: IOTM stays the primary, low-threshold participation environment, consumes Wikidata as an authority and vocabulary source, and contributes a curated, freely licensed slice of its material to Commons and Wikidata.
 
-## Part 1: Introducing IOTM and Jottem (for Wikimedia readers)
+# Part 1: Introducing IOTM and Jottem (for Wikimedia readers)
 
 Inside Out Time Machines (IOTM) is a Dutch heritage participation project that grew out of four local Time Machines: Amsterdam, Utrecht, Gouda and Hilversum. The activity plan was prepared as part of an application to the Subsidieregeling Uitvoeringsagenda Faro, and the project is closely connected to the Netwerk Digitaal Erfgoed (NDE) and the Faro values of broad heritage participation.
 
@@ -22,7 +20,7 @@ The first concrete pilot is **Smaak van Gouda** (Taste of Gouda): the history of
 
 The key point for Wikimedia readers: IOTM already speaks Linked Data, IIIF and Web Annotations. It is architecturally close to the Wikimedia stack, but it is designed first for low-threshold citizen participation and local editorial control, and it deliberately accepts material (personal snapshots, memories, all-rights-reserved contributions) that would not, as-is, belong on Commons or Wikidata.
 
-## Part 2: Introducing Wikimedia Commons and Wikidata (for the IOTM project group)
+# Part 2: Introducing Wikimedia Commons and Wikidata (for the IOTM project group)
 
 **Wikimedia Commons** is the shared media repository of the Wikimedia movement: roughly 100+ million freely licensed media files that any Wikimedia project (and anyone else) can reuse. Two properties matter most for IOTM. First, scope: a file is in scope only if it is freely licensed or public domain *and* realistically useful for an educational purpose. Commons does not accept fair use or other non-free content. Second, since the Structured Data on Commons (SDC) project, every file can carry machine-readable, multilingual statements built on Wikibase, the same technology as Wikidata. The most important of these is **depicts (P180)**, which links what is visible in a file to the matching concept on Wikidata; as of early 2026 it is used on more than 27 million files and drives the cross-lingual MediaSearch.
 
@@ -32,7 +30,7 @@ The key point for Wikimedia readers: IOTM already speaks Linked Data, IIIF and W
 
 The key point for the IOTM project group: Commons and Wikidata are not just another archive to link to. They are a durable, globally reused, machine-readable infrastructure with a built-in volunteer community, but they come with hard rules (free licensing, educational scope, notability) that filter what can go in.
 
-## Part 3: How the goals align
+# Part 3: How the goals align
 
 The two initiatives share a surprising amount of DNA.
 
@@ -46,7 +44,7 @@ Both already operate in the same Dutch heritage network. NDE, Europeana, Streeka
 
 Where they differ is instructive. IOTM optimises for the lowest possible threshold and local editorial control, and accepts personal, non-notable, sometimes all-rights-reserved material. Wikimedia optimises for global reuse under free licenses and shared notability, and deliberately excludes the long tail of private snapshots and non-free content. This difference is not a blocker; it defines the interface between the two systems.
 
-## Part 4: The project idea: Commons and Wikidata as part of the IOTM infrastructure
+# Part 4: The project idea: Commons and Wikidata as part of the IOTM infrastructure
 
 The proposal is a federated architecture in three directions, not a migration.
 
@@ -58,7 +56,7 @@ The proposal is a federated architecture in three directions, not a migration.
 
 In this model Commons and Wikidata provide durable, openly maintained storage for the free-licensed slice, while IOTM remains the system of record for everything (including the material that can never leave it). The boundary between "stays in IOTM only" and "flows to Wikimedia" is exactly the moderation step that IOTM already has.
 
-## Part 5: How the Wiki APIs and services fit the IOTM architecture
+# Part 5: How the Wiki APIs and services fit the IOTM architecture
 
 The encouraging finding is that almost every IOTM standard has a direct Wikimedia counterpart, so the integration is mostly a matter of mapping and adapters rather than new invention.
 
@@ -84,7 +82,7 @@ The practical consequence for the federated model is a clean division of labour.
 
 Two further practical patterns follow. For batch and pilot work, existing GLAM tooling (for example Pattypan for spreadsheet-driven uploads, and the structured-data workflows developed around Wiki Loves Monuments) can be reused rather than rebuilt, which is a natural place for Wikimedia Nederland to help. For ongoing sync, IOTM keeps its own Change Discovery / RSS as the source of truth and treats Commons and Wikidata as downstream replicas updated through the Action and Wikibase APIs, with the IOTM ARK as the join key between the two worlds.
 
-## Part 6: Legal perspective
+# Part 6: Legal perspective
 
 This is where the design needs the most care, and where Wikimedia Nederland's involvement (already foreseen in the IOTM activity plan for the copyright questions) is most valuable.
 
@@ -100,7 +98,7 @@ This is where the design needs the most care, and where Wikimedia Nederland's in
 
 In short: the legal model is "IOTM holds everything under its own terms; a deliberately narrow, opt-in, rights-cleared, non-personal, free-licensed subset is mirrored to Wikimedia." The activity plan's parallel exploration of copyright questions with Wikimedia Nederland is exactly the right vehicle to define that gate.
 
-## Part 7: Usability perspective
+# Part 7: Usability perspective
 
 IOTM's first design principle is the lowest possible threshold, including social login, for ordinary residents who are not heritage professionals. Wikimedia contribution, done directly, is the opposite: account creation, license selection, scope and notability judgement, wikitext and structured-data conventions, and a community that may revert or nominate for deletion. Putting that in front of a resident who just wants to share a photo of their grandparents' cafe would defeat the IOTM purpose.
 
@@ -110,7 +108,7 @@ This division has further usability benefits. MediaSearch and the multilingual l
 
 The scope mismatch is itself a usability feature if framed correctly: IOTM can welcome everything (memories, snapshots, the long tail), while quietly elevating only the genuinely reusable, educationally useful, free-licensed items to the global stage. Contributors are never rejected; their material simply finds the right level of reach.
 
-## Part 8: Risks, open questions and next steps
+# Part 8: Risks, open questions and next steps
 
 The main risks are the licensing incompatibility (mitigated by the opt-in free-license gate), the irreversibility of global reuse versus IOTM's takedown promise (mitigated by gating personal and recent material out of Direction B), the scope filter rejecting much of the long tail at Commons (mitigated by keeping IOTM as system of record), and the maintenance cost of two-way sync (mitigated by treating Wikimedia as a downstream replica keyed on ARK).
 
@@ -118,7 +116,7 @@ Open questions worth resolving with Wikimedia Nederland: confirmation of the III
 
 Suggested next steps: (1) a joint working session between the IOTM project group and Wikimedia Nederland to validate this federated model and the rights gate; (2) a small Smaak van Gouda proof of concept covering Directions A, B and C on a handful of clearly free, clearly non-personal items, including SDC depicts statements and a few new Wikidata items for former eateries; (3) a written rights-and-participation note (already a planned IOTM deliverable) that defines the opt-in free-license flow and the personal-data gate; and (4) a decision on the extent to which Commons and Wikidata serve as the durable store for the free-licensed subset, and what that means for IOTM's own storage and preservation responsibilities.
 
-## Sources
+# Sources
 
 - [Commons:Structured data - Wikimedia Commons](https://commons.wikimedia.org/wiki/Commons:Structured_data)
 - [Commons:Structured data/Modeling/Depiction - Wikimedia Commons](https://commons.wikimedia.org/wiki/Commons:Structured_data/Modeling/Depiction)

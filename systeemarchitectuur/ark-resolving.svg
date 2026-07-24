@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a4" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#333"/>
+    </marker>
+    <marker id="a4r" markerWidth="10" markerHeight="8" refX="1" refY="4" orient="auto">
+      <path d="M10,0 L0,4 L10,8 z" fill="#333"/>
+    </marker>
+  </defs>
+  <style>
+    .head rect { fill:#dcebdc; stroke:#4d8a4d; stroke-width:1.5; }
+    .headc rect { fill:#eef3fa; stroke:#4a7fb5; stroke-width:1.5; }
+    .lbl  { font-size:13px; font-weight:600; fill:#222; }
+    .sub  { font-size:10.5px; fill:#555; }
+    .life { stroke:#999; stroke-width:1; stroke-dasharray:4 4; }
+    .msg  { stroke:#333; stroke-width:1.2; fill:none; marker-end:url(#a4); }
+    .ret  { stroke:#333; stroke-width:1.2; fill:none; stroke-dasharray:5 4; marker-end:url(#a4); }
+    .mlbl { font-size:11px; fill:#222; }
+    .note { fill:#fff7dc; stroke:#c2a333; stroke-width:1; }
+  </style>
+
+  <text x="480" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="#222">ARK-resolving met content negotiation</text>
+
+  <!-- Lifeline heads -->
+  <g class="headc"><rect x="40" y="50" width="150" height="46" rx="6"/>
+    <text x="115" y="70" text-anchor="middle" class="lbl">Client</text>
+    <text x="115" y="87" text-anchor="middle" class="sub">browser of harvester</text></g>
+  <g class="head"><rect x="270" y="50" width="160" height="46" rx="6"/>
+    <text x="350" y="70" text-anchor="middle" class="lbl">ark.iotm.nl</text>
+    <text x="350" y="87" text-anchor="middle" class="sub">ARK-resolver</text></g>
+  <g class="head"><rect x="510" y="50" width="160" height="46" rx="6"/>
+    <text x="590" y="70" text-anchor="middle" class="lbl">www.iotm.nl</text>
+    <text x="590" y="87" text-anchor="middle" class="sub">frontend (HTML)</text></g>
+  <g class="head"><rect x="750" y="50" width="170" height="46" rx="6"/>
+    <text x="835" y="70" text-anchor="middle" class="lbl">data.iotm.nl</text>
+    <text x="835" y="87" text-anchor="middle" class="sub">RDF (schema.org AP NDE)</text></g>
+
+  <line class="life" x1="115" y1="96" x2="115" y2="490"/>
+  <line class="life" x1="350" y1="96" x2="350" y2="490"/>
+  <line class="life" x1="590" y1="96" x2="590" y2="490"/>
+  <line class="life" x1="835" y1="96" x2="835" y2="490"/>
+
+  <!-- Scenario 1: HTML -->
+  <rect class="note" x="40" y="115" width="330" height="24" rx="4"/>
+  <text x="52" y="131" class="mlbl" font-weight="700">Scenario 1: browser (Accept: text/html)</text>
+
+  <path class="msg" d="M115,160 L350,160"/>
+  <text x="130" y="153" class="mlbl">GET /ark:/12345/g7x9k2 (Accept: text/html)</text>
+
+  <path class="ret" d="M350,195 L115,195"/>
+  <text x="130" y="188" class="mlbl">303 See Other: https://www.iotm.nl/jottem/g7x9k2</text>
+
+  <path class="msg" d="M115,230 L590,230"/>
+  <text x="130" y="223" class="mlbl">GET /jottem/g7x9k2</text>
+
+  <path class="ret" d="M590,265 L115,265"/>
+  <text x="130" y="258" class="mlbl">200 HTML-pagina: IIIF-viewer + metadata + annotaties</text>
+
+  <!-- Scenario 2: RDF -->
+  <rect class="note" x="40" y="295" width="400" height="24" rx="4"/>
+  <text x="52" y="311" class="mlbl" font-weight="700">Scenario 2: machine (Accept: application/ld+json of text/turtle)</text>
+
+  <path class="msg" d="M115,340 L350,340"/>
+  <text x="130" y="333" class="mlbl">GET /ark:/12345/g7x9k2 (Accept: application/ld+json)</text>
+
+  <path class="ret" d="M350,375 L115,375"/>
+  <text x="130" y="368" class="mlbl">303 See Other: https://data.iotm.nl/id/g7x9k2</text>
+
+  <path class="msg" d="M115,410 L835,410"/>
+  <text x="130" y="403" class="mlbl">GET /id/g7x9k2 (Accept: application/ld+json)</text>
+
+  <path class="ret" d="M835,445 L115,445"/>
+  <text x="130" y="438" class="mlbl">200 JSON-LD conform schema.org AP NDE (of Turtle/RDF-XML)</text>
+
+  <rect class="note" x="440" y="462" width="480" height="24" rx="4"/>
+  <text x="452" y="478" class="mlbl">Suffix passthrough: ?info levert ARK-metadata (who/what/when) van de resolver zelf</text>
+</svg>

@@ -1,0 +1,118 @@
+<pre class='metadata'>
+Title: Interviewprotocol Jottem
+Shortname: interviewprotocol
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Protocol voor vrijwilligers die interviews afnemen, met de nadruk op toestemming voor publicatie en langdurige bewaring.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
+# Interviewprotocol Jottem
+
+*Voor vrijwilligers die interviews afnemen - versie 1.0 - [datum invullen]*
+
+## Waarom dit protocol?
+
+Interviews zijn goud waard. Een oud-eigenaar van een snackbar of een vaste gast van een verdwenen koffiehuis kan verhalen vertellen die nergens op papier staan. Met dit protocol zorg je ervoor dat die verhalen goed worden vastgelegd én dat alles netjes geregeld is. Dan kan het interview zonder problemen op het platform worden gepubliceerd en bewaard voor de toekomst.
+
+De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De rest van dit protocol helpt je om dat goed en prettig te regelen.
+
+## Stap 1. Vóór het interview
+
+**Regel de afspraak**
+
+- Vertel duidelijk wie je bent, voor welke organisatie je werkt en wat het doel is: het verhaal bewaren en publiceren op het Jottem platform.
+- Vertel dat het interview wordt opgenomen (geluid, eventueel beeld).
+- Stuur vooraf het toestemmingsformulier (achterin dit protocol), zodat de geïnterviewde het rustig kan lezen. Vertel dat jullie het samen doornemen en ondertekenen.
+- Vraag of de geïnterviewde foto's, menukaarten of andere spullen heeft die hij wil laten zien of laten scannen. Vertel dat daarvoor apart toestemming wordt gevraagd.
+
+**Bereid je voor**
+
+- Lees je in over de persoon en de zaak (het pand, de periode, de buurt).
+- Maak een lijstje met vragen, maar houd het gesprek open: de mooiste verhalen komen vaak vanzelf.
+- Test je opnameapparatuur: batterij vol, geheugen leeg, geluid getest.
+
+## Stap 2. Aan het begin van het interview
+
+- Neem het toestemmingsformulier rustig samen door. Leg uit wat elk onderdeel betekent. Geef de geïnterviewde de tijd om vragen te stellen.
+- Laat het formulier ondertekenen **vóórdat** je begint met opnemen. Zonder handtekening geen opname.
+- Start de opname en spreek dit in: datum, plaats, jouw naam, de naam van de geïnterviewde en de zin: *"U heeft zojuist het toestemmingsformulier ondertekend, klopt dat?"* Laat de geïnterviewde "ja" zeggen. Zo staat de toestemming ook op de opname zelf.
+
+## Stap 3. Tijdens het interview
+
+**Goede gewoontes**
+
+- Laat de geïnterviewde uitpraten. Stiltes zijn prima; vaak komt daarna juist het mooiste verhaal.
+- Stel open vragen: "Hoe was dat?", "Wat gebeurde er toen?", "Wie kwamen er zoal?"
+- Vraag door op namen, jaartallen, adressen: daar kunnen annoteerders later veel mee.
+
+**Let op bij gevoelige onderwerpen**
+
+- Gaat het over andere, nog levende personen? Dat mag, maar wees alert. Verhalen over ziekte, schulden, ruzies of relaties van anderen horen niet zomaar openbaar. Je hoeft het gesprek niet te stoppen; de moderator beoordeelt later wat gepubliceerd kan worden. Maar je mag gerust zeggen: "Dit stukje kunnen we misschien beter niet publiceren, is dat goed?"
+- Wordt de geïnterviewde emotioneel? Zet de opname gerust even stil. Vraag daarna of het deel wel of niet gebruikt mag worden.
+- De geïnterviewde mag altijd zeggen: "Dit is niet voor publicatie." Noteer dat meteen (tijdstip van de opname erbij).
+
+## Stap 4. Na het interview
+
+- Bedank de geïnterviewde en vertel wat er nu gebeurt: het interview wordt beoordeeld door een moderator en daarna gepubliceerd, en de geïnterviewde krijgt bericht (of een link) zodra het online staat.
+- Vertel dat de geïnterviewde zich altijd kan bedenken: via het Meldpunt op de website kan om verwijdering worden gevraagd.
+- Lever bij de upload aan:
+    1. het audiobestand;
+    2. het ondertekende toestemmingsformulier (scan of foto);
+    3. je aantekeningen: wie, wat, waar, wanneer, en welke delen níet voor publicatie zijn.
+- Bewaar het originele formulier op de afgesproken plek van jouw organisatie. Het formulier zelf wordt nooit gepubliceerd.
+
+## Waarom is dat formulier zo belangrijk? (de korte juridische uitleg)
+
+Je hoeft dit niet uit je hoofd te kennen, maar het is goed om te weten waaróm we het zo doen:
+
+- **Privacy (AVG)**: een stem en een verhaal zijn persoonsgegevens. Voor publicatie hebben we toestemming nodig, en die moeten we kunnen aantonen. Toestemming mag altijd weer worden ingetrokken; dat geldt dan voor de toekomst.
+- **Naburige rechten (Wet op de naburige rechten)**: wie iets vertelt of voordraagt heeft rechten op die opname, net zoals een muzikant rechten heeft op zijn uitvoering. Met het formulier geeft de geïnterviewde toestemming om de opname te publiceren.
+- **Auteursrecht**: laat de geïnterviewde ook foto's of documenten zien die gescand worden? Dan geldt daarvoor het gewone uploadproces: de eigenaar/rechthebbende geeft daarvoor apart toestemming op het formulier.
+
+---
+
+## Bijlage: Toestemmingsformulier interview
+
+**Toestemming voor opname en publicatie**
+
+Project: [naam project, bijv. Smaak van Gouda]
+Organisatie: [naam organisatie]
+Platform: Jottem
+
+**Gegevens**
+
+- Naam geïnterviewde: ............................................................
+- Naam interviewer: ............................................................
+- Datum en plaats interview: ............................................................
+
+**Ik geef toestemming voor het volgende** (aankruisen wat van toepassing is):
+
+- [ ] Het interview mag worden **opgenomen** (geluid).
+- [ ] De opname mag worden **gepubliceerd** op het Jottem platform en duurzaam worden bewaard, ook bij een externe bewaarplaats (zoals het Internet Archive, gevestigd in de Verenigde Staten).
+- [ ] Mijn **naam** mag bij het interview worden vermeld.
+  - [ ] Nee, publiceer het interview zonder mijn naam.
+- [ ] Er mogen **korte fragmenten** van het interview worden gebruikt in communicatie over het project (bijvoorbeeld nieuwsbrief of sociale media).
+- [ ] Anderen mogen het gepubliceerde interview **hergebruiken** onder de volgende licentie: [licentie invullen, bijv. CC BY-NC 4.0].
+- [ ] De **documenten of foto's** die ik tijdens het interview laat scannen mogen worden gepubliceerd op het platform. Ik verklaar dat ik daarover mag beslissen (ik ben eigenaar/rechthebbende of heb toestemming van de rechthebbende).
+
+**Goed om te weten**
+
+- U mag tijdens het interview altijd zeggen dat iets niet voor publicatie is. Dat wordt genoteerd en gerespecteerd.
+- U mag uw toestemming later intrekken. Dat kan via het Meldpunt op de website of via [contactgegevens organisatie]. Intrekken geldt voor de toekomst: we halen het materiaal dan van het platform en sturen een verwijderverzoek naar de externe bewaarplaats. Materiaal dat anderen al hebben overgenomen kunnen we niet altijd overal weghalen.
+- Vragen over privacy? Zie het Privacybeleid Jottem op de website of neem contact op via [contactgegevens].
+
+**Ondertekening**
+
+| | Geïnterviewde | Interviewer |
+|---|---|---|
+| Naam | | |
+| Datum | | |
+| Handtekening | | |
+
+*Bij een geïnterviewde jonger dan 16 jaar tekent ook een ouder of verzorger.*

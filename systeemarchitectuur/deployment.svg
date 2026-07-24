@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 760" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a3" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#555"/>
+    </marker>
+  </defs>
+  <style>
+    .host   { fill:#fafafa; stroke:#888; stroke-width:2; }
+    .net    { fill:none; stroke-width:1.6; stroke-dasharray:7 5; }
+    .svc rect { fill:#dcebdc; stroke:#4d8a4d; stroke-width:1.4; }
+    .db rect  { fill:#efe0ee; stroke:#96588f; stroke-width:1.4; }
+    .mon rect { fill:#dde6f2; stroke:#3a6ea5; stroke-width:1.4; }
+    .volr   { fill:#fff7dc; stroke:#c2a333; stroke-width:1.4; }
+    .lbl { font-size:12.5px; font-weight:600; fill:#222; }
+    .sub { font-size:10.5px; fill:#555; }
+    .netlbl { font-size:12px; font-weight:700; }
+    .edge { stroke:#555; stroke-width:1.2; fill:none; marker-end:url(#a3); }
+    .elbl { font-size:10px; fill:#444; }
+  </style>
+
+  <text x="540" y="26" text-anchor="middle" font-size="18" font-weight="700" fill="#222">Deploymentdiagram - Docker Compose op een VPS/host</text>
+
+  <!-- Host -->
+  <rect class="host" x="30" y="50" width="800" height="690" rx="10"/>
+  <text x="50" y="74" class="lbl">Docker host (VPS, Ubuntu) - docker compose</text>
+
+  <!-- edge network -->
+  <rect class="net" x="50" y="90" width="760" height="120" rx="8" stroke="#c56a2b"/>
+  <text x="60" y="108" class="netlbl" fill="#c56a2b">netwerk: edge (publiek via 80/443)</text>
+  <g class="svc">
+    <rect x="70" y="120" width="180" height="70" rx="6"/>
+    <text x="160" y="145" text-anchor="middle" class="lbl">traefik</text>
+    <text x="160" y="162" text-anchor="middle" class="sub">TLS (Let's Encrypt),</text>
+    <text x="160" y="175" text-anchor="middle" class="sub">routing per subdomein</text>
+  </g>
+  <g class="svc">
+    <rect x="280" y="120" width="150" height="70" rx="6"/>
+    <text x="355" y="145" text-anchor="middle" class="lbl">varnish</text>
+    <text x="355" y="162" text-anchor="middle" class="sub">IIIF tile-cache</text>
+  </g>
+  <g class="svc">
+    <rect x="450" y="120" width="150" height="70" rx="6"/>
+    <text x="525" y="145" text-anchor="middle" class="lbl">keycloak</text>
+    <text x="525" y="162" text-anchor="middle" class="sub">auth.iotm.nl</text>
+  </g>
+  <g class="svc">
+    <rect x="620" y="120" width="170" height="70" rx="6"/>
+    <text x="705" y="145" text-anchor="middle" class="lbl">ark-resolver</text>
+    <text x="705" y="162" text-anchor="middle" class="sub">ark.iotm.nl (Arklet)</text>
+  </g>
+
+  <!-- app network -->
+  <rect class="net" x="50" y="230" width="760" height="170" rx="8" stroke="#4d8a4d"/>
+  <text x="60" y="248" class="netlbl" fill="#4d8a4d">netwerk: app (intern)</text>
+  <g class="svc">
+    <rect x="70" y="260" width="150" height="60" rx="6"/>
+    <text x="145" y="284" text-anchor="middle" class="lbl">frontend</text>
+    <text x="145" y="300" text-anchor="middle" class="sub">www.iotm.nl</text>
+  </g>
+  <g class="svc">
+    <rect x="240" y="260" width="150" height="60" rx="6"/>
+    <text x="315" y="284" text-anchor="middle" class="lbl">api</text>
+    <text x="315" y="300" text-anchor="middle" class="sub">api.iotm.nl</text>
+  </g>
+  <g class="svc">
+    <rect x="410" y="260" width="150" height="60" rx="6"/>
+    <text x="485" y="284" text-anchor="middle" class="lbl">cantaloupe</text>
+    <text x="485" y="300" text-anchor="middle" class="sub">IIIF Image API</text>
+  </g>
+  <g class="svc">
+    <rect x="580" y="260" width="150" height="60" rx="6"/>
+    <text x="655" y="284" text-anchor="middle" class="lbl">miiify</text>
+    <text x="655" y="300" text-anchor="middle" class="sub">anno.iotm.nl</text>
+  </g>
+  <g class="svc">
+    <rect x="70" y="330" width="150" height="60" rx="6"/>
+    <text x="145" y="354" text-anchor="middle" class="lbl">worker</text>
+    <text x="145" y="370" text-anchor="middle" class="sub">Celery (x N replicas)</text>
+  </g>
+  <g class="svc">
+    <rect x="240" y="330" width="150" height="60" rx="6"/>
+    <text x="315" y="354" text-anchor="middle" class="lbl">fuseki</text>
+    <text x="315" y="370" text-anchor="middle" class="sub">data.iotm.nl</text>
+  </g>
+
+  <!-- data network -->
+  <rect class="net" x="50" y="420" width="760" height="120" rx="8" stroke="#96588f"/>
+  <text x="60" y="438" class="netlbl" fill="#96588f">netwerk: data (alleen intern, niet publiek)</text>
+  <g class="db">
+    <rect x="70" y="450" width="160" height="60" rx="6"/>
+    <text x="150" y="474" text-anchor="middle" class="lbl">postgres</text>
+    <text x="150" y="490" text-anchor="middle" class="sub">PostgreSQL 16</text>
+  </g>
+  <g class="db">
+    <rect x="250" y="450" width="150" height="60" rx="6"/>
+    <text x="325" y="474" text-anchor="middle" class="lbl">redis</text>
+    <text x="325" y="490" text-anchor="middle" class="sub">cache + queue</text>
+  </g>
+  <g class="db">
+    <rect x="420" y="450" width="160" height="60" rx="6"/>
+    <text x="500" y="474" text-anchor="middle" class="lbl">elasticsearch</text>
+    <text x="500" y="490" text-anchor="middle" class="sub">single node</text>
+  </g>
+  <g class="db">
+    <rect x="600" y="450" width="150" height="60" rx="6"/>
+    <text x="675" y="474" text-anchor="middle" class="lbl">minio</text>
+    <text x="675" y="490" text-anchor="middle" class="sub">S3-compatible</text>
+  </g>
+
+  <!-- monitoring/observability (services op app-netwerk) -->
+  <rect class="net" x="50" y="552" width="760" height="98" rx="8" stroke="#3a6ea5"/>
+  <text x="60" y="570" class="netlbl" fill="#3a6ea5">observability (op app-netwerk; grafana ook via edge)</text>
+  <g class="mon">
+    <rect x="70" y="580" width="130" height="56" rx="6"/>
+    <text x="135" y="604" text-anchor="middle" class="lbl">prometheus</text>
+    <text x="135" y="620" text-anchor="middle" class="sub">metrics + exporters</text>
+  </g>
+  <g class="mon">
+    <rect x="215" y="580" width="130" height="56" rx="6"/>
+    <text x="280" y="604" text-anchor="middle" class="lbl">grafana</text>
+    <text x="280" y="620" text-anchor="middle" class="sub">status.iotm.nl</text>
+  </g>
+  <g class="mon">
+    <rect x="360" y="580" width="130" height="56" rx="6"/>
+    <text x="425" y="604" text-anchor="middle" class="lbl">loki + promtail</text>
+    <text x="425" y="620" text-anchor="middle" class="sub">logs</text>
+  </g>
+  <g class="mon">
+    <rect x="505" y="580" width="130" height="56" rx="6"/>
+    <text x="570" y="604" text-anchor="middle" class="lbl">alertmanager</text>
+    <text x="570" y="620" text-anchor="middle" class="sub">e-mail/Slack</text>
+  </g>
+  <g class="mon">
+    <rect x="650" y="580" width="130" height="56" rx="6"/>
+    <text x="715" y="604" text-anchor="middle" class="lbl">blackbox</text>
+    <text x="715" y="620" text-anchor="middle" class="sub">uptime + e2e</text>
+  </g>
+
+  <!-- volumes -->
+  <text x="60" y="682" class="lbl">volumes:</text>
+  <g>
+    <rect class="volr" x="130" y="666" width="110" height="26" rx="13"/>
+    <text x="185" y="683" text-anchor="middle" class="sub">pg_data</text>
+    <rect class="volr" x="250" y="666" width="110" height="26" rx="13"/>
+    <text x="305" y="683" text-anchor="middle" class="sub">es_data</text>
+    <rect class="volr" x="370" y="666" width="110" height="26" rx="13"/>
+    <text x="425" y="683" text-anchor="middle" class="sub">minio_data</text>
+    <rect class="volr" x="490" y="666" width="110" height="26" rx="13"/>
+    <text x="545" y="683" text-anchor="middle" class="sub">fuseki_tdb2</text>
+    <rect class="volr" x="610" y="666" width="120" height="26" rx="13"/>
+    <text x="670" y="683" text-anchor="middle" class="sub">traefik_acme</text>
+    <rect class="volr" x="130" y="700" width="140" height="26" rx="13"/>
+    <text x="200" y="717" text-anchor="middle" class="sub">prometheus_data</text>
+    <rect class="volr" x="280" y="700" width="120" height="26" rx="13"/>
+    <text x="340" y="717" text-anchor="middle" class="sub">grafana_data</text>
+    <rect class="volr" x="410" y="700" width="110" height="26" rx="13"/>
+    <text x="465" y="717" text-anchor="middle" class="sub">loki_data</text>
+  </g>
+
+  <!-- Outside host -->
+  <g>
+    <rect x="870" y="120" width="180" height="64" rx="6" fill="#f7efe2" stroke="#b08850" stroke-width="1.5"/>
+    <text x="960" y="145" text-anchor="middle" class="lbl">Internet</text>
+    <text x="960" y="162" text-anchor="middle" class="sub">gebruikers, harvesters</text>
+  </g>
+  <g>
+    <rect x="870" y="260" width="180" height="64" rx="6" fill="#f7efe2" stroke="#b08850" stroke-width="1.5"/>
+    <text x="960" y="285" text-anchor="middle" class="lbl">Internet Archive</text>
+    <text x="960" y="302" text-anchor="middle" class="sub">duurzame backup</text>
+  </g>
+  <g>
+    <rect x="870" y="420" width="180" height="64" rx="6" fill="#f7efe2" stroke="#b08850" stroke-width="1.5"/>
+    <text x="960" y="445" text-anchor="middle" class="lbl">Offsite backup</text>
+    <text x="960" y="462" text-anchor="middle" class="sub">restic / pgBackRest naar S3</text>
+  </g>
+
+  <path class="edge" d="M870,152 L250,152"/>
+  <text x="838" y="145" class="elbl">443</text>
+  <path class="edge" d="M220,360 C500,400 800,320 870,300"/>
+  <text x="700" y="352" class="elbl">ia CLI</text>
+  <path class="edge" d="M780,480 L870,452"/>
+  <text x="800" y="466" class="elbl">nachtelijk</text>
+</svg>

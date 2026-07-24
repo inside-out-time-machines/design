@@ -1,0 +1,321 @@
+<pre class='metadata'>
+Title: Systeemarchitectuur Jottem
+Shortname: architectuur
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform: gebruikers uploaden media (jottems), moderatoren beoordelen en publiceren, en annoteerders verrijken. De publieke interfaces volgen open standaarden (IIIF, W3C Web Annotations, schema.org AP NDE, ARK en RSS). Concept, kan op elk moment veranderen.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
+# Systeemarchitectuur Jottem 
+
+Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform: een participatief digitaal erfgoedplatform waarin gebruikers media (jottems) uploaden, moderatoren deze beoordelen en publiceren, en annoteerders verrijkingen toevoegen. Het geheel wordt via subdomeinen onder `iotm.nl` ontsloten en implementeert de in het designdocument genoemde standaarden: IIIF Image API 3.0, IIIF Presentation API 3.0, IIIF Change Discovery, W3C Web Annotations, schema.org AP NDE, ARK en RSS.
+
+## 1. Uitgangspunten
+
+- **Open source first**: elk component is een bewezen open-source product of een dunne maatwerklaag daaromheen. Succesvolle onderdelen zijn herbruikbaar tussen Time Machines.
+- **Standaarden aan de buitenkant**: alle publieke interfaces zijn standaard-API's (IIIF, W3C Annotation Protocol, SPARQL/RDF, RSS), zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten.
+- **Duurzame identificatie**: elke gepubliceerde jottem krijgt een ARK met NOID/UUID-objectnaam; de ARK is het duurzame startpunt, met content negotiation naar HTML of RDF.
+- **Multi-tenant**: een platforminstallatie bedient meerdere organisatiejottems (Streekarchief Midden-Holland, historische verenigingen, andere Time Machines), elk met eigen huisstijl, NAAN/shoulder en gebruikers.
+- **Beheersbaarheid**: het geheel draait als een docker-compose-stack op een enkele VPS en kan later doorgroeien naar Kubernetes zonder architectuurbreuk.
+- **Getest en gemonitord**: elk component wordt geautomatiseerd getest (unit, integratie, contract op de standaard-API's en end-to-end over de stack) en draait onder centrale monitoring, logging en alerting, zodat regressies en storingen vroeg en aantoonbaar zichtbaar worden.
+
+## 2. Contextdiagram
+
+Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder, moderator, beheerder, API-gebruiker) en een aantal externe systemen: social login providers, het Internet Archive voor duurzame opslag, het NDE Datasetregister, tijdmachines als kaart-/tijdinterface, een SMTP-provider en terminologiebronnen zoals Wikidata voor URI's in annotaties.
+
+![Contextdiagram](context.svg)
+
+## 3. Componentenoverzicht en subdomeinen
+
+![Containerdiagram](containers.svg)
+
+| Subdomein | Component | Open-source suggestie | Alternatieven |
+|---|---|---|---|
+| `www.iotm.nl` | Webfrontend | Next.js of SvelteKit + Mirador/Tify (IIIF-viewer), Annotorious (annoteren), MapLibre GL (kaart) | Nuxt, Universal Viewer, OpenSeadragon + eigen UI |
+| `api.iotm.nl` | Backend-API (REST, IIIF Presentation, Change Discovery, RSS, zoeken) | FastAPI (Python) met iiif-prezi3 | NestJS, Laravel, Django REST Framework |
+| `auth.iotm.nl` | Identity provider (OIDC, social login, 2FA) | Keycloak | Authentik, Ory Kratos/Hydra |
+| `iiif.iotm.nl` | IIIF Image API 3.0 + HTTP-cache | Cantaloupe achter Varnish | iipsrv, SIPI, go-iiif; nginx proxy_cache |
+| `anno.iotm.nl` | W3C Web Annotation server | miiify (expliciet genoemd in het designdocument) | SimpleAnnotationServer, Annotot |
+| `ark.iotm.nl` | ARK-resolver en -minter | Arklet (Internet Archive) | eigen microservice + noid-bibliotheek (pynoid) |
+| `data.iotm.nl` | RDF-publicatie (schema.org AP NDE), SPARQL, datadumps, datasetbeschrijvingen | Apache Jena Fuseki | Oxigraph, QLever, Virtuoso OS |
+| (intern) | Zoekmachine | Elasticsearch (genoemd in requirements) | OpenSearch |
+| (intern) | Relationele database | PostgreSQL | MariaDB |
+| (intern) | Cache en taakwachtrij | Redis | Valkey, RabbitMQ (queue) |
+| (intern) | Mediaopslag (S3) | MinIO | externe S3-dienst (AWS S3, Scaleway, Backblaze B2) |
+| (intern) | Async workers | Celery (bij FastAPI) of BullMQ (bij NestJS) | RQ, Sidekiq |
+| (edge) | Reverse proxy, TLS | Traefik | Caddy, nginx-proxy + acme-companion |
+
+De volgende paragrafen lichten de belangrijkste componenten toe.
+
+### 3.1 Reverse proxy (Traefik)
+
+Traefik termineert TLS (automatisch via Let's Encrypt), routeert op subdomein naar de juiste container via Docker-labels, en voegt security headers en rate limiting toe. Alle publieke componenten hangen aan het `edge`-netwerk; datastores zijn uitsluitend intern bereikbaar.
+
+### 3.2 Authenticatie en autorisatie (Keycloak)
+
+Keycloak fungeert als centrale OIDC-provider op `auth.iotm.nl` en dekt de requirements uit het designdocument volledig af. Social login (Google, Facebook, Apple, Microsoft) verloopt via identity brokering, zodat inloggen voor gebruikers zeer laagdrempelig is, terwijl beheerders en moderatoren via een verplichte TOTP-2FA-policy beveiligd worden. De rollen uit de usecases (platformbeheerder, organisatiebeheerder, moderator, gebruiker) worden gemodelleerd als realm-rollen in combinatie met groepen per organisatiejottem; de backend-API leest deze claims uit het JWT-access-token en past daarop autorisatie toe (bijv. "moderator van organisatie X mag alleen jottems van X beoordelen"). Uitnodigingsflows met bevestigingslink en het instellen van wachtwoord plus 2FA zijn standaard Keycloak-functionaliteit (required actions), evenals gebruikersregistratie voor bezoekers.
+
+Fijnmazige autorisatie op objectniveau (eigen afgekeurde jottems verwijderen, goedgekeurde niet) hoort in de backend thuis; wie dit declaratief wil, kan een policy engine als Casbin of OpenFGA toevoegen, maar voor deze schaal volstaat autorisatielogica in de API-laag.
+
+### 3.3 Backend-API en frontend
+
+De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implementeert het datamodel uit het ERD (organisatie, gebruiker, media, metadata, album, favoriet) op PostgreSQL en biedt:
+
+- REST-endpoints voor upload (via presigned S3-URL's, zodat grote bestanden niet door de API stromen), moderatieworkflow, albums, favorieten, materiaaltypes/genres en koppelingen naar externe archiefbronnen (label + URI);
+- IIIF Presentation API 3.0: per jottem een manifest, per organisatie/album een collection, gegenereerd uit de database met een bibliotheek als iiif-prezi3;
+- IIIF Change Discovery 1.0: een ActivityStreams-feed per organisatie met create/update-activiteiten (inclusief nieuwe annotaties) voor harvesters;
+- RSS-feeds per organisatie met nieuwe jottems;
+- zoek-endpoints die Elasticsearch bevragen (fulltext, facetten op genre, organisatie, periode, plaats);
+- statistieken voor beheerders en moderatoren.
+
+De frontend op `www.iotm.nl` is een aparte container (Next.js of SvelteKit) met de publieke site, de HTML-weergave per jottem (IIIF-viewer + metadata + annotaties), de upload- en moderatie-omgeving, en de interactieve kaart. Voor het tekenen van vlakken op afbeeldingen en het vastleggen van geo-annotaties (standpunt fotograaf, zichtveld als WKT/GeoJSON) is Annotorious in combinatie met OpenSeadragon/Mirador en MapLibre een beproefde keuze; de kaartweergave kan via IIIF en de API gekoppeld worden aan tijdmachines (zoals de Gouda Tijdmachine).
+
+### 3.4 IIIF Image API (Cantaloupe + Varnish)
+
+Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regio's, formaten) en leest bronbestanden rechtstreeks uit de S3-opslag (S3Source). Bij goedkeuring van een jottem maakt een worker een pyramidal TIFF of JPEG2000 als afgeleide, wat tiling zonder zware rekenlast mogelijk maakt. Varnish (of nginx proxy_cache) staat ervoor en cachet tiles en info.json agressief; gepubliceerde beelden zijn immutable, dus lange TTL's zijn veilig. Zo blijft de image server ook bij piekverkeer (bijv. na een oproep in lokale media) responsief.
+
+### 3.5 Annotaties (miiify)
+
+miiify, de annotatieserver van The National Archives (UK) die ook in het designdocument wordt genoemd, implementeert het W3C Web Annotation Protocol en slaat annotaties versiebeheerd op (git-gebaseerde backend), wat goed past bij de wens om herinneringen, aanvullingen en correcties herleidbaar te houden. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar miiify; de API voegt daarbij de geauthenticeerde gebruiker als creator toe en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). Lezen kan publiek en standaardconform via `anno.iotm.nl`, zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
+
+### 3.6 RDF-publicatie en datasetbeschrijvingen (Fuseki)
+
+Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naar RDF conform het schema.org-profiel van NDE (schema.org AP NDE) en deze upsert in Apache Jena Fuseki op `data.iotm.nl`. Daarmee ontstaat:
+
+- een resolvebare RDF-representatie per jottem (JSON-LD, Turtle, RDF/XML via content negotiation);
+- een SPARQL-endpoint per organisatie (aparte named graphs);
+- periodieke datadumps (N-Triples/Turtle, gzip) als distributie;
+- per organisatie een datasetbeschrijving als `schema:Dataset` conform de NDE-requirements voor datasets, met de dump en het SPARQL-endpoint als `schema:distribution`, aangemeld bij het NDE Datasetregister.
+
+De mapping zelf kan in applicatiecode (rdflib) of declaratief met RML/CARML; voor een overzichtelijk model als dit is applicatiecode het eenvoudigst te onderhouden.
+
+### 3.7 ARK-resolving
+
+Bij goedkeuring mint de backend een objectnaam (NOID via pynoid, of UUID) onder de NAAN en shoulder van de organisatie en registreert deze in de resolver op `ark.iotm.nl`. Arklet van het Internet Archive is hiervoor een lichtgewicht, S3- en Postgres-vriendelijke keuze; een eigen microservice van enkele tientallen regels is een reeel alternatief omdat de resolvelogica beperkt is. De resolver ondersteunt content negotiation en ARK-conventies zoals `?info` voor metadata over het object zelf:
+
+![ARK-resolving met content negotiation](ark-resolving.svg)
+
+Belangrijk duurzaamheidsprincipe: de ARK-registry (koppeling ARK naar actuele locaties) staat in PostgreSQL en wordt meegenomen in de backup en in de metadata die naar het Internet Archive gaat, zodat resolving ook bij migratie van het platform herstelbaar blijft.
+
+### 3.8 Dataopslag, caching en mediaopslag
+
+PostgreSQL is de primaire bron van waarheid voor het volledige ERD plus de ARK-registry en de moderatiestatussen. Redis dient drie doelen: sessie-/API-cache, rate limiting en de taakwachtrij voor de workers. MinIO biedt S3-compatibele mediaopslag met gescheiden buckets: `originals` (niet publiek, alleen via API en workers), `derivatives` (pyramidal TIFF's voor Cantaloupe), `thumbs` (publiek, lange cache-headers) en `audio` voor audio-jottems zoals interviews uit de pilot Smaak van Gouda. Wie geen eigen opslag wil beheren, vervangt MinIO transparant door een externe S3-dienst; alle componenten spreken immers alleen het S3-protocol.
+
+Caching gebeurt op drie niveaus: Varnish voor IIIF-tiles en manifests, Redis voor API-responses (zoekresultaten, collections, statistieken) en HTTP-cache-headers plus ETags op alle publieke endpoints zodat ook harvesters efficient werken.
+
+### 3.9 Async workers en Internet Archive
+
+Een workerpool (Celery met Redis als broker) handelt alles af wat niet in de request-cyclus hoort: genereren van derivatives en thumbnails, EXIF-extractie, e-mailnotificaties (goedkeuring, afkeuring met reden, uitnodigingen), Elasticsearch-indexering, RDF-synchronisatie naar Fuseki, en de duurzame upload van goedgekeurde media plus metadata naar het Internet Archive via de `internetarchive` Python-client. De IA-itemidentifier wordt teruggeschreven in de database en opgenomen in de RDF (bijv. als `schema:archivedAt`).
+
+## 4. Deployment met Docker
+
+![Deploymentdiagram](deployment.svg)
+
+De stack draait met docker compose op een enkele host, met drie netwerken: `edge` (publiek via Traefik), `app` (interne servicecommunicatie) en `data` (datastores, niet publiek routeerbaar). Een indicatieve `docker-compose.yml`:
+
+```yaml
+services:
+  traefik:
+    image: traefik:v3
+    ports: ["80:80", "443:443"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_acme:/acme
+    networks: [edge]
+
+  frontend:
+    build: ./frontend
+    labels:
+      - "traefik.http.routers.www.rule=Host(`www.iotm.nl`)"
+    networks: [edge, app]
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://jottem@postgres/jottem
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+      OIDC_ISSUER: https://auth.iotm.nl/realms/jottem
+      ES_URL: http://elasticsearch:9200
+    labels:
+      - "traefik.http.routers.api.rule=Host(`api.iotm.nl`)"
+    networks: [edge, app, data]
+
+  worker:
+    build: ./api
+    command: celery -A jottem worker
+    deploy: { replicas: 2 }
+    networks: [app, data]
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    command: start
+    labels:
+      - "traefik.http.routers.auth.rule=Host(`auth.iotm.nl`)"
+    networks: [edge, data]
+
+  cantaloupe:
+    image: uclalibrary/cantaloupe:latest
+    environment:
+      SOURCE_STATIC: S3Source
+    networks: [app, data]
+
+  varnish:
+    image: varnish:stable
+    labels:
+      - "traefik.http.routers.iiif.rule=Host(`iiif.iotm.nl`)"
+    networks: [edge, app]
+
+  miiify:
+    image: nationalarchives/miiify:latest
+    labels:
+      - "traefik.http.routers.anno.rule=Host(`anno.iotm.nl`)"
+    volumes: [miiify_data:/data]
+    networks: [edge, app]
+
+  ark:
+    image: internetarchive/arklet:latest
+    labels:
+      - "traefik.http.routers.ark.rule=Host(`ark.iotm.nl`)"
+    networks: [edge, data]
+
+  fuseki:
+    image: stain/jena-fuseki:latest
+    labels:
+      - "traefik.http.routers.data.rule=Host(`data.iotm.nl`)"
+    volumes: [fuseki_tdb2:/fuseki]
+    networks: [edge, app]
+
+  postgres:
+    image: postgres:16
+    volumes: [pg_data:/var/lib/postgresql/data]
+    networks: [data]
+
+  redis:
+    image: redis:7
+    networks: [data]
+
+  elasticsearch:
+    image: elasticsearch:8.14.0
+    environment: { discovery.type: single-node }
+    volumes: [es_data:/usr/share/elasticsearch/data]
+    networks: [data]
+
+  minio:
+    image: minio/minio:latest
+    command: server /data
+    volumes: [minio_data:/data]
+    networks: [data]
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes: [prometheus_data:/prometheus]
+    networks: [app, data]
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    networks: [app]
+
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"   # SSO via Keycloak
+    labels:
+      - "traefik.http.routers.status.rule=Host(`status.iotm.nl`)"
+    volumes: [grafana_data:/var/lib/grafana]
+    networks: [edge, app]
+
+  loki:
+    image: grafana/loki:latest
+    volumes: [loki_data:/loki]
+    networks: [app]
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    networks: [app]
+
+  blackbox:
+    image: prom/blackbox-exporter:latest   # uptime/TLS/inhoud van publieke endpoints
+    networks: [app, edge]
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    volumes: [/:/rootfs:ro, /var/run:/var/run:ro, /sys:/sys:ro]
+    networks: [app]
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    networks: [app]
+
+volumes:
+  traefik_acme: {}
+  pg_data: {}
+  es_data: {}
+  minio_data: {}
+  fuseki_tdb2: {}
+  miiify_data: {}
+  prometheus_data: {}
+  grafana_data: {}
+  loki_data: {}
+
+networks:
+  edge: {}
+  app: { internal: true }
+  data: { internal: true }
+```
+
+Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor monitoring, logging en alerting (met exporters per datastore en een blackbox-exporter voor de publieke endpoints), pgBackRest voor database-backups en restic voor nachtelijke offsite backups van alle volumes naar een tweede S3-locatie. Samen met de Internet Archive-kopie van gepubliceerd materiaal ontstaat zo een dubbele duurzaamheidslaag. De inrichting van testen en monitoring is uitgewerkt in paragraaf 5.
+
+## 5. Doorsnijdende aspecten
+
+**Privacy en auteursrecht.** Persoonsgegevens staan uitsluitend in PostgreSQL en Keycloak; verwijderingsverzoeken worden ondersteund doordat originelen alleen via de API bereikbaar zijn en gepubliceerde jottems een depubliceer-workflow kennen (verwijderen uit index, cache-purge in Varnish, tombstone op de ARK). Toestemming voor herkenbare personen en het onderscheid herinnering versus verifieerbaar feit zijn metadatavelden in de moderatieworkflow, geen infrastructuurcomponent.
+
+**Multi-tenancy.** Organisatiejottems delen dezelfde stack; scheiding gebeurt via organisatie-id in de database, named graphs in Fuseki, prefixen in S3 en Elasticsearch, groepen in Keycloak en shoulders binnen de ARK NAAN. Huisstijl (logo, kleurenpalet, favicon) is configuratie in de database die de frontend per organisatie-slug toepast.
+
+**Geautomatiseerd testen.** Het testen volgt de testpiramide en draait volledig in CI (GitHub Actions of Forgejo Actions), met een gate op elke pull request en een nachtelijke volledige run:
+
+- *Unit- en integratietests* op de maatwerkcomponenten: pytest (met httpx/testcontainers voor Postgres, Redis, MinIO en Elasticsearch) voor de backend-API en workers, Vitest/Jest plus Testing Library voor de frontend. Doelstelling is dekking op de bedrijfslogica (moderatieworkflow, autorisatie op objectniveau, ARK-minting, RDF-mapping), niet op boilerplate.
+- *Contracttests op de publieke standaarden*, zodat "standaarden aan de buitenkant" ook aantoonbaar blijft: de IIIF Presentation- en Image API-validators, de W3C Web Annotation Protocol-testsuite tegen `anno.iotm.nl`, SHACL-validatie van de gegenereerde RDF tegen het schema.org AP NDE-profiel, smoke-queries op het SPARQL-endpoint en schemavalidatie van de RSS- en ActivityStreams-feeds. Deze tests bewaken dat harvesters (o.a. NDE) zonder maatwerk blijven aansluiten.
+- *End-to-end tests* met Playwright over de docker-compose-stack, die de kritieke ketens doorlopen: registratie/inlog via Keycloak → upload via presigned URL → moderatie → publicatie → ARK-resolving met content negotiation → IIIF-manifest en tiles → annotatie → verschijnen in zoekindex, RDF en Change Discovery-feed. Dezelfde suite draait als synthetische monitoring in productie (zie hieronder).
+- *Third-party open-source componenten* (Keycloak, Cantaloupe, miiify, Fuseki, Arklet) testen we niet zelf op unitniveau, maar dekken we af met health-/smoke-tests, versie-pinning en gecontroleerde updates via Renovate/Dependabot; de contract- en e2e-suite fungeert als regressienet bij elke image-update. Security scanning (Trivy op images, dependency-audit) hangt aan dezelfde pipeline.
+
+**Monitoring en observability.** De observability-stack (Prometheus, Grafana, Loki, Alertmanager) uit paragraaf 4 wordt als volgt ingericht:
+
+- *Metrics.* De maatwerkcomponenten exposen Prometheus-metrics via de OpenTelemetry/Prometheus-client (request-latency en foutratio per endpoint, Celery-queuediepte en taakduur/faalratio, upload- en derivative-doorlooptijd). Voor de overige componenten leveren exporters de systeem- en dienststatistieken: node_exporter en cAdvisor (host en containers), postgres_exporter, redis_exporter, elasticsearch_exporter en de metrics-endpoints van Traefik, Cantaloupe/Varnish en Keycloak.
+- *Uptime en synthetische checks.* Een blackbox-exporter controleert elk publiek subdomein op bereikbaarheid, TLS-geldigheid en inhoudelijke correctheid (bijv. een valide `info.json`, een resolvebare ARK en een lopend SPARQL-endpoint). De kritieke e2e-flow draait periodiek als synthetische test, zodat een gebroken keten opvalt vóór een gebruiker het meldt. Uptime Kuma is een lichtgewicht alternatief voor een los statuspagina/uptime-dashboard.
+- *Logging en tracing.* Promtail verzamelt container- en Traefik-accesslogs naar Loki; een doorlopend request-id (gezet in Traefik, doorgegeven aan API en workers) maakt correlatie tussen logs, metrics en traces mogelijk. Distributed tracing is optioneel via OpenTelemetry naar Tempo of Jaeger, nuttig voor het volgen van een upload door API, workers en Cantaloupe.
+- *Alerting.* Alertmanager stuurt meldingen (e-mail/Slack) op vooraf gedefinieerde SLO's en foutcondities: endpoint down of trage respons, verhoogde 5xx-ratio, oplopende worker-backlog, volraken van disk of S3, gefaalde nachtelijke backups en naderende TLS- of ARK-NAAN-verloop. Grafana-dashboards per component en per organisatiejottem geven beheerders en moderatoren inzicht, aansluitend op de statistieken die de backend-API al levert.
+- *Deployment.* De monitoringcomponenten draaien als eigen services in de compose-stack op het `app`- en `data`-netwerk; alleen Grafana wordt via Traefik ontsloten (bijv. `status.iotm.nl`) achter Keycloak-authenticatie, de overige endpoints blijven intern.
+
+**Schaalpad.** De eerste jaren volstaat een enkele VPS (8 vCPU, 16-32 GB RAM). Groeit het platform, dan schalen frontend, API, workers en Cantaloupe horizontaal het eenvoudigst; PostgreSQL en Elasticsearch verhuizen dan naar managed diensten of eigen nodes. Omdat alle koppelingen via standaardprotocollen lopen (HTTP, S3, OIDC, SPARQL) is die migratie een deployment-vraagstuk, geen architectuurwijziging.
+
+## 6. Samenvatting
+
+| Requirement uit het designdocument | Invulling |
+|---|---|
+| Laagdrempelig inloggen incl. social login | Keycloak met identity brokering |
+| 2FA voor beheerders | Keycloak TOTP required action per rol |
+| Duurzame ARK-links met NOID/UUID | Arklet + pynoid, registry in PostgreSQL |
+| HTML- en RDF-weergave via content negotiation | ARK-resolver met 303-redirects naar frontend resp. Fuseki |
+| IIIF Image API (info.json) | Cantaloupe + Varnish op iiif.iotm.nl |
+| IIIF Presentation API (manifest/collection) | Backend-API met iiif-prezi3 |
+| IIIF Change Discovery | ActivityStreams-feed in backend-API |
+| W3C Web Annotations / Annotation Protocol | miiify op anno.iotm.nl |
+| Elasticsearch-zoekfunctie | Elasticsearch, geindexeerd door workers |
+| RSS per organisatie | Backend-API |
+| schema.org AP NDE + datasetbeschrijvingen | Fuseki op data.iotm.nl + NDE Datasetregister |
+| Internet Archive integratie | Workerpool met internetarchive-client |
+| Mediaopslag (S3) | MinIO of externe S3-dienst |
+| Geo-annotaties (WKT/GeoJSON) | Annotorious + MapLibre, opslag in miiify/metadata |
+| Geautomatiseerd testen | CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright |
+| Monitoring, logging en alerting | Prometheus + exporters, Grafana, Loki/Promtail, Alertmanager, blackbox-/synthetische checks |
+| Subdomeinen | Traefik-routing: www, api, iiif, ark, anno, auth, data, status |

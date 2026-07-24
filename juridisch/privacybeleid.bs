@@ -1,0 +1,126 @@
+<pre class='metadata'>
+Title: Privacybeleid Jottem
+Shortname: privacybeleid
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Privacybeleid van Jottem: welke persoonsgegevens worden verwerkt, waarom, en welke rechten betrokkenen hebben, conform de AVG. Concept, nog niet juridisch gecontroleerd.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
+# Privacybeleid Jottem
+
+*Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!*
+
+Jottem is een platform waar mensen samen lokaal erfgoed verzamelen en delen. Daarbij verwerken wij persoonsgegevens: van jou als gebruiker, maar soms ook van mensen die op oude foto's staan. In dit privacybeleid leggen we in gewone taal uit welke gegevens we verwerken, waarom we dat doen en welke rechten jij hebt. We houden ons daarbij aan de Algemene verordening gegevensbescherming (AVG).
+
+## 1. Wie is verantwoordelijk?
+
+Op Jottem werken twee soorten partijen samen. Daarom is de verantwoordelijkheid verdeeld:
+
+- **De Platformbeheerder** ([naam rechtspersoon invullen], [adres], [e-mailadres]) is verantwoordelijk voor jouw **accountgegevens** en voor **platformbrede statistieken**.
+- **De Organisatie** waarbij jij meedoet (bijvoorbeeld een historische vereniging of archief) is verantwoordelijk voor de **persoonsgegevens in de bijdragen** binnen haar eigen omgeving: de foto's, metadata en annotaties. De contactgegevens van jouw Organisatie vind je op haar organisatiepagina.
+
+Heb je een vraag en weet je niet bij wie je moet zijn? Stuur hem gewoon naar ons via [e-mailadres]. Wij zorgen dat je vraag op de juiste plek terechtkomt.
+
+## 2. Welke gegevens verwerken we, en waarom?
+
+### 2.1 Als je een account hebt
+
+| Gegevens | Waarvoor | Grondslag (AVG) |
+|---|---|---|
+| Naam, e-mailadres, wachtwoord (versleuteld), eventueel profielfoto | Je account laten werken, contact met je opnemen over je bijdragen | Uitvoering van de overeenkomst (artikel 6 lid 1b) |
+| Inloggegevens via social login (alleen naam en e-mailadres) | Makkelijk en veilig inloggen | Uitvoering van de overeenkomst |
+| Rol (gebruiker, moderator, beheerder) en organisatie | De juiste rechten geven | Uitvoering van de overeenkomst |
+| Logingegevens en tijdstippen | Beveiliging en misbruik voorkomen | Gerechtvaardigd belang (artikel 6 lid 1f): een veilig platform |
+| Je privacy-instellingen (zoals: favorieten openbaar of niet) | Jouw keuzes respecteren | Uitvoering van de overeenkomst |
+
+### 2.2 Als je bijdragen plaatst
+
+| Gegevens | Waarvoor | Grondslag |
+|---|---|---|
+| Je naam bij je bijdragen (bronvermelding) | Laten zien wie iets heeft bijgedragen | Uitvoering van de overeenkomst; je kunt in je privacy-instellingen kiezen hoe je naam wordt getoond |
+| De inhoud van je bijdragen (foto's, metadata, herinneringen, annotaties) | Het erfgoed verzamelen, tonen en duurzaam bewaren | Uitvoering van de overeenkomst en gerechtvaardigd belang: erfgoed toegankelijk maken (voor de Organisatie als verantwoordelijke) |
+
+### 2.3 Als je op materiaal voorkomt (ook zonder account)
+
+Op foto's en in verhalen kunnen mensen voorkomen: herkenbaar in beeld, of genoemd bij naam. Daarvoor geldt:
+
+- **Recente foto's van herkenbare, levende personen** publiceren we alleen met **toestemming** van die personen (artikel 6 lid 1a AVG). De uploader regelt die toestemming en de moderator controleert dit vóór publicatie.
+- **Historisch materiaal** met personen die zijn overleden valt niet onder de AVG, maar we gaan er wel respectvol mee om.
+- Bij twijfel publiceren we niet, of maken we de persoon onherkenbaar.
+- Sta je zelf op materiaal en wil je dat niet? Dien dan een verwijderingsverzoek in via het Meldpunt. Dat kan ook zonder account. Zie punt 7.
+
+### 2.4 Als je het platform alleen bezoekt
+
+- Wij gebruiken alleen functionele cookies die nodig zijn om de website te laten werken. Daarvoor is geen toestemming nodig.
+- Gebruiken we ooit analytische cookies, dan doen we dat privacyvriendelijk (zonder jou persoonlijk te volgen) of vragen we eerst je toestemming.
+- Wij tonen geen advertenties en verkopen nooit gegevens.
+
+## 3. Met wie delen we gegevens?
+
+Wij delen gegevens alleen als dat nodig is voor het platform:
+
+- **De Organisatie** waarbij je meedoet: zij ziet jouw bijdragen en beoordeelt ze.
+- **Onze hostingpartij** [naam invullen]: zij verzorgt de servers, binnen de EER.
+- **Het Internet Archive**: goedgekeurde jottems slaan we daar duurzaam op. Het Internet Archive zit in de Verenigde Staten. Dat is een doorgifte buiten de EER; die gebeurt op basis van [passende waarborg invullen, bijv. standaardcontractbepalingen] en alleen voor materiaal dat bedoeld is voor publicatie.
+- **API-gebruikers**: gepubliceerde jottems, metadata en annotaties zijn als open data beschikbaar. Wie die gegevens ophaalt en verder gebruikt, wordt daarvoor zelf verantwoordelijk en moet zich ook aan de AVG houden.
+
+Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
+
+## 4. Hoe lang bewaren we gegevens?
+
+| Gegevens | Bewaartermijn |
+|---|---|
+| Accountgegevens | Zolang je account bestaat, daarna [6 maanden] |
+| Niet-gepubliceerde of afgekeurde bijdragen | [12 maanden] na afkeuring, daarna verwijderd |
+| Gepubliceerde jottems | Blijvend: het platform is bedoeld voor duurzaam erfgoed. Verwijdering kan via het Meldpunt |
+| Logbestanden | [6 maanden] |
+| Meldingen via het Meldpunt | [2 jaar], om de afhandeling te kunnen aantonen |
+
+## 5. Hoe beveiligen we jouw gegevens?
+
+- Versleutelde verbindingen (https) voor al het verkeer.
+- Wachtwoorden slaan we versleuteld op; beheerders en moderators gebruiken tweefactorauthenticatie (2FA).
+- Alleen mensen die het voor hun taak nodig hebben, kunnen bij gegevens.
+- We maken dagelijks back-ups.
+- Gaat er toch iets mis met persoonsgegevens (een datalek)? Dan melden we dat waar nodig aan de Autoriteit Persoonsgegevens en aan jou, zoals de AVG voorschrijft (artikel 33 en 34).
+
+## 6. Jouw rechten
+
+Je hebt op grond van de AVG deze rechten:
+
+- **Inzage**: opvragen welke gegevens we van jou hebben (artikel 15).
+- **Correctie**: onjuiste gegevens laten verbeteren (artikel 16).
+- **Verwijdering**: je gegevens laten wissen (artikel 17), bijvoorbeeld je account of materiaal waarop je herkenbaar bent.
+- **Beperking en bezwaar**: de verwerking laten beperken of bezwaar maken (artikel 18 en 21).
+- **Overdraagbaarheid**: je eigen bijdragen en gegevens meekrijgen in een gangbaar formaat (artikel 20).
+- **Toestemming intrekken**: heb je toestemming gegeven (bijvoorbeeld voor een foto waarop je herkenbaar bent), dan mag je die altijd intrekken. Intrekken geldt voor de toekomst.
+
+Een verzoek doen is simpel: mail naar [e-mailadres] of gebruik het Meldpunt op de website. We reageren binnen één maand (artikel 12 AVG). We kunnen je vragen om aan te tonen dat jij het echt bent, zodat we geen gegevens aan de verkeerde geven.
+
+**Belangrijk om te weten bij verwijdering van gepubliceerd erfgoed**: gepubliceerde jottems staan ook bij externe bewaarplaatsen en kunnen door anderen zijn overgenomen via de open API's. Wij verwijderen het materiaal van het platform, sturen een verwijderverzoek naar de externe bewaarplaats en geven de wijziging door via onze API-signalen. Volledige verwijdering overal op internet kunnen we niet garanderen, maar we doen wat redelijkerwijs kan.
+
+## 7. Het Meldpunt
+
+Zie je materiaal waarop je herkenbaar bent, materiaal van jou, of gegevens over jou die niet kloppen of er niet horen te staan? Meld het via het Meldpunt op de website. Dat kan met en zonder account. We nemen elke melding serieus, beoordelen die samen met de betrokken Organisatie en laten je weten wat we hebben besloten.
+
+## 8. Kinderen
+
+Ben je jonger dan 16 jaar? Dan mag je alleen een account aanmaken met toestemming van je ouder of verzorger (artikel 8 AVG). Merken wij dat een account zonder die toestemming is aangemaakt, dan verwijderen we het.
+
+## 9. Wijzigingen van dit beleid
+
+Soms passen we dit privacybeleid aan, bijvoorbeeld bij nieuwe functies. Belangrijke wijzigingen kondigen we aan op het platform en, als je een account hebt, per e-mail. Bovenaan zie je altijd de versie en datum.
+
+## 10. Vragen of klachten?
+
+- Vragen over privacy? Mail naar [e-mailadres] of neem contact op met jouw Organisatie.
+- Ben je niet tevreden over hoe we met jouw gegevens omgaan? We horen het graag en lossen het het liefst samen op.
+- Je hebt daarnaast altijd het recht om een klacht in te dienen bij de **Autoriteit Persoonsgegevens** (autoriteitpersoonsgegevens.nl).
+
+*Jottem is er om herinneringen te bewaren, niet om jou te volgen. Zo houden we het.*

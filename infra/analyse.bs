@@ -1,11 +1,25 @@
+<pre class='metadata'>
+Title: Infrastructuurkeuze voor Jottem: analyse van vier richtingen
+Shortname: analyse
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Werkdocument voor de IOTM-projectgroep als basis voor een keuze over de infrastructuurrichting van het Jottem-platform. Het kan op elk moment veranderen.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
 *Werkdocument, juni 2026. Bedoeld voor de IOTM-projectgroep als basis voor een keuze over de infrastructuurrichting van het Jottem-platform. Het kan op elk moment veranderen.*
 
 # Waarom dit document
 
 Jottem moet ergens draaien en, belangrijker nog, ergens duurzaam bewaard blijven. Dit document zet vier infrastructuurrichtingen naast elkaar, zodat de projectgroep een onderbouwde keuze kan maken:
 
-1. **Wikimedia Commons / Wikidata** (uitgewerkt in [iotm-wiki.md](iotm-wiki.md))
-2. **Internet Archive (Europe)** (uitgewerkt in [iotm-iae.md](iotm-iae.md))
+1. **Wikimedia Commons / Wikidata** (uitgewerkt in [wiki.html](wiki.html))
+2. **Internet Archive (Europe)** (uitgewerkt in [internet-archive.html](internet-archive.html))
 3. **Archiefinstellingen** (e-Depot, bijvoorbeeld via Streekarchief Midden-Holland)
 4. **Alles op de Jottem-server** (volledig in eigen beheer)
 
@@ -29,7 +43,7 @@ Een richting kan sterk zijn op de ene laag en zwak op de andere. Dat is de belan
 
 # Richting 1: Wikimedia Commons / Wikidata
 
-Volledige uitwerking: [iotm-wiki.md](iotm-wiki.md).
+Volledige uitwerking: [wiki.html](wiki.html).
 
 Wikimedia Commons is de mediabank van de Wikimedia-beweging (vrij gelicentieerde bestanden, wereldwijd hergebruikt); Wikidata is de gekoppelde kennisbank. Sinds Structured Data on Commons (SDC) dragen bestanden machineleesbare statements, met als kernrelatie `depicts` (P180) naar Wikidata-items.
 
@@ -45,7 +59,7 @@ Wikimedia Commons is de mediabank van de Wikimedia-beweging (vrij gelicentieerde
 
 # Richting 2: Internet Archive (Europe)
 
-Volledige uitwerking: [iotm-iae.md](iotm-iae.md).
+Volledige uitwerking: [internet-archive.html](internet-archive.html).
 
 Het Internet Archive is een non-profit digitale bibliotheek met duurzame, redundante opslag, een officiële IIIF 3.0-dienst en automatische afgeleiden (thumbnails, OCR). Internet Archive Europe (IAE) is de Amsterdamse, ANBI-geregistreerde Europese entiteit, sterk verbonden met de Nederlandse erfgoedsector en sinds 2026 deels op Europese infrastructuur (Eurosky).
 
@@ -133,8 +147,8 @@ Het advies dat uit deze analyse volgt, is om de eigen Jottem-server niet als ein
 
 # Bronnen
 
-- [iotm-wiki.md](iotm-wiki.md) - uitwerking Wikimedia Commons / Wikidata
-- [iotm-iae.md](iotm-iae.md) - uitwerking Internet Archive (Europe)
+- [wiki.html](wiki.html) - uitwerking Wikimedia Commons / Wikidata
+- [internet-archive.html](internet-archive.html) - uitwerking Internet Archive (Europe)
 - [Wat is een e-Depot? - Nationaal Archief](https://www.nationaalarchief.nl/archiveren/kennisbank/wat-is-een-e-depot)
 - [e-depot - Groninger Archieven](https://www.groningerarchieven.nl/over-ons/diensten/e-depot)
 - [E-Depot - NORA Online](https://www.noraonline.nl/wiki/E-Depot)

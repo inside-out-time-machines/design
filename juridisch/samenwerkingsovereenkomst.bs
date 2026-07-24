@@ -1,0 +1,129 @@
+<pre class='metadata'>
+Title: Samenwerkingsovereenkomst Jottem
+Shortname: samenwerkingsovereenkomst
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Samenwerkingsovereenkomst tussen de Platformbeheerder en een deelnemende Organisatie op het Jottem-platform. Concept, nog niet juridisch gecontroleerd.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
+# Samenwerkingsovereenkomst Jottem
+
+*Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!*
+
+## Wie sluiten deze overeenkomst?
+
+1. **[Naam rechtspersoon platformbeheerder invullen]**, gevestigd te [plaats], hierna: **de Platformbeheerder** ("wij"),
+
+en
+
+2. **[Naam organisatie invullen]**, gevestigd te [plaats], hierna: **de Organisatie** ("jullie").
+
+Samen noemen we ons "partijen".
+
+## Waarom deze overeenkomst?
+
+De Organisatie wil samen met haar gemeenschap lokaal erfgoed verzamelen, verrijken en bewaren. De Platformbeheerder biedt daarvoor het Jottem platform aan. In deze overeenkomst spreken we af hoe we samenwerken, wie wat doet en hoe we zorgvuldig omgaan met bijdragen en persoonsgegevens.
+
+De begrippen in deze overeenkomst hebben dezelfde betekenis als in de Algemene voorwaarden Jottem. Die voorwaarden horen bij deze overeenkomst. Bij verschil tussen beide documenten gaat deze overeenkomst voor.
+
+## Artikel 1. Wat krijgt de Organisatie?
+
+1. Een eigen omgeving op het platform (organisatiejottem) met eigen naam, logo, kleuren en webadres (slug).
+2. Toegang voor organisatiebeheerders en moderators, beveiligd met tweefactorauthenticatie (2FA).
+3. Een moderatieomgeving om bijdragen te beoordelen vóór publicatie.
+4. Duurzame links (ARK) voor goedgekeurde jottems en duurzame opslag bij externe bewaarplaatsen (zoals het Internet Archive).
+5. De mogelijkheid om bestaande collecties te importeren (via IIIF).
+6. Open API's waarmee anderen de gepubliceerde gegevens kunnen hergebruiken.
+7. Statistieken over het gebruik van de eigen organisatiejottem.
+
+## Artikel 2. Wat doet de Platformbeheerder?
+
+1. Wij houden het platform beschikbaar, veilig en actueel. Wij streven naar een beschikbaarheid van [bijv. 99%] per jaar, gemeten over het hele jaar. Gepland onderhoud kondigen wij vooraf aan.
+2. Wij maken dagelijks back-ups en bewaren die [aantal] dagen.
+3. Wij beheren het centrale Meldpunt (notice-and-takedown) en betrekken de Organisatie bij meldingen over haar organisatiejottem.
+4. Wij ondersteunen de Organisatie bij vragen via [e-mailadres/kanaal invullen]. Wij reageren binnen [aantal] werkdagen.
+5. Wij trainen bij de start de organisatiebeheerders en moderators in het gebruik van het platform.
+
+## Artikel 3. Wat doet de Organisatie?
+
+1. Jullie wijzen minimaal één organisatiebeheerder aan en zorgen voor voldoende moderators.
+2. Jullie zorgen dat moderators weten hoe ze bijdragen beoordelen: op kwaliteit, privacy en portretrecht, auteursrecht en het onderscheid tussen herinnering en feit. Wij leveren daarvoor een handreiking aan.
+3. Jullie beoordelen ingezonden bijdragen binnen een redelijke termijn, als richtlijn binnen [aantal] weken.
+4. Jullie importeren alleen collecties waarvoor jullie de rechten hebben of toestemming hebben gekregen.
+5. Jullie zijn het eerste aanspreekpunt voor jullie eigen gemeenschap: uploaders, annoteerders en bezoekers met vragen over de organisatiejottem.
+6. Jullie handelen verzoeken van betrokkenen af (zoals verwijderverzoeken) die jullie organisatiejottem betreffen, samen met ons waar nodig.
+
+## Artikel 4. Rolverdeling en verantwoordelijkheid
+
+1. De Platformbeheerder levert de techniek en is een hostingdienst in de zin van artikel 6 van de Digitaledienstenverordening (DSA). Wij bepalen niet welke bijdragen worden gepubliceerd.
+2. De Organisatie beslist over publicatie (via haar moderators) en draagt de verantwoordelijkheid voor die publicatiebesluiten.
+3. Uploaders en annoteerders blijven zelf verantwoordelijk voor de rechtmatigheid van hun eigen bijdragen, zoals beschreven in de Algemene voorwaarden.
+4. Krijgt een partij een claim van een derde door een fout van de andere partij? Dan vrijwaart de partij die de fout maakte de andere partij voor die claim.
+5. De aansprakelijkheid van partijen tegenover elkaar is beperkt tot directe schade en tot een maximum van [bedrag] per gebeurtenis, behalve bij opzet of bewuste roekeloosheid.
+
+## Artikel 5. Persoonsgegevens: afspraken volgens de AVG
+
+Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
+
+1. **Rolverdeling.**
+    - De Organisatie is **verwerkingsverantwoordelijke** voor de persoonsgegevens in de bijdragen binnen haar organisatiejottem (zoals namen van personen op foto's en in metadata en annotaties).
+    - De Platformbeheerder is voor die gegevens **verwerker**: wij verwerken ze alleen in opdracht van de Organisatie, om het platform te laten werken.
+    - Voor accountgegevens en platformbrede statistieken is de Platformbeheerder zelf verwerkingsverantwoordelijke. Dat staat in het Privacybeleid Jottem.
+2. **Wat verwerken wij voor jullie?** Bijdragen (afbeeldingen, metadata, annotaties) met daarin mogelijk: namen, afbeeldingen van personen, locaties, herinneringen en contactgegevens van inzenders. Betrokkenen zijn: uploaders, annoteerders en personen die op materiaal voorkomen.
+3. **Onze plichten als verwerker.** Wij:
+    - verwerken de gegevens alleen voor het doel van het platform en volgens jullie schriftelijke instructies;
+    - zorgen voor passende beveiliging (artikel 32 AVG), zoals versleutelde verbindingen, toegangsbeheer en 2FA voor beheerders;
+    - laten alleen mensen bij de gegevens die dat voor hun werk nodig hebben en die tot geheimhouding verplicht zijn;
+    - helpen jullie bij verzoeken van betrokkenen en bij datalekmeldingen;
+    - melden een datalek zo snel mogelijk, uiterlijk binnen 48 uur na ontdekking, aan jullie;
+    - verlenen medewerking aan controles (audits) die jullie redelijkerwijs nodig vinden.
+4. **Subverwerkers.** Wij gebruiken de volgende subverwerkers: [hostingpartij invullen] en het Internet Archive (voor duurzame opslag). Het Internet Archive is gevestigd in de Verenigde Staten; opslag daar betekent doorgifte buiten de EER. Deze doorgifte gebeurt op basis van [passende waarborg invullen, bijv. standaardcontractbepalingen] en alleen voor goedgekeurde, voor publicatie bestemde jottems. Nieuwe subverwerkers melden wij vooraf; jullie kunnen daartegen gemotiveerd bezwaar maken.
+5. **Na afloop.** Eindigt de overeenkomst? Dan geven wij de gegevens van jullie organisatiejottem terug of verwijderen wij ze, naar jullie keuze. Zie ook artikel 8 over wat er met gepubliceerd erfgoed gebeurt.
+
+## Artikel 6. Auteursrecht en licenties
+
+1. Het auteursrecht op bijdragen blijft bij de inzenders. De Organisatie en de Platformbeheerder krijgen de licentie zoals beschreven in de Algemene voorwaarden.
+2. De software van het platform is en blijft van de Platformbeheerder of van de open source gemeenschap. De Organisatie krijgt een gebruiksrecht voor de duur van deze overeenkomst.
+3. De huisstijl (naam, logo) van de Organisatie blijft van de Organisatie. Wij gebruiken die alleen voor de organisatiejottem en, na overleg, voor communicatie over het platform.
+
+## Artikel 7. Kosten
+
+1. De Organisatie betaalt voor het gebruik van het platform: [bedrag/kostenmodel invullen, bijv. een jaarlijkse bijdrage van EUR X, of: geen vergoeding gedurende de projectperiode].
+2. Prijswijzigingen kondigen wij minimaal drie maanden van tevoren aan en gaan pas in bij een nieuw contractjaar.
+
+## Artikel 8. Duur, opzegging en einde
+
+1. Deze overeenkomst geldt vanaf [datum] voor een periode van [1 jaar] en wordt daarna steeds stilzwijgend verlengd met [1 jaar].
+2. Beide partijen kunnen opzeggen met een opzegtermijn van [3 maanden], per e-mail of brief.
+3. Een partij kan de overeenkomst direct beëindigen als de andere partij de afspraken ernstig schendt en dit na een schriftelijke waarschuwing niet binnen [30 dagen] herstelt.
+4. **Wat gebeurt er met het erfgoed na het einde?** Dat spreken we nu alvast af, want duurzaamheid is het hart van het platform:
+    - Goedgekeurde en gepubliceerde jottems blijven beschikbaar via hun duurzame links en bij de externe bewaarplaats, tenzij de Organisatie en de Platformbeheerder samen anders besluiten.
+    - De Organisatie ontvangt op verzoek een export van alle gegevens van haar organisatiejottem in open formaten (afbeeldingen plus metadata en annotaties in RDF/JSON).
+    - Accounts en niet-gepubliceerde bijdragen worden na [aantal] maanden verwijderd.
+
+## Artikel 9. Overleg en wijzigingen
+
+1. Partijen overleggen minimaal [tweemaal] per jaar over de samenwerking, wensen en verbeterpunten.
+2. Wijzigingen van deze overeenkomst spreken we schriftelijk af en ondertekenen we allebei.
+
+## Artikel 10. Toepasselijk recht
+
+1. Op deze overeenkomst is Nederlands recht van toepassing.
+2. Geschillen leggen we eerst in goed overleg aan elkaar voor. Komen we er niet uit, dan is de rechtbank [plaats invullen] bevoegd.
+
+---
+
+**Ondertekening**
+
+| | Platformbeheerder | Organisatie |
+|---|---|---|
+| Naam | | |
+| Functie | | |
+| Datum | | |
+| Handtekening | | |

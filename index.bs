@@ -52,3 +52,11 @@ path: api-beschrijving.md
 <pre class="include">
 path: infra.md
 </pre>
+
+<pre class="include">
+path: systeemarchitectuur.md
+</pre>
+
+<pre class="include">
+path: juridisch.md
+</pre>

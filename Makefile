@@ -1,10 +1,16 @@
+IMAGE := netwerkdigitaalerfgoed/bikeshed:5.3.2
+BS := $(wildcard *.bs infra/*.bs juridisch/*.bs systeemarchitectuur/*.bs)
+DOCKER := docker run --rm -v "`pwd`:/spec" -w /spec $(IMAGE)
+
 help:
-	@echo "Generate HTML from a Bikeshed source document:"
-	@echo "  make spec    Generate HTML"
-	@echo "  make watch   Generate HTML each time the source changes"
+	@echo "Genereer HTML uit de Bikeshed-brondocumenten:"
+	@echo "  make spec    Bouw alle documenten (root, infra/, juridisch/, systeemarchitectuur/)"
+	@echo "  make watch   Bouw index.html telkens als index.bs wijzigt"
 
 spec:
-	docker run --rm -v "`pwd`:/spec" -w /spec netwerkdigitaalerfgoed/bikeshed:5.3.2 bikeshed --no-update spec index.bs index.html
+	$(DOCKER) sh -c 'for f in $(BS); do echo "bikeshed: $$f"; bikeshed --no-update spec $$f $${f%.bs}.html; done'
 
 watch:
-	docker run --rm -v "`pwd`:/spec" -w /spec netwerkdigitaalerfgoed/bikeshed:5.3.2 sh -c "bikeshed --no-update watch index.bs index.html"
+	$(DOCKER) sh -c "bikeshed --no-update watch index.bs index.html"
+
+.PHONY: help spec watch

@@ -36,12 +36,17 @@ Je beoordeelt elke jottem op vier punten. Loop ze in deze volgorde langs; bij el
 
 **Beslishulp**
 
-| Situatie | Wat doe je? |
-|---|---|
-| Alles klopt | Door naar check 2 |
-| Kleine foutjes in metadata (typefout, verkeerd jaartal) | Goedkeuren kan; vraag de uploader om verbetering of noteer het als correctie |
-| Onbruikbaar beeld of metadata ontbreekt grotendeels | Afkeuren met vriendelijke uitleg en de vraag om aanvulling |
-| Past niet bij het doel van de organisatie | Afkeuren met uitleg; wijs eventueel op een passender plek |
+<table class="data">
+<thead>
+<tr><th>Situatie</th><th>Wat doe je?</th></tr>
+</thead>
+<tbody>
+<tr><td>Alles klopt</td><td>Door naar check 2</td></tr>
+<tr><td>Kleine foutjes in metadata (typefout, verkeerd jaartal)</td><td>Goedkeuren kan; vraag de uploader om verbetering of noteer het als correctie</td></tr>
+<tr><td>Onbruikbaar beeld of metadata ontbreekt grotendeels</td><td>Afkeuren met vriendelijke uitleg en de vraag om aanvulling</td></tr>
+<tr><td>Past niet bij het doel van de organisatie</td><td>Afkeuren met uitleg; wijs eventueel op een passender plek</td></tr>
+</tbody>
+</table>
 
 ## Check 2. Privacy en portretrecht: mogen deze mensen in beeld?
 
@@ -49,21 +54,31 @@ Dit is de belangrijkste check. Kernvraag: **staan er levende, herkenbare persone
 
 **Beslishulp voor beeldmateriaal**
 
-| Situatie | Wat doe je? |
-|---|---|
-| Oude foto, personen zijn (vrijwel zeker) overleden | Goedkeuren kan. De AVG geldt niet voor overledenen. Blijf wel respectvol: geen beschamende context |
-| Oude foto, personen leven mogelijk nog (vuistregel: foto jonger dan ± 70-80 jaar en personen waren toen jong) | Kijk naar de context. Gewoon straatbeeld of groepsfoto in een normale situatie: meestal goed. Herkenbaar persoon prominent in beeld: vraag de uploader of er toestemming is of dat de persoon bezwaar zou kunnen hebben |
-| **Recente foto** (grofweg jonger dan 25 jaar) met herkenbare personen | **Alleen goedkeuren als er toestemming is.** De uploader moet dit bij de inzending hebben aangegeven. Geen toestemming? Afkeuren en om toestemming vragen, of vragen om de personen onherkenbaar te maken |
-| Kinderen herkenbaar in beeld op recent materiaal | Extra streng: alleen met toestemming van ouders/verzorgers |
+<table class="data">
+<thead>
+<tr><th>Situatie</th><th>Wat doe je?</th></tr>
+</thead>
+<tbody>
+<tr><td>Oude foto, personen zijn (vrijwel zeker) overleden</td><td>Goedkeuren kan. De AVG geldt niet voor overledenen. Blijf wel respectvol: geen beschamende context</td></tr>
+<tr><td>Oude foto, personen leven mogelijk nog (vuistregel: foto jonger dan ± 70-80 jaar en personen waren toen jong)</td><td>Kijk naar de context. Gewoon straatbeeld of groepsfoto in een normale situatie: meestal goed. Herkenbaar persoon prominent in beeld: vraag de uploader of er toestemming is of dat de persoon bezwaar zou kunnen hebben</td></tr>
+<tr><td>**Recente foto** (grofweg jonger dan 25 jaar) met herkenbare personen</td><td>**Alleen goedkeuren als er toestemming is.** De uploader moet dit bij de inzending hebben aangegeven. Geen toestemming? Afkeuren en om toestemming vragen, of vragen om de personen onherkenbaar te maken</td></tr>
+<tr><td>Kinderen herkenbaar in beeld op recent materiaal</td><td>Extra streng: alleen met toestemming van ouders/verzorgers</td></tr>
+</tbody>
+</table>
 
 **Beslishulp voor teksten (metadata, herinneringen, annotaties)**
 
-| Situatie | Wat doe je? |
-|---|---|
-| Namen van overleden personen in historische context | Prima |
-| Naam van een levend persoon in neutrale, feitelijke context ("de zaak werd in 1985 overgenomen door J. Jansen") | Meestal goed, zeker bij ondernemers in hun zakelijke rol |
-| Gevoelige informatie over levende personen: gezondheid, schulden, relaties, geloof, strafbare feiten, roddel | **Niet publiceren.** Vraag de uploader het te verwijderen of pas het aan. Dit zijn bijzondere of gevoelige persoonsgegevens (AVG) |
-| Adres of contactgegevens van een levend persoon | Verwijderen, tenzij het het openbare zakelijke adres van een bedrijf is |
+<table class="data">
+<thead>
+<tr><th>Situatie</th><th>Wat doe je?</th></tr>
+</thead>
+<tbody>
+<tr><td>Namen van overleden personen in historische context</td><td>Prima</td></tr>
+<tr><td>Naam van een levend persoon in neutrale, feitelijke context ("de zaak werd in 1985 overgenomen door J. Jansen")</td><td>Meestal goed, zeker bij ondernemers in hun zakelijke rol</td></tr>
+<tr><td>Gevoelige informatie over levende personen: gezondheid, schulden, relaties, geloof, strafbare feiten, roddel</td><td>**Niet publiceren.** Vraag de uploader het te verwijderen of pas het aan. Dit zijn bijzondere of gevoelige persoonsgegevens (AVG)</td></tr>
+<tr><td>Adres of contactgegevens van een levend persoon</td><td>Verwijderen, tenzij het het openbare zakelijke adres van een bedrijf is</td></tr>
+</tbody>
+</table>
 
 ## Check 3. Auteursrecht: mag dit materiaal gepubliceerd worden?
 
@@ -73,15 +88,20 @@ De hoofdregel: auteursrecht duurt tot **70 jaar na het overlijden van de maker**
 
 **Beslishulp**
 
-| Situatie | Wat doe je? |
-|---|---|
-| Uploader heeft het zelf gemaakt (eigen foto) | Goedkeuren kan |
-| Familiefoto uit eigen album, amateurfotograaf uit de familie | Meestal goed: de uploader beslist als (erfgenaam van) de maker |
-| Zeer oud materiaal (vuistregel: ouder dan ± 120 jaar) | Vrijwel zeker publiek domein: goedkeuren kan |
-| **Professioneel gemaakt materiaal**: studioportret, persfoto, krantenartikel, ansichtkaart, reclamedrukwerk, menukaart met ontwerp | Let op! De rechten liggen bij de fotograaf, krant, ontwerper of uitgever, niet bij degene die het exemplaar bezit. Alleen goedkeuren als: de maker bekend is en 70+ jaar overleden, óf er toestemming van de rechthebbende is, óf je organisatie hierover een afspraak heeft (bijv. met het regionale krantenarchief) |
-| Krantenartikel van na ± 1950 | In principe afkeuren, tenzij toestemming. Alternatief: alleen een verwijzing (bron + datum) opnemen in plaats van de scan |
-| Van internet geplukt materiaal | Afkeuren, tenzij er een duidelijke vrije licentie bij zit (bijv. CC0, CC BY) |
-| Maker onbekend, leeftijd onduidelijk | Twijfelgeval: overleg. Weeg risico af: hoe waarschijnlijk is een rechthebbende die bezwaar maakt? Leg de afweging kort vast |
+<table class="data">
+<thead>
+<tr><th>Situatie</th><th>Wat doe je?</th></tr>
+</thead>
+<tbody>
+<tr><td>Uploader heeft het zelf gemaakt (eigen foto)</td><td>Goedkeuren kan</td></tr>
+<tr><td>Familiefoto uit eigen album, amateurfotograaf uit de familie</td><td>Meestal goed: de uploader beslist als (erfgenaam van) de maker</td></tr>
+<tr><td>Zeer oud materiaal (vuistregel: ouder dan ± 120 jaar)</td><td>Vrijwel zeker publiek domein: goedkeuren kan</td></tr>
+<tr><td>**Professioneel gemaakt materiaal**: studioportret, persfoto, krantenartikel, ansichtkaart, reclamedrukwerk, menukaart met ontwerp</td><td>Let op! De rechten liggen bij de fotograaf, krant, ontwerper of uitgever, niet bij degene die het exemplaar bezit. Alleen goedkeuren als: de maker bekend is en 70+ jaar overleden, óf er toestemming van de rechthebbende is, óf je organisatie hierover een afspraak heeft (bijv. met het regionale krantenarchief)</td></tr>
+<tr><td>Krantenartikel van na ± 1950</td><td>In principe afkeuren, tenzij toestemming. Alternatief: alleen een verwijzing (bron + datum) opnemen in plaats van de scan</td></tr>
+<tr><td>Van internet geplukt materiaal</td><td>Afkeuren, tenzij er een duidelijke vrije licentie bij zit (bijv. CC0, CC BY)</td></tr>
+<tr><td>Maker onbekend, leeftijd onduidelijk</td><td>Twijfelgeval: overleg. Weeg risico af: hoe waarschijnlijk is een rechthebbende die bezwaar maakt? Leg de afweging kort vast</td></tr>
+</tbody>
+</table>
 
 **Onthoud**: het bezitten van een foto of menukaart is iets anders dan het auteursrecht erop hebben. Oma's ansichtkaart is van oma, maar de rechten kunnen bij de drukkerij liggen.
 
@@ -91,13 +111,18 @@ Herinneringen zijn de ziel van het platform, maar het moet voor bezoekers duidel
 
 **Beslishulp**
 
-| Situatie | Wat doe je? |
-|---|---|
-| Herinnering is als herinnering gemarkeerd ("Ik weet nog dat...") | Prima, ook als de details misschien niet kloppen |
-| Feitelijke bewering met bron (jaartal uit een vergunning, adres uit een adresboek) | Prima |
-| Feitelijke bewering zonder bron, klinkt aannemelijk | Goedkeuren kan; een annoteerder kan later een bron toevoegen |
-| Herinnering geformuleerd als hard feit, terwijl het betwistbaar is | Vraag de uploader het als herinnering te markeren, of doe dat zelf in overleg |
-| Negatieve bewering over een persoon of familie, gebracht als feit ("hij heeft de zaak erdoorheen gejaagd") | Niet zomaar publiceren: combineer met check 2. Herformuleren, anonimiseren of weglaten |
+<table class="data">
+<thead>
+<tr><th>Situatie</th><th>Wat doe je?</th></tr>
+</thead>
+<tbody>
+<tr><td>Herinnering is als herinnering gemarkeerd ("Ik weet nog dat...")</td><td>Prima, ook als de details misschien niet kloppen</td></tr>
+<tr><td>Feitelijke bewering met bron (jaartal uit een vergunning, adres uit een adresboek)</td><td>Prima</td></tr>
+<tr><td>Feitelijke bewering zonder bron, klinkt aannemelijk</td><td>Goedkeuren kan; een annoteerder kan later een bron toevoegen</td></tr>
+<tr><td>Herinnering geformuleerd als hard feit, terwijl het betwistbaar is</td><td>Vraag de uploader het als herinnering te markeren, of doe dat zelf in overleg</td></tr>
+<tr><td>Negatieve bewering over een persoon of familie, gebracht als feit ("hij heeft de zaak erdoorheen gejaagd")</td><td>Niet zomaar publiceren: combineer met check 2. Herformuleren, anonimiseren of weglaten</td></tr>
+</tbody>
+</table>
 
 ---
 

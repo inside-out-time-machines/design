@@ -33,22 +33,27 @@ Het document bestaat uit twee delen:
 
 In deze voorwaarden bedoelen wij met:
 
-| Begrip | Betekenis |
-|---|---|
-| **Platform** | De online dienst Jottem, bereikbaar via de website en de bijbehorende API's, inclusief alle onderdelen daarvan. |
-| **Platformbeheerder** | [Naam rechtspersoon invullen], de partij die het Platform technisch beschikbaar stelt en beheert. In deze voorwaarden ook "wij" of "ons". |
-| **Organisatie** | Een vereniging, archiefinstelling, stichting of andere organisatie die op het Platform een eigen omgeving (organisatiejottem) heeft. |
-| **Organisatiejottem** | De eigen omgeving van een Organisatie op het Platform, met eigen naam, huisstijl en gebruikers. |
-| **Organisatiebeheerder** | De persoon die namens een Organisatie de Organisatiejottem beheert en moderators aanstelt. |
-| **Moderator** | De persoon die namens een Organisatie ingezonden materiaal beoordeelt voordat het openbaar wordt. |
-| **Gebruiker** | Iedereen met een account binnen een Organisatiejottem. |
-| **Uploader** | Een Gebruiker die materiaal (zoals foto's, menukaarten of documenten) naar het Platform stuurt. |
-| **Annoteerder** | Een Gebruiker die informatie toevoegt aan materiaal, zoals namen, plaatsen, herinneringen of correcties. |
-| **API-gebruiker** | Iedereen die via de technische koppelingen (API's) van het Platform gegevens ophaalt of doorzoekt. |
-| **Bezoeker** | Iedereen die het Platform bekijkt zonder in te loggen. |
-| **Jottem** | Een bijdrage op het Platform: een afbeelding of ander bestand, samen met de metadata en annotaties die erbij horen. |
-| **Bijdrage** | Alles wat een Gebruiker op het Platform plaatst: jottems, metadata, annotaties, reacties en herinneringen. |
-| **Meldpunt** | De plek op het Platform waar iedereen onrechtmatige of onjuiste inhoud kan melden (notice-and-takedown). |
+<table class="data">
+<thead>
+<tr><th>Begrip</th><th>Betekenis</th></tr>
+</thead>
+<tbody>
+<tr><td>**Platform**</td><td>De online dienst Jottem, bereikbaar via de website en de bijbehorende API's, inclusief alle onderdelen daarvan.</td></tr>
+<tr><td>**Platformbeheerder**</td><td>[Naam rechtspersoon invullen], de partij die het Platform technisch beschikbaar stelt en beheert. In deze voorwaarden ook "wij" of "ons".</td></tr>
+<tr><td>**Organisatie**</td><td>Een vereniging, archiefinstelling, stichting of andere organisatie die op het Platform een eigen omgeving (organisatiejottem) heeft.</td></tr>
+<tr><td>**Organisatiejottem**</td><td>De eigen omgeving van een Organisatie op het Platform, met eigen naam, huisstijl en gebruikers.</td></tr>
+<tr><td>**Organisatiebeheerder**</td><td>De persoon die namens een Organisatie de Organisatiejottem beheert en moderators aanstelt.</td></tr>
+<tr><td>**Moderator**</td><td>De persoon die namens een Organisatie ingezonden materiaal beoordeelt voordat het openbaar wordt.</td></tr>
+<tr><td>**Gebruiker**</td><td>Iedereen met een account binnen een Organisatiejottem.</td></tr>
+<tr><td>**Uploader**</td><td>Een Gebruiker die materiaal (zoals foto's, menukaarten of documenten) naar het Platform stuurt.</td></tr>
+<tr><td>**Annoteerder**</td><td>Een Gebruiker die informatie toevoegt aan materiaal, zoals namen, plaatsen, herinneringen of correcties.</td></tr>
+<tr><td>**API-gebruiker**</td><td>Iedereen die via de technische koppelingen (API's) van het Platform gegevens ophaalt of doorzoekt.</td></tr>
+<tr><td>**Bezoeker**</td><td>Iedereen die het Platform bekijkt zonder in te loggen.</td></tr>
+<tr><td>**Jottem**</td><td>Een bijdrage op het Platform: een afbeelding of ander bestand, samen met de metadata en annotaties die erbij horen.</td></tr>
+<tr><td>**Bijdrage**</td><td>Alles wat een Gebruiker op het Platform plaatst: jottems, metadata, annotaties, reacties en herinneringen.</td></tr>
+<tr><td>**Meldpunt**</td><td>De plek op het Platform waar iedereen onrechtmatige of onjuiste inhoud kan melden (notice-and-takedown).</td></tr>
+</tbody>
+</table>
 
 ## Artikel 2. Voor wie gelden deze voorwaarden?
 

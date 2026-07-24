@@ -29,27 +29,32 @@ Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jo
 
 Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder, moderator, beheerder, API-gebruiker) en een aantal externe systemen: social login providers, het Internet Archive voor duurzame opslag, het NDE Datasetregister, tijdmachines als kaart-/tijdinterface, een SMTP-provider en terminologiebronnen zoals Wikidata voor URI's in annotaties.
 
-![Contextdiagram](context.svg)
+<img src="context.svg" alt="Contextdiagram" style="max-width:100%; height:auto;">
 
 ## 3. Componentenoverzicht en subdomeinen
 
-![Containerdiagram](containers.svg)
+<img src="containers.svg" alt="Containerdiagram" style="max-width:100%; height:auto;">
 
-| Subdomein | Component | Open-source suggestie | Alternatieven |
-|---|---|---|---|
-| `www.iotm.nl` | Webfrontend | Next.js of SvelteKit + Mirador/Tify (IIIF-viewer), Annotorious (annoteren), MapLibre GL (kaart) | Nuxt, Universal Viewer, OpenSeadragon + eigen UI |
-| `api.iotm.nl` | Backend-API (REST, IIIF Presentation, Change Discovery, RSS, zoeken) | FastAPI (Python) met iiif-prezi3 | NestJS, Laravel, Django REST Framework |
-| `auth.iotm.nl` | Identity provider (OIDC, social login, 2FA) | Keycloak | Authentik, Ory Kratos/Hydra |
-| `iiif.iotm.nl` | IIIF Image API 3.0 + HTTP-cache | Cantaloupe achter Varnish | iipsrv, SIPI, go-iiif; nginx proxy_cache |
-| `anno.iotm.nl` | W3C Web Annotation server | miiify (expliciet genoemd in het designdocument) | SimpleAnnotationServer, Annotot |
-| `ark.iotm.nl` | ARK-resolver en -minter | Arklet (Internet Archive) | eigen microservice + noid-bibliotheek (pynoid) |
-| `data.iotm.nl` | RDF-publicatie (schema.org AP NDE), SPARQL, datadumps, datasetbeschrijvingen | Apache Jena Fuseki | Oxigraph, QLever, Virtuoso OS |
-| (intern) | Zoekmachine | Elasticsearch (genoemd in requirements) | OpenSearch |
-| (intern) | Relationele database | PostgreSQL | MariaDB |
-| (intern) | Cache en taakwachtrij | Redis | Valkey, RabbitMQ (queue) |
-| (intern) | Mediaopslag (S3) | MinIO | externe S3-dienst (AWS S3, Scaleway, Backblaze B2) |
-| (intern) | Async workers | Celery (bij FastAPI) of BullMQ (bij NestJS) | RQ, Sidekiq |
-| (edge) | Reverse proxy, TLS | Traefik | Caddy, nginx-proxy + acme-companion |
+<table class="data">
+<thead>
+<tr><th>Subdomein</th><th>Component</th><th>Open-source suggestie</th><th>Alternatieven</th></tr>
+</thead>
+<tbody>
+<tr><td>`www.iotm.nl`</td><td>Webfrontend</td><td>Next.js of SvelteKit + Mirador/Tify (IIIF-viewer), Annotorious (annoteren), MapLibre GL (kaart)</td><td>Nuxt, Universal Viewer, OpenSeadragon + eigen UI</td></tr>
+<tr><td>`api.iotm.nl`</td><td>Backend-API (REST, IIIF Presentation, Change Discovery, RSS, zoeken)</td><td>FastAPI (Python) met iiif-prezi3</td><td>NestJS, Laravel, Django REST Framework</td></tr>
+<tr><td>`auth.iotm.nl`</td><td>Identity provider (OIDC, social login, 2FA)</td><td>Keycloak</td><td>Authentik, Ory Kratos/Hydra</td></tr>
+<tr><td>`iiif.iotm.nl`</td><td>IIIF Image API 3.0 + HTTP-cache</td><td>Cantaloupe achter Varnish</td><td>iipsrv, SIPI, go-iiif; nginx proxy_cache</td></tr>
+<tr><td>`anno.iotm.nl`</td><td>W3C Web Annotation server</td><td>miiify (expliciet genoemd in het designdocument)</td><td>SimpleAnnotationServer, Annotot</td></tr>
+<tr><td>`ark.iotm.nl`</td><td>ARK-resolver en -minter</td><td>Arklet (Internet Archive)</td><td>eigen microservice + noid-bibliotheek (pynoid)</td></tr>
+<tr><td>`data.iotm.nl`</td><td>RDF-publicatie (schema.org AP NDE), SPARQL, datadumps, datasetbeschrijvingen</td><td>Apache Jena Fuseki</td><td>Oxigraph, QLever, Virtuoso OS</td></tr>
+<tr><td>(intern)</td><td>Zoekmachine</td><td>Elasticsearch (genoemd in requirements)</td><td>OpenSearch</td></tr>
+<tr><td>(intern)</td><td>Relationele database</td><td>PostgreSQL</td><td>MariaDB</td></tr>
+<tr><td>(intern)</td><td>Cache en taakwachtrij</td><td>Redis</td><td>Valkey, RabbitMQ (queue)</td></tr>
+<tr><td>(intern)</td><td>Mediaopslag (S3)</td><td>MinIO</td><td>externe S3-dienst (AWS S3, Scaleway, Backblaze B2)</td></tr>
+<tr><td>(intern)</td><td>Async workers</td><td>Celery (bij FastAPI) of BullMQ (bij NestJS)</td><td>RQ, Sidekiq</td></tr>
+<tr><td>(edge)</td><td>Reverse proxy, TLS</td><td>Traefik</td><td>Caddy, nginx-proxy + acme-companion</td></tr>
+</tbody>
+</table>
 
 De volgende paragrafen lichten de belangrijkste componenten toe.
 
@@ -99,7 +104,7 @@ De mapping zelf kan in applicatiecode (rdflib) of declaratief met RML/CARML; voo
 
 Bij goedkeuring mint de backend een objectnaam (NOID via pynoid, of UUID) onder de NAAN en shoulder van de organisatie en registreert deze in de resolver op `ark.iotm.nl`. Arklet van het Internet Archive is hiervoor een lichtgewicht, S3- en Postgres-vriendelijke keuze; een eigen microservice van enkele tientallen regels is een reeel alternatief omdat de resolvelogica beperkt is. De resolver ondersteunt content negotiation en ARK-conventies zoals `?info` voor metadata over het object zelf:
 
-![ARK-resolving met content negotiation](ark-resolving.svg)
+<img src="ark-resolving.svg" alt="ARK-resolving met content negotiation" style="max-width:100%; height:auto;">
 
 Belangrijk duurzaamheidsprincipe: de ARK-registry (koppeling ARK naar actuele locaties) staat in PostgreSQL en wordt meegenomen in de backup en in de metadata die naar het Internet Archive gaat, zodat resolving ook bij migratie van het platform herstelbaar blijft.
 
@@ -115,7 +120,7 @@ Een workerpool (Celery met Redis als broker) handelt alles af wat niet in de req
 
 ## 4. Deployment met Docker
 
-![Deploymentdiagram](deployment.svg)
+<img src="deployment.svg" alt="Deploymentdiagram" style="max-width:100%; height:auto;">
 
 De stack draait met docker compose op een enkele host, met drie netwerken: `edge` (publiek via Traefik), `app` (interne servicecommunicatie) en `data` (datastores, niet publiek routeerbaar). Een indicatieve `docker-compose.yml`:
 
@@ -300,22 +305,27 @@ Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor moni
 
 ## 6. Samenvatting
 
-| Requirement uit het designdocument | Invulling |
-|---|---|
-| Laagdrempelig inloggen incl. social login | Keycloak met identity brokering |
-| 2FA voor beheerders | Keycloak TOTP required action per rol |
-| Duurzame ARK-links met NOID/UUID | Arklet + pynoid, registry in PostgreSQL |
-| HTML- en RDF-weergave via content negotiation | ARK-resolver met 303-redirects naar frontend resp. Fuseki |
-| IIIF Image API (info.json) | Cantaloupe + Varnish op iiif.iotm.nl |
-| IIIF Presentation API (manifest/collection) | Backend-API met iiif-prezi3 |
-| IIIF Change Discovery | ActivityStreams-feed in backend-API |
-| W3C Web Annotations / Annotation Protocol | miiify op anno.iotm.nl |
-| Elasticsearch-zoekfunctie | Elasticsearch, geindexeerd door workers |
-| RSS per organisatie | Backend-API |
-| schema.org AP NDE + datasetbeschrijvingen | Fuseki op data.iotm.nl + NDE Datasetregister |
-| Internet Archive integratie | Workerpool met internetarchive-client |
-| Mediaopslag (S3) | MinIO of externe S3-dienst |
-| Geo-annotaties (WKT/GeoJSON) | Annotorious + MapLibre, opslag in miiify/metadata |
-| Geautomatiseerd testen | CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright |
-| Monitoring, logging en alerting | Prometheus + exporters, Grafana, Loki/Promtail, Alertmanager, blackbox-/synthetische checks |
-| Subdomeinen | Traefik-routing: www, api, iiif, ark, anno, auth, data, status |
+<table class="data">
+<thead>
+<tr><th>Requirement uit het designdocument</th><th>Invulling</th></tr>
+</thead>
+<tbody>
+<tr><td>Laagdrempelig inloggen incl. social login</td><td>Keycloak met identity brokering</td></tr>
+<tr><td>2FA voor beheerders</td><td>Keycloak TOTP required action per rol</td></tr>
+<tr><td>Duurzame ARK-links met NOID/UUID</td><td>Arklet + pynoid, registry in PostgreSQL</td></tr>
+<tr><td>HTML- en RDF-weergave via content negotiation</td><td>ARK-resolver met 303-redirects naar frontend resp. Fuseki</td></tr>
+<tr><td>IIIF Image API (info.json)</td><td>Cantaloupe + Varnish op iiif.iotm.nl</td></tr>
+<tr><td>IIIF Presentation API (manifest/collection)</td><td>Backend-API met iiif-prezi3</td></tr>
+<tr><td>IIIF Change Discovery</td><td>ActivityStreams-feed in backend-API</td></tr>
+<tr><td>W3C Web Annotations / Annotation Protocol</td><td>miiify op anno.iotm.nl</td></tr>
+<tr><td>Elasticsearch-zoekfunctie</td><td>Elasticsearch, geindexeerd door workers</td></tr>
+<tr><td>RSS per organisatie</td><td>Backend-API</td></tr>
+<tr><td>schema.org AP NDE + datasetbeschrijvingen</td><td>Fuseki op data.iotm.nl + NDE Datasetregister</td></tr>
+<tr><td>Internet Archive integratie</td><td>Workerpool met internetarchive-client</td></tr>
+<tr><td>Mediaopslag (S3)</td><td>MinIO of externe S3-dienst</td></tr>
+<tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in miiify/metadata</td></tr>
+<tr><td>Geautomatiseerd testen</td><td>CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright</td></tr>
+<tr><td>Monitoring, logging en alerting</td><td>Prometheus + exporters, Grafana, Loki/Promtail, Alertmanager, blackbox-/synthetische checks</td></tr>
+<tr><td>Subdomeinen</td><td>Traefik-routing: www, api, iiif, ark, anno, auth, data, status</td></tr>
+</tbody>
+</table>

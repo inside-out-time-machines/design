@@ -121,9 +121,14 @@ Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
 
 **Ondertekening**
 
-| | Platformbeheerder | Organisatie |
-|---|---|---|
-| Naam | | |
-| Functie | | |
-| Datum | | |
-| Handtekening | | |
+<table class="data">
+<thead>
+<tr><th></th><th>Platformbeheerder</th><th>Organisatie</th></tr>
+</thead>
+<tbody>
+<tr><td>Naam</td><td></td><td></td></tr>
+<tr><td>Functie</td><td></td><td></td></tr>
+<tr><td>Datum</td><td></td><td></td></tr>
+<tr><td>Handtekening</td><td></td><td></td></tr>
+</tbody>
+</table>

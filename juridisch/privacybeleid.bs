@@ -31,20 +31,30 @@ Heb je een vraag en weet je niet bij wie je moet zijn? Stuur hem gewoon naar ons
 
 ### 2.1 Als je een account hebt
 
-| Gegevens | Waarvoor | Grondslag (AVG) |
-|---|---|---|
-| Naam, e-mailadres, wachtwoord (versleuteld), eventueel profielfoto | Je account laten werken, contact met je opnemen over je bijdragen | Uitvoering van de overeenkomst (artikel 6 lid 1b) |
-| Inloggegevens via social login (alleen naam en e-mailadres) | Makkelijk en veilig inloggen | Uitvoering van de overeenkomst |
-| Rol (gebruiker, moderator, beheerder) en organisatie | De juiste rechten geven | Uitvoering van de overeenkomst |
-| Logingegevens en tijdstippen | Beveiliging en misbruik voorkomen | Gerechtvaardigd belang (artikel 6 lid 1f): een veilig platform |
-| Je privacy-instellingen (zoals: favorieten openbaar of niet) | Jouw keuzes respecteren | Uitvoering van de overeenkomst |
+<table class="data">
+<thead>
+<tr><th>Gegevens</th><th>Waarvoor</th><th>Grondslag (AVG)</th></tr>
+</thead>
+<tbody>
+<tr><td>Naam, e-mailadres, wachtwoord (versleuteld), eventueel profielfoto</td><td>Je account laten werken, contact met je opnemen over je bijdragen</td><td>Uitvoering van de overeenkomst (artikel 6 lid 1b)</td></tr>
+<tr><td>Inloggegevens via social login (alleen naam en e-mailadres)</td><td>Makkelijk en veilig inloggen</td><td>Uitvoering van de overeenkomst</td></tr>
+<tr><td>Rol (gebruiker, moderator, beheerder) en organisatie</td><td>De juiste rechten geven</td><td>Uitvoering van de overeenkomst</td></tr>
+<tr><td>Logingegevens en tijdstippen</td><td>Beveiliging en misbruik voorkomen</td><td>Gerechtvaardigd belang (artikel 6 lid 1f): een veilig platform</td></tr>
+<tr><td>Je privacy-instellingen (zoals: favorieten openbaar of niet)</td><td>Jouw keuzes respecteren</td><td>Uitvoering van de overeenkomst</td></tr>
+</tbody>
+</table>
 
 ### 2.2 Als je bijdragen plaatst
 
-| Gegevens | Waarvoor | Grondslag |
-|---|---|---|
-| Je naam bij je bijdragen (bronvermelding) | Laten zien wie iets heeft bijgedragen | Uitvoering van de overeenkomst; je kunt in je privacy-instellingen kiezen hoe je naam wordt getoond |
-| De inhoud van je bijdragen (foto's, metadata, herinneringen, annotaties) | Het erfgoed verzamelen, tonen en duurzaam bewaren | Uitvoering van de overeenkomst en gerechtvaardigd belang: erfgoed toegankelijk maken (voor de Organisatie als verantwoordelijke) |
+<table class="data">
+<thead>
+<tr><th>Gegevens</th><th>Waarvoor</th><th>Grondslag</th></tr>
+</thead>
+<tbody>
+<tr><td>Je naam bij je bijdragen (bronvermelding)</td><td>Laten zien wie iets heeft bijgedragen</td><td>Uitvoering van de overeenkomst; je kunt in je privacy-instellingen kiezen hoe je naam wordt getoond</td></tr>
+<tr><td>De inhoud van je bijdragen (foto's, metadata, herinneringen, annotaties)</td><td>Het erfgoed verzamelen, tonen en duurzaam bewaren</td><td>Uitvoering van de overeenkomst en gerechtvaardigd belang: erfgoed toegankelijk maken (voor de Organisatie als verantwoordelijke)</td></tr>
+</tbody>
+</table>
 
 ### 2.3 Als je op materiaal voorkomt (ook zonder account)
 
@@ -74,13 +84,18 @@ Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 
 ## 4. Hoe lang bewaren we gegevens?
 
-| Gegevens | Bewaartermijn |
-|---|---|
-| Accountgegevens | Zolang je account bestaat, daarna [6 maanden] |
-| Niet-gepubliceerde of afgekeurde bijdragen | [12 maanden] na afkeuring, daarna verwijderd |
-| Gepubliceerde jottems | Blijvend: het platform is bedoeld voor duurzaam erfgoed. Verwijdering kan via het Meldpunt |
-| Logbestanden | [6 maanden] |
-| Meldingen via het Meldpunt | [2 jaar], om de afhandeling te kunnen aantonen |
+<table class="data">
+<thead>
+<tr><th>Gegevens</th><th>Bewaartermijn</th></tr>
+</thead>
+<tbody>
+<tr><td>Accountgegevens</td><td>Zolang je account bestaat, daarna [6 maanden]</td></tr>
+<tr><td>Niet-gepubliceerde of afgekeurde bijdragen</td><td>[12 maanden] na afkeuring, daarna verwijderd</td></tr>
+<tr><td>Gepubliceerde jottems</td><td>Blijvend: het platform is bedoeld voor duurzaam erfgoed. Verwijdering kan via het Meldpunt</td></tr>
+<tr><td>Logbestanden</td><td>[6 maanden]</td></tr>
+<tr><td>Meldingen via het Meldpunt</td><td>[2 jaar], om de afhandeling te kunnen aantonen</td></tr>
+</tbody>
+</table>
 
 ## 5. Hoe beveiligen we jouw gegevens?
 

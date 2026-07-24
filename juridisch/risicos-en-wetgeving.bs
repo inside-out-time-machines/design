@@ -35,40 +35,55 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 
 ### 1.1 Juridische risico's
 
-| # | Risico | Kans | Impact | Beheersmaatregelen | Belegd bij | Vindplaats |
-|---|---|---|---|---|---|---|
-| J1 | **Auteursrechtinbreuk**: een uploader zendt materiaal in waarop een ander auteursrecht heeft (bijv. krantenfoto, professionele foto, menukaartontwerp) | H | H | Uploader verklaart bij inzending dat hij de rechten heeft; moderatiecontrole vóór publicatie; notice-and-takedown; vrijwaring door uploader; kennisdeling met Wikimedia Nederland over rechtenvrij materiaal | Uploader (primair), moderator (controle) | AV art. 4, 7, 8; AV H5 |
-| J2 | **Portretrechtschending**: herkenbare (levende) personen op foto's zonder toestemming | H | M | Toestemmingsvereiste voor recente foto's; moderatiecontrole; verwijderingsverzoek mogelijk zonder account; bij twijfel niet publiceren of onherkenbaar maken | Uploader, moderator | AV art. 5; PB 2.3 |
-| J3 | **AVG-schending in bijdragen**: onnodige persoonsgegevens van levende personen in metadata, annotaties of herinneringen (bijv. "de dochter van de bakker had schulden") | M | H | Moderatierichtlijn; annotatieregels (identificatie levende personen alleen zonder bezwaar); meldpunt; heldere rolverdeling verwerkingsverantwoordelijkheid | Organisatie (verantwoordelijke), annoteerder/uploader | AV art. 5, H6; SOK art. 5; PB 1 |
-| J4 | **Doorgifte buiten de EER**: opslag bij het Internet Archive (VS) zonder passende waarborg | M | H | Alleen goedgekeurde, voor publicatie bestemde jottems; passende waarborg vastleggen (standaardcontractbepalingen of alternatief); transparantie in privacybeleid; alternatief scenario onderzoeken (EU-bewaarplaats) - zie 1.4 voor verdere uitwerking | Platformbeheerder | SOK art. 5.4; PB 3 |
-| J5 | **Platform aansprakelijk gesteld voor gebruikerscontent** | L | H | Positionering als hostingdienst (art. 6 DSA); geen redactionele rol platformbeheerder; werkend meldpunt met snelle afhandeling; vastlegging afhandeling meldingen | Platformbeheerder | AV art. 3, 7, 8 |
-| J6 | **Verwijdering werkt niet volledig door**: materiaal blijft na verwijdering staan bij Internet Archive of bij API-hergebruikers | M | M | Verwijderverzoek naar externe bewaarplaats; wijzigingssignalen via IIIF Change Discovery; API-voorwaarde dat hergebruikers verwijderingen volgen; eerlijke communicatie over grenzen ("wat redelijkerwijs kan") | Platformbeheerder, API-gebruiker | AV H7; PB 6 |
-| J7 | **Onjuiste of schadelijke herinneringen**: persoonlijke herinneringen bevatten onjuiste of eerrovende beweringen over (nabestaanden van) personen | M | M | Onderscheid herinnering/feit verplicht en zichtbaar; moderatiecontrole; reactiemogelijkheid; meldpunt; correctie-annotaties | Annoteerder, moderator | AV art. 5.5, H3, H6 |
-| J8 | **Naburige rechten en toestemming bij audio-jottems**: interviews met (oud-)ondernemers zonder goede toestemming voor publicatie | M | M | [interviewprotocol en toestemmingsformulier](interviewprotocol.html); vastleggen wie geïnterviewd is en wat is afgesproken | Organisatie, uploader | AV art. 4-5 |
-| J9 | **Minderjarigen**: accounts of herkenbaar beeldmateriaal van kinderen zonder ouderlijke toestemming | L | H | Leeftijdsgrens 16 jaar met oudertoestemming; extra terughoudendheid bij recent beeldmateriaal met kinderen | Platformbeheerder, moderator | AV art. 2.4; PB 8 |
-| J10 | **Importrisico collecties**: organisatie importeert een bestaande collectie waarvan de rechten niet (volledig) geregeld zijn | M | H | Organisatie verklaart rechten te hebben; rechtencheck als vast onderdeel van het importproces; vrijwaring in SOK | Organisatie | AV H2; SOK art. 3.4, 4.4 |
+<table class="data">
+<thead>
+<tr><th>#</th><th>Risico</th><th>Kans</th><th>Impact</th><th>Beheersmaatregelen</th><th>Belegd bij</th><th>Vindplaats</th></tr>
+</thead>
+<tbody>
+<tr><td>J1</td><td>**Auteursrechtinbreuk**: een uploader zendt materiaal in waarop een ander auteursrecht heeft (bijv. krantenfoto, professionele foto, menukaartontwerp)</td><td>H</td><td>H</td><td>Uploader verklaart bij inzending dat hij de rechten heeft; moderatiecontrole vóór publicatie; notice-and-takedown; vrijwaring door uploader; kennisdeling met Wikimedia Nederland over rechtenvrij materiaal</td><td>Uploader (primair), moderator (controle)</td><td>AV art. 4, 7, 8; AV H5</td></tr>
+<tr><td>J2</td><td>**Portretrechtschending**: herkenbare (levende) personen op foto's zonder toestemming</td><td>H</td><td>M</td><td>Toestemmingsvereiste voor recente foto's; moderatiecontrole; verwijderingsverzoek mogelijk zonder account; bij twijfel niet publiceren of onherkenbaar maken</td><td>Uploader, moderator</td><td>AV art. 5; PB 2.3</td></tr>
+<tr><td>J3</td><td>**AVG-schending in bijdragen**: onnodige persoonsgegevens van levende personen in metadata, annotaties of herinneringen (bijv. "de dochter van de bakker had schulden")</td><td>M</td><td>H</td><td>Moderatierichtlijn; annotatieregels (identificatie levende personen alleen zonder bezwaar); meldpunt; heldere rolverdeling verwerkingsverantwoordelijkheid</td><td>Organisatie (verantwoordelijke), annoteerder/uploader</td><td>AV art. 5, H6; SOK art. 5; PB 1</td></tr>
+<tr><td>J4</td><td>**Doorgifte buiten de EER**: opslag bij het Internet Archive (VS) zonder passende waarborg</td><td>M</td><td>H</td><td>Alleen goedgekeurde, voor publicatie bestemde jottems; passende waarborg vastleggen (standaardcontractbepalingen of alternatief); transparantie in privacybeleid; alternatief scenario onderzoeken (EU-bewaarplaats) - zie 1.4 voor verdere uitwerking</td><td>Platformbeheerder</td><td>SOK art. 5.4; PB 3</td></tr>
+<tr><td>J5</td><td>**Platform aansprakelijk gesteld voor gebruikerscontent**</td><td>L</td><td>H</td><td>Positionering als hostingdienst (art. 6 DSA); geen redactionele rol platformbeheerder; werkend meldpunt met snelle afhandeling; vastlegging afhandeling meldingen</td><td>Platformbeheerder</td><td>AV art. 3, 7, 8</td></tr>
+<tr><td>J6</td><td>**Verwijdering werkt niet volledig door**: materiaal blijft na verwijdering staan bij Internet Archive of bij API-hergebruikers</td><td>M</td><td>M</td><td>Verwijderverzoek naar externe bewaarplaats; wijzigingssignalen via IIIF Change Discovery; API-voorwaarde dat hergebruikers verwijderingen volgen; eerlijke communicatie over grenzen ("wat redelijkerwijs kan")</td><td>Platformbeheerder, API-gebruiker</td><td>AV H7; PB 6</td></tr>
+<tr><td>J7</td><td>**Onjuiste of schadelijke herinneringen**: persoonlijke herinneringen bevatten onjuiste of eerrovende beweringen over (nabestaanden van) personen</td><td>M</td><td>M</td><td>Onderscheid herinnering/feit verplicht en zichtbaar; moderatiecontrole; reactiemogelijkheid; meldpunt; correctie-annotaties</td><td>Annoteerder, moderator</td><td>AV art. 5.5, H3, H6</td></tr>
+<tr><td>J8</td><td>**Naburige rechten en toestemming bij audio-jottems**: interviews met (oud-)ondernemers zonder goede toestemming voor publicatie</td><td>M</td><td>M</td><td>[interviewprotocol en toestemmingsformulier](interviewprotocol.html); vastleggen wie geïnterviewd is en wat is afgesproken</td><td>Organisatie, uploader</td><td>AV art. 4-5</td></tr>
+<tr><td>J9</td><td>**Minderjarigen**: accounts of herkenbaar beeldmateriaal van kinderen zonder ouderlijke toestemming</td><td>L</td><td>H</td><td>Leeftijdsgrens 16 jaar met oudertoestemming; extra terughoudendheid bij recent beeldmateriaal met kinderen</td><td>Platformbeheerder, moderator</td><td>AV art. 2.4; PB 8</td></tr>
+<tr><td>J10</td><td>**Importrisico collecties**: organisatie importeert een bestaande collectie waarvan de rechten niet (volledig) geregeld zijn</td><td>M</td><td>H</td><td>Organisatie verklaart rechten te hebben; rechtencheck als vast onderdeel van het importproces; vrijwaring in SOK</td><td>Organisatie</td><td>AV H2; SOK art. 3.4, 4.4</td></tr>
+</tbody>
+</table>
 
 ### 1.2 Organisatorische risico's
 
-| # | Risico | Kans | Impact | Beheersmaatregelen | Belegd bij | Vindplaats |
-|---|---|---|---|---|---|---|
-| O1 | **Te weinig moderatiecapaciteit**: bijdragen blijven lang liggen, deelnemers haken af | H | M | Richttermijn voor beoordeling in SOK; meerdere moderators per organisatie; statistieken als stuurinformatie; eenvoudige moderatie-interface | Organisatie | SOK art. 3.1-3.3 |
-| O2 | **Kennisgebrek bij vrijwilligers**: moderators beoordelen privacy/auteursrecht verkeerd | H | M | Training bij de start; [handreiking moderatie](handreiking-moderatie.html); bij twijfel niet goedkeuren; escalatiemogelijkheid naar platformbeheerder/expert | Platformbeheerder (training), organisatie | SOK art. 2.5, 3.2 |
-| O3 | **Continuïteit organisatie**: historische vereniging stopt of verliest sleutelvrijwilligers | M | M | Afspraken over einde samenwerking en export vooraf geregeld; erfgoed blijft beschikbaar via duurzame links; minimaal twee beheerders per organisatie aanbevelen | Organisatie, platformbeheerder | SOK art. 8 |
-| O4 | **Continuïteit platformbeheer**: geen structurele financiering na de projectperiode | M | H | Beheersplan en borging als deelactiviteit; kostenmodel in SOK; open source zodat overdracht mogelijk is; duurzame opslag extern belegd | Projectgroep, platformbeheerder | Activiteitenplan 3.3.8; SOK art. 7 |
-| O5 | **Lage participatie**: te weinig uploads en annotaties, platform blijft leeg | M | M | Verzameldagen en scansessies; oproepen via lokale media; laagdrempelige interface en social login; deelknoppen na publicatie | Organisatie, projectgroep | Activiteitenplan 3.3, 4.5 |
-| O6 | **Conflict of gedoe in de community**: onenigheid over annotaties, correcties of moderatiebesluiten | M | L | Respectregels; motivering bij afkeuring plus reactiemogelijkheid; motivering bij verwijdering (art. 20 DSA); escalatie naar organisatiebeheerder | Moderator, organisatiebeheerder | AV art. 6, 10.3, H3 |
+<table class="data">
+<thead>
+<tr><th>#</th><th>Risico</th><th>Kans</th><th>Impact</th><th>Beheersmaatregelen</th><th>Belegd bij</th><th>Vindplaats</th></tr>
+</thead>
+<tbody>
+<tr><td>O1</td><td>**Te weinig moderatiecapaciteit**: bijdragen blijven lang liggen, deelnemers haken af</td><td>H</td><td>M</td><td>Richttermijn voor beoordeling in SOK; meerdere moderators per organisatie; statistieken als stuurinformatie; eenvoudige moderatie-interface</td><td>Organisatie</td><td>SOK art. 3.1-3.3</td></tr>
+<tr><td>O2</td><td>**Kennisgebrek bij vrijwilligers**: moderators beoordelen privacy/auteursrecht verkeerd</td><td>H</td><td>M</td><td>Training bij de start; [handreiking moderatie](handreiking-moderatie.html); bij twijfel niet goedkeuren; escalatiemogelijkheid naar platformbeheerder/expert</td><td>Platformbeheerder (training), organisatie</td><td>SOK art. 2.5, 3.2</td></tr>
+<tr><td>O3</td><td>**Continuïteit organisatie**: historische vereniging stopt of verliest sleutelvrijwilligers</td><td>M</td><td>M</td><td>Afspraken over einde samenwerking en export vooraf geregeld; erfgoed blijft beschikbaar via duurzame links; minimaal twee beheerders per organisatie aanbevelen</td><td>Organisatie, platformbeheerder</td><td>SOK art. 8</td></tr>
+<tr><td>O4</td><td>**Continuïteit platformbeheer**: geen structurele financiering na de projectperiode</td><td>M</td><td>H</td><td>Beheersplan en borging als deelactiviteit; kostenmodel in SOK; open source zodat overdracht mogelijk is; duurzame opslag extern belegd</td><td>Projectgroep, platformbeheerder</td><td>Activiteitenplan 3.3.8; SOK art. 7</td></tr>
+<tr><td>O5</td><td>**Lage participatie**: te weinig uploads en annotaties, platform blijft leeg</td><td>M</td><td>M</td><td>Verzameldagen en scansessies; oproepen via lokale media; laagdrempelige interface en social login; deelknoppen na publicatie</td><td>Organisatie, projectgroep</td><td>Activiteitenplan 3.3, 4.5</td></tr>
+<tr><td>O6</td><td>**Conflict of gedoe in de community**: onenigheid over annotaties, correcties of moderatiebesluiten</td><td>M</td><td>L</td><td>Respectregels; motivering bij afkeuring plus reactiemogelijkheid; motivering bij verwijdering (art. 20 DSA); escalatie naar organisatiebeheerder</td><td>Moderator, organisatiebeheerder</td><td>AV art. 6, 10.3, H3</td></tr>
+</tbody>
+</table>
 
 ### 1.3 Technische risico's
 
-| # | Risico | Kans | Impact | Beheersmaatregelen | Belegd bij | Vindplaats |
-|---|---|---|---|---|---|---|
-| T1 | **Datalek of hack**: onbevoegde toegang tot accounts of niet-gepubliceerd materiaal | M | H | 2FA voor beheerders/moderators; versleutelde verbindingen; toegangsbeheer; datalekprocedure (melding binnen 48 uur aan organisatie, zo nodig AP en betrokkenen) | Platformbeheerder | SOK art. 5.3; PB 5 |
-| T2 | **Gegevensverlies**: bijdragen kwijt door storing of fout | L | H | Dagelijkse back-ups; duurzame opslag extern (Internet Archive); ARK-identifiers | Platformbeheerder | SOK art. 2.2; AV art. 9 |
-| T3 | **Uitval platform**: website of API's onbereikbaar | M | L | Beschikbaarheidsafspraak in SOK; aangekondigd onderhoud; monitoring | Platformbeheerder | SOK art. 2.1; AV art. 3.4 |
-| T4 | **Afhankelijkheid externe partijen**: Internet Archive, hostingpartij of kaartkoppeling (Gouda Tijdmachine) wijzigt of stopt | M | M | Open standaarden (IIIF, W3C) zodat overstappen kan; export in open formaten; geen vendor lock-in door open source | Platformbeheerder | AV art. 9; SOK art. 8.4 |
-| T5 | **API-misbruik**: overbelasting, scraping in strijd met licenties | M | L | Rate limiting; licentievoorwaarden per jottem in de data; API-voorwaarden inclusief verwijderplicht | Platformbeheerder, API-gebruiker | AV H7 |
-| T6 | **Verlies duurzame links**: ARK's verwijzen naar niets meer na migratie of einde project | L | H | ARK NAAN-beheer goed beleggen; resolver onafhankelijk van applicatie inrichten; afspraken bij einde samenwerking | Platformbeheerder | SOK art. 8.4 |
+<table class="data">
+<thead>
+<tr><th>#</th><th>Risico</th><th>Kans</th><th>Impact</th><th>Beheersmaatregelen</th><th>Belegd bij</th><th>Vindplaats</th></tr>
+</thead>
+<tbody>
+<tr><td>T1</td><td>**Datalek of hack**: onbevoegde toegang tot accounts of niet-gepubliceerd materiaal</td><td>M</td><td>H</td><td>2FA voor beheerders/moderators; versleutelde verbindingen; toegangsbeheer; datalekprocedure (melding binnen 48 uur aan organisatie, zo nodig AP en betrokkenen)</td><td>Platformbeheerder</td><td>SOK art. 5.3; PB 5</td></tr>
+<tr><td>T2</td><td>**Gegevensverlies**: bijdragen kwijt door storing of fout</td><td>L</td><td>H</td><td>Dagelijkse back-ups; duurzame opslag extern (Internet Archive); ARK-identifiers</td><td>Platformbeheerder</td><td>SOK art. 2.2; AV art. 9</td></tr>
+<tr><td>T3</td><td>**Uitval platform**: website of API's onbereikbaar</td><td>M</td><td>L</td><td>Beschikbaarheidsafspraak in SOK; aangekondigd onderhoud; monitoring</td><td>Platformbeheerder</td><td>SOK art. 2.1; AV art. 3.4</td></tr>
+<tr><td>T4</td><td>**Afhankelijkheid externe partijen**: Internet Archive, hostingpartij of kaartkoppeling (Gouda Tijdmachine) wijzigt of stopt</td><td>M</td><td>M</td><td>Open standaarden (IIIF, W3C) zodat overstappen kan; export in open formaten; geen vendor lock-in door open source</td><td>Platformbeheerder</td><td>AV art. 9; SOK art. 8.4</td></tr>
+<tr><td>T5</td><td>**API-misbruik**: overbelasting, scraping in strijd met licenties</td><td>M</td><td>L</td><td>Rate limiting; licentievoorwaarden per jottem in de data; API-voorwaarden inclusief verwijderplicht</td><td>Platformbeheerder, API-gebruiker</td><td>AV H7</td></tr>
+<tr><td>T6</td><td>**Verlies duurzame links**: ARK's verwijzen naar niets meer na migratie of einde project</td><td>L</td><td>H</td><td>ARK NAAN-beheer goed beleggen; resolver onafhankelijk van applicatie inrichten; afspraken bij einde samenwerking</td><td>Platformbeheerder</td><td>SOK art. 8.4</td></tr>
+</tbody>
+</table>
 
 ### 1.4 Uitwerking passende waarborg VS-doorgifte vastleggen (J4)
 
@@ -92,35 +107,50 @@ Voorstel: combineer optie 3 met optie 1. EER-opslag als hoofdroute haalt de ange
 
 ### 2.1 Kernwetgeving
 
-| Regeling | Wat regelt het? | Wat betekent het voor Jottem? | Waar geregeld |
-|---|---|---|---|
-| **AVG** (Verordening (EU) 2016/679) + **UAVG** | Bescherming van persoonsgegevens: grondslagen, rechten van betrokkenen, beveiliging, datalekken, doorgifte buiten de EER | Rolverdeling verantwoordelijke/verwerker vastleggen; grondslag per verwerking; toestemming bij herkenbare personen; verzoeken binnen een maand afhandelen; verwerkersovereenkomst; waarborg voor VS-doorgifte; leeftijdsgrens 16 jaar (art. 8) | PB (geheel); SOK art. 5; AV art. 2, 5 |
-| **Digitaledienstenverordening / DSA** (Verordening (EU) 2022/2065) | Verantwoordelijkheden van online tussenpersonen; aansprakelijkheidsvrijstelling voor hosting (art. 6); geen algemene toezichtplicht (art. 8); meldingsprocedure (art. 16), motivering van besluiten (art. 17), beperking van accounts (art. 20); contactpunt (art. 11-12) | Jottem als hostingdienst positioneren; werkend notice-and-takedown-meldpunt; besluiten motiveren richting melder én plaatser; contactpunt publiceren; bij groei toetsen of aanvullende plichten gelden (Jottem is geen "zeer groot platform") | AV art. 3, 7, 10.3 |
-| **Auteurswet** | Rechten van makers: exclusief recht op verveelvoudiging en openbaarmaking; persoonlijkheidsrechten (art. 25); beschermingsduur 70 jaar na overlijden (art. 37); portretrecht (art. 19-21) | Licentie van inzenders regelen; auteursrecht blijft bij de maker; bronvermelding; beschermingsduur meenemen in de moderatiecheck; portretrecht: verzet mogelijk bij redelijk belang, ook bij niet in opdracht gemaakte portretten | AV art. 4-5; AV H5 |
-| **Burgerlijk Wetboek** | O.a. onrechtmatige daad (6:162), redelijkheid en billijkheid bij exoneraties (6:248), algemene voorwaarden (6:231 e.v.), overeenkomstenrecht | Grondslag voor aansprakelijkheid en vrijwaring; grenzen aan aansprakelijkheidsbeperking; voorwaarden ter hand stellen bij het aangaan (actieve acceptatie bij registratie) | AV art. 2, 8, 10; SOK art. 4 |
+<table class="data">
+<thead>
+<tr><th>Regeling</th><th>Wat regelt het?</th><th>Wat betekent het voor Jottem?</th><th>Waar geregeld</th></tr>
+</thead>
+<tbody>
+<tr><td>**AVG** (Verordening (EU) 2016/679) + **UAVG**</td><td>Bescherming van persoonsgegevens: grondslagen, rechten van betrokkenen, beveiliging, datalekken, doorgifte buiten de EER</td><td>Rolverdeling verantwoordelijke/verwerker vastleggen; grondslag per verwerking; toestemming bij herkenbare personen; verzoeken binnen een maand afhandelen; verwerkersovereenkomst; waarborg voor VS-doorgifte; leeftijdsgrens 16 jaar (art. 8)</td><td>PB (geheel); SOK art. 5; AV art. 2, 5</td></tr>
+<tr><td>**Digitaledienstenverordening / DSA** (Verordening (EU) 2022/2065)</td><td>Verantwoordelijkheden van online tussenpersonen; aansprakelijkheidsvrijstelling voor hosting (art. 6); geen algemene toezichtplicht (art. 8); meldingsprocedure (art. 16), motivering van besluiten (art. 17), beperking van accounts (art. 20); contactpunt (art. 11-12)</td><td>Jottem als hostingdienst positioneren; werkend notice-and-takedown-meldpunt; besluiten motiveren richting melder én plaatser; contactpunt publiceren; bij groei toetsen of aanvullende plichten gelden (Jottem is geen "zeer groot platform")</td><td>AV art. 3, 7, 10.3</td></tr>
+<tr><td>**Auteurswet**</td><td>Rechten van makers: exclusief recht op verveelvoudiging en openbaarmaking; persoonlijkheidsrechten (art. 25); beschermingsduur 70 jaar na overlijden (art. 37); portretrecht (art. 19-21)</td><td>Licentie van inzenders regelen; auteursrecht blijft bij de maker; bronvermelding; beschermingsduur meenemen in de moderatiecheck; portretrecht: verzet mogelijk bij redelijk belang, ook bij niet in opdracht gemaakte portretten</td><td>AV art. 4-5; AV H5</td></tr>
+<tr><td>**Burgerlijk Wetboek**</td><td>O.a. onrechtmatige daad (6:162), redelijkheid en billijkheid bij exoneraties (6:248), algemene voorwaarden (6:231 e.v.), overeenkomstenrecht</td><td>Grondslag voor aansprakelijkheid en vrijwaring; grenzen aan aansprakelijkheidsbeperking; voorwaarden ter hand stellen bij het aangaan (actieve acceptatie bij registratie)</td><td>AV art. 2, 8, 10; SOK art. 4</td></tr>
+</tbody>
+</table>
 
 ### 2.2 Aanvullende wetgeving
 
-| Regeling | Wat regelt het? | Wat betekent het voor Jottem? | Waar geregeld / actie |
-|---|---|---|---|
-| **Telecommunicatiewet art. 11.7a** (cookiebepaling, o.b.v. ePrivacyrichtlijn) | Toestemming voor cookies, behalve functionele en privacyvriendelijke analytische cookies | Alleen functionele cookies gebruiken, dan geen cookiebanner nodig; bij analytics privacyvriendelijk instellen | PB 2.4 |
-| **DSM-richtlijn / Auteurswet-implementatie** (Richtlijn (EU) 2019/790) | O.a. aansprakelijkheid van platforms voor geüpload beschermd materiaal (art. 17) en tekst- en datamining | Toetsen of Jottem een "onlinedienst voor het delen van content" is; verdedigbaar van niet (non-profit erfgoedplatform, geen winstoogmerk met grote hoeveelheden beschermd materiaal), maar dit expliciet vastleggen | Actie: korte juridische toets vastleggen |
-| **Wet naburige rechten** | Rechten van uitvoerende kunstenaars en producenten van opnamen | Relevant bij audio-jottems (interviews): toestemming van geïnterviewde en opnamemaker regelen | Actie J8: interviewprotocol |
-| **Databankenwet** | Bescherming van databanken waarin substantieel is geïnvesteerd | Bij import van externe collecties: check of databankrechten van derden spelen; eigen datasets bewust open aanbieden onder duidelijke licentie | AV art. 9; SOK art. 3.4 |
-| **Archiefwet** | Zorg voor overheidsarchieven | Relevant zodra een archiefdienst (zoals Streekarchief Midden-Holland) organisatiejottems beheert: afstemmen hoe platformmateriaal zich verhoudt tot de archiefwettelijke taak en eventuele opname in de archiefbewaarplaats | Actie: afstemmen met deelnemende archiefdiensten |
-| **Grondwet art. 7 / EVRM art. 10** | Vrijheid van meningsuiting | Balans bij moderatie en verwijdering: niet meer verwijderen dan nodig, besluiten motiveren, reactiemogelijkheid bieden | AV art. 7, 10.3 |
-| **European Accessibility Act / Besluit digitale toegankelijkheid** | Toegankelijkheid van digitale diensten (WCAG) | Voor publieke instellingen verplicht, voor het project passend bij het doel van digitale inclusie: WCAG 2.1 AA als richtsnoer voor de interface | Actie: opnemen in requirements/ontwerp |
-| **AI-verordening (EU) 2024/1689** | Regels voor AI-systemen | Alleen relevant als het platform AI gaat inzetten (bijv. automatische gezichtsherkenning voor annotatie - gezichtsherkenning is hier hoog-risico en deels verboden terrein; automatische beeldbeschrijving is laag risico met transparantieplicht) | Actie: toetsen vóór inzet van AI-functies |
+<table class="data">
+<thead>
+<tr><th>Regeling</th><th>Wat regelt het?</th><th>Wat betekent het voor Jottem?</th><th>Waar geregeld / actie</th></tr>
+</thead>
+<tbody>
+<tr><td>**Telecommunicatiewet art. 11.7a** (cookiebepaling, o.b.v. ePrivacyrichtlijn)</td><td>Toestemming voor cookies, behalve functionele en privacyvriendelijke analytische cookies</td><td>Alleen functionele cookies gebruiken, dan geen cookiebanner nodig; bij analytics privacyvriendelijk instellen</td><td>PB 2.4</td></tr>
+<tr><td>**DSM-richtlijn / Auteurswet-implementatie** (Richtlijn (EU) 2019/790)</td><td>O.a. aansprakelijkheid van platforms voor geüpload beschermd materiaal (art. 17) en tekst- en datamining</td><td>Toetsen of Jottem een "onlinedienst voor het delen van content" is; verdedigbaar van niet (non-profit erfgoedplatform, geen winstoogmerk met grote hoeveelheden beschermd materiaal), maar dit expliciet vastleggen</td><td>Actie: korte juridische toets vastleggen</td></tr>
+<tr><td>**Wet naburige rechten**</td><td>Rechten van uitvoerende kunstenaars en producenten van opnamen</td><td>Relevant bij audio-jottems (interviews): toestemming van geïnterviewde en opnamemaker regelen</td><td>Actie J8: interviewprotocol</td></tr>
+<tr><td>**Databankenwet**</td><td>Bescherming van databanken waarin substantieel is geïnvesteerd</td><td>Bij import van externe collecties: check of databankrechten van derden spelen; eigen datasets bewust open aanbieden onder duidelijke licentie</td><td>AV art. 9; SOK art. 3.4</td></tr>
+<tr><td>**Archiefwet**</td><td>Zorg voor overheidsarchieven</td><td>Relevant zodra een archiefdienst (zoals Streekarchief Midden-Holland) organisatiejottems beheert: afstemmen hoe platformmateriaal zich verhoudt tot de archiefwettelijke taak en eventuele opname in de archiefbewaarplaats</td><td>Actie: afstemmen met deelnemende archiefdiensten</td></tr>
+<tr><td>**Grondwet art. 7 / EVRM art. 10**</td><td>Vrijheid van meningsuiting</td><td>Balans bij moderatie en verwijdering: niet meer verwijderen dan nodig, besluiten motiveren, reactiemogelijkheid bieden</td><td>AV art. 7, 10.3</td></tr>
+<tr><td>**European Accessibility Act / Besluit digitale toegankelijkheid**</td><td>Toegankelijkheid van digitale diensten (WCAG)</td><td>Voor publieke instellingen verplicht, voor het project passend bij het doel van digitale inclusie: WCAG 2.1 AA als richtsnoer voor de interface</td><td>Actie: opnemen in requirements/ontwerp</td></tr>
+<tr><td>**AI-verordening (EU) 2024/1689**</td><td>Regels voor AI-systemen</td><td>Alleen relevant als het platform AI gaat inzetten (bijv. automatische gezichtsherkenning voor annotatie - gezichtsherkenning is hier hoog-risico en deels verboden terrein; automatische beeldbeschrijving is laag risico met transparantieplicht)</td><td>Actie: toetsen vóór inzet van AI-functies</td></tr>
+</tbody>
+</table>
 
 ### 2.3 Kaders en afspraken (geen wetgeving, wel richtinggevend)
 
-| Kader | Betekenis voor Jottem |
-|---|---|
-| **Verdrag van Faro** (Raad van Europa) | Inhoudelijk fundament: erfgoedparticipatie en de gemeenschap centraal; basis van de subsidie (Uitvoeringsagenda Faro) |
-| **NDE-afspraken** (Netwerk Digitaal Erfgoed) | Standaarden voor duurzame, bruikbare, zichtbare digitale erfgoeddata: schema.org AP NDE, datasetbeschrijvingen |
-| **Open standaarden**: IIIF, W3C Web Annotations, RSS, ARK | Interoperabiliteit en duurzame toegang; verkleinen afhankelijkheidsrisico's (T4, T6) |
-| **Creative Commons-licenties** | Standaardinstrument om hergebruikvoorwaarden per jottem helder te maken (AV art. 4.3) |
-| **Ethische omgang met erfgoed en herinneringen** | Respectvolle omgang met overledenen, gevoelige geschiedenissen en meerstemmigheid; onderscheid herinnering/feit |
+<table class="data">
+<thead>
+<tr><th>Kader</th><th>Betekenis voor Jottem</th></tr>
+</thead>
+<tbody>
+<tr><td>**Verdrag van Faro** (Raad van Europa)</td><td>Inhoudelijk fundament: erfgoedparticipatie en de gemeenschap centraal; basis van de subsidie (Uitvoeringsagenda Faro)</td></tr>
+<tr><td>**NDE-afspraken** (Netwerk Digitaal Erfgoed)</td><td>Standaarden voor duurzame, bruikbare, zichtbare digitale erfgoeddata: schema.org AP NDE, datasetbeschrijvingen</td></tr>
+<tr><td>**Open standaarden**: IIIF, W3C Web Annotations, RSS, ARK</td><td>Interoperabiliteit en duurzame toegang; verkleinen afhankelijkheidsrisico's (T4, T6)</td></tr>
+<tr><td>**Creative Commons-licenties**</td><td>Standaardinstrument om hergebruikvoorwaarden per jottem helder te maken (AV art. 4.3)</td></tr>
+<tr><td>**Ethische omgang met erfgoed en herinneringen**</td><td>Respectvolle omgang met overledenen, gevoelige geschiedenissen en meerstemmigheid; onderscheid herinnering/feit</td></tr>
+</tbody>
+</table>
 
 ### 2.4 Nalevingsoverzicht in één oogopslag
 

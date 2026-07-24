@@ -12,11 +12,9 @@ Abstract: Een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform:
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Systeemarchitectuur Jottem 
-
 Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform: een participatief digitaal erfgoedplatform waarin gebruikers media (jottems) uploaden, moderatoren deze beoordelen en publiceren, en annoteerders verrijkingen toevoegen. Het geheel wordt via subdomeinen onder `iotm.nl` ontsloten en implementeert de in het designdocument genoemde standaarden: IIIF Image API 3.0, IIIF Presentation API 3.0, IIIF Change Discovery, W3C Web Annotations, schema.org AP NDE, ARK en RSS.
 
-## 1. Uitgangspunten
+# Uitgangspunten
 
 - **Open source first**: elk component is een bewezen open-source product of een dunne maatwerklaag daaromheen. Succesvolle onderdelen zijn herbruikbaar tussen Time Machines.
 - **Standaarden aan de buitenkant**: alle publieke interfaces zijn standaard-API's (IIIF, W3C Annotation Protocol, SPARQL/RDF, RSS), zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten.
@@ -25,13 +23,13 @@ Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jo
 - **Beheersbaarheid**: het geheel draait als een docker-compose-stack op een enkele VPS (of dedicated server) en kan later doorgroeien naar Kubernetes zonder architectuurbreuk.
 - **Getest en gemonitord**: elk component wordt geautomatiseerd getest (unit, integratie, contract op de standaard-API's en end-to-end over de stack) en draait onder centrale monitoring, logging en alerting, zodat regressies en storingen vroeg en aantoonbaar zichtbaar worden.
 
-## 2. Contextdiagram
+# Contextdiagram
 
 Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder, moderator, beheerder, API-gebruiker) en een aantal externe systemen: social login providers, het Internet Archive voor duurzame opslag, het NDE Datasetregister, tijdmachines als kaart-/tijdinterface, een SMTP-provider en terminologiebronnen zoals Wikidata voor URI's in annotaties.
 
 <img src="context.svg" alt="Contextdiagram" style="max-width:100%; height:auto;">
 
-## 3. Componentenoverzicht en subdomeinen
+# Componentenoverzicht en subdomeinen
 
 <img src="containers.svg" alt="Containerdiagram" style="max-width:100%; height:auto;">
 
@@ -58,17 +56,17 @@ Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder,
 
 De volgende paragrafen lichten de belangrijkste componenten toe.
 
-### 3.1 Reverse proxy (Traefik)
+## Reverse proxy (Traefik)
 
 Traefik termineert TLS (automatisch via Let's Encrypt), routeert op subdomein naar de juiste container via Docker-labels, en voegt security headers en rate limiting toe. Alle publieke componenten hangen aan het `edge`-netwerk; datastores zijn uitsluitend intern bereikbaar.
 
-### 3.2 Authenticatie en autorisatie (Keycloak)
+## Authenticatie en autorisatie (Keycloak)
 
 Keycloak fungeert als centrale OIDC-provider op `auth.iotm.nl` en dekt de requirements uit het designdocument volledig af. Social login (Google, Facebook, Apple, Microsoft) verloopt via identity brokering, zodat inloggen voor gebruikers zeer laagdrempelig is, terwijl beheerders en moderatoren via een verplichte TOTP-2FA-policy beveiligd worden. De rollen uit de usecases (platformbeheerder, organisatiebeheerder, moderator, gebruiker) worden gemodelleerd als realm-rollen in combinatie met groepen per organisatiejottem; de backend-API leest deze claims uit het JWT-access-token en past daarop autorisatie toe (bijv. "moderator van organisatie X mag alleen jottems van X beoordelen"). Uitnodigingsflows met bevestigingslink en het instellen van wachtwoord plus 2FA zijn standaard Keycloak-functionaliteit (required actions), evenals gebruikersregistratie voor bezoekers.
 
 Fijnmazige autorisatie op objectniveau (eigen afgekeurde jottems verwijderen, goedgekeurde niet) hoort in de backend thuis; wie dit declaratief wil, kan een policy engine als Casbin of OpenFGA toevoegen, maar voor deze schaal volstaat autorisatielogica in de API-laag.
 
-### 3.3 Backend-API en frontend
+## Backend-API en frontend
 
 De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implementeert het datamodel uit het ERD (organisatie, gebruiker, media, metadata, album, favoriet) op PostgreSQL en biedt:
 
@@ -81,15 +79,15 @@ De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implem
 
 De frontend op `www.iotm.nl` is een aparte container (Next.js of SvelteKit) met de publieke site, de HTML-weergave per jottem (IIIF-viewer + metadata + annotaties), de upload- en moderatie-omgeving, en de interactieve kaart. Voor het tekenen van vlakken op afbeeldingen en het vastleggen van geo-annotaties (standpunt fotograaf, zichtveld als WKT/GeoJSON) is Annotorious in combinatie met OpenSeadragon/Mirador en MapLibre een beproefde keuze; de kaartweergave kan via IIIF en de API gekoppeld worden aan tijdmachines (zoals de Gouda Tijdmachine).
 
-### 3.4 IIIF Image API (Cantaloupe + Varnish)
+## IIIF Image API (Cantaloupe + Varnish)
 
 Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regio's, formaten) en leest bronbestanden rechtstreeks uit de S3-opslag (S3Source). Bij goedkeuring van een jottem maakt een worker een pyramidal TIFF of JPEG2000 als afgeleide, wat tiling zonder zware rekenlast mogelijk maakt. Varnish (of nginx proxy_cache) staat ervoor en cachet tiles en info.json agressief; gepubliceerde beelden zijn immutable, dus lange TTL's zijn veilig. Zo blijft de image server ook bij piekverkeer (bijv. na een oproep in lokale media) responsief.
 
-### 3.5 Annotaties (miiify)
+## Annotaties (miiify)
 
 miiify, de annotatieserver van The National Archives (UK) die ook in het designdocument wordt genoemd, implementeert het W3C Web Annotation Protocol en slaat annotaties versiebeheerd op (git-gebaseerde backend), wat goed past bij de wens om herinneringen, aanvullingen en correcties herleidbaar te houden. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar miiify; de API voegt daarbij de geauthenticeerde gebruiker als creator toe en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). Lezen kan publiek en standaardconform via `anno.iotm.nl`, zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
 
-### 3.6 RDF-publicatie en datasetbeschrijvingen (Fuseki)
+## RDF-publicatie en datasetbeschrijvingen (Fuseki)
 
 Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naar RDF conform het schema.org-profiel van NDE (schema.org AP NDE) en deze upsert in Apache Jena Fuseki op `data.iotm.nl`. Daarmee ontstaat:
 
@@ -100,7 +98,7 @@ Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naa
 
 De mapping zelf kan in applicatiecode (rdflib) of declaratief met RML/CARML; voor een overzichtelijk model als dit is applicatiecode het eenvoudigst te onderhouden.
 
-### 3.7 ARK-resolving
+## ARK-resolving
 
 Bij goedkeuring mint de backend een objectnaam (NOID via pynoid, of UUID) onder de NAAN en shoulder van de organisatie en registreert deze in de resolver op `ark.iotm.nl`. Arklet van het Internet Archive is hiervoor een lichtgewicht, S3- en Postgres-vriendelijke keuze; een eigen microservice van enkele tientallen regels is een reeel alternatief omdat de resolvelogica beperkt is. De resolver ondersteunt content negotiation en ARK-conventies zoals `?info` voor metadata over het object zelf:
 
@@ -108,17 +106,17 @@ Bij goedkeuring mint de backend een objectnaam (NOID via pynoid, of UUID) onder 
 
 Belangrijk duurzaamheidsprincipe: de ARK-registry (koppeling ARK naar actuele locaties) staat in PostgreSQL en wordt meegenomen in de backup en in de metadata die naar het Internet Archive gaat, zodat resolving ook bij migratie van het platform herstelbaar blijft.
 
-### 3.8 Dataopslag, caching en mediaopslag
+## Dataopslag, caching en mediaopslag
 
 PostgreSQL is de primaire bron van waarheid voor het volledige ERD plus de ARK-registry en de moderatiestatussen. Redis dient drie doelen: sessie-/API-cache, rate limiting en de taakwachtrij voor de workers. MinIO biedt S3-compatibele mediaopslag met gescheiden buckets: `originals` (niet publiek, alleen via API en workers), `derivatives` (pyramidal TIFF's voor Cantaloupe), `thumbs` (publiek, lange cache-headers) en `audio` voor audio-jottems zoals interviews uit de pilot Smaak van Gouda. Wie geen eigen opslag wil beheren, vervangt MinIO transparant door een externe S3-dienst; alle componenten spreken immers alleen het S3-protocol.
 
 Caching gebeurt op drie niveaus: Varnish voor IIIF-tiles en manifests, Redis voor API-responses (zoekresultaten, collections, statistieken) en HTTP-cache-headers plus ETags op alle publieke endpoints zodat ook harvesters efficient werken.
 
-### 3.9 Async workers en Internet Archive
+## Async workers en Internet Archive
 
 Een workerpool (Celery met Redis als broker) handelt alles af wat niet in de request-cyclus hoort: genereren van derivatives en thumbnails, EXIF-extractie, e-mailnotificaties (goedkeuring, afkeuring met reden, uitnodigingen), Elasticsearch-indexering, RDF-synchronisatie naar Fuseki, en de duurzame upload van goedgekeurde media plus metadata naar het Internet Archive via de `internetarchive` Python-client. De IA-itemidentifier wordt teruggeschreven in de database en opgenomen in de RDF (bijv. als `schema:archivedAt`).
 
-## 4. Deployment met Docker
+# Deployment met Docker
 
 <img src="deployment.svg" alt="Deploymentdiagram" style="max-width:100%; height:auto;">
 
@@ -280,7 +278,7 @@ networks:
 
 Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor monitoring, logging en alerting (met exporters per datastore en een blackbox-exporter voor de publieke endpoints), pgBackRest voor database-backups en restic voor nachtelijke offsite backups van alle volumes naar een tweede S3-locatie. Samen met de Internet Archive-kopie van gepubliceerd materiaal ontstaat zo een dubbele duurzaamheidslaag. De inrichting van testen en monitoring is uitgewerkt in paragraaf 5.
 
-## 5. Doorsnijdende aspecten
+# Doorsnijdende aspecten
 
 **Privacy en auteursrecht.** Persoonsgegevens staan uitsluitend in PostgreSQL en Keycloak; verwijderingsverzoeken worden ondersteund doordat originelen alleen via de API bereikbaar zijn en gepubliceerde jottems een depubliceer-workflow kennen (verwijderen uit index, cache-purge in Varnish, tombstone op de ARK). Toestemming voor herkenbare personen en het onderscheid herinnering versus verifieerbaar feit zijn metadatavelden in de moderatieworkflow, geen infrastructuurcomponent.
 
@@ -310,7 +308,7 @@ Er is wel een kanttekening te maken ten aanzien van beschikbaarheid: bij één d
 
 Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel headroom.
 
-## 6. Samenvatting
+# Samenvatting
 
 <table class="data">
 <thead>

@@ -12,11 +12,9 @@ Abstract: Handreiking voor vrijwilligers die ingezonden jottems beoordelen voord
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Handreiking moderatie Jottem
-
 *Voor vrijwilligers die bijdragen beoordelen - versie 1.0 - [datum invullen]*
 
-## Jij bent de poortwachter (en dat is leuker dan het klinkt)
+<h3 class="no-num">Jij bent de poortwachter (en dat is leuker dan het klinkt)</h3>
 
 Als moderator beoordeel jij ingezonden jottems voordat ze openbaar worden. Jij zorgt ervoor dat het platform betrouwbaar, respectvol en rechtmatig blijft. Dat klinkt zwaar, maar met deze handreiking is het goed te doen. En onthoud de gouden regel:
 
@@ -26,7 +24,7 @@ Je beoordeelt elke jottem op vier punten. Loop ze in deze volgorde langs; bij el
 
 ---
 
-## Check 1. Kwaliteit: klopt het?
+<h3 class="no-num">Check 1. Kwaliteit: klopt het?</h3>
 
 **Waar kijk je naar?**
 
@@ -48,7 +46,7 @@ Je beoordeelt elke jottem op vier punten. Loop ze in deze volgorde langs; bij el
 </tbody>
 </table>
 
-## Check 2. Privacy en portretrecht: mogen deze mensen in beeld?
+<h3 class="no-num">Check 2. Privacy en portretrecht: mogen deze mensen in beeld?</h3>
 
 Dit is de belangrijkste check. Kernvraag: **staan er levende, herkenbare personen op, of worden levende personen genoemd?**
 
@@ -80,7 +78,7 @@ Dit is de belangrijkste check. Kernvraag: **staan er levende, herkenbare persone
 </tbody>
 </table>
 
-## Check 3. Auteursrecht: mag dit materiaal gepubliceerd worden?
+<h3 class="no-num">Check 3. Auteursrecht: mag dit materiaal gepubliceerd worden?</h3>
 
 Kernvraag: **wie heeft dit gemaakt, en mag de uploader erover beslissen?**
 
@@ -105,7 +103,7 @@ De hoofdregel: auteursrecht duurt tot **70 jaar na het overlijden van de maker**
 
 **Onthoud**: het bezitten van een foto of menukaart is iets anders dan het auteursrecht erop hebben. Oma's ansichtkaart is van oma, maar de rechten kunnen bij de drukkerij liggen.
 
-## Check 4. Herinnering of feit: is het onderscheid duidelijk?
+<h3 class="no-num">Check 4. Herinnering of feit: is het onderscheid duidelijk?</h3>
 
 Herinneringen zijn de ziel van het platform, maar het moet voor bezoekers duidelijk zijn wat een persoonlijke herinnering is en wat een controleerbaar feit.
 
@@ -126,7 +124,7 @@ Herinneringen zijn de ziel van het platform, maar het moet voor bezoekers duidel
 
 ---
 
-## Goedkeuren, afkeuren en netjes communiceren
+<h3 class="no-num">Goedkeuren, afkeuren en netjes communiceren</h3>
 
 **Bij goedkeuring** gebeurt automatisch: publicatie, duurzame link (ARK), opslag bij de externe bewaarplaats, en de uploader krijgt bericht. Let op: **goedkeuren is moeilijk terug te draaien** (het materiaal gaat ook naar de externe bewaarplaats). Vandaar: bij twijfel eerst uitzoeken.
 
@@ -137,20 +135,20 @@ Herinneringen zijn de ziel van het platform, maar het moet voor bezoekers duidel
 
 Elke afkeuring is een uitnodiging om het beter aan te leveren, geen afwijzing van de inzender. Zo houden we de gemeenschap enthousiast.
 
-## Als je er niet uitkomt: de escalatieroute
+<h3 class="no-num">Als je er niet uitkomt: de escalatieroute</h3>
 
 1. **Overleg met een mede-moderator**: twee paar ogen zien meer.
 2. **Vraag je organisatiebeheerder**: die kent de afspraken van jullie organisatie.
 3. **Juridische twijfel** (auteursrecht, privacy): via de organisatiebeheerder naar de platformbeheerder, die zo nodig een expert raadpleegt (bijv. via het netwerk met Wikimedia Nederland).
 4. **Melding van buitenaf** (iemand klaagt over gepubliceerd materiaal): dit loopt altijd via het Meldpunt, niet via jou persoonlijk. Verwijs melders daarnaar.
 
-## Vertrouwelijkheid en jouw positie
+<h3 class="no-num">Vertrouwelijkheid en jouw positie</h3>
 
 - Wat je in de moderatieomgeving ziet (ook afgekeurd materiaal en gegevens van uploaders) behandel je vertrouwelijk.
 - Je beoordeelt namens je organisatie. Beoordeel je zorgvuldig en te goeder trouw volgens deze handreiking, dan ben jij niet persoonlijk aansprakelijk voor een besluit (zie Algemene voorwaarden, hoofdstuk 3).
 - Beoordeel geen materiaal waarbij je persoonlijk betrokken bent (eigen familie, eigen conflict): geef dat aan een collega-moderator.
 
-## Spiekbriefje: de hele check in het kort
+<h3 class="no-num">Spiekbriefje: de hele check in het kort</h3>
 
 1. **Kwaliteit**: bruikbaar en kloppend? ✔
 2. **Privacy**: levende, herkenbare personen? Recent = toestemming nodig. Gevoelige info over levenden = niet publiceren. ✔

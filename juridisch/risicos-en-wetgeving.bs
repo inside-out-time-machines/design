@@ -12,8 +12,6 @@ Abstract: Werkdocument voor de projectgroep met een overzicht van de risico's ro
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Jottem - Risico's en wet- en regelgeving
-
 **Werkdocument voor de projectgroep**
 
 Dit document geeft de projectgroep overzicht op twee onderdelen:
@@ -31,9 +29,9 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 
 ---
 
-## Deel 1. Risico-overzicht
+<h3 class="no-num">Deel 1. Risico-overzicht</h3>
 
-### 1.1 Juridische risico's
+<h4 class="no-num">1.1 Juridische risico's</h4>
 
 <table class="data">
 <thead>
@@ -53,7 +51,7 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 </tbody>
 </table>
 
-### 1.2 Organisatorische risico's
+<h4 class="no-num">1.2 Organisatorische risico's</h4>
 
 <table class="data">
 <thead>
@@ -69,7 +67,7 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 </tbody>
 </table>
 
-### 1.3 Technische risico's
+<h4 class="no-num">1.3 Technische risico's</h4>
 
 <table class="data">
 <thead>
@@ -85,7 +83,7 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 </tbody>
 </table>
 
-### 1.4 Uitwerking passende waarborg VS-doorgifte vastleggen (J4)
+<h4 class="no-num">1.4 Uitwerking passende waarborg VS-doorgifte vastleggen (J4)</h4>
 
 Het gaat om artikel 44-49 AVG: persoonsgegevens mogen alleen buiten de EER (naar het Internet Archive in de VS) als daar een geldige basis voor is. Wat we moeten doen: kies die basis, leg hem vast in SOK artikel 5.4 en het privacybeleid, en bewaar de onderbouwing. Alternatief, **sla niet buiten de EER op**!
 
@@ -103,9 +101,9 @@ Voorstel: combineer optie 3 met optie 1. EER-opslag als hoofdroute haalt de ange
 
 ---
 
-## Deel 2. Relevante wet- en regelgeving
+<h3 class="no-num">Deel 2. Relevante wet- en regelgeving</h3>
 
-### 2.1 Kernwetgeving
+<h4 class="no-num">2.1 Kernwetgeving</h4>
 
 <table class="data">
 <thead>
@@ -119,7 +117,7 @@ Voorstel: combineer optie 3 met optie 1. EER-opslag als hoofdroute haalt de ange
 </tbody>
 </table>
 
-### 2.2 Aanvullende wetgeving
+<h4 class="no-num">2.2 Aanvullende wetgeving</h4>
 
 <table class="data">
 <thead>
@@ -137,7 +135,7 @@ Voorstel: combineer optie 3 met optie 1. EER-opslag als hoofdroute haalt de ange
 </tbody>
 </table>
 
-### 2.3 Kaders en afspraken (geen wetgeving, wel richtinggevend)
+<h4 class="no-num">2.3 Kaders en afspraken (geen wetgeving, wel richtinggevend)</h4>
 
 <table class="data">
 <thead>
@@ -152,7 +150,7 @@ Voorstel: combineer optie 3 met optie 1. EER-opslag als hoofdroute haalt de ange
 </tbody>
 </table>
 
-### 2.4 Nalevingsoverzicht in één oogopslag
+<h4 class="no-num">2.4 Nalevingsoverzicht in één oogopslag</h4>
 
 Zo is de naleving over de documenten verdeeld:
 

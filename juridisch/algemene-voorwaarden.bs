@@ -12,8 +12,6 @@ Abstract: Algemene voorwaarden voor het gebruik van het Jottem-platform: een pos
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Algemene voorwaarden Jottem
-
 <strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 
 Welkom bij Jottem! Jottem is het platform waar jij, samen met anderen, de geschiedenis van jouw stad, wijk, straat of huis levend houdt. Wij geloven dat erfgoed van iedereen is en door iedereen gemaakt wordt.
@@ -27,9 +25,9 @@ Het document bestaat uit twee delen:
 
 ---
 
-# Deel A - Algemeen
+<h2 class="no-num">Deel A - Algemeen</h2>
 
-## Artikel 1. Definities
+<h3 class="no-num">Artikel 1. Definities</h3>
 
 In deze voorwaarden bedoelen wij met:
 
@@ -55,21 +53,21 @@ In deze voorwaarden bedoelen wij met:
 </tbody>
 </table>
 
-## Artikel 2. Voor wie gelden deze voorwaarden?
+<h3 class="no-num">Artikel 2. Voor wie gelden deze voorwaarden?</h3>
 
 1. Deze voorwaarden gelden voor iedereen die het Platform gebruikt: Bezoekers, Gebruikers, Uploaders, Annoteerders, Moderators, Organisatiebeheerders en API-gebruikers.
 2. Maak je een account aan of gebruik je het Platform? Dan ga je akkoord met deze voorwaarden. Bij het aanmaken van een account vragen wij je dit ook actief te bevestigen.
 3. Organisaties sluiten daarnaast een aparte samenwerkingsovereenkomst met de Platformbeheerder. Die overeenkomst gaat vóór op deze voorwaarden als er verschil is.
 4. Ben je jonger dan 16 jaar? Vraag dan eerst toestemming aan je ouder of verzorger voordat je een account aanmaakt (artikel 8 AVG).
 
-## Artikel 3. Wat is Jottem en wat doet de Platformbeheerder?
+<h3 class="no-num">Artikel 3. Wat is Jottem en wat doet de Platformbeheerder?</h3>
 
 1. Jottem is een participatief erfgoedplatform. Gebruikers delen er materiaal en kennis over lokale geschiedenis. Organisaties beheren hun eigen omgeving en beoordelen bijdragen.
 2. De Platformbeheerder levert een **hostingdienst** in de zin van artikel 6 van de Digitaledienstenverordening (DSA). Dat betekent: wij stellen de techniek beschikbaar waarmee anderen informatie kunnen opslaan en delen. Wij bepalen niet zelf welke bijdragen worden geplaatst of goedgekeurd; dat doen Uploaders en Moderators.
 3. Wij zijn daarom niet verplicht om alle bijdragen vooraf te controleren (artikel 8 DSA). Wél treden wij op zodra wij weten dat inhoud onrechtmatig is. Hoe dat werkt lees je in artikel 7 (Meldpunt).
 4. Wij doen ons best om het Platform goed beschikbaar te houden. Soms is onderhoud nodig of gaat er iets mis. Wij geven geen garantie dat het Platform altijd en foutloos werkt.
 
-## Artikel 4. Auteursrecht en licentie
+<h3 class="no-num">Artikel 4. Auteursrecht en licentie</h3>
 
 1. **Jouw materiaal blijft van jou.** Het auteursrecht op wat je inzendt blijft bij jou als maker of rechthebbende (Auteurswet).
 2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan (ook duurzaam bij externe bewaarplaatsen zoals het Internet Archive) en technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's).
@@ -77,7 +75,7 @@ In deze voorwaarden bedoelen wij met:
 4. Je zendt alleen materiaal in waarvan je zeker weet dat je dat mag. Dat betekent: je bent zelf de maker, of je hebt toestemming van de rechthebbende, of het auteursrecht is verlopen.
 5. Wij vermelden waar mogelijk de bron en de maker bij gepubliceerd materiaal (artikel 25 Auteurswet, persoonlijkheidsrechten).
 
-## Artikel 5. Privacy en persoonsgegevens
+<h3 class="no-num">Artikel 5. Privacy en persoonsgegevens</h3>
 
 1. Persoonsgegevens verwerken wij volgens de AVG. Hoe wij dat doen lees je in onze privacyverklaring op het Platform.
 2. De rollen zijn zo verdeeld:
@@ -88,14 +86,14 @@ In deze voorwaarden bedoelen wij met:
 4. Iedereen kan een verzoek doen om eigen materiaal of materiaal waarop hij herkenbaar is te laten verwijderen. Zie artikel 7.
 5. Herinneringen zijn waardevol, maar niet altijd feitelijk juist. Het Platform maakt daarom onderscheid tussen persoonlijke herinneringen en verifieerbare feiten. Zo blijft de informatie eerlijk en betrouwbaar.
 
-## Artikel 6. Wat verwachten wij van iedereen?
+<h3 class="no-num">Artikel 6. Wat verwachten wij van iedereen?</h3>
 
 1. Je gebruikt het Platform met respect voor anderen. Je plaatst geen inhoud die beledigend, discriminerend, misleidend of anderszins onrechtmatig is.
 2. Je plaatst geen inhoud die inbreuk maakt op rechten van anderen, zoals auteursrecht, portretrecht of privacy.
 3. Je probeert het Platform niet te verstoren, te misbruiken of onbevoegd binnen te dringen (artikel 138ab Wetboek van Strafrecht).
 4. Je houdt je inloggegevens geheim. Wat er via jouw account gebeurt, valt onder jouw verantwoordelijkheid, tenzij je kunt aantonen dat je account is misbruikt buiten jouw schuld.
 
-## Artikel 7. Meldpunt: melden en verwijderen (notice-and-takedown)
+<h3 class="no-num">Artikel 7. Meldpunt: melden en verwijderen (notice-and-takedown)</h3>
 
 1. Zie je op het Platform inhoud die volgens jou onrechtmatig is? Bijvoorbeeld omdat jouw auteursrecht wordt geschonden, omdat je herkenbaar op een foto staat zonder toestemming, of omdat informatie over jou onjuist is? Meld dit dan via het Meldpunt.
 2. Wij richten het Meldpunt in volgens artikel 16 DSA. Je melding bevat: een uitleg waarom de inhoud onrechtmatig is, de plek van de inhoud (bij voorkeur de link), jouw naam en e-mailadres, en een verklaring dat je melding juist en volledig is.
@@ -103,7 +101,7 @@ In deze voorwaarden bedoelen wij met:
 4. Wij laten jou en de plaatser van de inhoud weten wat wij hebben besloten en waarom (artikel 17 DSA). De plaatser kan op het besluit reageren.
 5. Verwijdering op het Platform betekent ook dat wij een verwijderverzoek sturen naar externe bewaarplaatsen waar het materiaal duurzaam is opgeslagen. Wij spannen ons daarvoor in, maar hebben geen volledige controle over die externe partijen.
 
-## Artikel 8. Aansprakelijkheid
+<h3 class="no-num">Artikel 8. Aansprakelijkheid</h3>
 
 1. Wij stellen het Platform met zorg beschikbaar. Toch kunnen wij niet alles garanderen. Onze aansprakelijkheid is als volgt begrensd:
     - De Platformbeheerder is **niet aansprakelijk voor bijdragen van gebruikers**, zolang wij geen kennis hebben van onrechtmatige inhoud en wij na een melding snel handelen (artikel 6 DSA).
@@ -112,12 +110,12 @@ In deze voorwaarden bedoelen wij met:
 2. Deze beperkingen gelden niet bij opzet of bewuste roekeloosheid van de Platformbeheerder, en niet voor zover de wet beperking niet toestaat (artikel 6:248 BW).
 3. Plaats jij inhoud die onrechtmatig blijkt en krijgt de Platformbeheerder of een Organisatie daardoor een claim van een derde? Dan kan die claim op jou worden verhaald (vrijwaring).
 
-## Artikel 9. Duurzame opslag en open data
+<h3 class="no-num">Artikel 9. Duurzame opslag en open data</h3>
 
 1. Goedgekeurde jottems krijgen een duurzame link (ARK) en worden ook opgeslagen bij externe bewaarplaatsen, zoals het Internet Archive. Zo blijft erfgoed ook op lange termijn beschikbaar.
 2. Metadata en annotaties worden als open data aangeboden via standaard-API's (zoals IIIF en W3C Web Annotations), zodat anderen het erfgoed kunnen hergebruiken binnen de gekozen licentievoorwaarden.
 
-## Artikel 10. Wijzigen, beëindigen en toepasselijk recht
+<h3 class="no-num">Artikel 10. Wijzigen, beëindigen en toepasselijk recht</h3>
 
 1. Wij kunnen deze voorwaarden wijzigen. Belangrijke wijzigingen kondigen wij minstens 30 dagen van tevoren aan. Ben je het niet eens met een wijziging? Dan kun je je account beëindigen.
 2. Je kunt je account op elk moment opzeggen. Goedgekeurde en gepubliceerde jottems blijven na opzegging beschikbaar, omdat het Platform is bedoeld voor duurzaam erfgoed. Wil je materiaal laten verwijderen? Gebruik dan het Meldpunt (artikel 7).
@@ -126,9 +124,9 @@ In deze voorwaarden bedoelen wij met:
 
 ---
 
-# Deel B - Voorwaarden per rol
+<h2 class="no-num">Deel B - Voorwaarden per rol</h2>
 
-## Hoofdstuk 1. De Platformbeheerder
+<h3 class="no-num">Hoofdstuk 1. De Platformbeheerder</h3>
 
 **Wat doen wij voor jou?**
 
@@ -147,7 +145,7 @@ In deze voorwaarden bedoelen wij met:
 7. Wij zijn niet verantwoordelijk voor de inhoud van bijdragen. Of een bijdrage rechtmatig is, beoordelen de Uploader (bij het inzenden) en de Moderator (bij de kwaliteitscontrole).
 8. Wij zijn niet aansprakelijk voor schendingen van de AVG of het auteursrecht door gebruikers of Organisaties. Wel werken wij altijd mee aan het snel oplossen daarvan.
 
-## Hoofdstuk 2. De Organisatiebeheerder
+<h3 class="no-num">Hoofdstuk 2. De Organisatiebeheerder</h3>
 
 **Wat kun jij doen?**
 
@@ -166,7 +164,7 @@ In deze voorwaarden bedoelen wij met:
 7. Jouw Organisatie is verwerkingsverantwoordelijke (AVG) voor de persoonsgegevens in de bijdragen binnen de Organisatiejottem. Jij zorgt namens de Organisatie dat er een grondslag is voor de verwerking en dat verzoeken van betrokkenen (zoals verwijderverzoeken) correct worden afgehandeld.
 8. De Organisatie is aansprakelijk voor eigen keuzes, zoals het importeren van collecties en het publicatiebeleid. De Platformbeheerder levert de techniek, maar maakt deze keuzes niet.
 
-## Hoofdstuk 3. De Moderator
+<h3 class="no-num">Hoofdstuk 3. De Moderator</h3>
 
 **Wat kun jij doen?**
 
@@ -188,7 +186,7 @@ In deze voorwaarden bedoelen wij met:
 
 7. Jouw beoordeling is de belangrijkste controle vóór publicatie. Jij handelt daarbij namens jouw Organisatie; de Organisatie draagt de verantwoordelijkheid voor het publicatiebesluit. Je bent als vrijwilliger niet persoonlijk aansprakelijk voor een beoordeling die je te goeder trouw en zorgvuldig hebt gemaakt.
 
-## Hoofdstuk 4. De Gebruiker
+<h3 class="no-num">Hoofdstuk 4. De Gebruiker</h3>
 
 **Wat kun jij doen?**
 
@@ -206,7 +204,7 @@ In deze voorwaarden bedoelen wij met:
 6. Je kunt zelf lezen wat een jottem is en welke eisen daaraan worden gesteld, zodat je goed voorbereid kunt meedoen.
 7. Je kunt je account altijd opzeggen en je hebt de rechten die de AVG je geeft, zoals inzage en correctie van je gegevens.
 
-## Hoofdstuk 5. De Uploader
+<h3 class="no-num">Hoofdstuk 5. De Uploader</h3>
 
 **Wat kun jij doen?**
 
@@ -228,7 +226,7 @@ In deze voorwaarden bedoelen wij met:
 7. Jij bent als inzender zelf verantwoordelijk voor de rechtmatigheid van jouw materiaal. Blijkt materiaal achteraf onrechtmatig en ontstaat daardoor schade of een claim? Dan kan die bij jou worden neergelegd (Deel A, artikel 8 lid 3). De moderatie is een extra controle, maar neemt jouw eigen verantwoordelijkheid niet weg.
 8. Jouw auteursrecht blijft van jou. Je geeft alleen de licentie uit Deel A, artikel 4.
 
-## Hoofdstuk 6. De Annoteerder
+<h3 class="no-num">Hoofdstuk 6. De Annoteerder</h3>
 
 **Wat kun jij doen?**
 
@@ -246,7 +244,7 @@ In deze voorwaarden bedoelen wij met:
 
 7. Jij bent zelf verantwoordelijk voor de inhoud van jouw annotaties, net zoals een Uploader dat is voor zijn materiaal. Op jouw annotaties geef je dezelfde licentie als beschreven in Deel A, artikel 4.
 
-## Hoofdstuk 7. De API-gebruiker
+<h3 class="no-num">Hoofdstuk 7. De API-gebruiker</h3>
 
 **Wat kun jij doen?**
 
@@ -264,7 +262,7 @@ In deze voorwaarden bedoelen wij met:
 
 7. De Platformbeheerder biedt de gegevens aan zoals ze zijn ("as is"). Wij zijn niet verantwoordelijk voor wat jij met de gegevens doet, en niet aansprakelijk voor fouten in door gebruikers aangeleverde gegevens.
 
-## Hoofdstuk 8. De Bezoeker
+<h3 class="no-num">Hoofdstuk 8. De Bezoeker</h3>
 
 **Wat kun jij doen?**
 
@@ -283,7 +281,7 @@ In deze voorwaarden bedoelen wij met:
 
 ---
 
-## Tot slot
+<h3 class="no-num">Tot slot</h3>
 
 Jottem is er om erfgoed samen te maken en te bewaren. Deze voorwaarden helpen daarbij: iedereen weet wat hij mag doen, wat hij mag verwachten en waar hij verantwoordelijk voor is. Heb je vragen over deze voorwaarden? Neem contact op via [contactgegevens invullen].
 

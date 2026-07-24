@@ -12,17 +12,15 @@ Abstract: Protocol voor vrijwilligers die interviews afnemen, met de nadruk op t
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Interviewprotocol Jottem
-
 *Voor vrijwilligers die interviews afnemen - versie 1.0 - [datum invullen]*
 
-## Waarom dit protocol?
+<h3 class="no-num">Waarom dit protocol?</h3>
 
 Interviews zijn goud waard. Een oud-eigenaar van een snackbar of een vaste gast van een verdwenen koffiehuis kan verhalen vertellen die nergens op papier staan. Met dit protocol zorg je ervoor dat die verhalen goed worden vastgelegd én dat alles netjes geregeld is. Dan kan het interview zonder problemen op het platform worden gepubliceerd en bewaard voor de toekomst.
 
 De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De rest van dit protocol helpt je om dat goed en prettig te regelen.
 
-## Stap 1. Vóór het interview
+<h3 class="no-num">Stap 1. Vóór het interview</h3>
 
 **Regel de afspraak**
 
@@ -37,13 +35,13 @@ De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De res
 - Maak een lijstje met vragen, maar houd het gesprek open: de mooiste verhalen komen vaak vanzelf.
 - Test je opnameapparatuur: batterij vol, geheugen leeg, geluid getest.
 
-## Stap 2. Aan het begin van het interview
+<h3 class="no-num">Stap 2. Aan het begin van het interview</h3>
 
 - Neem het toestemmingsformulier rustig samen door. Leg uit wat elk onderdeel betekent. Geef de geïnterviewde de tijd om vragen te stellen.
 - Laat het formulier ondertekenen **vóórdat** je begint met opnemen. Zonder handtekening geen opname.
 - Start de opname en spreek dit in: datum, plaats, jouw naam, de naam van de geïnterviewde en de zin: *"U heeft zojuist het toestemmingsformulier ondertekend, klopt dat?"* Laat de geïnterviewde "ja" zeggen. Zo staat de toestemming ook op de opname zelf.
 
-## Stap 3. Tijdens het interview
+<h3 class="no-num">Stap 3. Tijdens het interview</h3>
 
 **Goede gewoontes**
 
@@ -57,7 +55,7 @@ De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De res
 - Wordt de geïnterviewde emotioneel? Zet de opname gerust even stil. Vraag daarna of het deel wel of niet gebruikt mag worden.
 - De geïnterviewde mag altijd zeggen: "Dit is niet voor publicatie." Noteer dat meteen (tijdstip van de opname erbij).
 
-## Stap 4. Na het interview
+<h3 class="no-num">Stap 4. Na het interview</h3>
 
 - Bedank de geïnterviewde en vertel wat er nu gebeurt: het interview wordt beoordeeld door een moderator en daarna gepubliceerd, en de geïnterviewde krijgt bericht (of een link) zodra het online staat.
 - Vertel dat de geïnterviewde zich altijd kan bedenken: via het Meldpunt op de website kan om verwijdering worden gevraagd.
@@ -67,7 +65,7 @@ De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De res
     3. je aantekeningen: wie, wat, waar, wanneer, en welke delen níet voor publicatie zijn.
 - Bewaar het originele formulier op de afgesproken plek van jouw organisatie. Het formulier zelf wordt nooit gepubliceerd.
 
-## Waarom is dat formulier zo belangrijk? (de korte juridische uitleg)
+<h3 class="no-num">Waarom is dat formulier zo belangrijk? (de korte juridische uitleg)</h3>
 
 Je hoeft dit niet uit je hoofd te kennen, maar het is goed om te weten waaróm we het zo doen:
 
@@ -77,7 +75,7 @@ Je hoeft dit niet uit je hoofd te kennen, maar het is goed om te weten waaróm w
 
 ---
 
-## Bijlage: Toestemmingsformulier interview
+<h3 class="no-num">Bijlage: Toestemmingsformulier interview</h3>
 
 **Toestemming voor opname en publicatie**
 

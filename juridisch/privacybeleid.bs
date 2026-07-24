@@ -12,13 +12,11 @@ Abstract: Privacybeleid van Jottem: welke persoonsgegevens worden verwerkt, waar
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 
-# Privacybeleid Jottem
-
 <strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 
 Jottem is een platform waar mensen samen lokaal erfgoed verzamelen en delen. Daarbij verwerken wij persoonsgegevens: van jou als gebruiker, maar soms ook van mensen die op oude foto's staan. In dit privacybeleid leggen we in gewone taal uit welke gegevens we verwerken, waarom we dat doen en welke rechten jij hebt. We houden ons daarbij aan de Algemene verordening gegevensbescherming (AVG).
 
-## 1. Wie is verantwoordelijk?
+# Wie is verantwoordelijk?
 
 Op Jottem werken twee soorten partijen samen. Daarom is de verantwoordelijkheid verdeeld:
 
@@ -27,9 +25,9 @@ Op Jottem werken twee soorten partijen samen. Daarom is de verantwoordelijkheid 
 
 Heb je een vraag en weet je niet bij wie je moet zijn? Stuur hem gewoon naar ons via [e-mailadres]. Wij zorgen dat je vraag op de juiste plek terechtkomt.
 
-## 2. Welke gegevens verwerken we, en waarom?
+# Welke gegevens verwerken we, en waarom?
 
-### 2.1 Als je een account hebt
+## Als je een account hebt
 
 <table class="data">
 <thead>
@@ -44,7 +42,7 @@ Heb je een vraag en weet je niet bij wie je moet zijn? Stuur hem gewoon naar ons
 </tbody>
 </table>
 
-### 2.2 Als je bijdragen plaatst
+## Als je bijdragen plaatst
 
 <table class="data">
 <thead>
@@ -56,7 +54,7 @@ Heb je een vraag en weet je niet bij wie je moet zijn? Stuur hem gewoon naar ons
 </tbody>
 </table>
 
-### 2.3 Als je op materiaal voorkomt (ook zonder account)
+## Als je op materiaal voorkomt (ook zonder account)
 
 Op foto's en in verhalen kunnen mensen voorkomen: herkenbaar in beeld, of genoemd bij naam. Daarvoor geldt:
 
@@ -65,13 +63,13 @@ Op foto's en in verhalen kunnen mensen voorkomen: herkenbaar in beeld, of genoem
 - Bij twijfel publiceren we niet, of maken we de persoon onherkenbaar.
 - Sta je zelf op materiaal en wil je dat niet? Dien dan een verwijderingsverzoek in via het Meldpunt. Dat kan ook zonder account. Zie punt 7.
 
-### 2.4 Als je het platform alleen bezoekt
+## Als je het platform alleen bezoekt
 
 - Wij gebruiken alleen functionele cookies die nodig zijn om de website te laten werken. Daarvoor is geen toestemming nodig.
 - Gebruiken we ooit analytische cookies, dan doen we dat privacyvriendelijk (zonder jou persoonlijk te volgen) of vragen we eerst je toestemming.
 - Wij tonen geen advertenties en verkopen nooit gegevens.
 
-## 3. Met wie delen we gegevens?
+# Met wie delen we gegevens?
 
 Wij delen gegevens alleen als dat nodig is voor het platform:
 
@@ -82,7 +80,7 @@ Wij delen gegevens alleen als dat nodig is voor het platform:
 
 Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 
-## 4. Hoe lang bewaren we gegevens?
+# Hoe lang bewaren we gegevens?
 
 <table class="data">
 <thead>
@@ -97,7 +95,7 @@ Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 </tbody>
 </table>
 
-## 5. Hoe beveiligen we jouw gegevens?
+# Hoe beveiligen we jouw gegevens?
 
 - Versleutelde verbindingen (https) voor al het verkeer.
 - Wachtwoorden slaan we versleuteld op; beheerders en moderators gebruiken tweefactorauthenticatie (2FA).
@@ -105,7 +103,7 @@ Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 - We maken dagelijks back-ups.
 - Gaat er toch iets mis met persoonsgegevens (een datalek)? Dan melden we dat waar nodig aan de Autoriteit Persoonsgegevens en aan jou, zoals de AVG voorschrijft (artikel 33 en 34).
 
-## 6. Jouw rechten
+# Jouw rechten
 
 Je hebt op grond van de AVG deze rechten:
 
@@ -120,19 +118,19 @@ Een verzoek doen is simpel: mail naar [e-mailadres] of gebruik het Meldpunt op d
 
 **Belangrijk om te weten bij verwijdering van gepubliceerd erfgoed**: gepubliceerde jottems staan ook bij externe bewaarplaatsen en kunnen door anderen zijn overgenomen via de open API's. Wij verwijderen het materiaal van het platform, sturen een verwijderverzoek naar de externe bewaarplaats en geven de wijziging door via onze API-signalen. Volledige verwijdering overal op internet kunnen we niet garanderen, maar we doen wat redelijkerwijs kan.
 
-## 7. Het Meldpunt
+# Het Meldpunt
 
 Zie je materiaal waarop je herkenbaar bent, materiaal van jou, of gegevens over jou die niet kloppen of er niet horen te staan? Meld het via het Meldpunt op de website. Dat kan met en zonder account. We nemen elke melding serieus, beoordelen die samen met de betrokken Organisatie en laten je weten wat we hebben besloten.
 
-## 8. Kinderen
+# Kinderen
 
 Ben je jonger dan 16 jaar? Dan mag je alleen een account aanmaken met toestemming van je ouder of verzorger (artikel 8 AVG). Merken wij dat een account zonder die toestemming is aangemaakt, dan verwijderen we het.
 
-## 9. Wijzigingen van dit beleid
+# Wijzigingen van dit beleid
 
 Soms passen we dit privacybeleid aan, bijvoorbeeld bij nieuwe functies. Belangrijke wijzigingen kondigen we aan op het platform en, als je een account hebt, per e-mail. Bovenaan zie je altijd de versie en datum.
 
-## 10. Vragen of klachten?
+# Vragen of klachten?
 
 - Vragen over privacy? Mail naar [e-mailadres] of neem contact op met jouw Organisatie.
 - Ben je niet tevreden over hoe we met jouw gegevens omgaan? We horen het graag en lossen het het liefst samen op.

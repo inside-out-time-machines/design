@@ -14,7 +14,7 @@ Abstract: Werkdocument voor de projectgroep met een overzicht van de risico's ro
 
 # Jottem - Risico's en wet- en regelgeving
 
-*Werkdocument voor de projectgroep*
+**Werkdocument voor de projectgroep**
 
 Dit document geeft de projectgroep overzicht op twee onderdelen:
 

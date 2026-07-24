@@ -14,7 +14,7 @@ Abstract: Algemene voorwaarden voor het gebruik van het Jottem-platform: een pos
 
 # Algemene voorwaarden Jottem
 
-*Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!*
+<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 
 Welkom bij Jottem! Jottem is het platform waar jij, samen met anderen, de geschiedenis van jouw stad, wijk, straat of huis levend houdt. Wij geloven dat erfgoed van iedereen is en door iedereen gemaakt wordt.
 

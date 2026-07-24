@@ -20,9 +20,9 @@ Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jo
 
 - **Open source first**: elk component is een bewezen open-source product of een dunne maatwerklaag daaromheen. Succesvolle onderdelen zijn herbruikbaar tussen Time Machines.
 - **Standaarden aan de buitenkant**: alle publieke interfaces zijn standaard-API's (IIIF, W3C Annotation Protocol, SPARQL/RDF, RSS), zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten.
-- **Duurzame identificatie**: elke gepubliceerde jottem krijgt een ARK met NOID/UUID-objectnaam; de ARK is het duurzame startpunt, met content negotiation naar HTML of RDF.
+- **Duurzame opslag identificatie**: elke gepubliceerde jottem krijgt een ARK met NOID/UUID-objectnaam; de ARK is het duurzame startpunt, met content negotiation naar HTML of RDF en komt in een duurzame opslag terecht. (willen we dit uitgangspunt handhaven???)
 - **Multi-tenant**: een platforminstallatie bedient meerdere organisatiejottems (Streekarchief Midden-Holland, historische verenigingen, andere Time Machines), elk met eigen huisstijl, NAAN/shoulder en gebruikers.
-- **Beheersbaarheid**: het geheel draait als een docker-compose-stack op een enkele VPS en kan later doorgroeien naar Kubernetes zonder architectuurbreuk.
+- **Beheersbaarheid**: het geheel draait als een docker-compose-stack op een enkele VPS (of dedicated server) en kan later doorgroeien naar Kubernetes zonder architectuurbreuk.
 - **Getest en gemonitord**: elk component wordt geautomatiseerd getest (unit, integratie, contract op de standaard-API's en end-to-end over de stack) en draait onder centrale monitoring, logging en alerting, zodat regressies en storingen vroeg en aantoonbaar zichtbaar worden.
 
 ## 2. Contextdiagram
@@ -302,6 +302,13 @@ Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor moni
 - *Deployment.* De monitoringcomponenten draaien als eigen services in de compose-stack op het `app`- en `data`-netwerk; alleen Grafana wordt via Traefik ontsloten (bijv. `status.iotm.nl`) achter Keycloak-authenticatie, de overige endpoints blijven intern.
 
 **Schaalpad.** De eerste jaren volstaat een enkele VPS (8 vCPU, 16-32 GB RAM). Groeit het platform, dan schalen frontend, API, workers en Cantaloupe horizontaal het eenvoudigst; PostgreSQL en Elasticsearch verhuizen dan naar managed diensten of eigen nodes. Omdat alle koppelingen via standaardprotocollen lopen (HTTP, S3, OIDC, SPARQL) is die migratie een deployment-vraagstuk, geen architectuurwijziging.
+
+**VPS/dedicated server** Bij Hetzner (DE) biedt de CCX33 voor €139 per maand (€1.668 per jaar) een VPS met gestelde specificaties. Een dedicated server met betere specs heb je via Hetzner's "server auction" overigens al voor de helft van dat bedrag.
+
+Zoals eerder gezegd, doordat alle koppelingen standaardprotocollen zijn (HTTP, S3, OIDC, SPARQL) en alles in Docker draait, blijft de overstap naar grotere of meerdere dedicated servers een deployment-vraagstuk, geen architectuurwijziging. Een dedicated server sluit het groeipad dus niet af, hij maakt de eerste stap alleen minder elastisch.
+Er is wel een kanttekening te maken ten aanzien van beschikbaarheid: bij één dedicated box betekent hardwarefalen downtime tot restore; een cloud-VM kan de provider naar gezonde hardware verplaatsen. Je backups (restic/pgBackRest/IA) dekken dataduurzaamheid, niet uptime. Server-auction-machines zijn bovendien gebruikte hardware.
+
+Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel headroom.
 
 ## 6. Samenvatting
 

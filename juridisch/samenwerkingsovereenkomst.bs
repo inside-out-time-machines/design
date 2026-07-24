@@ -14,7 +14,7 @@ Abstract: Samenwerkingsovereenkomst tussen de Platformbeheerder en een deelnemen
 
 # Samenwerkingsovereenkomst Jottem
 
-*Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!*
+<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 
 ## Wie sluiten deze overeenkomst?
 

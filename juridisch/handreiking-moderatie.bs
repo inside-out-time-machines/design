@@ -11,6 +11,7 @@ Abstract: Handreiking voor vrijwilligers die ingezonden jottems beoordelen voord
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 *Voor vrijwilligers die bijdragen beoordelen - versie 1.0 - [datum invullen]*
 

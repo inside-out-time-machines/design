@@ -11,6 +11,7 @@ Abstract: Protocol voor vrijwilligers die interviews afnemen, met de nadruk op t
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 *Voor vrijwilligers die interviews afnemen - versie 1.0 - [datum invullen]*
 

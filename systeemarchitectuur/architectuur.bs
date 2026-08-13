@@ -11,6 +11,7 @@ Abstract: Een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform:
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform: een participatief digitaal erfgoedplatform waarin gebruikers media (jottems) uploaden, moderatoren deze beoordelen en publiceren, en annoteerders verrijkingen toevoegen. Het geheel wordt via subdomeinen onder `iotm.nl` ontsloten en implementeert de in het designdocument genoemde standaarden: IIIF Image API 3.0, IIIF Presentation API 3.0, IIIF Change Discovery, W3C Web Annotations, schema.org AP NDE, ARK en RSS.
 

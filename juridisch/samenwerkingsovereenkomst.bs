@@ -11,6 +11,7 @@ Abstract: Samenwerkingsovereenkomst tussen de Platformbeheerder en een deelnemen
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 <strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 

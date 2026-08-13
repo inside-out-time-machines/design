@@ -11,6 +11,7 @@ Abstract: Dit document beschrijft de plannen en ideeën van het project Inside O
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="./favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 <pre class="include">
 path: introductie.md

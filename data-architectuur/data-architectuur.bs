@@ -11,6 +11,7 @@ Abstract: De data-architectuur van het Jottem-platform: het datamodel (ERD), de 
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
 
 # Inleiding en lagenmodel # {#lagenmodel}
 

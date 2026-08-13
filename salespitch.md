@@ -1,5 +1,9 @@
 # Salespitch voor het Jottem platform # {#salespitch}
 
+Voor organisaties (historische verenigingen, erfgoedhuizen en archieforganisaties) is er een
+niet-technische salespitch als losse pagina: [Jottem voor organisaties](jottem-voor-organisaties.html) —
+wat het platform oplevert en wat het vraagt (jaarlijkse bijdrage, communicatie en moderatie).
+
 ## Hoofdboodschap
 
 **Jottem: Maak erfgoed van iedereen, door iedereen**
@@ -98,8 +102,9 @@ Heb je verhalen, foto's of herinneringen over je buurt? Word deel van een groeie
 
 ## Slogan opties
 
-- **"Jottem: Jouw verhaal, onze geschiedenis"**
-- **"Maak erfgoed van iedereen, door iedereen"**
-- **"Van de homepage van je huis tot het verhaal van je stad"**
-- **"Samen bouwen aan lokale geschiedenis"**
-- **"Erfgoed dat leeft, door mensen die delen"**
+- **"Verbindt inwoners, verhalen en erfgoed"**
+- "Jottem: Jouw verhaal, onze geschiedenis"
+- "Maak erfgoed van iedereen, door iedereen"
+- "Van de homepage van je huis tot het verhaal van je stad"
+- "Samen bouwen aan lokale geschiedenis"
+- "Erfgoed dat leeft, door mensen die delen"

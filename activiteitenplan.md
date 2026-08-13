@@ -1,6 +1,6 @@
 # Activiteitenplan # {#activiteitenplan}
 
-Dit deel komt uit het activiteitenplan (versie 31 augustus 2025, opgesteld door Ingeborg Verheul, Bob Coret, Toine Pieters, Elsbeth Kwant) dat onderdeel was van de aanvraag voor de Subsidieregeling Uitvoeringsagenda Faro.
+Dit deel komt uit het activiteitenplan (versie 31 augustus 2025, opgesteld door Ingeborg Verheul, Bob Coret, Toine Pieters, Elsbeth Kwant) dat onderdeel was van de aanvraag voor de Subsidieregeling Uitvoeringsagenda Faro. De oorspronkelijke tekst is intact gelaten; waar van toepassing staat onder een deelactiviteit een *statusnoot (augustus 2026)* met de inmiddels opgeleverde producten en genomen besluiten.
 
 ## Hoofdactiviteit en doel
 
@@ -36,6 +36,7 @@ Uitgewerkte lijst met functionele en niet-functionele requirements.
 
 Aanpak auteursrecht & participatie. 
 
+> **Status (augustus 2026):** de [functionele en niet-functionele requirements](#requirements) en [usecases per rol](#usecases) zijn uitgewerkt. Voor auteursrecht en participatie liggen er juridische conceptdocumenten (o.a. [risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html), [algemene voorwaarden](juridisch/algemene-voorwaarden.html) en een [handreiking moderatie](juridisch/handreiking-moderatie.html)), nog te toetsen door een jurist.
 
 ### Verkenning technische oplossingsrichting
 
@@ -56,6 +57,8 @@ Vaststellen welke (generieke of lokale) technische oplossing het meest geschikt 
 - Architectuurschets. 
 - Applicatiebeschrijving per scenario (generiek of maatwerk per tijdmachine). 
 
+> **Status (augustus 2026):** de architectuurschets is uitgegroeid tot een volwaardige [systeemarchitectuur](systeemarchitectuur/architectuur.html) en [data-architectuur](data-architectuur/data-architectuur.html). De scenario-afweging is uitgevoerd in de [infrastructuuranalyse](infra/analyse.html) (vier richtingen); er is gekozen voor één generiek platform (Jottem) voor alle tijdmachines, in plaats van maatwerk per tijdmachine.
+
 ### Keuze oplossingsrichting
 
 **Aard & wijze van uitvoering:**
@@ -71,6 +74,8 @@ Vaststellen van een gedragen en uitvoerbare oplossingsrichting.
 **Resultaten/Producten:**
 
 - Document met onderbouwing en selectie van gekozen oplossingsrichting. 
+
+> **Status (augustus 2026):** opgeleverd als het [keuzedocument](#keuze-oplossingsrichting): alles op de Jottem-server met een expliciete exit-/exportstrategie, een gekozen technologiestack en besliste openstaande vragen (o.a. ARK uitgesteld naar een latere fase).
 
 ### Implementatie per tijdmachine
 
@@ -90,6 +95,8 @@ Functionele toepassing waarmee gebruikers foto's/verhalen kunnen toevoegen en/of
 
 - Werkende participatievoorziening binnen elke tijdmachine. 
 
+> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](prototype/index.html)). De eerste implementatie start met de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie).
+
 ### Testen en nazorg
 
 **Aard & wijze van uitvoering:**
@@ -107,6 +114,8 @@ Verbeterpunten identificeren en gebruikservaring meten.
 **Resultaten/Producten:**
 
 - Gebruikersrapportage met inzichten in gebruiksgemak, barrières en kansen. 
+
+> **Status (augustus 2026):** de aanpak voor geautomatiseerd testen en monitoring is uitgewerkt in de [systeemarchitectuur](systeemarchitectuur/architectuur.html); gebruikerssessies volgen tijdens de pilot.
 
 ### Evaluatie en leerpunten
 
@@ -156,6 +165,8 @@ Duurzame borging van de oplossing.
 
 - Beheersplan en samenwerkingsovereenkomsten met lokale partners. 
 
+> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate).
+
 ## Relatie met de Faro-kernwaarden
 
 **Participatie in de volle breedte**: Door het delen en taggen van foto’s, verhalen en kennis ontstaat er een directe en laagdrempelige vorm van erfgoedparticipatie. Dit past bij het idee van “mee kunnen doen” en “mee mogen bepalen”. Door te werken aan een publieksvriendelijke, visuele annotatieomgeving verlagen we de drempel om deel te nemen – zowel technisch als mentaal. We creëren een webomgeving waarbij vrijwilligers zelf informatie kunnen toevoegen, verbeteren of kunnen linken naar andere bronnen. Niet alleen experts, maar ook buurtbewoners, jongeren of incidentele bezoekers kunnen meedoen, hun stem laten horen en hun perspectieven toevoegen. Daarmee groeit het besef dat iedereen eigenaar is van erfgoed en dat erfgoed gevormd wordt door de gemeenschap zelf.
@@ -190,11 +201,11 @@ Het project zet actief in op kennisdeling met erfgoedprofessionals, burgers en b
 
 ### Doorlopende communicatie
 
-**Nieuwsbrieven**: Er verschijnen vier digitale nieuwsbrieven (elk kwartaal) met updates over het project, ervaringen uit de deelnemende steden, technische keuzes en leerpunten. De nieuwsbrieven worden verspreid via partnerorganisaties en netwerken in de erfgoedsector. De doelgroep wordt gevormd door erfgoedprofessionals. 
-**Sociale media**: Via LinkedIn, Mastodon en Bluesky delen we regelmatig korte berichten met foto’s, citaten van deelnemers en aankondigingen. Dit is afhankelijk van het onderwerp communicatie naar vrijwilligers en naar erfgoed professionals. 
-**Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreërde participatieve mogelijkheden zal na het project plaatsvinden. 
+- **Nieuwsbrieven**: Er verschijnen vier digitale nieuwsbrieven (elk kwartaal) met updates over het project, ervaringen uit de deelnemende steden, technische keuzes en leerpunten. De nieuwsbrieven worden verspreid via partnerorganisaties en netwerken in de erfgoedsector. De doelgroep wordt gevormd door erfgoedprofessionals. 
+- **Sociale media**: Via LinkedIn, Mastodon en Bluesky delen we regelmatig korte berichten met foto’s, citaten van deelnemers en aankondigingen. Dit is afhankelijk van het onderwerp communicatie naar vrijwilligers en naar erfgoed professionals. 
+- **Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreërde participatieve mogelijkheden zal na het project plaatsvinden. 
 
-###K ennissessies en webinars
+### Kennissessies en webinars
 Er worden minimaal twee kennissessies georganiseerd: 
-**Sessie 1 (halverwege het project)**: Online bijeenkomst over het betrekken van burgers bij digitale erfgoedprojecten. Hier delen we ervaringen en eerste resultaten met andere professionals. 
-**Sessie 2 (aan het einde van het project)**: Fysieke bijeenkomst over de impact, leerpunten en toekomstmogelijkheden van participatief erfgoed. Met demonstraties en ruimte voor uitwisseling. Beide sessies worden opgenomen en gepubliceerd. Ook worden presentaties en samenvattingen online beschikbaar gesteld.
+- **Sessie 1 (halverwege het project)**: Online bijeenkomst over het betrekken van burgers bij digitale erfgoedprojecten. Hier delen we ervaringen en eerste resultaten met andere professionals. 
+- **Sessie 2 (aan het einde van het project)**: Fysieke bijeenkomst over de impact, leerpunten en toekomstmogelijkheden van participatief erfgoed. Met demonstraties en ruimte voor uitwisseling. Beide sessies worden opgenomen en gepubliceerd. Ook worden presentaties en samenvattingen online beschikbaar gesteld.

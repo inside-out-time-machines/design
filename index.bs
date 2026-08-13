@@ -1,12 +1,12 @@
 <pre class='metadata'>
-Title: Inside Out Time Machines (IOTM) Design
-Shortname: iotm-design
+Title: Jottem Platform Design
+Shortname: jottem-design
 Level: 1
 Status: DREAM
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
 Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
-Abstract: Dit document beschrijft de plannen en ideeën van het project Inside Out Time Machines (IOTM). 
+Abstract: Dit document beschrijft de plannen en ideeën van het project Inside Out Time Machines (IOTM) omtrent het Jottem platform.
 </pre>
 <section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>

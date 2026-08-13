@@ -1,6 +1,6 @@
 # Usecases per rol # {#usecases}
 
-Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/index.html).
+Ter ondersteuning van onderstaande usescases is er een [prototype](https://prototype.iotm.nl/).
 
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
 

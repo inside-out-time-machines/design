@@ -1,0 +1,273 @@
+<pre class='metadata'>
+Title: Data-architectuur Jottem
+Shortname: data-architectuur
+Level: 1
+Status: DREAM
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: De data-architectuur van het Jottem-platform: het datamodel (ERD), de URI-strategie en alle data-outputs (IIIF, W3C Web Annotations, RDF/datadump conform schema.org AP NDE, API's, RSS, zoekindex), met per output een controle of de benodigde data beschikbaar is in de bronlagen. Concept, kan op elk moment veranderen.
+</pre>
+<section boilerplate="conformance"></section>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+
+# Inleiding en lagenmodel # {#lagenmodel}
+
+Dit document beschrijft de data-architectuur van het Jottem-platform: welke data waar wordt vastgelegd, hoe die door het platform stroomt en in welke vormen die aan de buitenwereld wordt aangeboden. Het sluitstuk is de [outputcontrole](#outputcontrole): per output is nagegaan of alle benodigde data beschikbaar is in de eerdere lagen; de daarbij gevonden hiaten zijn direct in het datamodel verwerkt.
+
+De data leeft in drie lagen:
+
+<table class="data">
+<thead>
+<tr><th>Laag</th><th>Opslag</th><th>Inhoud</th></tr>
+</thead>
+<tbody>
+<tr><td>**Bronlaag**</td><td>PostgreSQL (ERD), MinIO (S3), miiify</td><td>PostgreSQL is de bron van waarheid voor organisaties, gebruikers, media en metadata; MinIO bevat de mediabestanden (originelen, afgeleiden, thumbnails, audio); miiify bevat de W3C-annotaties met versiegeschiedenis.</td></tr>
+<tr><td>**Verwerkingslaag**</td><td>Celery-workers, Elasticsearch, Fuseki</td><td>Workers genereren afgeleiden en thumbnails, mappen metadata naar RDF (upsert in Fuseki), indexeren in Elasticsearch en versturen e-mail. Elasticsearch en Fuseki zijn afgeleide stores: ze zijn altijd volledig te herbouwen uit de bronlaag.</td></tr>
+<tr><td>**Outputlaag**</td><td>api/iiif/anno/data.iotm.nl, RSS</td><td>De standaard-interfaces voor de buitenwereld: IIIF (Image, Presentation, Change Discovery), W3C Web Annotation Protocol, RDF/SPARQL/datadump met datasetbeschrijving, de REST-API's en RSS-feeds.</td></tr>
+</tbody>
+</table>
+
+Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** — elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten — en **PostgreSQL plus miiify en MinIO als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
+
+<pre class="include">
+path: erd.mermaid.md
+</pre>
+
+# URI-strategie en content negotiation # {#uri-strategie}
+
+Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifier in alle outputs wordt gebruikt:
+
+<table class="data">
+<thead>
+<tr><th>Resource</th><th>URI-patroon</th></tr>
+</thead>
+<tbody>
+<tr><td>Jottem (duurzame link)</td><td>`https://www.iotm.nl/jottem/{mediaId}`</td></tr>
+<tr><td>IIIF Image API</td><td>`https://iiif.iotm.nl/3/{mediaId}` (`/info.json`, tiles)</td></tr>
+<tr><td>IIIF Manifest</td><td>`https://api.iotm.nl/v1/jottem/{mediaId}/iiif/manifest`</td></tr>
+<tr><td>IIIF Collection</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/jottems/iiif/collection` (idem per album)</td></tr>
+<tr><td>Annotatie</td><td>`https://anno.iotm.nl/annotations/{annotationId}`</td></tr>
+<tr><td>Organisatie-dataset</td><td>`https://data.iotm.nl/{slug}/dataset` (beschrijving), `https://data.iotm.nl/{slug}/dump.nt.gz` (dump), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
+</tbody>
+</table>
+
+De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE (303-redirect naar `data.iotm.nl`). De `mediaId` is een niet-herbruikbare, betekenisloze identifier (UUID), zodat in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource kan worden gelegd.
+
+# IIIF # {#iiif}
+
+## IIIF Image API v3 ## {#iiif-image}
+
+Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en formaten op basis van de pyramidal TIFF/JP2-afgeleide in MinIO (`derivatives`-bucket). De benodigde data:
+
+<table class="data">
+<thead>
+<tr><th>Element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>`id`</td><td>URI-strategie (afgeleid van `Media.mediaId`)</td></tr>
+<tr><td>`width`, `height`</td><td>`Media.breedte`, `Media.hoogte` (vastgelegd bij verwerking van de upload)</td></tr>
+<tr><td>beeldata (tiles)</td><td>MinIO `derivatives` (pyramidal TIFF/JP2, gegenereerd door worker)</td></tr>
+</tbody>
+</table>
+
+## IIIF Presentation API v3 (Manifest en Collection) ## {#iiif-presentation}
+
+De backend genereert per jottem een **Manifest** en per organisatie en per album een **Collection** (met iiif-prezi3), rechtstreeks uit de database:
+
+<table class="data">
+<thead>
+<tr><th>Manifest-element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>`id`, `type`</td><td>URI-strategie</td></tr>
+<tr><td>`label`</td><td>`Media.titel`</td></tr>
+<tr><td>`summary`</td><td>`Media.beschrijving`</td></tr>
+<tr><td>`metadata` (paren)</td><td>`Metadata`-rijen (vervaardiger, datering, plaats, steekwoorden, ...)</td></tr>
+<tr><td>`rights`</td><td>`Media.licentie` (URI)</td></tr>
+<tr><td>`requiredStatement` (bronvermelding)</td><td>`Organisatie.naam` + inzender (indien `Gebruiker.naamPubliek`)</td></tr>
+<tr><td>`provider`</td><td>`Organisatie.naam`, `Organisatie.logo`, `Organisatie.website`</td></tr>
+<tr><td>`navDate`</td><td>`Metadata` type datering</td></tr>
+<tr><td>`thumbnail`</td><td>MinIO `thumbs`</td></tr>
+<tr><td>canvas (`width`/`height`)</td><td>`Media.breedte`, `Media.hoogte`</td></tr>
+<tr><td>image service</td><td>IIIF Image API (zie boven)</td></tr>
+<tr><td>`annotations` (AnnotationPage)</td><td>miiify, per jottem-target</td></tr>
+<tr><td>Collection-items</td><td>`Media` per `organisatieId`/`albumId` (status goedgekeurd)</td></tr>
+</tbody>
+</table>
+
+Audio-jottems (bijv. interviews uit de pilot Smaak van Gouda) krijgen een manifest met een audio-canvas (`duration`; vastgelegd bij verwerking van de upload) en het bestand uit de `audio`-bucket als painting annotation.
+
+## IIIF Change Discovery v1 ## {#iiif-change-discovery}
+
+Per organisatie publiceert de backend een ActivityStreams-feed (`OrderedCollection` met pages) waarmee harvesters nieuwe en gewijzigde jottems kunnen volgen:
+
+<table class="data">
+<thead>
+<tr><th>Element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>`Create`-activiteit</td><td>`Media.publicatieDatum` (moment van goedkeuring/publicatie)</td></tr>
+<tr><td>`Update`-activiteit</td><td>`Media.wijzigingsDatum`</td></tr>
+<tr><td>`object` (het Manifest)</td><td>URI-strategie</td></tr>
+<tr><td>`endTime`</td><td>de betreffende datum</td></tr>
+</tbody>
+</table>
+
+**Regel:** elke mutatie die de outputs raakt — metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie — werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt.
+
+# Annotaties # {#annotaties}
+
+Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/) en worden opgeslagen in miiify; lezen kan publiek en standaardconform via het [W3C Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/) op `anno.iotm.nl` (de [Miifi API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml)). Schrijven verloopt via de beheer-API, die de geauthenticeerde gebruiker als `creator` toevoegt en autorisatie bewaakt (eigen annotaties bewerken en verwijderen; de git-backend van miiify bewaart de versiegeschiedenis).
+
+<table class="data">
+<thead>
+<tr><th>Element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>`id`, `created`, `modified`</td><td>miiify</td></tr>
+<tr><td>`motivation`</td><td>vocabulaire, zie [[#vocabulaires]]</td></tr>
+<tr><td>`target` (gehele jottem)</td><td>duurzame jottem-URL of Canvas-URI</td></tr>
+<tr><td>`target` (getekend vlak)</td><td>Canvas-URI + SVG/FragmentSelector (Annotorious)</td></tr>
+<tr><td>`body` (vrije tekst: herinnering, aanvulling, correctie)</td><td>TextualBody</td></tr>
+<tr><td>`body` (identificatie persoon/gebouw/bedrijf/plaats/gebeurtenis)</td><td>SpecificResource met label + externe URI (zie [[#vocabulaires]])</td></tr>
+<tr><td>`body` (geo: standpunt fotograaf, zichtveld)</td><td>WKT/GeoJSON-body, zie [[#zoekindex-geo]]</td></tr>
+<tr><td>reactie op annotatie</td><td>annotatie met de bestaande annotatie als `target`</td></tr>
+<tr><td>`creator`</td><td>`Gebruiker.naam` indien `Gebruiker.naamPubliek`, anders geanonimiseerd</td></tr>
+</tbody>
+</table>
+
+# RDF en datadump # {#rdf-datadump}
+
+## Mapping naar schema.org AP NDE ## {#rdf-mapping}
+
+Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profiel van NDE](https://docs.nde.nl/schema-profile/) en upsert deze in Fuseki (named graph per organisatie). De representatie is opvraagbaar via content negotiation op de duurzame URL, via SPARQL en via de datadump.
+
+<table class="data">
+<thead>
+<tr><th>schema.org AP NDE</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>`@id`</td><td>duurzame jottem-URL (URI-strategie)</td></tr>
+<tr><td>`@type`</td><td>`schema:ImageObject` / `schema:AudioObject` op basis van `Media.mimeType`</td></tr>
+<tr><td>`schema:name`</td><td>`Media.titel`</td></tr>
+<tr><td>`schema:description`</td><td>`Media.beschrijving`</td></tr>
+<tr><td>`schema:genre` / `schema:additionalType`</td><td>`Media.genre` + term-URI (zie [[#vocabulaires]])</td></tr>
+<tr><td>`schema:license`</td><td>`Media.licentie`</td></tr>
+<tr><td>`schema:datePublished` / `schema:dateModified`</td><td>`Media.publicatieDatum` / `Media.wijzigingsDatum`</td></tr>
+<tr><td>`schema:dateCreated`</td><td>`Metadata` type datering</td></tr>
+<tr><td>`schema:creator`</td><td>`Metadata` type vervaardiger</td></tr>
+<tr><td>`schema:contentLocation`</td><td>`Metadata` type plaats/adres (`schema:Place`, `schema:sameAs` naar term-URI, `schema:geo` bij WKT/GeoJSON)</td></tr>
+<tr><td>`schema:temporalCoverage`</td><td>`Metadata` openings-/sluitingsjaar</td></tr>
+<tr><td>`schema:about`</td><td>`Metadata`/annotaties: personen, gebouwen, bedrijven, gebeurtenissen (label + URI)</td></tr>
+<tr><td>`schema:keywords`</td><td>`Metadata` type steekwoord</td></tr>
+<tr><td>`schema:isBasedOn` / `schema:subjectOf`</td><td>`Metadata` type archiefbron (label + URI)</td></tr>
+<tr><td>`schema:contentUrl`, `schema:width`, `schema:height`, `schema:encodingFormat`</td><td>IIIF Image-URI, `Media.breedte`/`hoogte`/`mimeType`</td></tr>
+<tr><td>`schema:thumbnailUrl`</td><td>MinIO `thumbs`</td></tr>
+<tr><td>`schema:publisher`</td><td>`Organisatie.naam` + `Organisatie.website`</td></tr>
+<tr><td>`schema:inLanguage`</td><td>vast `nl` (NL-only, zie niet-functionele requirements)</td></tr>
+<tr><td>annotaties</td><td>verwijzing naar het W3C Annotation Protocol-endpoint per jottem</td></tr>
+</tbody>
+</table>
+
+Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt alleen als `schema:contributor` opgenomen indien `Gebruiker.naamPubliek`.
+
+## Datasetbeschrijving en datadump ## {#datasetbeschrijving}
+
+Per organisatie publiceert het platform een datasetbeschrijving als `schema:Dataset` conform de [NDE-requirements voor datasets](https://docs.nde.nl/requirements-datasets/), aangemeld bij het NDE Datasetregister; de datacatalogus (`schema:DataCatalog`) bundelt alle organisatie-datasets.
+
+<table class="data">
+<thead>
+<tr><th>Verplicht/aanbevolen element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>IRI van de dataset</td><td>`https://data.iotm.nl/{slug}/dataset`</td></tr>
+<tr><td>`schema:name`</td><td>`Organisatie.naam` ("Jottems van ...")</td></tr>
+<tr><td>`schema:description`</td><td>`Organisatie.beschrijving`</td></tr>
+<tr><td>`schema:license` (van de dataset)</td><td>`Organisatie.datasetLicentie`</td></tr>
+<tr><td>`schema:publisher`</td><td>`Organisatie.naam`, `Organisatie.website`</td></tr>
+<tr><td>`schema:distribution`</td><td>datadump (`dump.nt.gz`, `application/n-triples`) én SPARQL-endpoint</td></tr>
+<tr><td>`schema:dateModified`</td><td>afgeleid: max(`Media.wijzigingsDatum`) per organisatie</td></tr>
+<tr><td>`schema:inLanguage`</td><td>vast `nl`</td></tr>
+</tbody>
+</table>
+
+De datadump wordt periodiek (nachtelijks) door een worker gegenereerd uit Fuseki en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
+
+<pre class="include">
+path: api-beschrijving.md
+</pre>
+
+# RSS # {#rss}
+
+Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-specification): een platformbrede feed met nieuwe organisaties en per organisatie een feed met nieuwe jottems.
+
+<table class="data">
+<thead>
+<tr><th>Element</th><th>Bron</th></tr>
+</thead>
+<tbody>
+<tr><td>channel `title` / `link` / `description`</td><td>`Organisatie.naam` / organisatiepagina-URL / `Organisatie.beschrijving`</td></tr>
+<tr><td>item `title`</td><td>`Media.titel`</td></tr>
+<tr><td>item `link` / `guid`</td><td>duurzame jottem-URL</td></tr>
+<tr><td>item `description`</td><td>`Media.beschrijving` + thumbnail</td></tr>
+<tr><td>item `pubDate`</td><td>`Media.publicatieDatum`</td></tr>
+<tr><td>item `enclosure`</td><td>MinIO `thumbs` (met `Media.mimeType`)</td></tr>
+</tbody>
+</table>
+
+# Vocabulaires en termen # {#vocabulaires}
+
+Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken mogelijk:
+
+* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig — elk gekoppeld aan een term-URI (bijv. Wikidata: menukaart = `wd:Q57209120`), beheerd als configuratie.
+* **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, openingsjaar, sluitingsjaar, persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
+* **Annotatiemotivaties** (`motivation`, W3C-vocabulaire): `describing` (herinnering), `commenting` (reactie), `identifying` (persoon/gebouw/bedrijf op vlak), `tagging` (steekwoord), `linking` (archiefbron, gebeurtenis), `editing` (correctie).
+* **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), gevonden via het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) (Wikidata, GTAA, e.d.), zodat de RDF-output linkbaar is.
+
+# Zoekindex en geo-data # {#zoekindex-geo}
+
+**Elasticsearch** is een afgeleide store, gevuld door de indexeer-worker bij publicatie of wijziging (incl. annotatie-mutaties):
+
+<table class="data">
+<thead>
+<tr><th>Indexveld</th><th>Bron</th><th>Gebruik</th></tr>
+</thead>
+<tbody>
+<tr><td>`titel`, `beschrijving`</td><td>`Media`</td><td>fulltext</td></tr>
+<tr><td>`metadata_labels`, `steekwoorden`</td><td>`Metadata`</td><td>fulltext + facet</td></tr>
+<tr><td>`annotatie_teksten`</td><td>miiify (gesynct bij annotatie-mutatie)</td><td>fulltext (usecase: annotaties zoeken)</td></tr>
+<tr><td>`genre`, `organisatie`, `album`</td><td>`Media`, `Organisatie`, `Album`</td><td>facet</td></tr>
+<tr><td>`periode`</td><td>`Metadata` datering/jaren</td><td>facet/range</td></tr>
+<tr><td>`locatie` (geo_point/geo_shape)</td><td>`Metadata` WKT/GeoJSON</td><td>kaartzoeken</td></tr>
+<tr><td>`publicatieDatum`</td><td>`Media`</td><td>sorteren</td></tr>
+</tbody>
+</table>
+
+**Geo-data** wordt vastgelegd als WKT/GeoJSON in `Metadata`-rijen (adres/locatie van de jottem, standpunt fotograaf, zichtveld) en in annotatie-bodies, en gebruikt in: de kaart-frontend (MapLibre), de pand-tijdlijn (adres + openings-/sluitingsjaar), de koppeling met externe tijdmachines (zoals de Gouda Tijdmachine), Elasticsearch (geo-queries) en de RDF (`schema:geo`). Voor IIIF is de [navPlace-extensie](https://iiif.io/api/extension/navplace/) een optie om geo-informatie ook in manifests op te nemen.
+
+# Outputcontrole (traceability) # {#outputcontrole}
+
+De veld→bron-tabellen in de voorgaande secties vormen de controle of alle benodigde data aan de outputkant beschikbaar is in de bronlagen. Daarbij zijn de volgende hiaten gevonden; deze zijn **direct in het ERD verwerkt**:
+
+<table class="data">
+<thead>
+<tr><th>Gevonden hiaat</th><th>Benodigd voor</th><th>Oplossing in datamodel</th></tr>
+</thead>
+<tbody>
+<tr><td>Geen titel/beschrijving als eigen velden</td><td>IIIF `label`/`summary`, RDF `schema:name`/`description`, RSS</td><td>`Media.titel`, `Media.beschrijving`</td></tr>
+<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (uploader kiest bij upload)</td></tr>
+<tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
+<tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
+<tr><td>Geen organisatiebeschrijving/website/datasetlicentie</td><td>NDE-datasetbeschrijving, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`, `Organisatie.datasetLicentie`</td></tr>
+<tr><td>Geen privacykeuze voor naamsvermelding</td><td>annotatie-`creator`, IIIF `requiredStatement`, RDF `schema:contributor`</td><td>`Gebruiker.naamPubliek`</td></tr>
+</tbody>
+</table>
+
+Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
+
+* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + MinIO; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen.
+* **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
+* **Audio**: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
+* **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden.

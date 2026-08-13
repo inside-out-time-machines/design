@@ -1,9 +1,9 @@
 
-# API beschrijving # {#api-beschrijving}
+# API-beschrijvingen # {#api-beschrijving}
 
 De API is gesplitst in een **publieke lees-API** (zonder authenticatie, voor bezoekers en
 API-gebruikers/harvesters) en een **beheer-API** (OIDC Bearer-authenticatie, voor uploaden,
-modereren en beheren) — zie [[#keuze-consequenties]].
+modereren en beheren).
 
 ## Publieke API ## {#api-publiek}
 
@@ -28,13 +28,13 @@ modereren en beheren) — zie [[#keuze-consequenties]].
   window.addEventListener("load", () => {
     SwaggerUIBundle({
       dom_id: "#swagger-ui",
-      url: "openapi.yaml", 
+      url: "../openapi.yaml", 
       presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
       layout: "BaseLayout",
     });
     SwaggerUIBundle({
       dom_id: "#swagger-ui-beheer",
-      url: "openapi-beheer.yaml", 
+      url: "../openapi-beheer.yaml", 
       presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
       layout: "BaseLayout",
     });

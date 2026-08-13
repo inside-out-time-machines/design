@@ -1,10 +1,10 @@
 IMAGE := netwerkdigitaalerfgoed/bikeshed:5.3.2
-BS := $(wildcard *.bs infra/*.bs juridisch/*.bs systeemarchitectuur/*.bs)
+BS := $(wildcard *.bs infra/*.bs juridisch/*.bs systeemarchitectuur/*.bs data-architectuur/*.bs)
 DOCKER := docker run --rm -v "`pwd`:/spec" -w /spec $(IMAGE)
 
 help:
 	@echo "Genereer HTML uit de Bikeshed-brondocumenten:"
-	@echo "  make spec    Bouw alle documenten (root, infra/, juridisch/, systeemarchitectuur/)"
+	@echo "  make spec    Bouw alle documenten (root, infra/, juridisch/, systeemarchitectuur/, data-architectuur/)"
 	@echo "  make watch   Bouw index.html telkens als index.bs wijzigt"
 
 spec:

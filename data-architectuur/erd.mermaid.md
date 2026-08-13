@@ -7,6 +7,9 @@
     int id PK
     string naam
     string slug
+    string beschrijving
+    string website
+    string datasetLicentie
     string NAAN
     string kleurenpalet
     string logo
@@ -17,6 +20,7 @@
     int gebruikersId PK
     string naam
     string email
+    bool naamPubliek
     date bevestigingsDatum
     date registratieDatum
     date laatsteLoginDatum
@@ -32,8 +36,14 @@
 
   Media {
     int mediaId PK
+    string titel
+    string beschrijving
     string bestandsnaam
     string genre
+    string licentie
+    int breedte
+    int hoogte
+    string mimeType
     string status
     string afkeurReden
     string herkenbaar
@@ -42,6 +52,7 @@
     string ark
     date creatieDatum
     date publicatieDatum
+    date wijzigingsDatum
     int gebruikersId FK
     int organisatieId FK
     int albumId FK
@@ -78,6 +89,12 @@
   %% Media.herkenbaar (ja/nee) + herkenbaarBetrouwbaarheid: resultaat van de Herkenbaar API
   %% bij upload (paradata, geen gebruikersmetadata); toestemmingPersonen: verklaring van de
   %% uploader dat toestemming van herkenbare personen is geregeld.
+  %% Media.titel/beschrijving/licentie, breedte/hoogte/mimeType en wijzigingsDatum zijn
+  %% toegevoegd n.a.v. de outputcontrole in de data-architectuur (IIIF-label/rights/canvas,
+  %% RDF schema:name/license, RSS en IIIF Change Discovery).
+  %% Organisatie.beschrijving/website/datasetLicentie: nodig voor de NDE-datasetbeschrijving
+  %% en de IIIF provider/RSS-channel. Gebruiker.naamPubliek: bepaalt of de naam als creator
+  %% bij annotaties getoond wordt.
   %% Organisatie.NAAN en Media.ark zijn gereserveerd voor de ARK-fase (uitgesteld,
   %% zie keuze-oplossingsrichting).
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)

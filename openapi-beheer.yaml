@@ -562,6 +562,12 @@ components:
           type: string
           description: Materiaaltype/genre
           enum: [foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig]
+        licentie:
+          type: string
+          format: uri
+          description: >
+            Licentie/hergebruikvoorwaarden die de uploader (rechthebbende) aan de jottem
+            meegeeft; verschijnt als rights in IIIF en schema:license in de RDF.
         vervaardiger: { type: string }
         datum: { type: string }
         plaats: { type: string }

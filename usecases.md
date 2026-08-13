@@ -8,15 +8,17 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 * een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN  
 * gebruikers (naam, e-mail) in de rol organisatiebeheerder van een organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
-* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie
+* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie en per project
 
 ## Als organisatiebeheerder kan ik ## {#organisatiebeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  
 * gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
-* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
-* kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) toevoegen 
+* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
+* kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
+* kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
+* kan ik per project de datasetbeschrijving bewerken en \- indien er openbare (gepubliceerde) data is \- deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
 
 ## Als moderator kan ik ## {#moderator}
 
@@ -37,8 +39,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 
 ## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
 
-* kan ik een “album” (of collectie) aanmaken naast het album “Alles”  
-* kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog), steekwoorden en in een album plaatsen  
+* kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, en kies ik daarbij het project (van de organisatie) waaraan ik bijdraag  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
@@ -63,15 +64,16 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 * per organisatie nieuwe jottems via RSS  
 * kan ik jottems doorzoeken op basis van elasticsearch  
 * kan ik annotaties zoeken  
-* annotaties ophalen via het W3C Web Annotation Protocol  
-* per organisatie / album een IIIF collection opvragen  
+* annotaties ophalen via het W3C Web Annotation Protocol: per jottem (AnnotationCollection uit de container) en per organisatie (aggregerende AnnotationCollection)  
+* per organisatie / project een IIIF collection opvragen  
+* per project een datasetbeschrijving, RSS-feed en aggregerende AnnotationCollection opvragen  
 * per jottem IIIF info.json \+ manifest opvragen  
-* per organisatie een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen
+* per project een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen; de platformbrede datacatalogus bundelt alle projectdatasets
 
 ## Als bezoeker kan ik ## {#bezoeker}
 
 * lezen over het iotm platform, faq, privacy, auteursrecht  
-* de organisatiepagina’s lezen met informatie over doel, oproep tot actie  
+* de organisatie- en projectpagina’s lezen met informatie over doel, oproep tot actie  
   * mezelf registreren (waarmee je een gebruiker wordt)  
   * gepubliceerde jottems bekijken/doorzoeken  
   * favorieten van gebruikers bekijken

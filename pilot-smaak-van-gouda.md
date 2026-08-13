@@ -17,7 +17,7 @@ maar ook een sociaal-culturele geschiedenis van smaak, ondernemerschap, migratie
 
 ## Pilot voor IOTM ## {#pilot-voor-iotm}
 
-De pilot draait op de organisatiejottem van **Streekarchief Midden-Holland**. Inwoners dragen bij via het Jottem platform:
+De pilot draait als eerste **project** op de organisatiejottem van **Streekarchief Midden-Holland**, met een eigen projectpagina, oproep en datasetbeschrijving. Inwoners dragen bij via het Jottem platform:
 foto's, menukaarten, advertenties en persoonlijke herinneringen worden verzameld, gemodereerd en
 duurzaam ontsloten. De pilot valideert de bestaande platformfunctionaliteit (zie [[#usecases]]) en
 brengt een aantal eisen scherp in beeld.

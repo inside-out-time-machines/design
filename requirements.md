@@ -5,6 +5,7 @@
 * inloggen door gebruikers moet zeer laagdrempelig zijn, dus inclusief social login
 * inloggen door beheerders moet zijn te beveiligen via 2FA
 * duurzame link per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation; het koppelen van een ARK (met objectname op basis van NOID of UUID) aan deze link is uitgesteld naar een latere fase (zie [[#keuze-open-vragen]])
+* elke jottem behoort tot precies één project (een campagne op organisatieniveau, bijv. *Smaak van Gouda*); elke organisatie heeft minstens één project en elk project draagt een eigen datasetbeschrijving
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
 

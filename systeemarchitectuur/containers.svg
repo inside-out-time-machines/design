@@ -129,7 +129,7 @@
     <text x="220" y="535" text-anchor="middle" class="lbl">Relationele database</text>
     <text x="220" y="553" text-anchor="middle" class="oss">PostgreSQL</text>
     <text x="220" y="570" text-anchor="middle" class="sub">organisaties, gebruikers, media,</text>
-    <text x="220" y="582" text-anchor="middle" class="sub">metadata, albums, statistieken</text>
+    <text x="220" y="582" text-anchor="middle" class="sub">metadata, projecten, statistieken</text>
   </g>
   <g class="db">
     <rect x="360" y="510" width="180" height="80" rx="6"/>

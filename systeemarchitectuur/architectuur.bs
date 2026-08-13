@@ -70,10 +70,10 @@ Fijnmazige autorisatie op objectniveau (eigen afgekeurde jottems verwijderen, go
 
 ## Backend-API en frontend
 
-De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implementeert het datamodel uit het ERD (organisatie, gebruiker, media, metadata, album, favoriet) op PostgreSQL en biedt:
+De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implementeert het datamodel uit het ERD (organisatie, project, gebruiker, media, metadata, favoriet) op PostgreSQL en biedt:
 
-- REST-endpoints voor upload (via presigned S3-URL's, zodat grote bestanden niet door de API stromen), moderatieworkflow, albums, favorieten, materiaaltypes/genres en koppelingen naar externe archiefbronnen (label + URI);
-- IIIF Presentation API 3.0: per jottem een manifest, per organisatie/album een collection, gegenereerd uit de database met een bibliotheek als iiif-prezi3;
+- REST-endpoints voor upload (via presigned S3-URL's, zodat grote bestanden niet door de API stromen), moderatieworkflow, projecten, favorieten, materiaaltypes/genres en koppelingen naar externe archiefbronnen (label + URI);
+- IIIF Presentation API 3.0: per jottem een manifest, per organisatie/project een collection, gegenereerd uit de database met een bibliotheek als iiif-prezi3;
 - IIIF Change Discovery 1.0: een ActivityStreams-feed per organisatie met create/update-activiteiten (inclusief nieuwe annotaties) voor harvesters;
 - RSS-feeds per organisatie met nieuwe jottems;
 - zoek-endpoints die Elasticsearch bevragen (fulltext, facetten op genre, organisatie, periode, plaats);

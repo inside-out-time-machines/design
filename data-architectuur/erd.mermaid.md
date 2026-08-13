@@ -9,11 +9,24 @@
     string slug
     string beschrijving
     string website
-    string datasetLicentie
     string NAAN
     string kleurenpalet
     string logo
     string favicon
+  }
+
+  Project {
+    uuid projectId PK
+    string naam
+    string slug
+    string beschrijving
+    string oproep
+    date startDatum
+    date eindDatum
+    string afbeelding
+    string datasetLicentie
+    string status
+    int organisatieId FK
   }
 
   Gebruiker {
@@ -35,7 +48,7 @@
   }
 
   Media {
-    int mediaId PK
+    uuid mediaId PK
     string titel
     string beschrijving
     string bestandsnaam
@@ -55,12 +68,12 @@
     date wijzigingsDatum
     int gebruikersId FK
     int organisatieId FK
-    int albumId FK
+    uuid projectId FK
   }
 
   Metadata {
     int metadataId PK
-    int mediaId FK
+    uuid mediaId FK
     int gebruikersId FK
     string type
     string label
@@ -68,20 +81,19 @@
     string uri
   }
 
-  Album {
-    int albumId PK
-    string naam
-    int gebruikersId FK
-    int organisatieId FK
-  }
-
   Favoriet {
     int favorietId PK
     int gebruikersId FK
-    int mediaId FK
+    uuid mediaId FK
     date creatieDatum
   }
 
+  %% Project: campagne op organisatieniveau (bijv. "Smaak van Gouda"), beheerd door de
+  %% organisatiebeheerder. Elke organisatie heeft minstens een project; elke jottem hoort
+  %% bij precies een project (Media.projectId verplicht). Project.status: actief / afgerond.
+  %% Project.datasetLicentie: licentie van de projectdataset (datasetbeschrijving per project).
+  %% Publiek zichtbare identifiers (mediaId, projectId) zijn betekenisloze UUID's; interne
+  %% id's (gebruikersId e.d.) blijven interne sleutels.
   %% Rollen: een gebruiker kan meerdere rollen hebben, per organisatie (GebruikerRol);
   %% de rol platformbeheerder heeft geen organisatieId. Lidmaatschap van een organisatie
   %% volgt uit de GebruikerRol-rijen.
@@ -92,9 +104,9 @@
   %% Media.titel/beschrijving/licentie, breedte/hoogte/mimeType en wijzigingsDatum zijn
   %% toegevoegd n.a.v. de outputcontrole in de data-architectuur (IIIF-label/rights/canvas,
   %% RDF schema:name/license, RSS en IIIF Change Discovery).
-  %% Organisatie.beschrijving/website/datasetLicentie: nodig voor de NDE-datasetbeschrijving
-  %% en de IIIF provider/RSS-channel. Gebruiker.naamPubliek: bepaalt of de naam als creator
-  %% bij annotaties getoond wordt.
+  %% Organisatie.beschrijving/website: nodig voor publisher-informatie, IIIF provider en
+  %% RSS-channel. Gebruiker.naamPubliek: bepaalt of de naam als creator bij annotaties
+  %% getoond wordt.
   %% Organisatie.NAAN en Media.ark zijn gereserveerd voor de ARK-fase (uitgesteld,
   %% zie keuze-oplossingsrichting).
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)
@@ -103,13 +115,12 @@
   %% Relationships
   Organisatie ||--o{ GebruikerRol : "kent"
   Organisatie ||--o{ Media : "bevat"
-  Organisatie ||--o{ Album : "bevat"
+  Organisatie ||--o{ Project : "voert_uit"
+
+  Project ||--o{ Media : "verzamelt"
 
   Gebruiker ||--o{ GebruikerRol : "heeft"
   Gebruiker ||--o{ Media : "uploadt"
-  Gebruiker ||--o{ Album : "maakt"
-
-  Album ||--o{ Media : "groepeert"
 
   Media ||--o{ Metadata : "heeft"
 

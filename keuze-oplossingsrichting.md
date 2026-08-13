@@ -78,8 +78,8 @@ genoemde kandidaten de volgende keuze gemaakt:
 * [[#functional-requirements]]: het ARK-requirement is gemarkeerd als latere fase; de
     (sub)domeinenlijst is uitgebreid en gecorrigeerd; niet-functionele requirements zijn toegevoegd.
 * [ERD](data-architectuur/data-architectuur.html#erd-diagram): moderatiestatus en afkeurreden op Media, rollen via een aparte koppeltabel
-    (meerdere rollen per gebruiker mogelijk), albums gekoppeld aan een organisatie, huisstijlvelden
-    op Organisatie.
+    (meerdere rollen per gebruiker mogelijk), projecten (voorheen "albums") als campagnes op
+    organisatieniveau, huisstijlvelden op Organisatie.
 * [[#usecases]]: publicatieflow bij goedkeuring aangepast (duurzame platform-URL; ARK en externe
     preserveringskopie in latere fase); annoteerders kunnen eigen annotaties bewerken en verwijderen.
 * [API-beschrijvingen](data-architectuur/data-architectuur.html#api-beschrijving): gesplitst in een publieke lees-API (`openapi.yaml`) en een beheer-API

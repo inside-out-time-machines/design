@@ -46,15 +46,19 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 </thead>
 <tbody>
 <tr><td>Jottem (duurzame link)</td><td>`https://www.iotm.nl/jottem/{mediaId}`</td></tr>
+<tr><td>Projectpagina (publiek)</td><td>`https://www.iotm.nl/{organisatieSlug}/{projectSlug}`</td></tr>
+<tr><td>Project (API)</td><td>`https://api.iotm.nl/v1/project/{projectId}`</td></tr>
 <tr><td>IIIF Image API</td><td>`https://iiif.iotm.nl/3/{mediaId}` (`/info.json`, tiles)</td></tr>
 <tr><td>IIIF Manifest</td><td>`https://api.iotm.nl/v1/jottem/{mediaId}/iiif/manifest`</td></tr>
-<tr><td>IIIF Collection</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/jottems/iiif/collection` (idem per album)</td></tr>
-<tr><td>Annotatie</td><td>`https://anno.iotm.nl/annotations/{annotationId}`</td></tr>
-<tr><td>Organisatie-dataset</td><td>`https://data.iotm.nl/{slug}/dataset` (beschrijving), `https://data.iotm.nl/{slug}/dump.nt.gz` (dump), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
+<tr><td>IIIF Collection</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/jottems/iiif/collection` en `https://api.iotm.nl/v1/project/{projectId}/iiif/collection`</td></tr>
+<tr><td>Annotaties van een jottem (container)</td><td>`https://anno.iotm.nl/annotations/{jottemId}/`</td></tr>
+<tr><td>Annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}`</td></tr>
+<tr><td>Annotaties van organisatie / project</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/annotations` en `https://api.iotm.nl/v1/project/{projectId}/annotations`</td></tr>
+<tr><td>Projectdataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset` (beschrijving), `https://data.iotm.nl/project/{projectId}/dump.nt.gz` (dump), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
 </tbody>
 </table>
 
-De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE (303-redirect naar `data.iotm.nl`). De `mediaId` is een niet-herbruikbare, betekenisloze identifier (UUID), zodat in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource kan worden gelegd.
+De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE (303-redirect naar `data.iotm.nl`). De `mediaId` en `projectId` zijn niet-herbruikbare, betekenisloze identifiers (UUID); duurzame data-URI's zijn daarop gebaseerd, terwijl publiekspagina's leesbare slugs gebruiken. Zo kan in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource worden gelegd.
 
 # IIIF # {#iiif}
 
@@ -75,7 +79,7 @@ Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en form
 
 ## IIIF Presentation API v3 (Manifest en Collection) ## {#iiif-presentation}
 
-De backend genereert per jottem een **Manifest** en per organisatie en per album een **Collection** (met iiif-prezi3), rechtstreeks uit de database:
+De backend genereert per jottem een **Manifest** en per organisatie en per project een **Collection** (met iiif-prezi3), rechtstreeks uit de database:
 
 <table class="data">
 <thead>
@@ -94,7 +98,7 @@ De backend genereert per jottem een **Manifest** en per organisatie en per album
 <tr><td>canvas (`width`/`height`)</td><td>`Media.breedte`, `Media.hoogte`</td></tr>
 <tr><td>image service</td><td>IIIF Image API (zie boven)</td></tr>
 <tr><td>`annotations` (AnnotationPage)</td><td>miiify, per jottem-target</td></tr>
-<tr><td>Collection-items</td><td>`Media` per `organisatieId`/`albumId` (status goedgekeurd)</td></tr>
+<tr><td>Collection-items</td><td>`Media` per `organisatieId`/`projectId` (status goedgekeurd)</td></tr>
 </tbody>
 </table>
 
@@ -139,6 +143,22 @@ Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/anno
 </tbody>
 </table>
 
+## Ontsluiting: AnnotationCollection per jottem en per organisatie ## {#annotaties-ontsluiting}
+
+De annotatieserver hanteert **één container per jottem** (containernaam = `mediaId`). Daarmee zijn annotaties op drie niveaus opvraagbaar, telkens W3C-conform:
+
+<table class="data">
+<thead>
+<tr><th>Niveau</th><th>Endpoint</th><th>Output</th></tr>
+</thead>
+<tbody>
+<tr><td>Individuele annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}` (en `GET /annotation/{annotationId}` in de publieke API)</td><td>`Annotation`</td></tr>
+<tr><td>Per jottem</td><td>`GET https://anno.iotm.nl/annotations/{jottemId}/` — rechtstreeks uit de container; de publieke API biedt `GET /jottem/{jottemId}/annotations` als doorverwijzing en het IIIF Manifest verwijst hiernaar via `annotations`</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Per project</td><td>`GET /project/{projectId}/annotations` in de publieke API — de backend aggregeert de containers van alle gepubliceerde jottems van het project (jottem-lijst uit `Media.projectId`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Per organisatie</td><td>`GET /organisatie/{slug}/annotations` in de publieke API — de backend aggregeert de containers van alle gepubliceerde jottems van de organisatie (jottem-lijst uit `Media`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+</tbody>
+</table>
+
 # RDF en datadump # {#rdf-datadump}
 
 ## Mapping naar schema.org AP NDE ## {#rdf-mapping}
@@ -167,6 +187,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:contentUrl`, `schema:width`, `schema:height`, `schema:encodingFormat`</td><td>IIIF Image-URI, `Media.breedte`/`hoogte`/`mimeType`</td></tr>
 <tr><td>`schema:thumbnailUrl`</td><td>MinIO `thumbs`</td></tr>
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam` + `Organisatie.website`</td></tr>
+<tr><td>`schema:isPartOf`</td><td>de projectdataset-IRI (`Media.projectId`)</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl` (NL-only, zie niet-functionele requirements)</td></tr>
 <tr><td>annotaties</td><td>verwijzing naar het W3C Annotation Protocol-endpoint per jottem</td></tr>
 </tbody>
@@ -176,25 +197,48 @@ Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt allee
 
 ## Datasetbeschrijving en datadump ## {#datasetbeschrijving}
 
-Per organisatie publiceert het platform een datasetbeschrijving als `schema:Dataset` conform de [NDE-requirements voor datasets](https://docs.nde.nl/requirements-datasets/), aangemeld bij het NDE Datasetregister; de datacatalogus (`schema:DataCatalog`) bundelt alle organisatie-datasets.
+**Per project** publiceert het platform een datasetbeschrijving als `schema:Dataset` conform de [NDE-requirements voor datasets](https://docs.nde.nl/requirements-datasets/), aanmeldbaar bij het NDE Datasetregister; de platformbrede datacatalogus (`schema:DataCatalog`, `/datacatalog`) bundelt alle projectdatasets. Omdat elke jottem bij precies één project hoort, dekken de projectdatasets samen alle gepubliceerde data.
 
 <table class="data">
 <thead>
 <tr><th>Verplicht/aanbevolen element</th><th>Bron</th></tr>
 </thead>
 <tbody>
-<tr><td>IRI van de dataset</td><td>`https://data.iotm.nl/{slug}/dataset`</td></tr>
-<tr><td>`schema:name`</td><td>`Organisatie.naam` ("Jottems van ...")</td></tr>
-<tr><td>`schema:description`</td><td>`Organisatie.beschrijving`</td></tr>
-<tr><td>`schema:license` (van de dataset)</td><td>`Organisatie.datasetLicentie`</td></tr>
+<tr><td>IRI van de dataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset`</td></tr>
+<tr><td>`schema:name`</td><td>`Project.naam`</td></tr>
+<tr><td>`schema:description`</td><td>`Project.beschrijving`</td></tr>
+<tr><td>`schema:license` (van de dataset)</td><td>`Project.datasetLicentie`</td></tr>
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam`, `Organisatie.website`</td></tr>
-<tr><td>`schema:distribution`</td><td>datadump (`dump.nt.gz`, `application/n-triples`) én SPARQL-endpoint</td></tr>
-<tr><td>`schema:dateModified`</td><td>afgeleid: max(`Media.wijzigingsDatum`) per organisatie</td></tr>
+<tr><td>`schema:distribution`</td><td>datadump (`dump.nt.gz`, `application/n-triples`) én SPARQL-endpoint; aanvullend zie [[#aanvullende-distributies]]</td></tr>
+<tr><td>`schema:dateModified`</td><td>afgeleid: max(`Media.wijzigingsDatum`) per project</td></tr>
+<tr><td>`schema:temporalCoverage`</td><td>`Project.startDatum` – `Project.eindDatum`</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl`</td></tr>
 </tbody>
 </table>
 
-De datadump wordt periodiek (nachtelijks) door een worker gegenereerd uit Fuseki en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
+De datadump wordt per project periodiek (nachtelijks) door een worker gegenereerd uit Fuseki (named graph per project) en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
+
+**Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving — uitsluitend wanneer het project openbare (gepubliceerde) data heeft — valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`) en kan deze ook weer afmelden (`DELETE /datasets`). Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
+
+## Aanvullende distributies (verkenning) ## {#aanvullende-distributies}
+
+Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen van een project als `schema:distribution` in de projectdatasetbeschrijving worden opgenomen; een distributie vereist slechts een `schema:contentUrl` en `schema:encodingFormat`, en het SHACL-shape van het register staat extra distributies toe. Dat maakt álle toegangswegen tot de projectdata vindbaar via één datasetbeschrijving:
+
+<table class="data">
+<thead>
+<tr><th>Kandidaat-distributie</th><th>contentUrl</th><th>encodingFormat</th><th>Overwegingen</th></tr>
+</thead>
+<tbody>
+<tr><td>RDF-datadump *(bestaand)*</td><td>`https://data.iotm.nl/project/{projectId}/dump.nt.gz`</td><td>`application/n-triples`</td><td>de kern-distributie voor NDE-compatibiliteit</td></tr>
+<tr><td>SPARQL-endpoint *(bestaand)*</td><td>`https://data.iotm.nl/sparql`</td><td>`application/sparql-results+json`</td><td>bevraagbaar per named graph (project)</td></tr>
+<tr><td>IIIF Collection</td><td>de collection per project</td><td>`application/ld+json` (IIIF Presentation-profile)</td><td>direct bruikbaar in IIIF-viewers en -aggregators; bestaat in de publieke API</td></tr>
+<tr><td>RSS</td><td>de jottem-feed per project</td><td>`application/rss+xml`</td><td>laagdrempelig volgen van nieuwe jottems in het project; geen linked data, maar als distributie toegestaan</td></tr>
+<tr><td>Webannotaties per project</td><td>`GET /project/{projectId}/annotations` (zie [[#annotaties-ontsluiting]])</td><td>`application/ld+json` (W3C anno-profile)</td><td>ontsluit de verrijkingslaag als zelfstandig herbruikbare (deel)dataset; het aggregerende endpoint bestaat in de publieke API (containerindeling: per jottem)</td></tr>
+<tr><td>IIIF Change Discovery</td><td>de ActivityStreams-feed per organisatie</td><td>`application/ld+json`</td><td>maakt *incrementeel* harvesten vindbaar; kanttekening: de feed is organisatiebreed (activiteiten van alle projecten), harvesters filteren desgewenst op de Manifest-URI's van het project</td></tr>
+</tbody>
+</table>
+
+**Aanbeveling:** alle kandidaten als extra distributies opnemen — de endpoints bestaan in de publieke API, het is louter een uitbreiding van de gegenereerde projectdatasetbeschrijving. Alle kandidaten zijn volledig afleidbaar uit de bestaande bronlagen; er is geen nieuwe brondata nodig.
 
 <pre class="include">
 path: api-beschrijving.md
@@ -239,7 +283,7 @@ Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken
 <tr><td>`titel`, `beschrijving`</td><td>`Media`</td><td>fulltext</td></tr>
 <tr><td>`metadata_labels`, `steekwoorden`</td><td>`Metadata`</td><td>fulltext + facet</td></tr>
 <tr><td>`annotatie_teksten`</td><td>miiify (gesynct bij annotatie-mutatie)</td><td>fulltext (usecase: annotaties zoeken)</td></tr>
-<tr><td>`genre`, `organisatie`, `album`</td><td>`Media`, `Organisatie`, `Album`</td><td>facet</td></tr>
+<tr><td>`genre`, `organisatie`, `project`</td><td>`Media`, `Organisatie`, `Project`</td><td>facet</td></tr>
 <tr><td>`periode`</td><td>`Metadata` datering/jaren</td><td>facet/range</td></tr>
 <tr><td>`locatie` (geo_point/geo_shape)</td><td>`Metadata` WKT/GeoJSON</td><td>kaartzoeken</td></tr>
 <tr><td>`publicatieDatum`</td><td>`Media`</td><td>sorteren</td></tr>
@@ -261,7 +305,8 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 <tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (uploader kiest bij upload)</td></tr>
 <tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
 <tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
-<tr><td>Geen organisatiebeschrijving/website/datasetlicentie</td><td>NDE-datasetbeschrijving, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`, `Organisatie.datasetLicentie`</td></tr>
+<tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>
+<tr><td>Albumconcept onderontwikkeld (persoonlijk fotoboek vs. campagne)</td><td>projectpagina's, datasetbeschrijving per project, IIIF Collection/RSS/annotaties per project</td><td>`Project`-entiteit op organisatieniveau (uuid, naam, slug, beschrijving, oproep, periode, afbeelding, datasetLicentie, status); `Media.projectId` verplicht — elke jottem hoort bij precies één project en elke organisatie heeft er minstens één</td></tr>
 <tr><td>Geen privacykeuze voor naamsvermelding</td><td>annotatie-`creator`, IIIF `requiredStatement`, RDF `schema:contributor`</td><td>`Gebruiker.naamPubliek`</td></tr>
 </tbody>
 </table>

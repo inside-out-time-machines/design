@@ -156,6 +156,108 @@ paths:
                 items:
                   $ref: '#/components/schemas/Jottem'
 
+  /organisatie/{organisatieSlug}/projecten:
+    get:
+      tags: [Projecten]
+      summary: Haal de projecten van een organisatie op
+      description: Elke organisatie heeft minstens één project (bijv. "Smaak van Gouda"); elke jottem hoort bij precies één project.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: Lijst van projecten
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Project' }
+
+  /project/{projectId}:
+    get:
+      tags: [Projecten]
+      summary: Haal een specifiek project op
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Projectdetails
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Project' }
+
+  /project/{projectId}/jottems:
+    get:
+      tags: [Projecten, Jottems]
+      summary: Haal de (gepubliceerde) jottems van een project op
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Lijst van jottems
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Jottem' }
+
+  /project/{projectId}/iiif/collection:
+    get:
+      tags: [Projecten, IIIF]
+      summary: IIIF Collection van een project
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: IIIF Collection
+          content:
+            application/json: { schema: { type: object } }
+
+  /project/{projectId}/annotations:
+    get:
+      tags: [Projecten, Annotations]
+      summary: Alle annotaties van een project als W3C AnnotationCollection
+      description: >
+        Aggregeert de annotaties van alle gepubliceerde jottems van het project tot één
+        AnnotationCollection, gepagineerd via AnnotationPages.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: W3C AnnotationCollection (gepagineerd via AnnotationPages)
+          content:
+            application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
+              schema: { $ref: '#/components/schemas/AnnotationCollection' }
+
+  /project/{projectId}/rss:
+    get:
+      tags: [Projecten, RSS]
+      summary: RSS-feed van nieuwe jottems binnen een project
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: RSS Feed (XML)
+          content:
+            application/rss+xml:
+              schema: { type: string }
+
+  /project/{projectId}/dataset:
+    get:
+      tags: [Projecten, Datasetbeschrijvingen]
+      summary: Datasetbeschrijving van een project met datadump-distributie (schema.org)
+      description: >
+        Retourneert de metadata-beschrijving van de projectdataset conform schema.org
+        (AP NDE), inclusief distributies (RDF-datadump, SPARQL, IIIF Collection, RSS,
+        AnnotationCollection).
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Datasetbeschrijving in JSON-LD (RDF)
+          content:
+            application/ld+json:
+              schema: { $ref: '#/components/schemas/Dataset' }
+
   /annotation/{annotationId}:
     get:
       tags: [Annotations]
@@ -172,31 +274,49 @@ paths:
             application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
               schema: { $ref: '#/components/schemas/Annotation' }
 
-  /organisatie/{organisatieSlug}/dataset:
+  /jottem/{jottemId}/annotations:
     get:
-      tags: [Datasetbeschrijvingen]
-      summary: Datasetbeschrijving met datadump distributie (schema.org)
+      tags: [Annotations]
+      summary: Alle annotaties van een jottem als W3C AnnotationCollection
       description: >
-        Retourneert een metadata beschrijving van de organisatie-dataset 
-        conform het schema.org, inclusief een link naar de RDF datadump.
+        Levert de AnnotationCollection van de jottem, conform het W3C Web Annotation Protocol.
+        De annotatieserver hanteert een container per jottem; dit endpoint verwijst door naar
+        https://anno.iotm.nl/annotations/{jottemId}/ (het IIIF Manifest verwijst hier via
+        "annotations" ook naar).
       parameters:
-        - name: organisatieSlug
+        - name: jottemId
           in: path
           required: true
-          schema:
-            type: string
+          schema: { type: string }
       responses:
         '200':
-          description: Datasetbeschrijving in JSON-LD (RDF)
+          description: W3C AnnotationCollection (gepagineerd via AnnotationPages)
           content:
-            application/ld+json:
-              schema: { $ref: '#/components/schemas/Dataset' }
+            application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
+              schema: { $ref: '#/components/schemas/AnnotationCollection' }
+
+  /organisatie/{organisatieSlug}/annotations:
+    get:
+      tags: [Annotations]
+      summary: Alle annotaties van een organisatie als W3C AnnotationCollection
+      description: >
+        Aggregeert de annotaties van alle gepubliceerde jottems van de organisatie tot één
+        AnnotationCollection, gepagineerd via AnnotationPages. Ook bruikbaar als
+        schema:distribution in de datasetbeschrijving van de organisatie.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: W3C AnnotationCollection (gepagineerd via AnnotationPages)
+          content:
+            application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
+              schema: { $ref: '#/components/schemas/AnnotationCollection' }
 
   /datacatalog:
     get:
       tags: [Datasetbeschrijvingen]
-      summary: Datasetcatalogus(schema.org)
-      description: Catalogus van alle organisatie-datasets.
+      summary: Datasetcatalogus (schema.org)
+      description: Platformbrede catalogus die de datasetbeschrijvingen van alle projecten bundelt.
       responses:
         '200':
           description: Datasetcatalogus in JSON-LD
@@ -211,6 +331,11 @@ components:
       in: path
       required: true
       schema: { type: string }
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
 
   schemas:
     Jottem:
@@ -271,9 +396,49 @@ components:
         body: { type: object }
         target: { type: object }
 
+    AnnotationCollection:
+      type: object
+      description: W3C AnnotationCollection, gepagineerd via AnnotationPages.
+      properties:
+        "@context": { type: string, example: "http://www.w3.org/ns/anno.jsonld" }
+        id: { type: string, format: uri }
+        type: { type: string, example: "AnnotationCollection" }
+        label: { type: string, example: "Annotaties bij jottem ..." }
+        total: { type: integer, example: 42 }
+        first:
+          type: object
+          description: Eerste AnnotationPage met items (Annotation)
+          properties:
+            id: { type: string, format: uri }
+            type: { type: string, example: "AnnotationPage" }
+            items:
+              type: array
+              items: { $ref: '#/components/schemas/Annotation' }
+        last: { type: string, format: uri }
+
+    Project:
+      type: object
+      description: >
+        Een project is een campagne op organisatieniveau (bijv. "Smaak van Gouda") waarbinnen
+        jottems worden verzameld; elke jottem hoort bij precies één project en elk project
+        heeft een eigen datasetbeschrijving.
+      required: [projectId, naam, slug]
+      properties:
+        projectId: { type: string, format: uuid }
+        naam: { type: string, example: "Smaak van Gouda" }
+        slug: { type: string, example: "smaak-van-gouda" }
+        beschrijving: { type: string }
+        oproep: { type: string, description: "Oproep tot actie voor bijdragers" }
+        startDatum: { type: string, format: date }
+        eindDatum: { type: string, format: date }
+        afbeelding: { type: string, format: uri }
+        datasetLicentie: { type: string, format: uri }
+        status: { type: string, enum: [actief, afgerond] }
+        organisatieSlug: { type: string, example: "samh" }
+
     Dataset:
       type: object
-      description: NDE Dataset metadata.
+      description: NDE Dataset metadata (per project).
       properties:
         "@type": { type: string, example: "Dataset" }
         name: { type: string }
@@ -304,7 +469,7 @@ components:
           $ref: '#/components/schemas/Agent'
         dataset:
           type: array
-          description: De lijst met datasets (per organisatie) die deel uitmaken van deze catalogus.
+          description: De lijst met datasets (per project) die deel uitmaken van deze catalogus.
           items:
             $ref: '#/components/schemas/Dataset'
 

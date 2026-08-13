@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: IOTM Beheer-API
   description: >
-    Beheer-API voor het Jottem-platform: uploaden, modereren, albums, favorieten,
+    Beheer-API voor het Jottem-platform: uploaden, modereren, projecten, favorieten,
     annotaties, gebruikers- en organisatiebeheer, statistieken en verwijderverzoeken.
     Alle endpoints (behalve het indienen van een verwijderverzoek) vereisen een
     OIDC Bearer-token uitgegeven door auth.iotm.nl; autorisatie gebeurt op basis van
@@ -130,51 +130,61 @@ paths:
         '204': { description: Verwijderd }
         '403': { description: Niet toegestaan (niet de eigenaar, of jottem is goedgekeurd) }
 
-  # --- Albums (rol gebruiker/uploader) ---
+  # --- Projecten (rol organisatiebeheerder) ---
 
-  /mijn/albums:
+  /organisatie/{organisatieSlug}/projecten:
     get:
-      tags: [Albums]
-      summary: Overzicht van eigen albums
+      tags: [Projecten]
+      summary: Overzicht van de projecten van de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
-          description: Lijst van albums
+          description: Lijst van projecten
           content:
             application/json:
               schema:
                 type: array
-                items: { $ref: '#/components/schemas/Album' }
+                items: { $ref: '#/components/schemas/Project' }
     post:
-      tags: [Albums]
-      summary: Maak een album aan (naast het standaardalbum "Alles")
+      tags: [Projecten]
+      summary: Maak een project aan
+      description: >
+        Elke organisatie heeft minstens één project; bij het aanmaken van een organisatie
+        wordt daarom direct een eerste project aangemaakt. Elke jottem hoort bij precies
+        één project.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/Album' }
+            schema: { $ref: '#/components/schemas/Project' }
       responses:
-        '201': { description: Album aangemaakt }
+        '201': { description: Project aangemaakt }
 
-  /album/{albumId}:
+  /project/{projectId}:
     put:
-      tags: [Albums]
-      summary: Wijzig een eigen album
+      tags: [Projecten]
+      summary: Wijzig een project (naam, beschrijving, oproep, periode, afbeelding, datasetlicentie, status)
       parameters:
-        - $ref: '#/components/parameters/albumId'
+        - $ref: '#/components/parameters/projectId'
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/Album' }
+            schema: { $ref: '#/components/schemas/Project' }
       responses:
-        '200': { description: Album bijgewerkt }
+        '200': { description: Project bijgewerkt }
     delete:
-      tags: [Albums]
-      summary: Verwijder een eigen album (jottems blijven bestaan in "Alles")
+      tags: [Projecten]
+      summary: Verwijder een leeg project
+      description: Alleen mogelijk zolang er geen jottems aan het project zijn gekoppeld en er minstens één ander project resteert.
       parameters:
-        - $ref: '#/components/parameters/albumId'
+        - $ref: '#/components/parameters/projectId'
       responses:
         '204': { description: Verwijderd }
+        '409': { description: Project bevat jottems of is het laatste project van de organisatie }
 
   # --- Favorieten (rol gebruiker) ---
 
@@ -405,6 +415,65 @@ paths:
       responses:
         '200': { description: Bijgewerkt }
 
+  /project/{projectId}/datasetbeschrijving:
+    get:
+      tags: [Projecten]
+      summary: Bekijk de (gegenereerde) datasetbeschrijving van het project
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Datasetbeschrijving (schema.org Dataset, JSON-LD)
+          content:
+            application/ld+json:
+              schema: { type: object }
+    put:
+      tags: [Projecten]
+      summary: Bewerk de velden waaruit de datasetbeschrijving wordt gegenereerd
+      description: >
+        Rol organisatiebeheerder. De datasetbeschrijving zelf wordt gegenereerd; bewerken
+        gebeurt via de onderliggende projectvelden (naam, beschrijving, datasetLicentie);
+        publisher-gegevens komen uit de organisatie.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                naam: { type: string }
+                beschrijving: { type: string }
+                datasetLicentie: { type: string, format: uri }
+      responses:
+        '200': { description: Bijgewerkt; de gegenereerde datasetbeschrijving is direct actueel }
+
+  /project/{projectId}/datasetbeschrijving/aanmelden:
+    post:
+      tags: [Projecten]
+      summary: Valideer de projectdatasetbeschrijving en meld deze aan bij het NDE Datasetregister
+      description: >
+        Rol organisatiebeheerder. Kan alleen als het project openbare (gepubliceerde) data
+        heeft. De backend valideert eerst via PUT /datasets/validate van de
+        Datasetregister-API (https://datasetregister.netwerkdigitaalerfgoed.nl/api/) en meldt
+        daarna aan via POST /datasets met de URL van de datasetbeschrijving. Het domein
+        iotm.nl moet eenmalig op de allowlist van het register staan.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '202': { description: Gevalideerd en aangemeld bij het Datasetregister }
+        '409': { description: Geen openbare data, aanmelden niet mogelijk }
+        '422': { description: Validatie tegen het SHACL-shape van het register faalde (details in response) }
+    delete:
+      tags: [Projecten]
+      summary: Meld de projectdatasetbeschrijving af bij het NDE Datasetregister
+      description: Rol organisatiebeheerder; gebruikt DELETE /datasets van de Datasetregister-API.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '204': { description: Afgemeld }
+
   /organisatie/{organisatieSlug}/import:
     post:
       tags: [Organisatiebeheer]
@@ -424,7 +493,7 @@ paths:
               required: [iiifUrl]
               properties:
                 iiifUrl: { type: string, format: uri, description: "URL van een IIIF Collection of Manifest" }
-                albumNaam: { type: string }
+                projectId: { type: string, format: uuid, description: "Project waarin de import terechtkomt" }
       responses:
         '202': { description: Import gestart (asynchroon) }
 
@@ -527,11 +596,11 @@ components:
       in: path
       required: true
       schema: { type: string }
-    albumId:
-      name: albumId
+    projectId:
+      name: projectId
       in: path
       required: true
-      schema: { type: string }
+      schema: { type: string, format: uuid }
     annotationId:
       name: annotationId
       in: path
@@ -553,7 +622,7 @@ components:
 
     JottemNieuw:
       type: object
-      required: [mediaKey, naam, genre]
+      required: [mediaKey, naam, genre, projectId]
       properties:
         mediaKey: { type: string, description: "Verkregen via /upload-url" }
         naam: { type: string }
@@ -580,7 +649,7 @@ components:
         steekwoorden:
           type: array
           items: { type: string }
-        albumId: { type: string }
+        projectId: { type: string, format: uuid, description: "Het project van de organisatie waaraan de jottem wordt bijgedragen" }
         locatie:
           type: object
           description: Locatiemetadata voor kaart en pand-tijdlijn
@@ -601,12 +670,20 @@ components:
         aantalAnnotaties: { type: integer }
         deellink: { type: string, format: uri }
 
-    Album:
+    Project:
       type: object
       required: [naam]
       properties:
-        albumId: { type: string, readOnly: true }
-        naam: { type: string }
+        projectId: { type: string, format: uuid, readOnly: true }
+        naam: { type: string, example: "Smaak van Gouda" }
+        slug: { type: string, example: "smaak-van-gouda" }
+        beschrijving: { type: string }
+        oproep: { type: string, description: "Oproep tot actie voor bijdragers" }
+        startDatum: { type: string, format: date }
+        eindDatum: { type: string, format: date }
+        afbeelding: { type: string, format: uri }
+        datasetLicentie: { type: string, format: uri }
+        status: { type: string, enum: [actief, afgerond] }
 
     GebruikerRol:
       type: object
@@ -623,6 +700,8 @@ components:
       properties:
         naam: { type: string, example: "Streekarchief Midden-Holland" }
         slug: { type: string, example: "samh" }
+        beschrijving: { type: string, description: "Gebruikt in o.a. publisher-informatie, IIIF provider en RSS" }
+        website: { type: string, format: uri }
         favicon: { type: string, format: uri }
         logo: { type: string, format: uri }
         kleurenpalet:

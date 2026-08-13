@@ -23,7 +23,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 * alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken  
 * de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy (incl. toestemming herkenbare personen), auteursrecht en het onderscheid tussen herinnering en verifieerbaar feit  
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
-  * bij goedkeuring wordt er een object identifier (bijv. NOID of UUID) gemaakt de ARK en wordt de afbeelding en metadata duurzaam opgeslagen bij het internet archive en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
+  * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
@@ -53,7 +53,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 * kan ik een extra metadata aan een getekend vlak op de jottem toevoegen, zoals  
   * identificatie van persoon, gebouw, bedrijf (naam+URI)  
 * kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
-* kan ik mijn annotatie bewerken en verwijderen ???
+* kan ik mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in de annotatieserver
 
 ## Als API gebruiker kan ik ## {#api-gebruiker}
 

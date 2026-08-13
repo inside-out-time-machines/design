@@ -1,7 +1,17 @@
 
 # API beschrijving # {#api-beschrijving}
 
+De API is gesplitst in een **publieke lees-API** (zonder authenticatie, voor bezoekers en
+API-gebruikers/harvesters) en een **beheer-API** (OIDC Bearer-authenticatie, voor uploaden,
+modereren en beheren) — zie [[#keuze-consequenties]].
+
+## Publieke API ## {#api-publiek}
+
 <div id="swagger-ui"></div>
+
+## Beheer-API ## {#api-beheer}
+
+<div id="swagger-ui-beheer"></div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css">
 
@@ -19,6 +29,12 @@
     SwaggerUIBundle({
       dom_id: "#swagger-ui",
       url: "openapi.yaml", 
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+      layout: "BaseLayout",
+    });
+    SwaggerUIBundle({
+      dom_id: "#swagger-ui-beheer",
+      url: "openapi-beheer.yaml", 
       presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
       layout: "BaseLayout",
     });

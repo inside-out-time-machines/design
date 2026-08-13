@@ -4,9 +4,25 @@
 
 * inloggen door gebruikers moet zeer laagdrempelig zijn, dus inclusief social login
 * inloggen door beheerders moet zijn te beveiligen via 2FA
-* duurzame link op basis van ARK (met objectname op basis van NOID of UUID) per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation
+* duurzame link per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation; het koppelen van een ARK (met objectname op basis van NOID of UUID) aan deze link is uitgesteld naar een latere fase (zie [[#keuze-open-vragen]])
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
+
+## Niet-functionele requirements ## {#non-functional-requirements}
+
+*Onderstaande waarden zijn richtwaarden (concept), vast te stellen door de projectgroep.*
+
+* taal: de interface en redactionele content zijn Nederlandstalig
+* toegankelijkheid: de publieke site voldoet aan WCAG 2.2 niveau AA
+* browsers: de laatste twee versies van evergreen browsers (Chrome, Firefox, Safari, Edge) op desktop en mobiel (iOS Safari, Android Chrome); de site is responsive
+* performance: publiekspagina's laden binnen 2 seconden (LCP); IIIF-tiles en manifests worden uit cache geserveerd; zoekresultaten binnen 1 seconde
+* capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand
+* beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
+* beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA voor beheer- en moderatorrollen
+* privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge
+* back-up & herstel: nachtelijkse offsite back-ups; RPO 24 uur, RTO 1 werkdag; jaarlijkse hersteltest
+* duurzaamheid/exit: periodieke publieke datadumps en een exportstrategie, zie [[#keuze-infra]]
+* monitoring: uptime-, logging- en alertvoorzieningen conform de [systeemarchitectuur](systeemarchitectuur/architectuur.html)
 
 ## Standaarden & API's ## {#standards}
 * [Internet Archive](https://archive.org/developers/index-apis.html)
@@ -33,7 +49,11 @@
 
 ## (Sub)domeinen ## {#domains}
 
-* [www.iotm.nl](http://www.iotm.nl)
-* [api.iotm.nl](http://api.iotm.nl)
-* [iiif.iotm.nl](http://api.iotm.nl)
-* [ark.iotm.nl](http://api.iotm.nl)
+* [www.iotm.nl](https://www.iotm.nl) — publieksfrontend
+* [api.iotm.nl](https://api.iotm.nl) — publieke API (en beheer-API)
+* [auth.iotm.nl](https://auth.iotm.nl) — identity provider
+* [iiif.iotm.nl](https://iiif.iotm.nl) — IIIF Image API
+* [anno.iotm.nl](https://anno.iotm.nl) — W3C annotatieserver
+* [data.iotm.nl](https://data.iotm.nl) — RDF, SPARQL en datadumps
+* [status.iotm.nl](https://status.iotm.nl) — status en monitoring
+* ark.iotm.nl — gereserveerd voor de ARK-resolver (latere fase, zie [[#keuze-open-vragen]])

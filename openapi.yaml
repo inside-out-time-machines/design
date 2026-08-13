@@ -1,9 +1,10 @@
 openapi: 3.0.0
 info:
-  title: IOTM API
+  title: IOTM API (publiek)
   description: >
-    Geconsolideerde API voor het beheren en ontsluiten van jottems en annotaties. 
+    Publieke lees-API voor het ontsluiten van jottems en annotaties, zonder authenticatie.
     Deze API ondersteunt IIIF Change Discovery, RSS feeds, Elasticsearch queries, W3C Web Annotations en NDE-conforme datasetbeschrijvingen.
+    Functionaliteit die authenticatie vereist (uploaden, modereren, beheren) is beschreven in de aparte beheer-API (openapi-beheer.yaml).
   version: "0.1"
 
 servers:

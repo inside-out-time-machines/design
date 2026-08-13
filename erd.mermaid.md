@@ -9,24 +9,33 @@
     string slug
     string NAAN
     string kleurenpalet
+    string logo
+    string favicon
   }
 
   Gebruiker {
     int gebruikersId PK
     string naam
     string email
-    string rol
-    int organisatieId FK
     date bevestigingsDatum
     date registratieDatum
     date laatsteLoginDatum
     bool favorietenPubliek
   }
 
+  GebruikerRol {
+    int gebruikerRolId PK
+    int gebruikersId FK
+    int organisatieId FK
+    string rol
+  }
+
   Media {
     int mediaId PK
     string bestandsnaam
     string genre
+    string status
+    string afkeurReden
     string ark
     date creatieDatum
     date publicatieDatum
@@ -49,6 +58,7 @@
     int albumId PK
     string naam
     int gebruikersId FK
+    int organisatieId FK
   }
 
   Favoriet {
@@ -58,13 +68,21 @@
     date creatieDatum
   }
 
+  %% Rollen: een gebruiker kan meerdere rollen hebben, per organisatie (GebruikerRol);
+  %% de rol platformbeheerder heeft geen organisatieId. Lidmaatschap van een organisatie
+  %% volgt uit de GebruikerRol-rijen.
+  %% Media.status: nieuw / goedgekeurd / afgekeurd; afkeurReden alleen bij afgekeurd.
+  %% Organisatie.NAAN en Media.ark zijn gereserveerd voor de ARK-fase (uitgesteld,
+  %% zie keuze-oplossingsrichting).
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)
   %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
 
   %% Relationships
-  Organisatie ||--o{ Gebruiker : "heeft"
+  Organisatie ||--o{ GebruikerRol : "kent"
   Organisatie ||--o{ Media : "bevat"
+  Organisatie ||--o{ Album : "bevat"
 
+  Gebruiker ||--o{ GebruikerRol : "heeft"
   Gebruiker ||--o{ Media : "uploadt"
   Gebruiker ||--o{ Album : "maakt"
 

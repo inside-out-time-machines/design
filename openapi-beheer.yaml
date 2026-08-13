@@ -1,0 +1,633 @@
+openapi: 3.0.0
+info:
+  title: IOTM Beheer-API
+  description: >
+    Beheer-API voor het Jottem-platform: uploaden, modereren, albums, favorieten,
+    annotaties, gebruikers- en organisatiebeheer, statistieken en verwijderverzoeken.
+    Alle endpoints (behalve het indienen van een verwijderverzoek) vereisen een
+    OIDC Bearer-token uitgegeven door auth.iotm.nl; autorisatie gebeurt op basis van
+    de rollen uit het token (platformbeheerder, organisatiebeheerder, moderator, gebruiker).
+    De publieke lees-API is beschreven in openapi.yaml.
+  version: "0.1"
+
+servers:
+  - url: https://api.iotm.nl/v1
+    description: Productie server
+
+security:
+  - bearerAuth: []
+
+paths:
+
+  # --- Profiel (alle ingelogde rollen) ---
+
+  /mijn/profiel:
+    get:
+      tags: [Profiel]
+      summary: Eigen profiel inzien
+      responses:
+        '200':
+          description: Profiel
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Profiel' }
+    put:
+      tags: [Profiel]
+      summary: Eigen profiel wijzigen (naam, afbeelding, privacy-instellingen)
+      description: Wachtwoord en 2FA worden beheerd via de identity provider (auth.iotm.nl).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Profiel' }
+      responses:
+        '200': { description: Bijgewerkt profiel }
+
+  # --- Uploaden (rol gebruiker/uploader) ---
+
+  /upload-url:
+    post:
+      tags: [Uploads]
+      summary: Vraag een presigned upload-URL aan
+      description: >
+        De browser uploadt het mediabestand rechtstreeks naar de mediaopslag via de
+        geretourneerde presigned URL; de mediaKey wordt daarna gebruikt bij het aanmaken
+        van de jottem.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bestandsnaam, contentType]
+              properties:
+                bestandsnaam: { type: string, example: "gevel-markt-12.jpg" }
+                contentType: { type: string, example: "image/jpeg" }
+      responses:
+        '201':
+          description: Presigned upload-URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadUrl: { type: string, format: uri }
+                  mediaKey: { type: string }
+
+  /organisatie/{organisatieSlug}/jottem:
+    post:
+      tags: [Uploads]
+      summary: Maak een nieuwe jottem aan (status "nieuw", wacht op moderatie)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/JottemNieuw' }
+      responses:
+        '201': { description: Jottem aangemaakt, status "nieuw" }
+
+  /mijn/jottems:
+    get:
+      tags: [Uploads]
+      summary: Overzicht van eigen geüploade jottems met status, aantal annotaties en deellinks
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
+      responses:
+        '200':
+          description: Lijst van eigen jottems
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/JottemStatus' }
+
+  /jottem/{jottemId}:
+    delete:
+      tags: [Uploads]
+      summary: Verwijder een eigen afgekeurde jottem (goedgekeurde jottems kunnen niet worden verwijderd)
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      responses:
+        '204': { description: Verwijderd }
+        '403': { description: Niet toegestaan (niet de eigenaar, of jottem is goedgekeurd) }
+
+  # --- Albums (rol gebruiker/uploader) ---
+
+  /mijn/albums:
+    get:
+      tags: [Albums]
+      summary: Overzicht van eigen albums
+      responses:
+        '200':
+          description: Lijst van albums
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Album' }
+    post:
+      tags: [Albums]
+      summary: Maak een album aan (naast het standaardalbum "Alles")
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Album' }
+      responses:
+        '201': { description: Album aangemaakt }
+
+  /album/{albumId}:
+    put:
+      tags: [Albums]
+      summary: Wijzig een eigen album
+      parameters:
+        - $ref: '#/components/parameters/albumId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Album' }
+      responses:
+        '200': { description: Album bijgewerkt }
+    delete:
+      tags: [Albums]
+      summary: Verwijder een eigen album (jottems blijven bestaan in "Alles")
+      parameters:
+        - $ref: '#/components/parameters/albumId'
+      responses:
+        '204': { description: Verwijderd }
+
+  # --- Favorieten (rol gebruiker) ---
+
+  /mijn/favorieten:
+    get:
+      tags: [Favorieten]
+      summary: Overzicht van eigen favoriete jottems
+      responses:
+        '200':
+          description: Lijst van favorieten
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/JottemStatus' }
+
+  /jottem/{jottemId}/favoriet:
+    put:
+      tags: [Favorieten]
+      summary: Markeer een jottem als favoriet
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      responses:
+        '204': { description: Gemarkeerd }
+    delete:
+      tags: [Favorieten]
+      summary: Verwijder de favorietmarkering
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      responses:
+        '204': { description: Verwijderd }
+
+  /mijn/favorieten/openbaar:
+    put:
+      tags: [Favorieten]
+      summary: Stel eigen favorietenoverzicht in als openbaar (deelbare, niet-duurzame link) of privé
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [openbaar]
+              properties:
+                openbaar: { type: boolean }
+      responses:
+        '200':
+          description: Instelling opgeslagen; bij openbaar bevat het antwoord de deellink
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deellink: { type: string, format: uri, nullable: true }
+
+  # --- Annotaties (rol gebruiker/annoteerder; opslag in de annotatieserver) ---
+
+  /jottem/{jottemId}/annotation:
+    post:
+      tags: [Annotaties]
+      summary: Voeg een annotatie toe aan een jottem (geheel of getekend vlak)
+      description: >
+        W3C Web Annotation; de API voegt de geauthenticeerde gebruiker als creator toe en
+        schrijft de annotatie naar de annotatieserver. Reacties op annotaties zijn annotaties
+        met de bestaande annotatie als target.
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema: { type: object }
+      responses:
+        '201': { description: Annotatie aangemaakt }
+
+  /annotation/{annotationId}:
+    put:
+      tags: [Annotaties]
+      summary: Bewerk een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in de annotatieserver)
+      parameters:
+        - $ref: '#/components/parameters/annotationId'
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema: { type: object }
+      responses:
+        '200': { description: Annotatie bijgewerkt }
+        '403': { description: Niet de maker van deze annotatie }
+    delete:
+      tags: [Annotaties]
+      summary: Verwijder een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in de annotatieserver)
+      parameters:
+        - $ref: '#/components/parameters/annotationId'
+      responses:
+        '204': { description: Verwijderd }
+        '403': { description: Niet de maker van deze annotatie }
+
+  # --- Moderatie (rol moderator) ---
+
+  /organisatie/{organisatieSlug}/moderatie/jottems:
+    get:
+      tags: [Moderatie]
+      summary: Overzicht van jottems van de organisatie voor kwaliteitscontrole
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+        - name: status
+          in: query
+          required: false
+          schema: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
+      responses:
+        '200':
+          description: Lijst van jottems met status
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/JottemStatus' }
+
+  /jottem/{jottemId}/status:
+    put:
+      tags: [Moderatie]
+      summary: Wijzig de status van een jottem (goedkeuren of afkeuren)
+      description: >
+        Bij afkeuring is een reden verplicht; de uploader ontvangt een e-mail met de reden en
+        de mogelijkheid meer informatie aan te leveren. Bij goedkeuring krijgt de jottem een
+        duurzame link, wordt deze gepubliceerd en ontvangt de uploader een e-mail.
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [goedgekeurd, afgekeurd] }
+                afkeurReden: { type: string, description: "Verplicht bij status afgekeurd" }
+      responses:
+        '200': { description: Status gewijzigd }
+
+  # --- Gebruikersbeheer (rollen organisatiebeheerder en platformbeheerder) ---
+
+  /organisatie/{organisatieSlug}/gebruikers:
+    get:
+      tags: [Gebruikersbeheer]
+      summary: Overzicht van gebruikers en hun rollen binnen de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+        - name: rol
+          in: query
+          required: false
+          schema: { type: string, enum: [organisatiebeheerder, moderator, gebruiker] }
+      responses:
+        '200':
+          description: Lijst van gebruikers
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/GebruikerRol' }
+    post:
+      tags: [Gebruikersbeheer]
+      summary: Voeg een gebruiker in een rol toe aan de organisatie
+      description: >
+        Platformbeheerders voegen organisatiebeheerders toe; organisatiebeheerders voegen
+        moderatoren toe. De gebruiker ontvangt een e-mail met de regels en een bevestigingslink
+        waarna wachtwoord en 2FA via de identity provider worden ingesteld.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GebruikerRol' }
+      responses:
+        '201': { description: Gebruiker uitgenodigd }
+
+  /organisatie/{organisatieSlug}/gebruiker/{gebruikersId}:
+    put:
+      tags: [Gebruikersbeheer]
+      summary: Wijzig een gebruiker of diens rol binnen de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+        - $ref: '#/components/parameters/gebruikersId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GebruikerRol' }
+      responses:
+        '200': { description: Bijgewerkt }
+    delete:
+      tags: [Gebruikersbeheer]
+      summary: Verwijder een gebruiker(srol) uit de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+        - $ref: '#/components/parameters/gebruikersId'
+      responses:
+        '204': { description: Verwijderd }
+
+  # --- Organisatiebeheer (rol platformbeheerder; wijzigen ook organisatiebeheerder) ---
+
+  /organisatie:
+    post:
+      tags: [Organisatiebeheer]
+      summary: Definieer een nieuwe organisatiejottem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OrganisatieBeheer' }
+      responses:
+        '201': { description: Organisatie aangemaakt }
+
+  /organisatie/{organisatieSlug}:
+    put:
+      tags: [Organisatiebeheer]
+      summary: Wijzig een organisatiejottem (naam, favicon, logo, kleurenpalet)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OrganisatieBeheer' }
+      responses:
+        '200': { description: Bijgewerkt }
+
+  /organisatie/{organisatieSlug}/import:
+    post:
+      tags: [Organisatiebeheer]
+      summary: Importeer een bestaande collectie (metadata en online afbeeldingen via IIIF)
+      description: >
+        Start een asynchrone import van een bestaande collectie op basis van een
+        IIIF Collection- of Manifest-URL; de geïmporteerde jottems doorlopen de reguliere
+        moderatieworkflow.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [iiifUrl]
+              properties:
+                iiifUrl: { type: string, format: uri, description: "URL van een IIIF Collection of Manifest" }
+                albumNaam: { type: string }
+      responses:
+        '202': { description: Import gestart (asynchroon) }
+
+  # --- Statistieken (rollen moderator, organisatiebeheerder, platformbeheerder) ---
+
+  /organisatie/{organisatieSlug}/statistieken:
+    get:
+      tags: [Statistieken]
+      summary: Statistieken van de organisatie (logins per dag, jottems geüpload/goedgekeurd/afgekeurd, annotaties)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: Statistieken
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Statistieken' }
+
+  /statistieken:
+    get:
+      tags: [Statistieken]
+      summary: Platformbrede statistieken, uitgesplitst per organisatie (rol platformbeheerder)
+      responses:
+        '200':
+          description: Statistieken per organisatie
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Statistieken' }
+
+  # --- Verwijderverzoeken (indienen: publiek; afhandelen: rol moderator) ---
+
+  /verwijderverzoek:
+    post:
+      tags: [Verwijderverzoeken]
+      summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Verwijderverzoek' }
+      responses:
+        '201': { description: Verzoek geregistreerd }
+
+  /organisatie/{organisatieSlug}/verwijderverzoeken:
+    get:
+      tags: [Verwijderverzoeken]
+      summary: Overzicht van openstaande verwijderverzoeken van de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: Lijst van verwijderverzoeken
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Verwijderverzoek' }
+
+  /verwijderverzoek/{verzoekId}:
+    put:
+      tags: [Verwijderverzoeken]
+      summary: Handel een verwijderverzoek af (depublicatie inclusief cache-purge, of afwijzing met reden)
+      parameters:
+        - name: verzoekId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [besluit]
+              properties:
+                besluit: { type: string, enum: [gehonoreerd, afgewezen] }
+                toelichting: { type: string }
+      responses:
+        '200': { description: Verzoek afgehandeld }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OIDC access token uitgegeven door auth.iotm.nl
+
+  parameters:
+    organisatieSlug:
+      name: organisatieSlug
+      in: path
+      required: true
+      schema: { type: string }
+    jottemId:
+      name: jottemId
+      in: path
+      required: true
+      schema: { type: string }
+    albumId:
+      name: albumId
+      in: path
+      required: true
+      schema: { type: string }
+    annotationId:
+      name: annotationId
+      in: path
+      required: true
+      schema: { type: string }
+    gebruikersId:
+      name: gebruikersId
+      in: path
+      required: true
+      schema: { type: string }
+
+  schemas:
+    Profiel:
+      type: object
+      properties:
+        naam: { type: string }
+        afbeelding: { type: string, format: uri }
+        privacyInstellingen: { type: object }
+
+    JottemNieuw:
+      type: object
+      required: [mediaKey, naam, genre]
+      properties:
+        mediaKey: { type: string, description: "Verkregen via /upload-url" }
+        naam: { type: string }
+        beschrijving: { type: string }
+        genre:
+          type: string
+          description: Materiaaltype/genre
+          enum: [foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig]
+        vervaardiger: { type: string }
+        datum: { type: string }
+        plaats: { type: string }
+        personenLevenMogelijkNog: { type: boolean }
+        steekwoorden:
+          type: array
+          items: { type: string }
+        albumId: { type: string }
+        locatie:
+          type: object
+          description: Locatiemetadata voor kaart en pand-tijdlijn
+          properties:
+            adres: { type: string }
+            openingsjaar: { type: integer }
+            sluitingsjaar: { type: integer }
+
+    JottemStatus:
+      type: object
+      properties:
+        jottemId: { type: string }
+        naam: { type: string }
+        status: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
+        afkeurReden: { type: string }
+        aantalAnnotaties: { type: integer }
+        deellink: { type: string, format: uri }
+
+    Album:
+      type: object
+      required: [naam]
+      properties:
+        albumId: { type: string, readOnly: true }
+        naam: { type: string }
+
+    GebruikerRol:
+      type: object
+      required: [naam, email, rol]
+      properties:
+        gebruikersId: { type: string, readOnly: true }
+        naam: { type: string }
+        email: { type: string, format: email }
+        rol: { type: string, enum: [organisatiebeheerder, moderator, gebruiker] }
+
+    OrganisatieBeheer:
+      type: object
+      required: [naam, slug]
+      properties:
+        naam: { type: string, example: "Streekarchief Midden-Holland" }
+        slug: { type: string, example: "samh" }
+        favicon: { type: string, format: uri }
+        logo: { type: string, format: uri }
+        kleurenpalet:
+          type: object
+          properties:
+            primary: { type: string, example: "#003366" }
+            secondary: { type: string, example: "#ff9900" }
+            background: { type: string, example: "#ffffff" }
+        naan: { type: string, description: "ARK NAAN (gereserveerd voor latere fase)" }
+
+    Statistieken:
+      type: object
+      properties:
+        organisatieSlug: { type: string }
+        loginsPerDag:
+          type: array
+          items:
+            type: object
+            properties:
+              datum: { type: string, format: date }
+              aantal: { type: integer }
+        jottemsGeupload: { type: integer }
+        jottemsGoedgekeurd: { type: integer }
+        jottemsAfgekeurd: { type: integer }
+        annotaties: { type: integer }
+
+    Verwijderverzoek:
+      type: object
+      required: [jottemId, reden, email]
+      properties:
+        verzoekId: { type: string, readOnly: true }
+        jottemId: { type: string }
+        reden: { type: string, description: "Bijv. eigen materiaal of herkenbaar in beeld" }
+        email: { type: string, format: email, description: "Voor terugkoppeling over de afhandeling" }
+        status: { type: string, enum: [open, gehonoreerd, afgewezen], readOnly: true }

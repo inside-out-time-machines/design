@@ -18,7 +18,7 @@ Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jo
 
 - **Open source first**: elk component is een bewezen open-source product of een dunne maatwerklaag daaromheen. Succesvolle onderdelen zijn herbruikbaar tussen Time Machines.
 - **Standaarden aan de buitenkant**: alle publieke interfaces zijn standaard-API's (IIIF, W3C Annotation Protocol, SPARQL/RDF, RSS), zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten.
-- **Duurzame opslag identificatie**: elke gepubliceerde jottem krijgt een ARK met NOID/UUID-objectnaam; de ARK is het duurzame startpunt, met content negotiation naar HTML of RDF en komt in een duurzame opslag terecht. (willen we dit uitgangspunt handhaven???)
+- **Duurzame opslag identificatie**: elke gepubliceerde jottem krijgt een duurzame platform-URL met content negotiation naar HTML of RDF. *Besluit: ARK-minting (NOID/UUID-objectnaam, resolver op ark.iotm.nl) is uitgesteld naar een latere fase — zie het keuzedocument in het designdocument; URL's worden zo gekozen dat latere ARK-koppeling zonder linkbreuk kan.*
 - **Multi-tenant**: een platforminstallatie bedient meerdere organisatiejottems (Streekarchief Midden-Holland, historische verenigingen, andere Time Machines), elk met eigen huisstijl, NAAN/shoulder en gebruikers.
 - **Beheersbaarheid**: het geheel draait als een docker-compose-stack op een enkele VPS (of dedicated server) en kan later doorgroeien naar Kubernetes zonder architectuurbreuk.
 - **Getest en gemonitord**: elk component wordt geautomatiseerd getest (unit, integratie, contract op de standaard-API's en end-to-end over de stack) en draait onder centrale monitoring, logging en alerting, zodat regressies en storingen vroeg en aantoonbaar zichtbaar worden.

@@ -54,6 +54,10 @@ path: infra.md
 </pre>
 
 <pre class="include">
+path: keuze-oplossingsrichting.md
+</pre>
+
+<pre class="include">
 path: systeemarchitectuur.md
 </pre>
 

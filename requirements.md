@@ -37,6 +37,7 @@
 * [IIIF Change Discovery](https://iiif.io/api/discovery/1.0/)
 * [Miifi API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml)
 * [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (eigen dienst: detectie van herkenbare personen op afbeeldingen)
+* [NDE Termennetwerk GraphQL API](https://docs.nde.nl/services/network-of-terms/graphql) (term-lookups; genres via de [Cultuurhistorische Thesaurus](https://data.cultureelerfgoed.nl/term/id/cht))
 * geo-annotaties (plek fotograaf, zichtveld, locatie) worden vastgelegd als WKT/GeoJSON
 * de publieke weergave kan gekoppeld worden aan een externe kaart-/tijdmachine (bijv. de [Gouda Tijdmachine](https://www.goudatijdmachine.nl)) om door plaats én tijd te navigeren
 

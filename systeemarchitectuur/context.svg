@@ -85,8 +85,8 @@
   </g>
   <g class="ext">
     <rect x="760" y="460" width="195" height="56" rx="4"/>
-    <text x="857" y="483" text-anchor="middle" class="lbl">Terminologiebronnen</text>
-    <text x="857" y="501" text-anchor="middle" class="sub">Wikidata, GTAA, e.d. (URI's)</text>
+    <text x="857" y="483" text-anchor="middle" class="lbl">NDE Termennetwerk</text>
+    <text x="857" y="501" text-anchor="middle" class="sub">CHT, Wikidata, GTAA, ... (GraphQL)</text>
   </g>
 
   <!-- Edges actors -> system -->
@@ -109,5 +109,5 @@
   <path class="edge" d="M630,310 C690,320 700,405 760,408"/>
   <text x="672" y="370" class="elbl">SMTP</text>
   <path class="edge" d="M630,330 C700,350 710,485 760,488"/>
-  <text x="662" y="440" class="elbl">SPARQL / REST</text>
+  <text x="674" y="440" class="elbl">GraphQL</text>
 </svg>

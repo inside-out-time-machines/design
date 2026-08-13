@@ -155,26 +155,32 @@
 
   <!-- External row -->
   <g class="fut">
-    <rect x="120" y="680" width="200" height="66" rx="4"/>
-    <text x="220" y="706" text-anchor="middle" class="lbl">Internet Archive</text>
-    <text x="220" y="724" text-anchor="middle" class="sub">duurzame kopie van media</text>
-    <text x="220" y="737" text-anchor="middle" class="sub">en metadata (latere fase)</text>
+    <rect x="50" y="680" width="196" height="66" rx="4"/>
+    <text x="148" y="706" text-anchor="middle" class="lbl">Internet Archive</text>
+    <text x="148" y="724" text-anchor="middle" class="sub">duurzame kopie van media</text>
+    <text x="148" y="737" text-anchor="middle" class="sub">en metadata (latere fase)</text>
   </g>
   <g class="ext">
-    <rect x="360" y="680" width="180" height="66" rx="4"/>
-    <text x="450" y="706" text-anchor="middle" class="lbl">SMTP-relay</text>
-    <text x="450" y="724" text-anchor="middle" class="sub">transactionele e-mail</text>
+    <rect x="266" y="680" width="196" height="66" rx="4"/>
+    <text x="364" y="706" text-anchor="middle" class="lbl">NDE Termennetwerk</text>
+    <text x="364" y="724" text-anchor="middle" class="sub">term-lookups via GraphQL</text>
+    <text x="364" y="737" text-anchor="middle" class="sub">CHT, Wikidata, GTAA, ...</text>
   </g>
   <g class="ext">
-    <rect x="580" y="680" width="220" height="66" rx="4"/>
-    <text x="690" y="706" text-anchor="middle" class="lbl">Social identity providers</text>
-    <text x="690" y="724" text-anchor="middle" class="sub">Google, Facebook, Apple e.a.</text>
-    <text x="690" y="737" text-anchor="middle" class="sub">via OIDC/OAuth2 brokering</text>
+    <rect x="482" y="680" width="196" height="66" rx="4"/>
+    <text x="580" y="706" text-anchor="middle" class="lbl">SMTP-relay</text>
+    <text x="580" y="724" text-anchor="middle" class="sub">transactionele e-mail</text>
   </g>
   <g class="ext">
-    <rect x="840" y="680" width="200" height="66" rx="4"/>
-    <text x="940" y="706" text-anchor="middle" class="lbl">NDE Datasetregister</text>
-    <text x="940" y="724" text-anchor="middle" class="sub">aanmelding datasetbeschrijving</text>
+    <rect x="698" y="680" width="196" height="66" rx="4"/>
+    <text x="796" y="706" text-anchor="middle" class="lbl">Social identity providers</text>
+    <text x="796" y="724" text-anchor="middle" class="sub">Google, Facebook, Apple e.a.</text>
+    <text x="796" y="737" text-anchor="middle" class="sub">via OIDC/OAuth2 brokering</text>
+  </g>
+  <g class="ext">
+    <rect x="914" y="680" width="196" height="66" rx="4"/>
+    <text x="1012" y="706" text-anchor="middle" class="lbl">NDE Datasetregister</text>
+    <text x="1012" y="724" text-anchor="middle" class="sub">aanmelding datasetbeschrijving</text>
   </g>
 
   <!-- Edges proxy -> row1 -->
@@ -230,18 +236,22 @@
   <path class="edge" d="M700,416 C700,450 698,480 694,510"/>
   <path class="edge" d="M730,416 C830,450 900,480 924,510"/>
   <text x="850" y="466" class="elbl">RDF-sync</text>
-  <path class="edged" d="M630,416 C610,600 430,680 235,682"/>
+  <path class="edged" d="M630,416 C610,600 400,672 175,681"/>
   <text x="330" y="664" class="elbl" fill="#999">upload naar IA (latere fase)</text>
-  <path class="edge" d="M670,416 C560,560 470,630 452,680"/>
-  <text x="536" y="628" class="elbl">e-mail</text>
+  <path class="edge" d="M640,416 C560,540 545,640 583,680"/>
+  <text x="500" y="630" class="elbl">e-mail</text>
 
-  <!-- keycloak -> social -->
-  <path class="edge" d="M610,271 C640,400 680,600 690,680"/>
-  <text x="640" y="470" class="elbl">federatie</text>
+  <!-- auth -> social -->
+  <path class="edge" d="M630,271 C760,400 880,560 805,680"/>
+  <text x="750" y="442" class="elbl">federatie</text>
 
   <!-- api/workers -> datasetregister -->
-  <path class="edge" d="M760,416 C830,470 835,600 900,680"/>
-  <text x="845" y="625" class="elbl">registratie</text>
+  <path class="edge" d="M760,416 C810,470 820,600 930,680"/>
+  <text x="862" y="640" class="elbl">registratie</text>
+
+  <!-- api -> termennetwerk -->
+  <path class="edge" d="M410,271 C420,360 320,560 350,680"/>
+  <text x="228" y="622" class="elbl">term-lookups (GraphQL)</text>
 
   <!-- Observability band -->
   <rect x="40" y="782" width="1090" height="98" rx="8" fill="#eef3fa" stroke="#3a6ea5" stroke-width="1.6" stroke-dasharray="7 5"/>

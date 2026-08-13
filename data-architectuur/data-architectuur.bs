@@ -266,10 +266,19 @@ Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-sp
 
 Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken mogelijk:
 
-* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig — elk gekoppeld aan een term-URI (bijv. Wikidata: menukaart = `wd:Q57209120`), beheerd als configuratie.
+* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig — elk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)**, opgezocht via het NDE Termennetwerk (zie hieronder). De waardelijst met bijbehorende CHT-URI's is platformconfiguratie.
 * **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, openingsjaar, sluitingsjaar, persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
 * **Annotatiemotivaties** (`motivation`, W3C-vocabulaire): `describing` (herinnering), `commenting` (reactie), `identifying` (persoon/gebouw/bedrijf op vlak), `tagging` (steekwoord), `linking` (archiefbron, gebeurtenis), `editing` (correctie).
-* **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), gevonden via het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) (Wikidata, GTAA, e.d.), zodat de RDF-output linkbaar is.
+* **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), zodat de RDF-output linkbaar is.
+
+## NDE Termennetwerk (GraphQL) ## {#termennetwerk}
+
+Alle term-lookups (genres én term-URI's) verlopen via de [GraphQL API van het NDE Termennetwerk](https://docs.nde.nl/services/network-of-terms/graphql) (`https://termennetwerk-api.netwerkdigitaalerfgoed.nl/graphql`), één externe API die zoeken in vele terminologiebronnen bundelt (CHT, Wikidata, GTAA, thesauri van RKD, RCE, e.a.):
+
+* de `sources`-query levert de lijst van beschikbare terminologiebronnen;
+* de `terms`-query zoekt een term in één of meer gekozen bronnen en levert label + URI.
+
+**Terminologiebronnen per project.** De organisatiebeheerder stelt per project in welke terminologiebronnen beschikbaar zijn voor term-URI's (`Project.terminologiebronnen`, een lijst van bron-URI's uit de `sources`-query; standaard staan alle bronnen open). De upload- en annotatie-interfaces beperken hun `terms`-queries tot die bronnen, zodat bijdragers per project passende thesauri aangeboden krijgen (bijv. CHT + Wikidata voor *Smaak van Gouda*). De backend biedt hiervoor een `sources`-proxy in de beheer-API.
 
 # Zoekindex en geo-data # {#zoekindex-geo}
 
@@ -316,4 +325,4 @@ Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatiere
 * **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + MinIO; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen.
 * **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
 * **Audio**: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
-* **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden.
+* **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

@@ -25,6 +25,7 @@
     date eindDatum
     string afbeelding
     string datasetLicentie
+    string terminologiebronnen
     string status
     int organisatieId FK
   }
@@ -92,6 +93,8 @@
   %% organisatiebeheerder. Elke organisatie heeft minstens een project; elke jottem hoort
   %% bij precies een project (Media.projectId verplicht). Project.status: actief / afgerond.
   %% Project.datasetLicentie: licentie van de projectdataset (datasetbeschrijving per project).
+  %% Project.terminologiebronnen: lijst van bron-URI's uit het NDE Termennetwerk die binnen
+  %% dit project beschikbaar zijn voor term-URI's (standaard: alle bronnen).
   %% Publiek zichtbare identifiers (mediaId, projectId) zijn betekenisloze UUID's; interne
   %% id's (gebruikersId e.d.) blijven interne sleutels.
   %% Rollen: een gebruiker kan meerdere rollen hebben, per organisatie (GebruikerRol);

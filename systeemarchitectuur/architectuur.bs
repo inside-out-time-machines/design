@@ -26,7 +26,7 @@ Dit document beschrijft een op Docker gebaseerde systeemarchitectuur voor het Jo
 
 # Contextdiagram
 
-Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder, moderator, beheerder, API-gebruiker) en een aantal externe systemen: social login providers, het Internet Archive voor duurzame opslag, het NDE Datasetregister, tijdmachines als kaart-/tijdinterface, een SMTP-provider en terminologiebronnen zoals Wikidata voor URI's in annotaties.
+Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder, moderator, beheerder, API-gebruiker) en een aantal externe systemen: social login providers, het Internet Archive voor duurzame opslag (latere fase), het NDE Datasetregister, tijdmachines als kaart-/tijdinterface, een SMTP-provider en het NDE Termennetwerk (GraphQL) als toegang tot terminologiebronnen (Cultuurhistorische Thesaurus, Wikidata, GTAA, ...) voor URI's in metadata en annotaties.
 
 <img src="context.svg" alt="Contextdiagram" style="max-width:100%; height:auto;">
 
@@ -77,6 +77,7 @@ De backend-API op `api.iotm.nl` is het maatwerkhart van het platform. Hij implem
 - IIIF Change Discovery 1.0: een ActivityStreams-feed per organisatie met create/update-activiteiten (inclusief nieuwe annotaties) voor harvesters;
 - RSS-feeds per organisatie met nieuwe jottems;
 - zoek-endpoints die Elasticsearch bevragen (fulltext, facetten op genre, organisatie, periode, plaats);
+- een proxy op de GraphQL API van het NDE Termennetwerk voor term-lookups (genres via de Cultuurhistorische Thesaurus, term-URI's), beperkt tot de per project ingestelde terminologiebronnen;
 - statistieken voor beheerders en moderatoren.
 
 De frontend op `www.iotm.nl` is een aparte container (Next.js of SvelteKit) met de publieke site, de HTML-weergave per jottem (IIIF-viewer + metadata + annotaties), de upload- en moderatie-omgeving, en de interactieve kaart. Voor het tekenen van vlakken op afbeeldingen en het vastleggen van geo-annotaties (standpunt fotograaf, zichtveld als WKT/GeoJSON) is Annotorious in combinatie met OpenSeadragon/Mirador en MapLibre een beproefde keuze; de kaartweergave kan via IIIF en de API gekoppeld worden aan tijdmachines (zoals de Gouda Tijdmachine).
@@ -343,6 +344,7 @@ Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel 
 <tr><td>Internet Archive integratie</td><td>Workerpool met internetarchive-client</td></tr>
 <tr><td>Mediaopslag (S3)</td><td>MinIO of externe S3-dienst</td></tr>
 <tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in miiify/metadata</td></tr>
+<tr><td>Termen en vocabulaires (CHT, term-URI's)</td><td>NDE Termennetwerk GraphQL API, via backend-proxy met bronnenselectie per project</td></tr>
 <tr><td>Detectie herkenbare personen (portretrecht)</td><td>Herkenbaar API, synchroon aangeroepen bij upload</td></tr>
 <tr><td>Geautomatiseerd testen</td><td>CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright</td></tr>
 <tr><td>Monitoring, logging en alerting</td><td>Prometheus + exporters, Grafana, Loki/Promtail, Alertmanager, blackbox-/synthetische checks</td></tr>

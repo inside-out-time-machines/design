@@ -474,6 +474,27 @@ paths:
       responses:
         '204': { description: Afgemeld }
 
+  /termennetwerk/bronnen:
+    get:
+      tags: [Projecten]
+      summary: Lijst van beschikbare terminologiebronnen uit het NDE Termennetwerk
+      description: >
+        Proxy op de sources-query van de Termennetwerk GraphQL API
+        (https://termennetwerk-api.netwerkdigitaalerfgoed.nl/graphql), voor het per project
+        instellen van de beschikbare terminologiebronnen (rol organisatiebeheerder).
+      responses:
+        '200':
+          description: Beschikbare terminologiebronnen
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uri: { type: string, format: uri }
+                    naam: { type: string, example: "Cultuurhistorische Thesaurus" }
+
   /organisatie/{organisatieSlug}/import:
     post:
       tags: [Organisatiebeheer]
@@ -683,6 +704,12 @@ components:
         eindDatum: { type: string, format: date }
         afbeelding: { type: string, format: uri }
         datasetLicentie: { type: string, format: uri }
+        terminologiebronnen:
+          type: array
+          description: >
+            Bron-URI's uit het NDE Termennetwerk die binnen dit project beschikbaar zijn
+            voor term-URI's; leeg/afwezig betekent alle bronnen.
+          items: { type: string, format: uri }
         status: { type: string, enum: [actief, afgerond] }
 
     GebruikerRol:

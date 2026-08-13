@@ -17,6 +17,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
+* kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
 * kan ik per project de datasetbeschrijving bewerken en \- indien er openbare (gepubliceerde) data is \- deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
 
@@ -47,7 +48,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 
 ## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
 
-* kan ik een extra metadata aan de gehele jottem toevoegen, zoals  
+* kan ik een extra metadata aan de gehele jottem toevoegen, waarbij term-URI's gezocht worden via het NDE Termennetwerk binnen de voor het project ingestelde terminologiebronnen, zoals  
   * een plaatsnaam (label+URI)  
   * de plek waar de fotograaf stond (op de kaart) plus zichtveld (WKT)  
   * gebeurtenis (label+URI)   

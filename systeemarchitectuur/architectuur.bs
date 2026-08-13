@@ -125,7 +125,7 @@ Caching gebeurt op drie niveaus: Varnish voor IIIF-tiles en manifests, Redis voo
 
 ## Async workers en Internet Archive
 
-Een workerpool (Celery met Redis als broker) handelt alles af wat niet in de request-cyclus hoort: genereren van derivatives en thumbnails, EXIF-extractie, e-mailnotificaties (goedkeuring, afkeuring met reden, uitnodigingen), Elasticsearch-indexering, RDF-synchronisatie naar Fuseki, en de duurzame upload van goedgekeurde media plus metadata naar het Internet Archive via de `internetarchive` Python-client. De IA-itemidentifier wordt teruggeschreven in de database en opgenomen in de RDF (bijv. als `schema:archivedAt`).
+Een workerpool (Celery met Redis als broker) handelt alles af wat niet in de request-cyclus hoort: genereren van derivatives en thumbnails, EXIF-extractie, e-mailnotificaties (goedkeuring, afkeuring met reden, uitnodigingen), Elasticsearch-indexering, RDF-synchronisatie naar Fuseki, e-depot-exports per project (BagIt + RO-Crate, zie de data-architectuur), en de duurzame upload van goedgekeurde media plus metadata naar het Internet Archive via de `internetarchive` Python-client. De IA-itemidentifier wordt teruggeschreven in de database en opgenomen in de RDF (bijv. als `schema:archivedAt`).
 
 # Deployment met Docker
 

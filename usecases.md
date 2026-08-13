@@ -20,6 +20,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
 * kan ik per project de datasetbeschrijving bewerken en \- indien er openbare (gepubliceerde) data is \- deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
+* kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
 
 ## Als moderator kan ik ## {#moderator}
 

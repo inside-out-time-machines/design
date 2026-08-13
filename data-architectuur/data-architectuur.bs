@@ -240,6 +240,29 @@ Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen 
 
 **Aanbeveling:** alle kandidaten als extra distributies opnemen — de endpoints bestaan in de publieke API, het is louter een uitbreiding van de gegenereerde projectdatasetbeschrijving. Alle kandidaten zijn volledig afleidbaar uit de bestaande bronlagen; er is geen nieuwe brondata nodig.
 
+## E-depot-export: BagIt als verpakking, RO-Crate als beschrijving ## {#edepot-export}
+
+Naast de RDF-datadump kan per project een **compleet exportpakket** worden aangemaakt waarmee al het materiaal van een project kan worden aangeboden aan het e-depot van een archiefinstelling (het SIP in OAIS-termen), en dat tevens de exit-strategie uit het [keuzedocument](../index.html#keuze-infra) concreet maakt:
+
+* **[BagIt](https://www.rfc-editor.org/rfc/rfc8493) (RFC 8493) als omhulsel** — een zip met `data/`-payload en checksummanifesten (`manifest-sha512.txt`, `bag-info.txt`), zodat de ontvangende instelling bit-integriteit bij ingest kan verifiëren. BagIt wordt **native ondersteund door Archivematica** en wordt probleemloos geaccepteerd door **Preservica** — de systemen achter de meeste Nederlandse e-depots.
+* **[RO-Crate](https://www.researchobject.org/ro-crate/) als inhoudelijke beschrijving** — een `ro-crate-metadata.json` (JSON-LD op basis van schema.org) die alle bestanden in het pakket beschrijft en relateert. Omdat de Jottem-metadata al schema.org AP NDE is, volgt de crate vrijwel direct uit de bestaande [RDF-mapping](#rdf-mapping); het pakket blijft daardoor ook búiten een e-depot zelfbeschrijvend en herbruikbaar.
+
+```
+{projectSlug}-{datum}.zip  (BagIt)
+├── bagit.txt / bag-info.txt          project, organisatie, datum, aantallen
+├── manifest-sha512.txt               checksums van alle payload-bestanden
+└── data/
+    ├── ro-crate-metadata.json        beschrijft alles (schema.org)
+    ├── dump.nt.gz                    de RDF-datadump van het project
+    ├── media/{mediaId}.(tif|jpg|…)   originelen uit MinIO
+    ├── metadata/{mediaId}.jsonld     per jottem (schema.org AP NDE)
+    └── annotaties/{mediaId}.jsonld   W3C Web Annotations per jottem
+```
+
+Een instellingsspecifieke metadatalaag (**MDTO**, of een **E-ARK SIP/CSIP**-structuur) wordt bewust niet standaard gegenereerd: Nederlandse e-depots verschillen daarvoor te sterk (zie de [infrastructuuranalyse](../infra/analyse.html)); zo'n laag is maatwerk per ontvangende instelling en kan bovenop de bag worden toegevoegd. METS/PREMIS genereert het e-depot zelf bij ingest.
+
+**Proces.** De organisatiebeheerder start de export per project; een worker stelt het pakket **asynchroon** samen (originelen uit MinIO, metadata en annotaties uit de bronlagen) en plaatst het in een aparte `exports`-bucket met beperkte bewaartermijn. Zodra het pakket klaar is, ontvangt de organisatiebeheerder een e-mail met een directe downloadlink.
+
 <pre class="include">
 path: api-beschrijving.md
 </pre>
@@ -322,7 +345,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 
 Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
 
-* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + MinIO; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen.
+* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + MinIO; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
 * **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
 * **Audio**: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

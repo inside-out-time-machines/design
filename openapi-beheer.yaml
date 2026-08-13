@@ -474,6 +474,22 @@ paths:
       responses:
         '204': { description: Afgemeld }
 
+  /project/{projectId}/export:
+    post:
+      tags: [Projecten]
+      summary: Maak een e-depot-exportpakket van het project aan (BagIt + RO-Crate)
+      description: >
+        Rol organisatiebeheerder. Start een asynchrone job die al het materiaal van het
+        project inpakt als BagIt-zip (checksummanifesten) met een RO-Crate-beschrijving
+        (schema.org JSON-LD): originelen, metadata per jottem, annotaties en de RDF-datadump.
+        Geschikt voor ingest in een e-depot (Archivematica ondersteunt BagIt native;
+        Preservica accepteert het). Zodra het pakket klaar staat ontvangt de aanvrager een
+        e-mail met een directe downloadlink (beperkte bewaartermijn).
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '202': { description: Export gestart; e-mail met downloadlink volgt zodra het pakket klaar is }
+
   /termennetwerk/bronnen:
     get:
       tags: [Projecten]

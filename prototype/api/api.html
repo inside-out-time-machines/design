@@ -43,7 +43,7 @@
 <pre><span class="c">// Activity Stream (OrderedCollection)</span>
 { <span class="k">"type"</span>: <span class="s">"OrderedCollectionPage"</span>,
   <span class="k">"orderedItems"</span>: [
-    { <span class="k">"type"</span>:<span class="s">"Update"</span>, <span class="k">"object"</span>:{ <span class="k">"id"</span>:<span class="s">"https://ark.iotm.nl/ark:/27023/g8x2"</span> } }
+    { <span class="k">"type"</span>:<span class="s">"Update"</span>, <span class="k">"object"</span>:{ <span class="k">"id"</span>:<span class="s">"https://www.iotm.nl/jottem/g8x2"</span> } }
   ] }</pre>
       </div></div>
 
@@ -53,7 +53,7 @@
         <span class="ep"><span class="verb">GET</span> /organisatie/smh/jottem/rss</span>
 <pre>&lt;item&gt;
   &lt;title&gt;Chinees-Indisch restaurant Lotus&lt;/title&gt;
-  &lt;link&gt;https://ark.iotm.nl/ark:/27023/g8x2&lt;/link&gt;
+  &lt;link&gt;https://www.iotm.nl/jottem/g8x2&lt;/link&gt;
 &lt;/item&gt;</pre>
       </div></div>
 
@@ -65,13 +65,15 @@
 
       <div class="card mb" id="anno"><div class="pad">
         <h3>W3C Web Annotations</h3>
-        <p class="meta">Annotaties ophalen via het W3C Web Annotation Protocol.</p>
-        <span class="ep"><span class="verb">GET</span> /annotation/{id}</span>
+        <p class="meta">Annotaties ophalen via het W3C Web Annotation Protocol — per annotatie, of
+          als AnnotationCollection per jottem, project of organisatie.</p>
+        <span class="ep"><span class="verb">GET</span> /annotation/{id}</span><br>
+        <span class="ep" style="margin-top:6px"><span class="verb">GET</span> /jottem/{id}/annotations · /project/{id}/annotations</span>
 <pre>{ <span class="k">"@context"</span>:<span class="s">"http://www.w3.org/ns/anno.jsonld"</span>,
   <span class="k">"type"</span>:<span class="s">"Annotation"</span>,
   <span class="k">"motivation"</span>:<span class="s">"commenting"</span>,
   <span class="k">"body"</span>:{ <span class="k">"value"</span>:<span class="s">"Mijn vader begon dit restaurant in 1973."</span> },
-  <span class="k">"target"</span>:<span class="s">"https://ark.iotm.nl/ark:/27023/g8x2"</span> }</pre>
+  <span class="k">"target"</span>:<span class="s">"https://www.iotm.nl/jottem/g8x2"</span> }</pre>
       </div></div>
 
       <div class="card mb" id="iiif"><div class="pad">
@@ -84,8 +86,8 @@
 
       <div class="card" id="dataset"><div class="pad">
         <h3>Datasetbeschrijving (schema.org AP NDE)</h3>
-        <p class="meta">Volledige datadump als RDF, harvestbaar door aggregators (NDE).</p>
-        <span class="ep"><span class="verb">GET</span> /organisatie/smh/dataset</span>
+        <p class="meta">Per project: volledige datadump als RDF, harvestbaar door aggregators (NDE).</p>
+        <span class="ep"><span class="verb">GET</span> /project/{projectId}/dataset</span>
 <pre>{ <span class="k">"@context"</span>:<span class="s">"https://schema.org/"</span>, <span class="k">"@type"</span>:<span class="s">"Dataset"</span>,
   <span class="k">"name"</span>:<span class="s">"Smaak van Gouda"</span>,
   <span class="k">"distribution"</span>:[{ <span class="k">"encodingFormat"</span>:<span class="s">"application/n-triples"</span> }] }</pre>

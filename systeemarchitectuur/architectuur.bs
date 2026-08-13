@@ -49,6 +49,7 @@ Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder,
 <tr><td>(intern)</td><td>Relationele database</td><td>PostgreSQL</td><td>MariaDB</td></tr>
 <tr><td>(intern)</td><td>Cache en taakwachtrij</td><td>Redis</td><td>Valkey, RabbitMQ (queue)</td></tr>
 <tr><td>(intern)</td><td>Mediaopslag (S3)</td><td>MinIO</td><td>externe S3-dienst (AWS S3, Scaleway, Backblaze B2)</td></tr>
+<tr><td>(intern)</td><td>Detectie herkenbare personen</td><td>Herkenbaar API (eigen dienst: FastAPI + YOLO-pose)</td><td>cloud vision API's (vallen af: beelden moeten on-premise blijven)</td></tr>
 <tr><td>(intern)</td><td>Async workers</td><td>Celery (bij FastAPI) of BullMQ (bij NestJS)</td><td>RQ, Sidekiq</td></tr>
 <tr><td>(edge)</td><td>Reverse proxy, TLS</td><td>Traefik</td><td>Caddy, nginx-proxy + acme-companion</td></tr>
 </tbody>
@@ -86,6 +87,14 @@ Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regi
 ## Annotaties (miiify)
 
 miiify, de annotatieserver van The National Archives (UK) die ook in het designdocument wordt genoemd, implementeert het W3C Web Annotation Protocol en slaat annotaties versiebeheerd op (git-gebaseerde backend), wat goed past bij de wens om herinneringen, aanvullingen en correcties herleidbaar te houden. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar miiify; de API voegt daarbij de geauthenticeerde gebruiker als creator toe en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). Lezen kan publiek en standaardconform via `anno.iotm.nl`, zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
+
+## Detectie herkenbare personen (Herkenbaar API)
+
+De [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) is een eigen dienst (FastAPI met een YOLO-pose-model via ultralytics) die bepaalt of op een afbeelding herkenbare personen staan, ten behoeve van het portretrecht en de privacy-eisen uit het designdocument. De dienst draait als interne container op het `app`-netwerk en is niet publiek bereikbaar.
+
+De backend-API roept de dienst **synchroon** aan bij het aanmaken van een jottem: na de upload (via presigned URL naar de mediaopslag) haalt de backend het detectieresultaat op en slaat dit op bij de media (`herkenbaar` ja/nee plus `betrouwbaarheid`). Bij "herkenbaar: ja" vraagt de frontend de uploader direct om een toestemmingsverklaring van de afgebeelde personen; de moderator ziet het detectiesignaal en de verklaring bij de kwaliteitscontrole. De detectie is een hulpmiddel — de moderator beslist.
+
+Privacy-uitgangspunt: de inferentie draait volledig op de eigen server; beelden verlaten het platform niet en er worden geen gezichtsherkennings- of identificatietechnieken gebruikt, uitsluitend detectie van de aanwezigheid van herkenbare personen.
 
 ## RDF-publicatie en datasetbeschrijvingen (Fuseki)
 
@@ -216,6 +225,10 @@ services:
     volumes: [minio_data:/data]
     networks: [data]
 
+  herkenbaar:
+    build: ./herkenbaar-api
+    networks: [app]
+
   prometheus:
     image: prom/prometheus:latest
     volumes: [prometheus_data:/prometheus]
@@ -329,6 +342,7 @@ Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel 
 <tr><td>Internet Archive integratie</td><td>Workerpool met internetarchive-client</td></tr>
 <tr><td>Mediaopslag (S3)</td><td>MinIO of externe S3-dienst</td></tr>
 <tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in miiify/metadata</td></tr>
+<tr><td>Detectie herkenbare personen (portretrecht)</td><td>Herkenbaar API, synchroon aangeroepen bij upload</td></tr>
 <tr><td>Geautomatiseerd testen</td><td>CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright</td></tr>
 <tr><td>Monitoring, logging en alerting</td><td>Prometheus + exporters, Grafana, Loki/Promtail, Alertmanager, blackbox-/synthetische checks</td></tr>
 <tr><td>Subdomeinen</td><td>Traefik-routing: www, api, iiif, ark, anno, auth, data, status</td></tr>

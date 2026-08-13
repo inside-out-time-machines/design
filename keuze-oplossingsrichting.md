@@ -66,6 +66,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><td>Relationele database</td><td>**PostgreSQL**</td></tr>
 <tr><td>Cache en taakwachtrij</td><td>**Valkey** — *afwijkend van de architectuursuggestie (Redis): drop-in compatibel, maar volledig open source (Linux Foundation)*</td></tr>
 <tr><td>Mediaopslag (S3)</td><td>**MinIO**</td></tr>
+<tr><td>Detectie herkenbare personen</td><td>**[Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api)** (eigen dienst: FastAPI + YOLO-pose), interne container, synchroon aangeroepen door de backend bij upload</td></tr>
 <tr><td>Reverse proxy, TLS</td><td>**Traefik**</td></tr>
 <tr><td>Monitoring, logging, alerting</td><td>**Prometheus, Grafana, Loki, Alertmanager** (conform systeemarchitectuur)</td></tr>
 <tr><td>ARK-resolver (`ark.iotm.nl`)</td><td>*vervalt in de MVP* — latere fase, zie [[#keuze-open-vragen]]</td></tr>

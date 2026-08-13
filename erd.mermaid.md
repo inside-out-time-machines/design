@@ -36,6 +36,9 @@
     string genre
     string status
     string afkeurReden
+    string herkenbaar
+    float herkenbaarBetrouwbaarheid
+    bool toestemmingPersonen
     string ark
     date creatieDatum
     date publicatieDatum
@@ -72,6 +75,9 @@
   %% de rol platformbeheerder heeft geen organisatieId. Lidmaatschap van een organisatie
   %% volgt uit de GebruikerRol-rijen.
   %% Media.status: nieuw / goedgekeurd / afgekeurd; afkeurReden alleen bij afgekeurd.
+  %% Media.herkenbaar (ja/nee) + herkenbaarBetrouwbaarheid: resultaat van de Herkenbaar API
+  %% bij upload (paradata, geen gebruikersmetadata); toestemmingPersonen: verklaring van de
+  %% uploader dat toestemming van herkenbare personen is geregeld.
   %% Organisatie.NAAN en Media.ark zijn gereserveerd voor de ARK-fase (uitgesteld,
   %% zie keuze-oplossingsrichting).
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)

@@ -22,6 +22,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 
 * alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken  
 * de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy (incl. toestemming herkenbare personen), auteursrecht en het onderscheid tussen herinnering en verifieerbaar feit  
+  * ik word daarbij ondersteund door het automatische detectiesignaal van de Herkenbaar API (herkenbare personen ja/nee + betrouwbaarheid) en de toestemmingsverklaring van de uploader  
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
   * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
@@ -38,6 +39,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](prototype/ind
 
 * kan ik een “album” (of collectie) aanmaken naast het album “Alles”  
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog), steekwoorden en in een album plaatsen  
+  * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)

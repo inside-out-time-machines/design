@@ -35,6 +35,7 @@
 * [IIIF Presentation API](https://iiif.io/api/presentation/3.0/) (manifest/collection)
 * [IIIF Change Discovery](https://iiif.io/api/discovery/1.0/)
 * [Miifi API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml)
+* [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (eigen dienst: detectie van herkenbare personen op afbeeldingen)
 * geo-annotaties (plek fotograaf, zichtveld, locatie) worden vastgelegd als WKT/GeoJSON
 * de publieke weergave kan gekoppeld worden aan een externe kaart-/tijdmachine (bijv. de [Gouda Tijdmachine](https://www.goudatijdmachine.nl)) om door plaats én tijd te navigeren
 
@@ -42,6 +43,7 @@
 
 * persoonsgegevens worden verwerkt conform de AVG
 * recente foto's van herkenbare personen worden alleen gepubliceerd met toestemming
+* elke upload wordt bij binnenkomst automatisch gecontroleerd op herkenbare personen via de [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (i.v.m. portretrecht); bij herkenbare personen wordt de uploader direct om een toestemmingsverklaring gevraagd en ziet de moderator het detectiesignaal (ja/nee + betrouwbaarheid) bij de kwaliteitscontrole; de detectie draait volledig op de eigen server, beelden verlaten het platform niet
 * inzenders kunnen verzoeken om verwijdering van hun materiaal
 * bijdragen worden waar mogelijk voorzien van bronvermelding
 * persoonlijke herinneringen worden onderscheiden van historisch verifieerbare feiten

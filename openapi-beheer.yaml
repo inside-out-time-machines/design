@@ -78,6 +78,11 @@ paths:
     post:
       tags: [Uploads]
       summary: Maak een nieuwe jottem aan (status "nieuw", wacht op moderatie)
+      description: >
+        Bij het aanmaken wordt de afbeelding synchroon gecontroleerd op herkenbare personen
+        (Herkenbaar API); het resultaat wordt vastgelegd bij de media en teruggegeven, zodat
+        de frontend bij "herkenbaar: ja" direct om een toestemmingsverklaring kan vragen
+        (via toestemmingPersonen in een vervolgaanroep of in deze request).
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       requestBody:
@@ -86,7 +91,16 @@ paths:
           application/json:
             schema: { $ref: '#/components/schemas/JottemNieuw' }
       responses:
-        '201': { description: Jottem aangemaakt, status "nieuw" }
+        '201':
+          description: Jottem aangemaakt, status "nieuw", inclusief detectieresultaat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jottemId: { type: string }
+                  herkenbaar: { type: string, enum: [ja, nee], description: "Resultaat Herkenbaar API" }
+                  betrouwbaarheid: { type: number, format: float, example: 0.9421 }
 
   /mijn/jottems:
     get:
@@ -552,6 +566,11 @@ components:
         datum: { type: string }
         plaats: { type: string }
         personenLevenMogelijkNog: { type: boolean }
+        toestemmingPersonen:
+          type: boolean
+          description: >
+            Verklaring van de uploader dat toestemming van herkenbare personen is geregeld;
+            relevant wanneer de Herkenbaar API "herkenbaar: ja" teruggeeft.
         steekwoorden:
           type: array
           items: { type: string }
@@ -571,6 +590,8 @@ components:
         naam: { type: string }
         status: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
         afkeurReden: { type: string }
+        herkenbaar: { type: string, enum: [ja, nee], description: "Resultaat Herkenbaar API" }
+        toestemmingPersonen: { type: boolean }
         aantalAnnotaties: { type: integer }
         deellink: { type: string, format: uri }
 

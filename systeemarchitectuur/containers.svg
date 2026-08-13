@@ -12,6 +12,8 @@
     .db rect    { fill:#efe0ee; stroke:#96588f; stroke-width:1.5; }
     .ext rect   { fill:#f7efe2; stroke:#b08850; stroke-width:1.5; }
     .mon rect   { fill:#dde6f2; stroke:#3a6ea5; stroke-width:1.4; }
+    .fut rect   { fill:#f2f2f2; stroke:#999; stroke-width:1.4; stroke-dasharray:6 4; }
+    .fut text   { fill:#999; }
     .mone { stroke:#3a6ea5; stroke-width:1.2; fill:none; stroke-dasharray:5 4; marker-end:url(#a2); }
     .lbl { font-size:13.5px; font-weight:600; fill:#222; }
     .oss { font-size:11px; font-style:italic; fill:#1e5d1e; }
@@ -27,7 +29,7 @@
     <rect x="80" y="55" width="1000" height="70" rx="8"/>
     <text x="580" y="82" text-anchor="middle" class="lbl">Reverse proxy / TLS-terminatie</text>
     <text x="580" y="100" text-anchor="middle" class="oss">Traefik (alternatief: Caddy, nginx-proxy) - Let's Encrypt, routing op subdomein</text>
-    <text x="580" y="116" text-anchor="middle" class="sub">www / api / iiif / ark / anno / auth / data / status .iotm.nl</text>
+    <text x="580" y="116" text-anchor="middle" class="sub">www / api / iiif / anno / auth / data / status .iotm.nl (ark: latere fase)</text>
   </g>
 
   <!-- Row 1: public-facing services -->
@@ -35,7 +37,7 @@
     <rect x="40" y="185" width="200" height="86" rx="6"/>
     <text x="140" y="203" text-anchor="middle" class="dom">www.iotm.nl</text>
     <text x="140" y="222" text-anchor="middle" class="lbl">Webfrontend</text>
-    <text x="140" y="239" text-anchor="middle" class="oss">Next.js / SvelteKit</text>
+    <text x="140" y="239" text-anchor="middle" class="oss">Next.js (React)</text>
     <text x="140" y="254" text-anchor="middle" class="sub">viewer: Mirador / Tify, Annotorious,</text>
     <text x="140" y="266" text-anchor="middle" class="sub">MapLibre (kaart)</text>
   </g>
@@ -43,7 +45,7 @@
     <rect x="270" y="185" width="200" height="86" rx="6"/>
     <text x="370" y="203" text-anchor="middle" class="dom">api.iotm.nl</text>
     <text x="370" y="222" text-anchor="middle" class="lbl">Backend-API</text>
-    <text x="370" y="239" text-anchor="middle" class="oss">FastAPI / NestJS / Laravel</text>
+    <text x="370" y="239" text-anchor="middle" class="oss">FastAPI (Python)</text>
     <text x="370" y="254" text-anchor="middle" class="sub">REST + IIIF Presentation, Change</text>
     <text x="370" y="266" text-anchor="middle" class="sub">Discovery, RSS, zoek-endpoints</text>
   </g>
@@ -51,15 +53,15 @@
     <rect x="500" y="185" width="200" height="86" rx="6"/>
     <text x="600" y="203" text-anchor="middle" class="dom">auth.iotm.nl</text>
     <text x="600" y="222" text-anchor="middle" class="lbl">Identity provider</text>
-    <text x="600" y="239" text-anchor="middle" class="oss">Keycloak (alt: Authentik)</text>
+    <text x="600" y="239" text-anchor="middle" class="oss">Authentik</text>
     <text x="600" y="254" text-anchor="middle" class="sub">OIDC, social login (brokering),</text>
     <text x="600" y="266" text-anchor="middle" class="sub">2FA/TOTP, rollen &amp; groepen</text>
   </g>
-  <g class="app">
+  <g class="fut">
     <rect x="730" y="185" width="200" height="86" rx="6"/>
-    <text x="830" y="203" text-anchor="middle" class="dom">ark.iotm.nl</text>
+    <text x="830" y="203" text-anchor="middle" class="dom">ark.iotm.nl (latere fase)</text>
     <text x="830" y="222" text-anchor="middle" class="lbl">ARK-resolver &amp; minter</text>
-    <text x="830" y="239" text-anchor="middle" class="oss">Arklet (alt: eigen microservice)</text>
+    <text x="830" y="239" text-anchor="middle" class="oss">Arklet of eigen microservice</text>
     <text x="830" y="254" text-anchor="middle" class="sub">NOID/UUID objectnamen, 30x</text>
     <text x="830" y="266" text-anchor="middle" class="sub">redirect met content negotiation</text>
   </g>
@@ -74,44 +76,51 @@
 
   <!-- Row 2 -->
   <g class="app">
-    <rect x="40" y="330" width="200" height="86" rx="6"/>
-    <text x="140" y="348" text-anchor="middle" class="dom">iiif.iotm.nl</text>
-    <text x="140" y="367" text-anchor="middle" class="lbl">IIIF Image server</text>
-    <text x="140" y="384" text-anchor="middle" class="oss">Cantaloupe (alt: iipsrv, SIPI)</text>
-    <text x="140" y="399" text-anchor="middle" class="sub">Image API 3.0, info.json,</text>
-    <text x="140" y="411" text-anchor="middle" class="sub">leest direct uit S3</text>
+    <rect x="40" y="330" width="170" height="86" rx="6"/>
+    <text x="125" y="348" text-anchor="middle" class="dom">iiif.iotm.nl</text>
+    <text x="125" y="367" text-anchor="middle" class="lbl">IIIF Image server</text>
+    <text x="125" y="384" text-anchor="middle" class="oss">Cantaloupe</text>
+    <text x="125" y="399" text-anchor="middle" class="sub">Image API 3.0, info.json,</text>
+    <text x="125" y="411" text-anchor="middle" class="sub">leest direct uit S3</text>
   </g>
   <g class="app">
-    <rect x="270" y="330" width="200" height="86" rx="6"/>
-    <text x="370" y="348" text-anchor="middle" class="dom">(voor iiif.iotm.nl)</text>
-    <text x="370" y="367" text-anchor="middle" class="lbl">HTTP-cache tiles</text>
-    <text x="370" y="384" text-anchor="middle" class="oss">Varnish (alt: nginx proxy_cache)</text>
-    <text x="370" y="399" text-anchor="middle" class="sub">cachet afgeleide beelden en</text>
-    <text x="370" y="411" text-anchor="middle" class="sub">manifests, ontlast image server</text>
+    <rect x="230" y="330" width="170" height="86" rx="6"/>
+    <text x="315" y="348" text-anchor="middle" class="dom">(voor iiif.iotm.nl)</text>
+    <text x="315" y="367" text-anchor="middle" class="lbl">HTTP-cache tiles</text>
+    <text x="315" y="384" text-anchor="middle" class="oss">Varnish</text>
+    <text x="315" y="399" text-anchor="middle" class="sub">cachet tiles en manifests,</text>
+    <text x="315" y="411" text-anchor="middle" class="sub">ontlast image server</text>
   </g>
   <g class="app">
-    <rect x="500" y="330" width="200" height="86" rx="6"/>
-    <text x="600" y="348" text-anchor="middle" class="dom">data.iotm.nl</text>
-    <text x="600" y="367" text-anchor="middle" class="lbl">RDF-publicatie</text>
-    <text x="600" y="384" text-anchor="middle" class="oss">Apache Jena Fuseki (alt: Oxigraph)</text>
-    <text x="600" y="399" text-anchor="middle" class="sub">schema.org AP NDE, SPARQL,</text>
-    <text x="600" y="411" text-anchor="middle" class="sub">datadumps + datasetbeschrijving</text>
+    <rect x="420" y="330" width="170" height="86" rx="6"/>
+    <text x="505" y="348" text-anchor="middle" class="dom">data.iotm.nl</text>
+    <text x="505" y="367" text-anchor="middle" class="lbl">RDF-publicatie</text>
+    <text x="505" y="384" text-anchor="middle" class="oss">Apache Jena Fuseki</text>
+    <text x="505" y="399" text-anchor="middle" class="sub">schema.org AP NDE, SPARQL,</text>
+    <text x="505" y="411" text-anchor="middle" class="sub">datadumps + datasetbeschrijving</text>
   </g>
   <g class="app">
-    <rect x="730" y="330" width="200" height="86" rx="6"/>
-    <text x="830" y="348" text-anchor="middle" class="dom">(intern)</text>
-    <text x="830" y="367" text-anchor="middle" class="lbl">Async workers</text>
-    <text x="830" y="384" text-anchor="middle" class="oss">Celery / BullMQ</text>
-    <text x="830" y="399" text-anchor="middle" class="sub">derivatives, IA-upload, e-mail,</text>
-    <text x="830" y="411" text-anchor="middle" class="sub">indexering, RDF-generatie</text>
+    <rect x="610" y="330" width="170" height="86" rx="6"/>
+    <text x="695" y="348" text-anchor="middle" class="dom">(intern)</text>
+    <text x="695" y="367" text-anchor="middle" class="lbl">Async workers</text>
+    <text x="695" y="384" text-anchor="middle" class="oss">Celery</text>
+    <text x="695" y="399" text-anchor="middle" class="sub">derivatives, e-mail,</text>
+    <text x="695" y="411" text-anchor="middle" class="sub">indexering, RDF-generatie</text>
   </g>
   <g class="app">
-    <rect x="960" y="330" width="170" height="86" rx="6"/>
-    <text x="1045" y="348" text-anchor="middle" class="dom">(intern)</text>
-    <text x="1045" y="367" text-anchor="middle" class="lbl">Zoekmachine</text>
-    <text x="1045" y="384" text-anchor="middle" class="oss">Elasticsearch</text>
-    <text x="1045" y="399" text-anchor="middle" class="sub">(alt: OpenSearch)</text>
-    <text x="1045" y="411" text-anchor="middle" class="sub">fulltext + facetten</text>
+    <rect x="800" y="330" width="170" height="86" rx="6"/>
+    <text x="885" y="348" text-anchor="middle" class="dom">(intern)</text>
+    <text x="885" y="367" text-anchor="middle" class="lbl">Zoekmachine</text>
+    <text x="885" y="384" text-anchor="middle" class="oss">Elasticsearch</text>
+    <text x="885" y="399" text-anchor="middle" class="sub">fulltext + facetten</text>
+  </g>
+  <g class="app">
+    <rect x="990" y="330" width="140" height="86" rx="6"/>
+    <text x="1060" y="348" text-anchor="middle" class="dom">(intern)</text>
+    <text x="1060" y="367" text-anchor="middle" class="lbl">Herkenbare pers.</text>
+    <text x="1060" y="382" text-anchor="middle" class="oss">Herkenbaar API</text>
+    <text x="1060" y="394" text-anchor="middle" class="oss">(FastAPI + YOLO-pose)</text>
+    <text x="1060" y="408" text-anchor="middle" class="sub">portretrecht-signaal</text>
   </g>
 
   <!-- Data stores -->
@@ -120,19 +129,19 @@
     <text x="220" y="535" text-anchor="middle" class="lbl">Relationele database</text>
     <text x="220" y="553" text-anchor="middle" class="oss">PostgreSQL</text>
     <text x="220" y="570" text-anchor="middle" class="sub">organisaties, gebruikers, media,</text>
-    <text x="220" y="582" text-anchor="middle" class="sub">metadata, albums, ARK-registry</text>
+    <text x="220" y="582" text-anchor="middle" class="sub">metadata, albums, statistieken</text>
   </g>
   <g class="db">
     <rect x="360" y="510" width="180" height="80" rx="6"/>
     <text x="450" y="535" text-anchor="middle" class="lbl">Cache &amp; queue</text>
-    <text x="450" y="553" text-anchor="middle" class="oss">Redis (alt: Valkey)</text>
+    <text x="450" y="553" text-anchor="middle" class="oss">Valkey (Redis-compatibel)</text>
     <text x="450" y="570" text-anchor="middle" class="sub">sessies, API-cache,</text>
     <text x="450" y="582" text-anchor="middle" class="sub">taakwachtrij</text>
   </g>
   <g class="db">
     <rect x="580" y="510" width="220" height="80" rx="6"/>
     <text x="690" y="535" text-anchor="middle" class="lbl">Mediaopslag (S3)</text>
-    <text x="690" y="553" text-anchor="middle" class="oss">MinIO (alt: externe S3-dienst)</text>
+    <text x="690" y="553" text-anchor="middle" class="oss">MinIO</text>
     <text x="690" y="570" text-anchor="middle" class="sub">originelen, pyramidal TIFF/JP2,</text>
     <text x="690" y="582" text-anchor="middle" class="sub">thumbnails, audio-jottems</text>
   </g>
@@ -145,11 +154,11 @@
   </g>
 
   <!-- External row -->
-  <g class="ext">
+  <g class="fut">
     <rect x="120" y="680" width="200" height="66" rx="4"/>
     <text x="220" y="706" text-anchor="middle" class="lbl">Internet Archive</text>
     <text x="220" y="724" text-anchor="middle" class="sub">duurzame kopie van media</text>
-    <text x="220" y="737" text-anchor="middle" class="sub">en metadata (ia CLI / S3 API)</text>
+    <text x="220" y="737" text-anchor="middle" class="sub">en metadata (latere fase)</text>
   </g>
   <g class="ext">
     <rect x="360" y="680" width="180" height="66" rx="4"/>
@@ -172,17 +181,17 @@
   <path class="edge" d="M140,125 L140,185"/>
   <path class="edge" d="M370,125 L370,185"/>
   <path class="edge" d="M600,125 L600,185"/>
-  <path class="edge" d="M830,125 L830,185"/>
+  <path class="edged" d="M830,125 L830,185"/>
   <path class="edge" d="M1045,125 L1045,185"/>
   <!-- proxy -> varnish (iiif) and data -->
-  <path class="edge" d="M320,125 C330,160 350,300 366,330"/>
-  <text x="300" y="300" class="elbl">iiif.iotm.nl</text>
-  <path class="edge" d="M650,125 C670,160 640,300 620,330"/>
-  <text x="655" y="300" class="elbl">data.iotm.nl</text>
+  <path class="edge" d="M320,125 C325,160 318,300 315,330"/>
+  <text x="255" y="300" class="elbl">iiif.iotm.nl</text>
+  <path class="edge" d="M650,125 C665,160 540,300 515,330"/>
+  <text x="548" y="300" class="elbl">data.iotm.nl</text>
 
   <!-- varnish -> cantaloupe -->
-  <path class="edge" d="M270,378 L240,378"/>
-  <text x="243" y="370" class="elbl">miss</text>
+  <path class="edge" d="M230,378 L210,378"/>
+  <text x="212" y="370" class="elbl">miss</text>
 
   <!-- frontend -> api -->
   <path class="edge" d="M240,225 L270,225"/>
@@ -194,42 +203,45 @@
   <text x="430" y="440" class="elbl">cache/queue</text>
   <path class="edge" d="M440,271 C560,340 650,450 682,510"/>
   <text x="560" y="420" class="elbl">S3 API (presigned upload)</text>
-  <path class="edge" d="M470,240 C760,260 980,290 1030,330"/>
-  <text x="880" y="290" class="elbl">zoeken/indexeren</text>
+  <path class="edge" d="M470,240 C700,262 830,295 870,330"/>
+  <text x="730" y="286" class="elbl">zoeken/indexeren</text>
+  <!-- api -> herkenbaar -->
+  <path class="edge" d="M460,271 C700,340 950,305 1050,330"/>
+  <text x="836" y="318" class="elbl">herkenbaar-check (synchroon bij upload)</text>
 
   <!-- api -> anno, auth -->
   <path class="edge" d="M470,215 L500,215"/>
   <text x="472" y="208" class="elbl">OIDC</text>
   <path class="edge" d="M470,255 C640,300 900,270 960,240"/>
-  <text x="700" y="292" class="elbl">annotaties CRUD</text>
+  <text x="640" y="292" class="elbl">annotaties CRUD</text>
 
   <!-- ark -> frontend/data (dashed, redirects) -->
   <path class="edged" d="M730,215 C560,150 300,160 240,196"/>
   <text x="430" y="168" class="elbl">303 naar HTML-weergave</text>
-  <path class="edged" d="M790,271 C740,320 700,330 700,330"/>
-  <text x="712" y="310" class="elbl">303 naar RDF</text>
+  <path class="edged" d="M790,271 C700,300 620,315 565,330"/>
+  <text x="655" y="322" class="elbl">303 naar RDF</text>
 
   <!-- cantaloupe -> minio -->
-  <path class="edge" d="M155,416 C180,470 550,505 580,530"/>
+  <path class="edge" d="M140,416 C170,470 550,505 580,530"/>
   <text x="330" y="492" class="elbl">leest afgeleiden uit S3</text>
 
   <!-- workers -> stores/external -->
-  <path class="edge" d="M820,416 C700,470 500,490 465,510"/>
-  <path class="edge" d="M840,416 C800,470 730,490 710,510"/>
-  <path class="edge" d="M860,416 C900,450 930,480 936,510"/>
-  <text x="900" y="470" class="elbl">RDF-sync</text>
-  <path class="edge" d="M780,416 C500,560 280,630 235,680"/>
-  <text x="470" y="600" class="elbl">upload naar IA</text>
-  <path class="edge" d="M800,416 C620,560 480,630 452,680"/>
-  <text x="596" y="640" class="elbl">e-mail</text>
+  <path class="edge" d="M660,416 C580,470 490,490 462,510"/>
+  <path class="edge" d="M700,416 C700,450 698,480 694,510"/>
+  <path class="edge" d="M730,416 C830,450 900,480 924,510"/>
+  <text x="850" y="466" class="elbl">RDF-sync</text>
+  <path class="edged" d="M630,416 C610,600 430,680 235,682"/>
+  <text x="330" y="664" class="elbl" fill="#999">upload naar IA (latere fase)</text>
+  <path class="edge" d="M670,416 C560,560 470,630 452,680"/>
+  <text x="536" y="628" class="elbl">e-mail</text>
 
   <!-- keycloak -> social -->
   <path class="edge" d="M610,271 C640,400 680,600 690,680"/>
   <text x="640" y="470" class="elbl">federatie</text>
 
   <!-- api/workers -> datasetregister -->
-  <path class="edge" d="M905,416 C950,500 945,620 941,680"/>
-  <text x="950" y="560" class="elbl">registratie</text>
+  <path class="edge" d="M760,416 C830,470 835,600 900,680"/>
+  <text x="845" y="625" class="elbl">registratie</text>
 
   <!-- Observability band -->
   <rect x="40" y="782" width="1090" height="98" rx="8" fill="#eef3fa" stroke="#3a6ea5" stroke-width="1.6" stroke-dasharray="7 5"/>
@@ -238,13 +250,13 @@
     <rect x="60" y="816" width="190" height="54" rx="6"/>
     <text x="155" y="838" text-anchor="middle" class="lbl">Prometheus</text>
     <text x="155" y="855" text-anchor="middle" class="sub">+ exporters: node, cAdvisor,</text>
-    <text x="155" y="866" text-anchor="middle" class="sub">postgres, redis, elasticsearch</text>
+    <text x="155" y="866" text-anchor="middle" class="sub">postgres, valkey, elasticsearch</text>
   </g>
   <g class="mon">
     <rect x="270" y="816" width="190" height="54" rx="6"/>
     <text x="365" y="838" text-anchor="middle" class="dom">status.iotm.nl</text>
     <text x="365" y="855" text-anchor="middle" class="lbl">Grafana</text>
-    <text x="365" y="866" text-anchor="middle" class="sub">dashboards (achter Keycloak)</text>
+    <text x="365" y="866" text-anchor="middle" class="sub">dashboards (achter SSO)</text>
   </g>
   <g class="mon">
     <rect x="480" y="816" width="190" height="54" rx="6"/>

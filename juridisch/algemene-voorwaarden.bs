@@ -3,15 +3,36 @@ Title: Algemene voorwaarden Jottem
 Shortname: algemene-voorwaarden
 Level: 1
 Status: DREAM
+Boilerplate: conformance no, references no
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
 Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
 Abstract: Algemene voorwaarden voor het gebruik van het Jottem-platform: een positieve "proclaimer" met juridisch bindende afspraken, gebaseerd op onder meer de AVG, de Auteurswet, de DSA en het Burgerlijk Wetboek. Concept, nog niet juridisch gecontroleerd.
 </pre>
-<section boilerplate="conformance"></section>
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 <script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<style>
+/* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
+   html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+html:root {
+  --bg: #faf6f1;
+  --text: #1f1e1c;
+  --heading-text: #a2401f;
+  --a-normal-text: #a2401f;
+  --a-visited-text: #7d3018;
+  --a-hover-bg: rgba(216,90,48,.08);
+  --a-normal-underline: #d85a30;
+  --a-visited-underline: #a2401f;
+  --hr-text: #d85a30;
+  --tocsidebar-bg: #f2e9de;
+  --tocsidebar-heading-text: #a2401f;
+  --toclink-text: #1f1e1c;
+  --toclink-underline: #d85a30;
+  --toclink-visited-text: #1f1e1c;
+  --toclink-visited-underline: #d85a30;
+}
+</style>
 
 <strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
 

@@ -95,7 +95,7 @@ Functionele toepassing waarmee gebruikers foto's/verhalen kunnen toevoegen en/of
 
 - Werkende participatievoorziening binnen elke tijdmachine. 
 
-> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)). De eerste implementatie start met de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
+> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)). De eerste implementatie start met de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
 
 ### Testen en nazorg
 

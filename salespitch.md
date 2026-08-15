@@ -1,7 +1,7 @@
 # Salespitch voor het Jottem platform # {#salespitch}
 
 Voor organisaties (historische verenigingen, erfgoedhuizen en archieforganisaties) is er een
-niet-technische salespitch als losse pagina: [Jottem voor organisaties](jottem-voor-organisaties.html) —
+niet-technische salespitch als losse pagina: [Jottem voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) —
 wat het platform oplevert en wat het vraagt (jaarlijkse bijdrage, communicatie en moderatie).
 
 ## Hoofdboodschap

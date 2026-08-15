@@ -50,7 +50,7 @@ preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrij
 <tbody>
 <tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, MinIO, Valkey, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal)</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, zoeken met facetten, kaart + pand-tijdlijn, huisstijl SAMH, Herkenbaar-integratie</td></tr>
-<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, notificatie-overzicht af</td></tr>
+<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, alle notificatiemails werkend (zie [[#notificaties]])</td></tr>
 <tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>
 </tbody>
 </table>
@@ -70,9 +70,9 @@ De pilot gaat live wanneer aantoonbaar:
 ## Openstaand ontwerp tijdens de bouw ## {#realisatie-openstaand}
 
 Uit de gap-analyse resteert ontwerpwerk dat parallel aan de bouw wordt opgepakt:
-het notificatie-overzicht (mails + triggers), acceptatiecriteria per usecase, en — ter
-voorbereiding op fase 2 — de interfacebeschrijving van de tijdmachine-koppeling en de
-uitwerking van de IIIF-import. De open-sourcelicenties en repostructuur zijn inmiddels
+acceptatiecriteria per usecase, en — ter voorbereiding op fase 2 — de interfacebeschrijving
+van de tijdmachine-koppeling en de uitwerking van de IIIF-import. Het notificatie-overzicht
+is uitgewerkt in [[#notificaties]]. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo
 [jottem](https://github.com/inside-out-time-machines/jottem), AGPL-3.0 voor de Herkenbaar API,
 CC BY 4.0 voor documentatie en ontwerpen.

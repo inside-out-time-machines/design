@@ -43,6 +43,10 @@ path: usecases.md
 </pre>
 
 <pre class="include">
+path: notificaties.md
+</pre>
+
+<pre class="include">
 path: infra.md
 </pre>
 

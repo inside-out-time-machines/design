@@ -29,6 +29,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **MO-3** Afkeuren zonder reden is onmogelijk; bij afkeuren ontvangt de uploader de afgekeurd-mail met de reden en een werkende herindien-link.
 * **MO-4** Als er jottems wachten ontvang ik maximaal één digest-mail per dag; zonder wachtende jottems geen mail.
 * **MO-5** Bij een gehonoreerd verwijderverzoek krijgt de jottem status gedepubliceerd: de duurzame link toont een tombstone en de jottem is verdwenen uit zoekindex, RDF, feeds en IIIF-cache (purge); de indiener ontvangt de uitkomst-mail. Bij afwijzing is een toelichting verplicht.
+* **MO-6** Gerapporteerde annotaties en reacties verschijnen in mijn moderatieoverzicht; ik kan de bijdrage verbergen/verwijderen of de melding afwijzen; de afhandeling is terug te vinden in het Gebeurtenislog.
 
 ## Gebruiker ## {#ac-gebruiker}
 
@@ -39,8 +40,8 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## Uploader ## {#ac-uploader}
 
-* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF/PDF/audio, tot 50 MB; daarboven of ander type: duidelijke weigering) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie; de projectkeuze is verplicht - zonder project geen upload.
-* **UP-2** Direct na de upload zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; de moderator ziet signaal én verklaring.
+* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF, tot 50 MB; daarboven of ander type: duidelijke weigering; PDF en audio volgen in fase 2) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie (speld op de kaart); ik bevestig de projectlicentie; de projectkeuze is verplicht - zonder project geen upload.
+* **UP-2** Direct na de upload zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; zonder verklaring kies ik zelf: annuleren of tóch indienen (vlag "toestemming: nee"); de moderator ziet signaal én verklaring of vlag.
 * **UP-3** Een afgekeurde jottem kan ik aanpassen en opnieuw indienen (status terug naar nieuw); een goedgekeurde jottem kan ik niet bewerken of verwijderen (403), een afgekeurde wél verwijderen.
 
 ## Annoteerder ## {#ac-annoteerder}
@@ -56,7 +57,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **AP-2** RSS-feeds (platform, organisatie, project) valideren tegen RSS 2.0 en tonen nieuwe jottems met duurzame link en thumbnail.
 * **AP-3** `/jottem/search` accepteert uitsluitend de gedefinieerde zoek-DSL en levert resultaten mét facetten; een rauwe Elasticsearch-query wordt geweigerd (422).
 * **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`.
-* **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; audio-jottems hebben een canvas met `duration`.
+* **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; *(fase 2)* audio-jottems hebben een canvas met `duration`.
 * **AP-6** De datasetbeschrijving per project valideert tegen het SHACL-shape van het Datasetregister; de datadump (N-Triples) valideert tegen schema.org AP NDE; `/datacatalog` bundelt alle projectdatasets.
 * **AP-7** De duurzame jottem-URL levert HTML bij `Accept: text/html` en JSON-LD/Turtle bij RDF-accept-headers (303); een gedepubliceerde jottem geeft een tombstone (410).
 
@@ -68,3 +69,4 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **BE-4** Ik kan een verwijderverzoek indienen en ontvang direct de ontvangstbevestiging per mail; de moderatoren ontvangen de melding (MO-5 dekt de afhandeling).
 * **BE-5** Openbare favorietenpagina's van gebruikers zijn bereikbaar via hun deellink (GE-4).
 * **BE-6** Elke gepubliceerde jottem-pagina toont deelknoppen (sociale media, e-mail, link kopiëren) en bevat correcte Open Graph-metadata (`og:title/description/image/url`); een gedeelde link toont titel, beschrijving en afbeelding in de preview (gecontroleerd met een OG-validator).
+* **BE-7** Ik kan bij elke annotatie en reactie een melding doen (rapporteren, ook zonder account, met rate limiting); ik krijg een bevestiging en de melding verschijnt in de moderatieomgeving (MO-6 dekt de afhandeling).

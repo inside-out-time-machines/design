@@ -14,10 +14,11 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     moderatierollen, uitnodigingsflows; autorisatie vanuit de database (GebruikerRol leidend)
 * **Organisatie & project** - organisatiejottem in eigen huisstijl (SAMH), projectbeheer
     (Smaak van Gouda als eerste project), terminologiebronnen per project
-* **Uploaden** - upload met metadata, genre (CHT), locatie en licentie; automatische
-    Herkenbaar-check met toestemmingsverklaring
+* **Uploaden** - upload (JPG/PNG/TIFF) met metadata, genre (CHT), locatie (speld op de kaart)
+    en licentiebevestiging; automatische Herkenbaar-check met toestemmingsverklaring
 * **Moderatie** - wachtrij, goedkeuren/afkeuren met reden, bewerken en opnieuw indienen door
-    de uploader, depubliceren via verwijderverzoeken
+    de uploader, depubliceren via verwijderverzoeken, afhandelen van meldingen (gerapporteerde
+    annotaties en reacties)
 * **Publicatie** - duurzame link met content negotiation, jottem-detailpagina
     (IIIF-viewer + metadata + annotaties), publiceren binnen het project
 * **Annoteren** - jottem-brede en vlak-annotaties, term-URI's via het NDE Termennetwerk,
@@ -33,13 +34,15 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
 
 * IIIF-collectie-import (bestaande collecties toevoegen; ontwerp-uitwerking gaat vooraf)
+* PDF- en audio-ondersteuning met conversiepipeline (multi-canvas Manifests, audio-canvas met `duration`)
 * E-depot-export per project (BagIt + RO-Crate)
 * Statistieken-dashboards voor beheerders en moderatoren
 * Koppelvlak met externe tijdmachines (Gouda Tijdmachine) - interfacebeschrijving eerst
 * Uitrol naar de overige tijdmachines (Amsterdam, Utrecht, Hilversum)
 
 **Latere fase** (reeds besloten in [[#keuze-open-vragen]]): ARK-minting/resolving, externe
-preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrije subset.
+preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrije subset,
+harde opslagquota per organisatie (MVP: monitoring met alerts).
 
 ## Mijlpalen 2026 ## {#realisatie-mijlpalen}
 

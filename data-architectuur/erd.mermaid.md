@@ -100,6 +100,16 @@
     date afhandelDatum
   }
 
+  Melding {
+    int meldingId PK
+    uuid mediaId FK
+    string annotatieIri
+    string reden
+    string status
+    date creatieDatum
+    date afhandelDatum
+  }
+
   Gebeurtenislog {
     int logId PK
     string type
@@ -107,6 +117,8 @@
     int organisatieId FK
     uuid projectId FK
     int gebruikersId FK
+    string payload
+    date verwerktOp
   }
 
   %% Project: campagne op organisatieniveau (bijv. "Smaak van Gouda"), beheerd door de
@@ -142,6 +154,14 @@
   %% zie keuze-oplossingsrichting).
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)
   %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
+  %% De coordinaten komen van de speld die de uploader op de kaart prikt (lat/lon als
+  %% Metadata-rijen); er is geen geocoding-dienst in de MVP.
+  %% Melding: rapportage van een annotatie of reactie (spam/ongepast) door bezoekers;
+  %% annotatieIri wijst naar de W3C-annotatie in miiify, status: nieuw / afgehandeld /
+  %% afgewezen. Afhandeling door de moderator, gelogd in het Gebeurtenislog.
+  %% Gebeurtenislog is tevens de transactional outbox (zie systeemarchitectuur):
+  %% payload beschrijft de mutatie, verwerktOp markeert succesvolle doorwerking naar
+  %% Elasticsearch / Fuseki / Varnish-purge.
 
   %% Relationships
   Organisatie ||--o{ GebruikerRol : "kent"
@@ -159,6 +179,7 @@
   Media ||--o{ Favoriet : "wordt_gefavoriet"
 
   Media ||--o{ Verwijderverzoek : "betreft"
+  Media ||--o{ Melding : "betreft"
   Organisatie ||--o{ Gebeurtenislog : "logt"
 
   Gebruiker ||--o{ Metadata : "maakt"

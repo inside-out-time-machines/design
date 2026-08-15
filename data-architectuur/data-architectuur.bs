@@ -150,7 +150,7 @@ De backend genereert per jottem een **Manifest** en per organisatie en per proje
 </tbody>
 </table>
 
-Audio-jottems (bijv. interviews uit de pilot Smaak van Gouda) krijgen een manifest met een audio-canvas (`duration`; vastgelegd bij verwerking van de upload) en het bestand uit de `audio`-bucket als painting annotation.
+Audio-jottems *(fase 2, zie de uploadscope in de requirements)* krijgen een manifest met een audio-canvas (`duration`; vastgelegd bij verwerking van de upload) en het bestand uit de `audio`-bucket als painting annotation.
 
 ## IIIF Change Discovery v1 ## {#iiif-change-discovery}
 
@@ -168,7 +168,7 @@ Per organisatie publiceert de backend een ActivityStreams-feed (`OrderedCollecti
 </tbody>
 </table>
 
-**Regel:** elke mutatie die de outputs raakt - metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie - werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt.
+**Regel:** elke mutatie die de outputs raakt - metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie - werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt. Het verwijderen van een **annotatie** levert daarbij een `Update`-activity op de jottem op (géén `Delete`: de jottem zelf blijft bestaan; `Delete`/tombstone is voorbehouden aan depublicatie van de jottem). De AnnotationCollections komen live uit miiify en tonen de verwijderde annotatie direct niet meer; de workers hersynchroniseren daarna de named graph in Fuseki en de zoekindex via het outbox-mechanisme uit de [systeemarchitectuur](../systeemarchitectuur/architectuur.html).
 
 # Annotaties # {#annotaties}
 
@@ -382,7 +382,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 </thead>
 <tbody>
 <tr><td>Geen titel/beschrijving als eigen velden</td><td>IIIF `label`/`summary`, RDF `schema:name`/`description`, RSS</td><td>`Media.titel`, `Media.beschrijving`</td></tr>
-<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (uploader kiest bij upload)</td></tr>
+<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (de uploader bevestigt bij het indienen de projectlicentie; die waarde wordt op de jottem vastgelegd)</td></tr>
 <tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
 <tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
 <tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>
@@ -397,5 +397,5 @@ Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatiere
 
 * **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
 * **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
-* **Audio**: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
+* **Audio** *(fase 2)*: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

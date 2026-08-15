@@ -631,6 +631,66 @@ paths:
       responses:
         '200': { description: Verzoek afgehandeld }
 
+  /annotation/{annotationId}/melding:
+    post:
+      tags: [Meldingen]
+      summary: Rapporteer een annotatie of reactie (spam, reclame, ongepast); kan zonder account, met rate limiting
+      security: []
+      parameters:
+        - name: annotationId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reden]
+              properties:
+                reden: { type: string, enum: [spam, reclame, ongepast, onjuist, anders] }
+                toelichting: { type: string }
+      responses:
+        '201': { description: Melding geregistreerd; verschijnt in de moderatieomgeving }
+
+  /organisatie/{organisatieSlug}/meldingen:
+    get:
+      tags: [Meldingen]
+      summary: Overzicht van onafgehandelde meldingen op annotaties en reacties van de organisatie
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: Lijst van meldingen
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Melding' }
+
+  /melding/{meldingId}:
+    put:
+      tags: [Meldingen]
+      summary: Handel een melding af (bijdrage verbergen/verwijderen of melding afwijzen); de afhandeling wordt gelogd in het Gebeurtenislog
+      parameters:
+        - name: meldingId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [besluit]
+              properties:
+                besluit: { type: string, enum: [verwijderd, verborgen, afgewezen] }
+                toelichting: { type: string }
+      responses:
+        '200': { description: Melding afgehandeld }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -797,3 +857,15 @@ components:
         reden: { type: string, description: "Bijv. eigen materiaal of herkenbaar in beeld" }
         email: { type: string, format: email, description: "Voor terugkoppeling over de afhandeling" }
         status: { type: string, enum: [open, gehonoreerd, afgewezen], readOnly: true }
+
+    Melding:
+      type: object
+      required: [annotatieIri, reden]
+      properties:
+        meldingId: { type: string, readOnly: true }
+        jottemId: { type: string, readOnly: true, description: "De jottem waar de gerapporteerde annotatie/reactie bij hoort" }
+        annotatieIri: { type: string, description: "IRI van de W3C-annotatie of -reactie in de annotatieserver" }
+        reden: { type: string, enum: [spam, reclame, ongepast, onjuist, anders] }
+        toelichting: { type: string }
+        status: { type: string, enum: [nieuw, verwijderd, verborgen, afgewezen], readOnly: true }
+        creatieDatum: { type: string, format: date-time, readOnly: true }

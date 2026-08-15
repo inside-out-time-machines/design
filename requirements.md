@@ -9,6 +9,10 @@
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
 * elke gepubliceerde jottem heeft deelknoppen naar sociale media en de HTML-weergave bevat de juiste Open Graph-metadata (`og:title`, `og:description`, `og:image`, `og:url`), zodat een gedeelde link een nette preview toont
+* elke annotatie en reactie is te rapporteren (spam, reclame, ongepast), ook zonder in te loggen; meldingen komen in de moderatieomgeving van de organisatie en de afhandeling wordt gelogd
+* ondersteunde bestandstypen in de MVP: JPG, PNG en TIFF; PDF en audio (met bijbehorende conversiepipeline) volgen in fase 2
+* bij het uploaden bevestigt de uploader de licentie van het project; die wordt op de jottem vastgelegd
+* de uploader prikt de locatie als speld op de kaart (coördinaten); adres en openings-/sluitingsjaren zijn metadata
 
 ## Niet-functionele requirements ## {#non-functional-requirements}
 
@@ -18,7 +22,7 @@
 * toegankelijkheid: de publieke site voldoet aan WCAG 2.2 niveau AA
 * browsers: de laatste twee versies van evergreen browsers (Chrome, Firefox, Safari, Edge) op desktop en mobiel (iOS Safari, Android Chrome); de site is responsive
 * performance: publiekspagina's laden binnen 2 seconden (LCP); IIIF-tiles en manifests worden uit cache geserveerd; zoekresultaten binnen 1 seconde
-* capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand
+* capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand; opslag- en verwerkingsgebruik per organisatie wordt gemonitord met alerts (harde quota per organisatie in een latere fase)
 * beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
 * beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA (TOTP of passkey) voor beheer- en moderatorrollen
 * privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge

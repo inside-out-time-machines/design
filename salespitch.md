@@ -33,9 +33,9 @@ Jottem draait het perspectief om: **niet de collectie staat centraal, maar de ge
 
 **Voor organisaties (historische verenigingen, Time Machines, archieven):**
 - Laagdrempelige moderatieomgeving voor kwaliteitscontrole
-- Automatische duurzame opslag (Internet Archive integratie)
-- Bestaande collecties eenvoudig importeren (IIIF-ondersteuning)
-- Statistieken en community management tools
+- Duurzaam bewaard met open exportstrategie (externe preserveringskopie via Internet Archive in een latere fase)
+- Bestaande collecties eenvoudig importeren (IIIF-ondersteuning, fase 2)
+- Statistieken en community management tools (dashboards in fase 2)
 
 **Voor hergebruik (API's):**
 - IIIF Collection & Manifest ondersteuning
@@ -50,8 +50,8 @@ Jottem draait het perspectief om: **niet de collectie staat centraal, maar de ge
 Van expert tot buurtbewoner – iedereen kan bijdragen op zijn eigen niveau. De visueel aantrekkelijke, laagdrempelige interface maakt meedoen makkelijk en leuk.
 
 ### Duurzaam en betrouwbaar
-- Automatische ARK identifiers (permanente links)
-- Internet Archive backup
+- Duurzame permanente link per bijdrage (ARK-identifiers in een latere fase)
+- Externe preserveringskopie via Internet Archive (latere fase)
 - Professionele moderatie en kwaliteitscontrole
 - Privacy en auteursrecht geborgd
 

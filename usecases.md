@@ -5,7 +5,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA/passkey) inzien en wijzigen en uitloggen  
-* een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN  
+* een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …); het instellen van een ARK NAAN volgt in de latere ARK-fase (zie [[#keuze-open-vragen]])  
 * gebruikers (naam, e-mail) in de rol organisatiebeheerder van een organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA of passkey) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie en per project
@@ -29,6 +29,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * ik word daarbij ondersteund door het automatische detectiesignaal van de Herkenbaar API (herkenbare personen ja/nee + betrouwbaarheid) en de toestemmingsverklaring van de uploader  
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
   * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
+* gerapporteerde annotaties en reacties beoordelen: verbergen/verwijderen bij misbruik, of de melding afwijzen; de afhandeling wordt gelogd  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
@@ -43,8 +44,10 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, en kies ik daarbij het project (van de organisatie) waaraan ik bijdraag  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
+  * kan ik die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
+  * bevestig ik bij het indienen de licentie van het project (vastgelegd op de jottem)  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
-* kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
+* kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
 
@@ -83,4 +86,5 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
 * via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  
 * per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken  
-* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal
+* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal  
+* een annotatie of reactie rapporteren (spam, reclame, ongepast); de melding komt in de moderatieomgeving van de organisatie

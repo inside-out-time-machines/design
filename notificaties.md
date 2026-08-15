@@ -16,7 +16,7 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 <tr><td>2</td><td>Organisatiebeheerder voegt een moderator toe</td><td>uitgenodigde</td><td>idem als 1</td></tr>
 <tr><td>3</td><td>Moderator keurt een jottem goed</td><td>uploader</td><td>"je jottem staat online": duurzame link + oproep om te delen via sociale media (reacties en annotaties uitlokken)</td></tr>
 <tr><td>4</td><td>Moderator keurt een jottem af</td><td>uploader</td><td>afkeurreden + directe link om de jottem aan te passen en opnieuw in te dienen</td></tr>
-<tr><td>5</td><td>Er staan jottems in de moderatiewachtrij</td><td>moderatoren van de organisatie</td><td>dagelijkse samenvatting (alleen verstuurd als er iets wacht) - voorkomt mail per upload</td></tr>
+<tr><td>5</td><td>Er staan jottems in de moderatiewachtrij en/of er zijn onafgehandelde meldingen op annotaties/reacties</td><td>moderatoren van de organisatie</td><td>dagelijkse samenvatting (alleen verstuurd als er iets wacht) - voorkomt mail per upload of melding</td></tr>
 <tr><td>6</td><td>Verwijderverzoek ingediend</td><td>indiener</td><td>ontvangstbevestiging + verwachte afhandeltermijn (30 dagen, zie de niet-functionele requirements)</td></tr>
 <tr><td>7</td><td>Verwijderverzoek ingediend</td><td>moderatoren van de organisatie</td><td>directe melding (juridische termijn loopt) met link naar de afhandelpagina</td></tr>
 <tr><td>8</td><td>Verwijderverzoek afgehandeld</td><td>indiener</td><td>uitkomst: gehonoreerd (jottem gedepubliceerd) of afgewezen met toelichting</td></tr>

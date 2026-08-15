@@ -64,6 +64,9 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
 * kan ik mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in de annotatieserver
 
+Zie [[#verrijkingen]] voor de volledige catalogus van verrijkingsmogelijkheden, met per
+mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotation.
+
 ## Als API gebruiker kan ik ## {#api-gebruiker}
 
 * per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD  

@@ -75,6 +75,10 @@ path: usecases.md
 </pre>
 
 <pre class="include">
+path: verrijkingen.md
+</pre>
+
+<pre class="include">
 path: acceptatiecriteria.md
 </pre>
 

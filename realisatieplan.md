@@ -60,7 +60,8 @@ preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrij
 De pilot gaat live wanneer aantoonbaar:
 
 1. de kritieke keten (registratie → upload → moderatie → publicatie → annotatie → zoeken)
-    end-to-end werkt, incl. de e2e-test uit de systeemarchitectuur;
+    end-to-end werkt en de [[#acceptatiecriteria]] van de MVP-usecases zijn aangetoond,
+    incl. de e2e-test uit de systeemarchitectuur;
 2. de outputcontrole uit de [data-architectuur](data-architectuur/data-architectuur.html#outputcontrole)
     klopt en de datasetbeschrijving valideert tegen het NDE Datasetregister;
 3. de juridische documenten door een jurist zijn getoetst en de DPIA is afgerond;
@@ -69,10 +70,10 @@ De pilot gaat live wanneer aantoonbaar:
 
 ## Openstaand ontwerp tijdens de bouw ## {#realisatie-openstaand}
 
-Uit de gap-analyse resteert ontwerpwerk dat parallel aan de bouw wordt opgepakt:
-acceptatiecriteria per usecase, en — ter voorbereiding op fase 2 — de interfacebeschrijving
-van de tijdmachine-koppeling en de uitwerking van de IIIF-import. Het notificatie-overzicht
-is uitgewerkt in [[#notificaties]]. De open-sourcelicenties en repostructuur zijn inmiddels
+Uit de gap-analyse resteert ontwerpwerk dat ter voorbereiding op fase 2 wordt opgepakt:
+de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import.
+Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per usecase
+([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo
 [jottem](https://github.com/inside-out-time-machines/jottem), AGPL-3.0 voor de Herkenbaar API,
 CC BY 4.0 voor documentatie en ontwerpen.

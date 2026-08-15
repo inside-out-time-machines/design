@@ -48,7 +48,7 @@ preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrij
 <tr><th>Periode</th><th>Mijlpaal</th></tr>
 </thead>
 <tbody>
-<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, externe Object Storage (S3), backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal)</td></tr>
+<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, externe Object Storage (S3), backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, zoeken met facetten, kaart + pand-tijdlijn, huisstijl SAMH, Herkenbaar-integratie</td></tr>
 <tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, alle notificatiemails werkend (zie [[#notificaties]])</td></tr>
 <tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>
@@ -68,10 +68,28 @@ De pilot gaat live wanneer aantoonbaar:
 4. moderatie is ingericht (getrainde moderatoren, [handreiking](juridisch/handreiking-moderatie.html));
 5. back-ups, monitoring en alerting draaien en de hersteltest is uitgevoerd.
 
+## Huisstijl Jottem-platform ## {#realisatie-huisstijl}
+
+Naast de huisstijl per organisatiejottem (logo, kleurenpalet, favicon op `Organisatie`) heeft
+het **platform zelf** een huisstijl nodig, te ontwerpen en met de projectgroep vast te stellen
+in de septembermijlpaal. Die omvat:
+
+* **logo/woordmerk** — eerste denkrichting is het onderstaande woordmerk;
+* **kleurenpalet en typografie** als basislaag, waar de organisatiekleuren per
+    organisatiejottem óverheen komen;
+* **CSS-basis** (design tokens/stylesheet in de frontend) die deze basislaag én de
+    organisatie-overrides draagt, hergebruikt in de e-mailtemplates;
+* **favicon** van het platform (voor www/design/prototype en als standaard voor organisaties
+    zonder eigen favicon);
+* **slogan** — keuze uit de opties in de [[#salespitch]].
+
+<img src="images/jottem-woordmerk.svg" alt="Eerste denkrichting: Jottem-woordmerk" style="max-width:100%; height:auto; background:white;">
+
 ## Openstaand ontwerp tijdens de bouw ## {#realisatie-openstaand}
 
 Uit de gap-analyse resteert ontwerpwerk dat ter voorbereiding op fase 2 wordt opgepakt:
-de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import.
+de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import;
+daarnaast de huisstijl van het platform ([[#realisatie-huisstijl]], septembermijlpaal).
 Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per usecase
 ([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo

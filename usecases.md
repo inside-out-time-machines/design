@@ -45,6 +45,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
+* kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)
 
 ## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}

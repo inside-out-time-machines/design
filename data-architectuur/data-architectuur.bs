@@ -340,6 +340,8 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 <tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>
 <tr><td>Albumconcept onderontwikkeld (persoonlijk fotoboek vs. campagne)</td><td>projectpagina's, datasetbeschrijving per project, IIIF Collection/RSS/annotaties per project</td><td>`Project`-entiteit op organisatieniveau (uuid, naam, slug, beschrijving, oproep, periode, afbeelding, datasetLicentie, status); `Media.projectId` verplicht — elke jottem hoort bij precies één project en elke organisatie heeft er minstens één</td></tr>
 <tr><td>Geen privacykeuze voor naamsvermelding</td><td>annotatie-`creator`, IIIF `requiredStatement`, RDF `schema:contributor`</td><td>`Gebruiker.naamPubliek`</td></tr>
+<tr><td>Verwijderverzoeken wel in de API, niet in het datamodel</td><td>afhandelworkflow, depublicatie (status "gedepubliceerd", tombstone)</td><td>`Verwijderverzoek`-entiteit + status gedepubliceerd op `Media`</td></tr>
+<tr><td>Geen bron voor statistieken</td><td>statistieken per organisatie/project (logins, uploads, moderatie, annotaties)</td><td>`Gebeurtenislog`-entiteit; persoonsgebonden regels na bewaartermijn geaggregeerd/geanonimiseerd (AVG)</td></tr>
 </tbody>
 </table>
 

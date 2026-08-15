@@ -89,6 +89,26 @@
     date creatieDatum
   }
 
+  Verwijderverzoek {
+    int verzoekId PK
+    uuid mediaId FK
+    string reden
+    string email
+    string status
+    string toelichting
+    date creatieDatum
+    date afhandelDatum
+  }
+
+  Gebeurtenislog {
+    int logId PK
+    string type
+    date tijdstip
+    int organisatieId FK
+    uuid projectId FK
+    int gebruikersId FK
+  }
+
   %% Project: campagne op organisatieniveau (bijv. "Smaak van Gouda"), beheerd door de
   %% organisatiebeheerder. Elke organisatie heeft minstens een project; elke jottem hoort
   %% bij precies een project (Media.projectId verplicht). Project.status: actief / afgerond.
@@ -99,8 +119,16 @@
   %% id's (gebruikersId e.d.) blijven interne sleutels.
   %% Rollen: een gebruiker kan meerdere rollen hebben, per organisatie (GebruikerRol);
   %% de rol platformbeheerder heeft geen organisatieId. Lidmaatschap van een organisatie
-  %% volgt uit de GebruikerRol-rijen.
-  %% Media.status: nieuw / goedgekeurd / afgekeurd; afkeurReden alleen bij afgekeurd.
+  %% volgt uit de GebruikerRol-rijen. GebruikerRol is de LEIDENDE bron voor autorisatie;
+  %% de IdP (Authentik) doet uitsluitend authenticatie (koppeling via sub-claim).
+  %% Media.status: nieuw / goedgekeurd / afgekeurd / gedepubliceerd; afkeurReden alleen bij
+  %% afgekeurd. Afgekeurde jottems kunnen door de uploader worden bijgewerkt en opnieuw
+  %% ingediend (terug naar nieuw); gedepubliceerd volgt uit een gehonoreerd verwijderverzoek
+  %% (tombstone op de duurzame URL, schoning van alle outputs).
+  %% Verwijderverzoek.status: open / gehonoreerd / afgewezen.
+  %% Gebeurtenislog: bron voor statistieken (type: login, upload, goedkeuring, afkeuring,
+  %% annotatie, ...); persoonsgebonden regels worden na een bewaartermijn geaggregeerd of
+  %% geanonimiseerd (AVG).
   %% Media.herkenbaar (ja/nee) + herkenbaarBetrouwbaarheid: resultaat van de Herkenbaar API
   %% bij upload (paradata, geen gebruikersmetadata); toestemmingPersonen: verklaring van de
   %% uploader dat toestemming van herkenbare personen is geregeld.
@@ -129,6 +157,9 @@
 
   Gebruiker ||--o{ Favoriet : "maakt"
   Media ||--o{ Favoriet : "wordt_gefavoriet"
+
+  Media ||--o{ Verwijderverzoek : "betreft"
+  Organisatie ||--o{ Gebeurtenislog : "logt"
 
   Gebruiker ||--o{ Metadata : "maakt"
 </pre>

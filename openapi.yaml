@@ -107,23 +107,27 @@ paths:
   /jottem/search:
     post:
       tags: [Jottems]
-      summary: Doorzoek jottems (Elasticsearch)
-      description: Voer complexe zoekopdrachten uit op jottem-metadata (NDE schema.org profiel).
+      summary: Doorzoek jottems
+      description: >
+        Doorzoekt gepubliceerde jottems via een afgebakende zoektaal; de backend vertaalt de
+        aanvraag naar Elasticsearch (de zoekmachine zelf is niet direct bevraagbaar).
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
-            example: 
-              query: { match: { "name": "markt" } }
+            schema: { $ref: '#/components/schemas/Zoekopdracht' }
+            example:
+              q: "markt"
+              genre: [foto, menukaart]
+              organisatie: "samh"
+              periodeVan: 1960
+              periodeTot: 1990
       responses:
         '200':
-          description: Zoekresultaten
+          description: Zoekresultaten met facetten
           content:
             application/json:
-              schema:
-                type: array
-                items: { $ref: '#/components/schemas/Jottem' }
+              schema: { $ref: '#/components/schemas/Zoekresultaat' }
 
   /jottem/{jottemId}/iiif/manifest:
     get:
@@ -478,6 +482,38 @@ components:
       properties:
         "@type": { type: string, enum: [Person, Organization] }
         name: { type: string }
+
+    Zoekopdracht:
+      type: object
+      description: Afgebakende zoektaal; alle velden optioneel en combineerbaar (EN-logica).
+      properties:
+        q: { type: string, description: "Vrije zoektekst (titel, beschrijving, metadata, annotaties)" }
+        genre:
+          type: array
+          items: { type: string }
+        organisatie: { type: string, description: "Organisatieslug" }
+        project: { type: string, format: uuid }
+        plaats: { type: string }
+        periodeVan: { type: integer, example: 1960 }
+        periodeTot: { type: integer, example: 1990 }
+        page: { type: integer, default: 1 }
+        pageSize: { type: integer, default: 20, maximum: 100 }
+        sort: { type: string, enum: [relevantie, publicatieDatum, datering], default: relevantie }
+
+    Zoekresultaat:
+      type: object
+      properties:
+        totaal: { type: integer }
+        page: { type: integer }
+        resultaten:
+          type: array
+          items: { $ref: '#/components/schemas/Jottem' }
+        facetten:
+          type: object
+          description: Aantallen per facetwaarde (genre, organisatie, project, periode, plaats)
+          additionalProperties:
+            type: object
+            additionalProperties: { type: integer }
 
     organisatie:
       type: object

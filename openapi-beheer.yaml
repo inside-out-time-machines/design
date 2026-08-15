@@ -121,6 +121,23 @@ paths:
                 items: { $ref: '#/components/schemas/JottemStatus' }
 
   /jottem/{jottemId}:
+    put:
+      tags: [Uploads]
+      summary: Bewerk een eigen afgekeurde jottem en dien deze opnieuw in
+      description: >
+        Alleen de eigenaar en alleen bij status "afgekeurd": de uploader past metadata aan
+        (n.a.v. de afkeurreden, bijv. aanvullende informatie of een toestemmingsverklaring)
+        en de jottem gaat terug naar status "nieuw" in de moderatiewachtrij.
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/JottemNieuw' }
+      responses:
+        '200': { description: Bijgewerkt en opnieuw ingediend (status "nieuw") }
+        '403': { description: Niet toegestaan (niet de eigenaar, of jottem is niet afgekeurd) }
     delete:
       tags: [Uploads]
       summary: Verwijder een eigen afgekeurde jottem (goedgekeurde jottems kunnen niet worden verwijderd)
@@ -294,7 +311,7 @@ paths:
         - name: status
           in: query
           required: false
-          schema: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
+          schema: { type: string, enum: [nieuw, goedgekeurd, afgekeurd, gedepubliceerd] }
       responses:
         '200':
           description: Lijst van jottems met status
@@ -595,7 +612,7 @@ paths:
   /verwijderverzoek/{verzoekId}:
     put:
       tags: [Verwijderverzoeken]
-      summary: Handel een verwijderverzoek af (depublicatie inclusief cache-purge, of afwijzing met reden)
+      summary: Handel een verwijderverzoek af (bij honorering krijgt de jottem status "gedepubliceerd", incl. cache-purge en schoning van alle outputs; anders afwijzing met reden)
       parameters:
         - name: verzoekId
           in: path
@@ -700,7 +717,7 @@ components:
       properties:
         jottemId: { type: string }
         naam: { type: string }
-        status: { type: string, enum: [nieuw, goedgekeurd, afgekeurd] }
+        status: { type: string, enum: [nieuw, goedgekeurd, afgekeurd, gedepubliceerd] }
         afkeurReden: { type: string }
         herkenbaar: { type: string, enum: [ja, nee], description: "Resultaat Herkenbaar API" }
         toestemmingPersonen: { type: boolean }

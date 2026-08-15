@@ -73,6 +73,28 @@ genoemde kandidaten de volgende keuze gemaakt:
 </tbody>
 </table>
 
+## Open source: licenties en repostructuur ## {#keuze-opensource}
+
+De salespitch belooft open source; de volgende besluiten maken dat concreet (augustus 2026):
+
+* **Platformcode: EUPL-1.2.** De backend, frontend en workers verschijnen onder de
+    [European Union Public Licence 1.2](https://eupl.eu/) — rechtsgeldig in het Nederlands,
+    copyleft (verbeteringen blijven open) zonder de afschrikkende werking van AGPL, en de
+    conventie in het NDE-ecosysteem: het Datasetregister en het Termennetwerk waar Jottem op
+    aansluit zijn zelf EUPL-1.2.
+* **Herkenbaar API: AGPL-3.0.** De dienst gebruikt ultralytics/YOLO (AGPL-3.0), waardoor de
+    eerdere Apache-2.0-licentie strijdig was; de repo is omgezet naar AGPL-3.0. Doordat het
+    een losse netwerkdienst is, stopt de AGPL bij de API-grens: het platform zelf blijft
+    EUPL-1.2.
+* **Monorepo `jottem`.** Backend, frontend, workers, docker-compose en contracttests leven in
+    één repository ([inside-out-time-machines/jottem](https://github.com/inside-out-time-machines/jottem)):
+    API-contractwijzigingen zijn atomair, één CI en issue-tracker. De Herkenbaar API blijft
+    bewust een aparte repo — de licentiegrens valt samen met de repogrens. Secrets komen
+    nooit in git (.env buiten de repo); de deploy-configuratie zelf is publiek.
+* **Documentatie en ontwerpen: CC BY 4.0.** De repo's design, prototype en website krijgen
+    een [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)-licentie — hergebruik met
+    naamsvermelding, passend bij de kennisdelingsbelofte uit het [[#activiteitenplan]].
+
 ## Consequenties voor de ontwerpdocumenten ## {#keuze-consequenties}
 
 * [[#functional-requirements]]: het ARK-requirement is gemarkeerd als latere fase; de
@@ -85,6 +107,6 @@ genoemde kandidaten de volgende keuze gemaakt:
 * [API-beschrijvingen](data-architectuur/data-architectuur.html#api-beschrijving): gesplitst in een publieke lees-API (`openapi.yaml`) en een beheer-API
     (`openapi-beheer.yaml`).
 * [Systeemarchitectuur](systeemarchitectuur/architectuur.html): de Internet Archive-worker en de
-    ARK-componenten behoren niet tot de MVP-scope. Waar de architectuur Keycloak en Redis noemt
-    (o.a. in de indicatieve compose-file), gelden de hier gekozen Authentik en Valkey; de
-    beschreven functionaliteit (identity brokering, 2FA, broker/cache-rol) blijft gelijk.
+    ARK-componenten behoren niet tot de MVP-scope. De architectuur is bijgewerkt naar de gekozen
+    Authentik en Valkey, inclusief het autorisatiebesluit: de database (`GebruikerRol`) is de
+    leidende bron voor rollen, Authentik doet uitsluitend authenticatie.

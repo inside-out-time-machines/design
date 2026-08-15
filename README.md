@@ -26,3 +26,7 @@ Alternatively, to update the HTML every time you make changes to [the source doc
 ```bash
 make watch
 ```
+
+## Licentie
+
+De inhoud van deze repository is beschikbaar onder [CC BY 4.0](LICENSE).

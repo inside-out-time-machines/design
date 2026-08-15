@@ -58,7 +58,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><td>Webfrontend (`www.iotm.nl`)</td><td>**Next.js** (React) met OpenSeadragon/Mirador (IIIF-viewer), Annotorious (annoteren) en MapLibre GL (kaart)</td></tr>
 <tr><td>Backend-API (`api.iotm.nl`)</td><td>**FastAPI** (Python) met iiif-prezi3</td></tr>
 <tr><td>Async workers</td><td>**Celery** met Valkey als broker</td></tr>
-<tr><td>Identity provider (`auth.iotm.nl`)</td><td>**Authentik** (OIDC, social login, TOTP-2FA) — *afwijkend van de architectuursuggestie (Keycloak): lichter in beheer bij gelijkwaardige functionaliteit (identity brokering, 2FA-afdwinging per rol, uitnodigingsflows)*</td></tr>
+<tr><td>Identity provider (`auth.iotm.nl`)</td><td>**Authentik** (OIDC, social login, 2FA via TOTP of passkey/WebAuthn) — *afwijkend van de architectuursuggestie (Keycloak): lichter in beheer bij gelijkwaardige functionaliteit (identity brokering, 2FA-afdwinging per rol, uitnodigingsflows)*</td></tr>
 <tr><td>IIIF Image API (`iiif.iotm.nl`)</td><td>**Cantaloupe** achter **Varnish**</td></tr>
 <tr><td>Annotatieserver (`anno.iotm.nl`)</td><td>**miiify**</td></tr>
 <tr><td>RDF-publicatie (`data.iotm.nl`)</td><td>**Apache Jena Fuseki**</td></tr>

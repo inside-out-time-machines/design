@@ -10,7 +10,7 @@ voorjaar van 2027. Het bouwt voort op het [[#keuze-oplossingsrichting]] en de
 
 De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 
-* **Accounts & rollen** — registratie en (social) login via Authentik, 2FA voor beheer- en
+* **Accounts & rollen** — registratie en (social) login via Authentik, 2FA/passkeys voor beheer- en
     moderatierollen, uitnodigingsflows; autorisatie vanuit de database (GebruikerRol leidend)
 * **Organisatie & project** — organisatiejottem in eigen huisstijl (SAMH), projectbeheer
     (Smaak van Gouda als eerste project), terminologiebronnen per project
@@ -71,25 +71,33 @@ De pilot gaat live wanneer aantoonbaar:
 ## Huisstijl Jottem-platform ## {#realisatie-huisstijl}
 
 Naast de huisstijl per organisatiejottem (logo, kleurenpalet, favicon op `Organisatie`) heeft
-het **platform zelf** een huisstijl nodig, te ontwerpen en met de projectgroep vast te stellen
-in de septembermijlpaal. Die omvat:
+het **platform zelf** een huisstijl. Die is uitgewerkt in de **merkgids** op
+[brand.iotm.nl](https://brand.iotm.nl/), met de projectgroep vast te stellen in de
+septembermijlpaal. De merkgids omvat:
 
-* **logo/woordmerk** — eerste denkrichting is het onderstaande woordmerk;
-* **kleurenpalet en typografie** als basislaag, waar de organisatiekleuren per
-    organisatiejottem óverheen komen;
-* **CSS-basis** (design tokens/stylesheet in de frontend) die deze basislaag én de
-    organisatie-overrides draagt, hergebruikt in de e-mailtemplates;
+* **merkverhaal en tone of voice** — positionering, kernwaarden en schrijfregels
+    (heel begrijpelijk, taalniveau B1);
+* **logo/woordmerk** — het onderstaande woordmerk met alle varianten (negatief, zwart/wit,
+    compacte spraakwolk-O), gebruiksregels en downloadbaar logopack;
+* **kleurenpalet en typografie** (Fraunces voor koppen, Albert Sans voor tekst — altijd
+    lokaal gehost) als basislaag, waar de organisatiekleuren per organisatiejottem
+    óverheen komen;
+* **CSS-basis** (design tokens/stylesheet, te downloaden via de merkgids) die deze basislaag
+    én de organisatie-overrides draagt, hergebruikt in de e-mailtemplates;
+* **vormtaal, beeldgebruik en motion-principes** met live voorbeelden;
 * **favicon** van het platform (voor www/design/prototype en als standaard voor organisaties
     zonder eigen favicon);
-* **slogan** — keuze uit de opties in de [[#salespitch]].
+* **slogan** — gekozen uit de opties in de [[#salespitch]]:
+    *"Maak erfgoed van iedereen, door iedereen"*.
 
-<img src="images/jottem-woordmerk.svg" alt="Eerste denkrichting: Jottem-woordmerk" style="max-width:100%; height:auto; background:white;">
+<img src="images/jottem-woordmerk.svg" alt="Jottem-woordmerk" style="max-width:100%; height:auto; background:white;">
 
 ## Openstaand ontwerp tijdens de bouw ## {#realisatie-openstaand}
 
 Uit de gap-analyse resteert ontwerpwerk dat ter voorbereiding op fase 2 wordt opgepakt:
-de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import;
-daarnaast de huisstijl van het platform ([[#realisatie-huisstijl]], septembermijlpaal).
+de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import.
+De huisstijl van het platform is uitgewerkt in de [merkgids](https://brand.iotm.nl/) en wacht
+op vaststelling door de projectgroep ([[#realisatie-huisstijl]], septembermijlpaal).
 Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per usecase
 ([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo

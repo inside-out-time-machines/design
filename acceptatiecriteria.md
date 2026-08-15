@@ -8,9 +8,9 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## Platformbeheerder ## {#ac-platformbeheerder}
 
-* **PB-1** Ik kan inloggen met wachtwoord + verplichte 2FA; zonder geldige 2FA-factor weigert de backend elk beheer-endpoint (`amr`-controle).
+* **PB-1** Ik kan inloggen met wachtwoord + verplichte 2FA (TOTP of passkey); zonder geldige sterke factor weigert de backend elk beheer-endpoint (`amr`-controle).
 * **PB-2** Ik kan een organisatiejottem definiëren (naam, slug, favicon, logo, kleurenpalet); de huisstijl is direct zichtbaar op de organisatiepagina's en in de notificatiemails; bij het aanmaken ontstaat automatisch een eerste project.
-* **PB-3** Ik kan een organisatiebeheerder uitnodigen; de uitgenodigde ontvangt de uitnodigingsmail, doorloopt de Authentik-enrollment (wachtwoord + verplichte TOTP) en heeft bij eerste login de klaargezette rol.
+* **PB-3** Ik kan een organisatiebeheerder uitnodigen; de uitgenodigde ontvangt de uitnodigingsmail, doorloopt de Authentik-enrollment (wachtwoord + verplichte tweede factor: TOTP of passkey) en heeft bij eerste login de klaargezette rol.
 * **PB-4** *(fase 2)* Ik zie platformstatistieken per organisatie en per project, gevoed uit het Gebeurtenislog.
 
 ## Organisatiebeheerder ## {#ac-organisatiebeheerder}
@@ -67,3 +67,4 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **BE-3** Ik kan via de interactieve kaart navigeren en per pand de opeenvolgende zaken als tijdlijn zien (afgeleid uit adres + openings-/sluitingsjaren).
 * **BE-4** Ik kan een verwijderverzoek indienen en ontvang direct de ontvangstbevestiging per mail; de moderatoren ontvangen de melding (MO-5 dekt de afhandeling).
 * **BE-5** Openbare favorietenpagina's van gebruikers zijn bereikbaar via hun deellink (GE-4).
+* **BE-6** Elke gepubliceerde jottem-pagina toont deelknoppen (sociale media, e-mail, link kopiëren) en bevat correcte Open Graph-metadata (`og:title/description/image/url`); een gedeelde link toont titel, beschrijving en afbeelding in de preview (gecontroleerd met een OG-validator).

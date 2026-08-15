@@ -15,6 +15,18 @@ Abstract: Algemene voorwaarden voor het gebruik van het Jottem-platform: een pos
 <style>
 /* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
    html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
 html:root {
   --bg: #faf6f1;
   --text: #1f1e1c;
@@ -152,7 +164,7 @@ In deze voorwaarden bedoelen wij met:
 
 **Wat doen wij voor jou?**
 
-1. Wij stellen het Platform technisch beschikbaar en houden het veilig, stabiel en actueel. Daarbij horen: accounts en inlogbeveiliging (waaronder 2FA voor beheerders), de moderatieomgeving, duurzame links (ARK), opslag, back-ups en de API's.
+1. Wij stellen het Platform technisch beschikbaar en houden het veilig, stabiel en actueel. Daarbij horen: accounts en inlogbeveiliging (waaronder 2FA of passkeys voor beheerders), de moderatieomgeving, duurzame links (ARK), opslag, back-ups en de API's.
 2. Wij richten Organisatiejottems in, voegen Organisatiebeheerders toe en ondersteunen Organisaties bij het gebruik.
 3. Wij beheren het Meldpunt en handelen meldingen af zoals beschreven in artikel 7 van Deel A.
 4. Wij bekijken statistieken alleen om het Platform te verbeteren en Organisaties inzicht te geven. Wij gaan daarbij zorgvuldig om met persoonsgegevens.
@@ -177,7 +189,7 @@ In deze voorwaarden bedoelen wij met:
 
 **Wat verwachten wij van jou?**
 
-4. Je gebruikt tweefactorauthenticatie (2FA). Beheerdersaccounts geven veel toegang; die beveiligen we samen goed.
+4. Je gebruikt tweefactorauthenticatie (2FA) of een passkey. Beheerdersaccounts geven veel toegang; die beveiligen we samen goed.
 5. Je kiest Moderators zorgvuldig en zorgt dat zij weten wat er van hen wordt verwacht, vooral rond privacy, portretrecht en auteursrecht.
 6. Je importeert alleen collecties waarvoor jouw Organisatie de rechten heeft of toestemming heeft gekregen.
 

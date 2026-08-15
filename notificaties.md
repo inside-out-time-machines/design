@@ -12,7 +12,7 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 <tr><th>#</th><th>Trigger</th><th>Ontvanger</th><th>Inhoud / doel</th></tr>
 </thead>
 <tbody>
-<tr><td>1</td><td>Platformbeheerder voegt een organisatiebeheerder toe</td><td>uitgenodigde</td><td>spelregels + bevestigingslink naar de Authentik-enrollment (wachtwoord + verplichte 2FA); de klaargezette rol wordt bij eerste login gekoppeld</td></tr>
+<tr><td>1</td><td>Platformbeheerder voegt een organisatiebeheerder toe</td><td>uitgenodigde</td><td>spelregels + bevestigingslink naar de Authentik-enrollment (wachtwoord + verplichte 2FA: TOTP of passkey); de klaargezette rol wordt bij eerste login gekoppeld</td></tr>
 <tr><td>2</td><td>Organisatiebeheerder voegt een moderator toe</td><td>uitgenodigde</td><td>idem als 1</td></tr>
 <tr><td>3</td><td>Moderator keurt een jottem goed</td><td>uploader</td><td>"je jottem staat online": duurzame link + oproep om te delen via sociale media (reacties en annotaties uitlokken)</td></tr>
 <tr><td>4</td><td>Moderator keurt een jottem af</td><td>uploader</td><td>afkeurreden + directe link om de jottem aan te passen en opnieuw in te dienen</td></tr>
@@ -28,7 +28,7 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
 ## Afbakening ## {#notificaties-afbakening}
 
-* **Accountmails** (e-mailverificatie bij registratie, wachtwoord-reset, 2FA-herstel) worden
+* **Accountmails** (e-mailverificatie bij registratie, wachtwoord-reset, 2FA-/passkey-herstel) worden
     door **Authentik** zelf verstuurd, niet door de backend.
 * **Datasetregister-aanmelding** geeft het resultaat (gevalideerd/aangemeld of foutmelding)
     synchroon terug in de beheer-UI; daar hoort geen mail bij.

@@ -15,6 +15,18 @@ Abstract: Werkdocument voor de IOTM-projectgroep als basis voor een keuze over d
 <style>
 /* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
    html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
 html:root {
   --bg: #faf6f1;
   --text: #1f1e1c;

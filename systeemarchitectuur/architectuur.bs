@@ -15,6 +15,18 @@ Abstract: Een op Docker gebaseerde systeemarchitectuur voor het Jottem-platform:
 <style>
 /* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
    html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
 html:root {
   --bg: #faf6f1;
   --text: #1f1e1c;
@@ -62,7 +74,7 @@ Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder,
 <tbody>
 <tr><td>`www.iotm.nl`</td><td>Webfrontend</td><td>Next.js of SvelteKit + Mirador/Tify (IIIF-viewer), Annotorious (annoteren), MapLibre GL (kaart)</td><td>Nuxt, Universal Viewer, OpenSeadragon + eigen UI</td></tr>
 <tr><td>`api.iotm.nl`</td><td>Backend-API (REST, IIIF Presentation, Change Discovery, RSS, zoeken)</td><td>FastAPI (Python) met iiif-prezi3</td><td>NestJS, Laravel, Django REST Framework</td></tr>
-<tr><td>`auth.iotm.nl`</td><td>Identity provider (OIDC, social login, 2FA)</td><td>Authentik (gekozen)</td><td>Keycloak, Ory Kratos/Hydra</td></tr>
+<tr><td>`auth.iotm.nl`</td><td>Identity provider (OIDC, social login, 2FA/passkeys)</td><td>Authentik (gekozen)</td><td>Keycloak, Ory Kratos/Hydra</td></tr>
 <tr><td>`iiif.iotm.nl`</td><td>IIIF Image API 3.0 + HTTP-cache</td><td>Cantaloupe achter Varnish</td><td>iipsrv, SIPI, go-iiif; nginx proxy_cache</td></tr>
 <tr><td>`anno.iotm.nl`</td><td>W3C Web Annotation server</td><td>miiify (expliciet genoemd in het designdocument)</td><td>SimpleAnnotationServer, Annotot</td></tr>
 <tr><td>`ark.iotm.nl`</td><td>ARK-resolver en -minter</td><td>Arklet (Internet Archive)</td><td>eigen microservice + noid-bibliotheek (pynoid)</td></tr>
@@ -85,7 +97,7 @@ Traefik termineert TLS (automatisch via Let's Encrypt), routeert op subdomein na
 
 ## Authenticatie en autorisatie (Authentik)
 
-Authentik fungeert als centrale OIDC-provider op `auth.iotm.nl` en doet uitsluitend **authenticatie**: registratie voor bezoekers, social login (Google, Facebook, Apple, Microsoft) via federatie, wachtwoord-login en TOTP-2FA. Voor accounts die via een beheeruitnodiging binnenkomen dwingt de enrollment-flow het instellen van wachtwoord én TOTP af.
+Authentik fungeert als centrale OIDC-provider op `auth.iotm.nl` en doet uitsluitend **authenticatie**: registratie voor bezoekers, social login (Google, Facebook, Apple, Microsoft) via federatie, wachtwoord-login, TOTP-2FA en passkeys (WebAuthn). Voor accounts die via een beheeruitnodiging binnenkomen dwingt de enrollment-flow het instellen van een wachtwoord én een tweede factor (TOTP of passkey) af.
 
 **Autorisatie: de database is leidend.** Rollen staan niet in de IdP maar in `GebruikerRol` (per organisatie, meerdere rollen per gebruiker — zie het ERD in de data-architectuur). De backend koppelt het access-token via de `sub`-claim aan een `Gebruiker`-rij en bepaalt daarna zelf de rechten (bijv. "moderator van organisatie X mag alleen jottems van X beoordelen"). Zo blijven de uitnodigings- en beheerflows in de applicatie-UI, is er geen groepensynchronisatie met de IdP nodig en is er één bron van waarheid voor rollen.
 
@@ -99,11 +111,11 @@ Het JWT-claims-contract dat de backend van Authentik nodig heeft, is daarmee kle
 <tr><td>`sub`</td><td>stabiele koppeling token → `Gebruiker` (bij eerste login wordt de rij aangemaakt of aan de uitgenodigde rij gekoppeld)</td></tr>
 <tr><td>`email`, `email_verified`</td><td>e-mailadres (uitnodigingen, notificaties)</td></tr>
 <tr><td>`name` / `preferred_username`</td><td>weergavenaam (zie `Gebruiker.naamPubliek` voor publicatie)</td></tr>
-<tr><td>`amr` (auth-methode)</td><td>de backend eist een 2FA-factor voor endpoints die een beheer- of moderatierol vragen</td></tr>
+<tr><td>`amr` (auth-methode)</td><td>de backend eist een sterke factor (TOTP of passkey) voor endpoints die een beheer- of moderatierol vragen</td></tr>
 </tbody>
 </table>
 
-De uitnodigingsflow: de beheer-API verstuurt de uitnodigingsmail met bevestigingslink en zet de `GebruikerRol` klaar; de link leidt naar een Authentik-enrollment-flow (wachtwoord + verplichte TOTP); bij de eerste login koppelt de backend de `sub` aan de uitgenodigde `Gebruiker`-rij.
+De uitnodigingsflow: de beheer-API verstuurt de uitnodigingsmail met bevestigingslink en zet de `GebruikerRol` klaar; de link leidt naar een Authentik-enrollment-flow (wachtwoord + verplichte tweede factor: TOTP of passkey); bij de eerste login koppelt de backend de `sub` aan de uitgenodigde `Gebruiker`-rij.
 
 Fijnmazige autorisatie op objectniveau (eigen afgekeurde jottems verwijderen, goedgekeurde niet) hoort in de backend thuis; wie dit declaratief wil, kan een policy engine als Casbin of OpenFGA toevoegen, maar voor deze schaal volstaat autorisatielogica in de API-laag.
 
@@ -363,7 +375,7 @@ Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel 
 </thead>
 <tbody>
 <tr><td>Laagdrempelig inloggen incl. social login</td><td>Authentik met social-login-federatie</td></tr>
-<tr><td>2FA voor beheerders</td><td>Authentik TOTP-enrollment + amr-controle in de backend</td></tr>
+<tr><td>2FA/passkeys voor beheerders</td><td>Authentik TOTP-/WebAuthn-enrollment + amr-controle in de backend</td></tr>
 <tr><td>Duurzame ARK-links met NOID/UUID</td><td>Arklet + pynoid, registry in PostgreSQL</td></tr>
 <tr><td>HTML- en RDF-weergave via content negotiation</td><td>ARK-resolver met 303-redirects naar frontend resp. Fuseki</td></tr>
 <tr><td>IIIF Image API (info.json)</td><td>Cantaloupe + Varnish op iiif.iotm.nl</td></tr>

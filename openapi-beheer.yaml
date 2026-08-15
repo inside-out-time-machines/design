@@ -34,7 +34,7 @@ paths:
     put:
       tags: [Profiel]
       summary: Eigen profiel wijzigen (naam, afbeelding, privacy-instellingen)
-      description: Wachtwoord en 2FA worden beheerd via de identity provider (auth.iotm.nl).
+      description: Wachtwoord en 2FA/passkeys worden beheerd via de identity provider (auth.iotm.nl).
       requestBody:
         required: true
         content:
@@ -370,7 +370,7 @@ paths:
       description: >
         Platformbeheerders voegen organisatiebeheerders toe; organisatiebeheerders voegen
         moderatoren toe. De gebruiker ontvangt een e-mail met de regels en een bevestigingslink
-        waarna wachtwoord en 2FA via de identity provider worden ingesteld.
+        waarna wachtwoord en 2FA (TOTP of passkey) via de identity provider worden ingesteld.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       requestBody:

@@ -3,11 +3,12 @@
 ## Functionele requirements ## {#functional-requirements}
 
 * inloggen door gebruikers moet zeer laagdrempelig zijn, dus inclusief social login
-* inloggen door beheerders moet zijn te beveiligen via 2FA
+* inloggen door beheerders moet zijn te beveiligen via 2FA (TOTP) of een passkey
 * duurzame link per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation; het koppelen van een ARK (met objectname op basis van NOID of UUID) aan deze link is uitgesteld naar een latere fase (zie [[#keuze-open-vragen]])
 * elke jottem behoort tot precies één project (een campagne op organisatieniveau, bijv. *Smaak van Gouda*); elke organisatie heeft minstens één project en elk project draagt een eigen datasetbeschrijving
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
+* elke gepubliceerde jottem heeft deelknoppen naar sociale media en de HTML-weergave bevat de juiste Open Graph-metadata (`og:title`, `og:description`, `og:image`, `og:url`), zodat een gedeelde link een nette preview toont
 
 ## Niet-functionele requirements ## {#non-functional-requirements}
 
@@ -19,7 +20,7 @@
 * performance: publiekspagina's laden binnen 2 seconden (LCP); IIIF-tiles en manifests worden uit cache geserveerd; zoekresultaten binnen 1 seconde
 * capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand
 * beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
-* beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA voor beheer- en moderatorrollen
+* beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA (TOTP of passkey) voor beheer- en moderatorrollen
 * privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge
 * back-up & herstel: nachtelijkse offsite back-ups; RPO 24 uur, RTO 1 werkdag; jaarlijkse hersteltest
 * duurzaamheid/exit: periodieke publieke datadumps en een exportstrategie, zie [[#keuze-infra]]

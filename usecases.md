@@ -4,17 +4,17 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
 
-* inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  
+* inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA/passkey) inzien en wijzigen en uitloggen  
 * een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …), ARK NAAN  
 * gebruikers (naam, e-mail) in de rol organisatiebeheerder van een organisatiejottem toevoegen, bewerken en verwijderen  
-  * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
+  * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA of passkey) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie en per project
 
 ## Als organisatiebeheerder kan ik ## {#organisatiebeheerder}
 
-* inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA) inzien en wijzigen en uitloggen  
+* inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA/passkey) inzien en wijzigen en uitloggen  
 * gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen  
-  * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA) ingesteld kan worden   
+  * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA of passkey) ingesteld kan worden   
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
@@ -80,6 +80,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * mezelf registreren (waarmee je een gebruiker wordt)  
   * gepubliceerde jottems bekijken/doorzoeken  
   * favorieten van gebruikers bekijken
+  * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
 * via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  
 * per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken  
 * een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal

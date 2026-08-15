@@ -15,6 +15,18 @@ Abstract: Werkdocument voor de projectgroep met een overzicht van de risico's ro
 <style>
 /* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
    html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
 html:root {
   --bg: #faf6f1;
   --text: #1f1e1c;
@@ -96,7 +108,7 @@ Legenda kans en impact: L = laag, M = midden, H = hoog.
 <tr><th>#</th><th>Risico</th><th>Kans</th><th>Impact</th><th>Beheersmaatregelen</th><th>Belegd bij</th><th>Vindplaats</th></tr>
 </thead>
 <tbody>
-<tr><td>T1</td><td>**Datalek of hack**: onbevoegde toegang tot accounts of niet-gepubliceerd materiaal</td><td>M</td><td>H</td><td>2FA voor beheerders/moderators; versleutelde verbindingen; toegangsbeheer; datalekprocedure (melding binnen 48 uur aan organisatie, zo nodig AP en betrokkenen)</td><td>Platformbeheerder</td><td>SOK art. 5.3; PB 5</td></tr>
+<tr><td>T1</td><td>**Datalek of hack**: onbevoegde toegang tot accounts of niet-gepubliceerd materiaal</td><td>M</td><td>H</td><td>2FA of passkeys voor beheerders/moderators; versleutelde verbindingen; toegangsbeheer; datalekprocedure (melding binnen 48 uur aan organisatie, zo nodig AP en betrokkenen)</td><td>Platformbeheerder</td><td>SOK art. 5.3; PB 5</td></tr>
 <tr><td>T2</td><td>**Gegevensverlies**: bijdragen kwijt door storing of fout</td><td>L</td><td>H</td><td>Dagelijkse back-ups; duurzame opslag extern (Internet Archive); ARK-identifiers</td><td>Platformbeheerder</td><td>SOK art. 2.2; AV art. 9</td></tr>
 <tr><td>T3</td><td>**Uitval platform**: website of API's onbereikbaar</td><td>M</td><td>L</td><td>Beschikbaarheidsafspraak in SOK; aangekondigd onderhoud; monitoring</td><td>Platformbeheerder</td><td>SOK art. 2.1; AV art. 3.4</td></tr>
 <tr><td>T4</td><td>**Afhankelijkheid externe partijen**: Internet Archive, hostingpartij of kaartkoppeling (Gouda Tijdmachine) wijzigt of stopt</td><td>M</td><td>M</td><td>Open standaarden (IIIF, W3C) zodat overstappen kan; export in open formaten; geen vendor lock-in door open source</td><td>Platformbeheerder</td><td>AV art. 9; SOK art. 8.4</td></tr>

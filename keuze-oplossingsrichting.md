@@ -91,9 +91,14 @@ De salespitch belooft open source; de volgende besluiten maken dat concreet (aug
     API-contractwijzigingen zijn atomair, één CI en issue-tracker. De Herkenbaar API blijft
     bewust een aparte repo - de licentiegrens valt samen met de repogrens. Secrets komen
     nooit in git (.env buiten de repo); de deploy-configuratie zelf is publiek.
-* **Documentatie en ontwerpen: CC BY 4.0.** De repo's design, prototype en website krijgen
-    een [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)-licentie - hergebruik met
-    naamsvermelding, passend bij de kennisdelingsbelofte uit het [[#activiteitenplan]].
+* **Ontwerpdocumenten: CC BY-SA 4.0; overige documentatie: CC BY 4.0.** De design-repo
+    staat onder [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.nl)
+    *(aangescherpt, augustus 2026)*: hergebruik met naamsvermelding én share-alike, zodat
+    bewerkingen van het ontwerp onder dezelfde open licentie beschikbaar blijven - dezelfde
+    copyleft-gedachte als de EUPL voor de platformcode. De repo's prototype, website en
+    brand houden [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.nl) -
+    hergebruik met naamsvermelding, passend bij de kennisdelingsbelofte uit het
+    [[#activiteitenplan]].
 
 ## Consequenties voor de ontwerpdocumenten ## {#keuze-consequenties}
 

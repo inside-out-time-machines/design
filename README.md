@@ -29,4 +29,5 @@ make watch
 
 ## Licentie
 
-De inhoud van deze repository is beschikbaar onder [CC BY 4.0](LICENSE).
+De inhoud van deze repository is beschikbaar onder [CC BY-SA 4.0](LICENSE): hergebruik met
+naamsvermelding "Jottem / Inside Out Time Machines", bewerkingen onder dezelfde licentie.

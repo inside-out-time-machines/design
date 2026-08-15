@@ -105,4 +105,5 @@ Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per useca
 ([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo
 [jottem](https://github.com/inside-out-time-machines/jottem), AGPL-3.0 voor de Herkenbaar API,
-CC BY 4.0 voor documentatie en ontwerpen.
+CC BY-SA 4.0 voor de ontwerpdocumenten (design-repo) en CC BY 4.0 voor de overige
+documentatie (prototype, website, brand).

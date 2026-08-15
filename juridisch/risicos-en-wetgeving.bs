@@ -12,6 +12,7 @@ Abstract: Werkdocument voor de projectgroep met een overzicht van de risico's ro
 <section boilerplate="abstract"></section>
 <link rel="shortcut icon" href="../favicon.ico">
 <script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<p boilerplate="copyright">&copy; 2026 <a href="https://www.iotm.nl/">Inside Out Time Machines</a>. Dit document is beschikbaar onder de licentie <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.nl">CC BY-SA 4.0</a>: hergebruik met naamsvermelding, bewerkingen onder dezelfde licentie.</p>
 <style>
 /* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
    html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */

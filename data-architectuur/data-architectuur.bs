@@ -63,7 +63,7 @@ De data leeft in drie lagen:
 </tbody>
 </table>
 
-Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** — elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten — en **PostgreSQL plus miiify en de Object Storage als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
+Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** - elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten - en **PostgreSQL plus miiify en de Object Storage als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
 
 <pre class="include">
 path: erd.mermaid.md
@@ -168,7 +168,7 @@ Per organisatie publiceert de backend een ActivityStreams-feed (`OrderedCollecti
 </tbody>
 </table>
 
-**Regel:** elke mutatie die de outputs raakt — metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie — werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt.
+**Regel:** elke mutatie die de outputs raakt - metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie - werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt.
 
 # Annotaties # {#annotaties}
 
@@ -201,9 +201,9 @@ De annotatieserver hanteert **één container per jottem** (containernaam = `med
 </thead>
 <tbody>
 <tr><td>Individuele annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}` (en `GET /annotation/{annotationId}` in de publieke API)</td><td>`Annotation`</td></tr>
-<tr><td>Per jottem</td><td>`GET https://anno.iotm.nl/annotations/{jottemId}/` — rechtstreeks uit de container; de publieke API biedt `GET /jottem/{jottemId}/annotations` als doorverwijzing en het IIIF Manifest verwijst hiernaar via `annotations`</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
-<tr><td>Per project</td><td>`GET /project/{projectId}/annotations` in de publieke API — de backend aggregeert de containers van alle gepubliceerde jottems van het project (jottem-lijst uit `Media.projectId`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
-<tr><td>Per organisatie</td><td>`GET /organisatie/{slug}/annotations` in de publieke API — de backend aggregeert de containers van alle gepubliceerde jottems van de organisatie (jottem-lijst uit `Media`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Per jottem</td><td>`GET https://anno.iotm.nl/annotations/{jottemId}/` - rechtstreeks uit de container; de publieke API biedt `GET /jottem/{jottemId}/annotations` als doorverwijzing en het IIIF Manifest verwijst hiernaar via `annotations`</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Per project</td><td>`GET /project/{projectId}/annotations` in de publieke API - de backend aggregeert de containers van alle gepubliceerde jottems van het project (jottem-lijst uit `Media.projectId`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Per organisatie</td><td>`GET /organisatie/{slug}/annotations` in de publieke API - de backend aggregeert de containers van alle gepubliceerde jottems van de organisatie (jottem-lijst uit `Media`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
 </tbody>
 </table>
 
@@ -266,7 +266,7 @@ Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt allee
 
 De datadump wordt per project periodiek (nachtelijks) door een worker gegenereerd uit Fuseki (named graph per project) en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
 
-**Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving — uitsluitend wanneer het project openbare (gepubliceerde) data heeft — valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`) en kan deze ook weer afmelden (`DELETE /datasets`). Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
+**Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving - uitsluitend wanneer het project openbare (gepubliceerde) data heeft - valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`) en kan deze ook weer afmelden (`DELETE /datasets`). Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
 
 ## Aanvullende distributies (verkenning) ## {#aanvullende-distributies}
 
@@ -286,14 +286,14 @@ Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen 
 </tbody>
 </table>
 
-**Aanbeveling:** alle kandidaten als extra distributies opnemen — de endpoints bestaan in de publieke API, het is louter een uitbreiding van de gegenereerde projectdatasetbeschrijving. Alle kandidaten zijn volledig afleidbaar uit de bestaande bronlagen; er is geen nieuwe brondata nodig.
+**Aanbeveling:** alle kandidaten als extra distributies opnemen - de endpoints bestaan in de publieke API, het is louter een uitbreiding van de gegenereerde projectdatasetbeschrijving. Alle kandidaten zijn volledig afleidbaar uit de bestaande bronlagen; er is geen nieuwe brondata nodig.
 
 ## E-depot-export: BagIt als verpakking, RO-Crate als beschrijving ## {#edepot-export}
 
 Naast de RDF-datadump kan per project een **compleet exportpakket** worden aangemaakt waarmee al het materiaal van een project kan worden aangeboden aan het e-depot van een archiefinstelling (het SIP in OAIS-termen), en dat tevens de exit-strategie uit het [keuzedocument](../index.html#keuze-infra) concreet maakt:
 
-* **[BagIt](https://www.rfc-editor.org/rfc/rfc8493) (RFC 8493) als omhulsel** — een zip met `data/`-payload en checksummanifesten (`manifest-sha512.txt`, `bag-info.txt`), zodat de ontvangende instelling bit-integriteit bij ingest kan verifiëren. BagIt wordt **native ondersteund door Archivematica** en wordt probleemloos geaccepteerd door **Preservica** — de systemen achter de meeste Nederlandse e-depots.
-* **[RO-Crate](https://www.researchobject.org/ro-crate/) als inhoudelijke beschrijving** — een `ro-crate-metadata.json` (JSON-LD op basis van schema.org) die alle bestanden in het pakket beschrijft en relateert. Omdat de Jottem-metadata al schema.org AP NDE is, volgt de crate vrijwel direct uit de bestaande [RDF-mapping](#rdf-mapping); het pakket blijft daardoor ook búiten een e-depot zelfbeschrijvend en herbruikbaar.
+* **[BagIt](https://www.rfc-editor.org/rfc/rfc8493) (RFC 8493) als omhulsel** - een zip met `data/`-payload en checksummanifesten (`manifest-sha512.txt`, `bag-info.txt`), zodat de ontvangende instelling bit-integriteit bij ingest kan verifiëren. BagIt wordt **native ondersteund door Archivematica** en wordt probleemloos geaccepteerd door **Preservica** - de systemen achter de meeste Nederlandse e-depots.
+* **[RO-Crate](https://www.researchobject.org/ro-crate/) als inhoudelijke beschrijving** - een `ro-crate-metadata.json` (JSON-LD op basis van schema.org) die alle bestanden in het pakket beschrijft en relateert. Omdat de Jottem-metadata al schema.org AP NDE is, volgt de crate vrijwel direct uit de bestaande [RDF-mapping](#rdf-mapping); het pakket blijft daardoor ook búiten een e-depot zelfbeschrijvend en herbruikbaar.
 
 ```
 {projectSlug}-{datum}.zip  (BagIt)
@@ -337,7 +337,7 @@ Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-sp
 
 Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken mogelijk:
 
-* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig — elk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)**, opgezocht via het NDE Termennetwerk (zie hieronder). De waardelijst met bijbehorende CHT-URI's is platformconfiguratie.
+* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig - elk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)**, opgezocht via het NDE Termennetwerk (zie hieronder). De waardelijst met bijbehorende CHT-URI's is platformconfiguratie.
 * **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, openingsjaar, sluitingsjaar, persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
 * **Annotatiemotivaties** (`motivation`, W3C-vocabulaire): `describing` (herinnering), `commenting` (reactie), `identifying` (persoon/gebouw/bedrijf op vlak), `tagging` (steekwoord), `linking` (archiefbron, gebeurtenis), `editing` (correctie).
 * **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), zodat de RDF-output linkbaar is.
@@ -386,7 +386,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 <tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
 <tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
 <tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>
-<tr><td>Albumconcept onderontwikkeld (persoonlijk fotoboek vs. campagne)</td><td>projectpagina's, datasetbeschrijving per project, IIIF Collection/RSS/annotaties per project</td><td>`Project`-entiteit op organisatieniveau (uuid, naam, slug, beschrijving, oproep, periode, afbeelding, datasetLicentie, status); `Media.projectId` verplicht — elke jottem hoort bij precies één project en elke organisatie heeft er minstens één</td></tr>
+<tr><td>Albumconcept onderontwikkeld (persoonlijk fotoboek vs. campagne)</td><td>projectpagina's, datasetbeschrijving per project, IIIF Collection/RSS/annotaties per project</td><td>`Project`-entiteit op organisatieniveau (uuid, naam, slug, beschrijving, oproep, periode, afbeelding, datasetLicentie, status); `Media.projectId` verplicht - elke jottem hoort bij precies één project en elke organisatie heeft er minstens één</td></tr>
 <tr><td>Geen privacykeuze voor naamsvermelding</td><td>annotatie-`creator`, IIIF `requiredStatement`, RDF `schema:contributor`</td><td>`Gebruiker.naamPubliek`</td></tr>
 <tr><td>Verwijderverzoeken wel in de API, niet in het datamodel</td><td>afhandelworkflow, depublicatie (status "gedepubliceerd", tombstone)</td><td>`Verwijderverzoek`-entiteit + status gedepubliceerd op `Media`</td></tr>
 <tr><td>Geen bron voor statistieken</td><td>statistieken per organisatie/project (logins, uploads, moderatie, annotaties)</td><td>`Gebeurtenislog`-entiteit; persoonsgebonden regels na bewaartermijn geaggregeerd/geanonimiseerd (AVG)</td></tr>

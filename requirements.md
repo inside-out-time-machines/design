@@ -54,11 +54,11 @@
 
 ## (Sub)domeinen ## {#domains}
 
-* [www.iotm.nl](https://www.iotm.nl) — publieksfrontend
-* [api.iotm.nl](https://api.iotm.nl) — publieke API (en beheer-API)
-* [auth.iotm.nl](https://auth.iotm.nl) — identity provider
-* [iiif.iotm.nl](https://iiif.iotm.nl) — IIIF Image API
-* [anno.iotm.nl](https://anno.iotm.nl) — W3C annotatieserver
-* [data.iotm.nl](https://data.iotm.nl) — RDF, SPARQL en datadumps
-* [status.iotm.nl](https://status.iotm.nl) — status en monitoring
-* ark.iotm.nl — gereserveerd voor de ARK-resolver (latere fase, zie [[#keuze-open-vragen]])
+* [www.iotm.nl](https://www.iotm.nl) - publieksfrontend
+* [api.iotm.nl](https://api.iotm.nl) - publieke API (en beheer-API)
+* [auth.iotm.nl](https://auth.iotm.nl) - identity provider
+* [iiif.iotm.nl](https://iiif.iotm.nl) - IIIF Image API
+* [anno.iotm.nl](https://anno.iotm.nl) - W3C annotatieserver
+* [data.iotm.nl](https://data.iotm.nl) - RDF, SPARQL en datadumps
+* [status.iotm.nl](https://status.iotm.nl) - status en monitoring
+* ark.iotm.nl - gereserveerd voor de ARK-resolver (latere fase, zie [[#keuze-open-vragen]])

@@ -18,7 +18,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **OB-1** Ik kan moderatoren uitnodigen, bewerken en verwijderen; de uitnodigingsflow werkt zoals PB-3 (incl. handreiking-link in de mail).
 * **OB-2** Ik kan projecten aanmaken en bewerken met alle metadata (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); een project verwijderen kan alleen als het leeg is én er minstens één ander project resteert (anders 409).
 * **OB-3** Ik kan per project de beschikbare terminologiebronnen instellen uit de lijst van het NDE Termennetwerk; upload- en annotatieschermen bieden daarna alléén die bronnen aan.
-* **OB-4** Ik kan per project de datasetbeschrijving bewerken en — uitsluitend als het project gepubliceerde jottems heeft — valideren en aanmelden bij het NDE Datasetregister; een SHACL-validatiefout toont de details (422), zonder openbare data volgt 409.
+* **OB-4** Ik kan per project de datasetbeschrijving bewerken en - uitsluitend als het project gepubliceerde jottems heeft - valideren en aanmelden bij het NDE Datasetregister; een SHACL-validatiefout toont de details (422), zonder openbare data volgt 409.
 * **OB-5** *(fase 2)* Ik kan een bestaande collectie via IIIF importeren in een project; geïmporteerde jottems doorlopen de reguliere moderatie.
 * **OB-6** *(fase 2)* Ik kan per project een e-depot-export starten (202); na afronding ontvang ik de export-gereed-mail en is de download een valide BagIt (checksums kloppen) met `ro-crate-metadata.json`.
 
@@ -39,7 +39,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## Uploader ## {#ac-uploader}
 
-* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF/PDF/audio, tot 50 MB; daarboven of ander type: duidelijke weigering) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie; de projectkeuze is verplicht — zonder project geen upload.
+* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF/PDF/audio, tot 50 MB; daarboven of ander type: duidelijke weigering) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie; de projectkeuze is verplicht - zonder project geen upload.
 * **UP-2** Direct na de upload zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; de moderator ziet signaal én verklaring.
 * **UP-3** Een afgekeurde jottem kan ik aanpassen en opnieuw indienen (status terug naar nieuw); een goedgekeurde jottem kan ik niet bewerken of verwijderen (403), een afgekeurde wél verwijderen.
 
@@ -55,7 +55,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **AP-1** De Change Discovery-feed per organisatie toont Create bij publicatie en Update bij metadata- én annotatiemutaties, in valide ActivityStreams-paginering.
 * **AP-2** RSS-feeds (platform, organisatie, project) valideren tegen RSS 2.0 en tonen nieuwe jottems met duurzame link en thumbnail.
 * **AP-3** `/jottem/search` accepteert uitsluitend de gedefinieerde zoek-DSL en levert resultaten mét facetten; een rauwe Elasticsearch-query wordt geweigerd (422).
-* **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie — telkens als valide W3C `AnnotationCollection`/`Annotation`.
+* **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`.
 * **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; audio-jottems hebben een canvas met `duration`.
 * **AP-6** De datasetbeschrijving per project valideert tegen het SHACL-shape van het Datasetregister; de datadump (N-Triples) valideert tegen schema.org AP NDE; `/datacatalog` bundelt alle projectdatasets.
 * **AP-7** De duurzame jottem-URL levert HTML bij `Accept: text/html` en JSON-LD/Turtle bij RDF-accept-headers (303); een gedepubliceerde jottem geeft een tombstone (410).

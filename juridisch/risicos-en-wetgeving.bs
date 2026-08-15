@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: Jottem — Risico's en wet- en regelgeving
+Title: Jottem - Risico's en wet- en regelgeving
 Shortname: risicos-en-wetgeving
 Level: 1
 Status: DREAM

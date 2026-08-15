@@ -19,12 +19,12 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
-* kan ik per project de datasetbeschrijving bewerken en \- indien er openbare (gepubliceerde) data is \- deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
+* kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
 * kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
 
 ## Als moderator kan ik ## {#moderator}
 
-* alle jottems (afbeelding \+ metadata \+ verrijkingen) bekijken  
+* alle jottems (afbeelding + metadata + verrijkingen) bekijken  
 * de status van een jottem aanpassen van nieuw naar goedgekeurd of afgekeurd op basis van de kwaliteitscontrole op afbeelding, metadata, privacy (incl. toestemming herkenbare personen), auteursrecht en het onderscheid tussen herinnering en verifieerbaar feit  
   * ik word daarbij ondersteund door het automatische detectiesignaal van de Herkenbaar API (herkenbare personen ja/nee + betrouwbaarheid) en de toestemmingsverklaring van de uploader  
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
@@ -35,7 +35,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 * inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen  
 * kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden  
-* kan ik een overzicht krijgen van geuploadde afbeeldingen, status een \#annotaties en deellinks  
+* kan ik een overzicht krijgen van geuploadde afbeeldingen, status een #annotaties en deellinks  
 * kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen  
 * kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)
 
@@ -46,7 +46,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
-* kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet\!)
+* kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
 
 ## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
 
@@ -70,7 +70,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * annotaties ophalen via het W3C Web Annotation Protocol: per jottem (AnnotationCollection uit de container) en per organisatie (aggregerende AnnotationCollection)  
 * per organisatie / project een IIIF collection opvragen  
 * per project een datasetbeschrijving, RSS-feed en aggregerende AnnotationCollection opvragen  
-* per jottem IIIF info.json \+ manifest opvragen  
+* per jottem IIIF info.json + manifest opvragen  
 * per project een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen; de platformbrede datacatalogus bundelt alle projectdatasets
 
 ## Als bezoeker kan ik ## {#bezoeker}

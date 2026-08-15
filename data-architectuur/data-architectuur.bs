@@ -24,13 +24,13 @@ De data leeft in drie lagen:
 <tr><th>Laag</th><th>Opslag</th><th>Inhoud</th></tr>
 </thead>
 <tbody>
-<tr><td>**Bronlaag**</td><td>PostgreSQL (ERD), MinIO (S3), miiify</td><td>PostgreSQL is de bron van waarheid voor organisaties, gebruikers, media en metadata; MinIO bevat de mediabestanden (originelen, afgeleiden, thumbnails, audio); miiify bevat de W3C-annotaties met versiegeschiedenis.</td></tr>
+<tr><td>**Bronlaag**</td><td>PostgreSQL (ERD), externe Object Storage (S3), miiify</td><td>PostgreSQL is de bron van waarheid voor organisaties, gebruikers, media en metadata; de externe Object Storage (S3) bevat de mediabestanden (originelen, afgeleiden, thumbnails, audio); miiify bevat de W3C-annotaties met versiegeschiedenis.</td></tr>
 <tr><td>**Verwerkingslaag**</td><td>Celery-workers, Elasticsearch, Fuseki</td><td>Workers genereren afgeleiden en thumbnails, mappen metadata naar RDF (upsert in Fuseki), indexeren in Elasticsearch en versturen e-mail. Elasticsearch en Fuseki zijn afgeleide stores: ze zijn altijd volledig te herbouwen uit de bronlaag.</td></tr>
 <tr><td>**Outputlaag**</td><td>api/iiif/anno/data.iotm.nl, RSS</td><td>De standaard-interfaces voor de buitenwereld: IIIF (Image, Presentation, Change Discovery), W3C Web Annotation Protocol, RDF/SPARQL/datadump met datasetbeschrijving, de REST-API's en RSS-feeds.</td></tr>
 </tbody>
 </table>
 
-Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** — elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten — en **PostgreSQL plus miiify en MinIO als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
+Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** — elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten — en **PostgreSQL plus miiify en de Object Storage als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
 
 <pre class="include">
 path: erd.mermaid.md
@@ -64,7 +64,7 @@ De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` 
 
 ## IIIF Image API v3 ## {#iiif-image}
 
-Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en formaten op basis van de pyramidal TIFF/JP2-afgeleide in MinIO (`derivatives`-bucket). De benodigde data:
+Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en formaten op basis van de pyramidal TIFF/JP2-afgeleide in de Object Storage (`derivatives`-bucket). De benodigde data:
 
 <table class="data">
 <thead>
@@ -73,7 +73,7 @@ Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en form
 <tbody>
 <tr><td>`id`</td><td>URI-strategie (afgeleid van `Media.mediaId`)</td></tr>
 <tr><td>`width`, `height`</td><td>`Media.breedte`, `Media.hoogte` (vastgelegd bij verwerking van de upload)</td></tr>
-<tr><td>beeldata (tiles)</td><td>MinIO `derivatives` (pyramidal TIFF/JP2, gegenereerd door worker)</td></tr>
+<tr><td>beeldata (tiles)</td><td>Object Storage `derivatives` (pyramidal TIFF/JP2, gegenereerd door worker)</td></tr>
 </tbody>
 </table>
 
@@ -94,7 +94,7 @@ De backend genereert per jottem een **Manifest** en per organisatie en per proje
 <tr><td>`requiredStatement` (bronvermelding)</td><td>`Organisatie.naam` + inzender (indien `Gebruiker.naamPubliek`)</td></tr>
 <tr><td>`provider`</td><td>`Organisatie.naam`, `Organisatie.logo`, `Organisatie.website`</td></tr>
 <tr><td>`navDate`</td><td>`Metadata` type datering</td></tr>
-<tr><td>`thumbnail`</td><td>MinIO `thumbs`</td></tr>
+<tr><td>`thumbnail`</td><td>Object Storage `thumbs`</td></tr>
 <tr><td>canvas (`width`/`height`)</td><td>`Media.breedte`, `Media.hoogte`</td></tr>
 <tr><td>image service</td><td>IIIF Image API (zie boven)</td></tr>
 <tr><td>`annotations` (AnnotationPage)</td><td>miiify, per jottem-target</td></tr>
@@ -185,7 +185,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:keywords`</td><td>`Metadata` type steekwoord</td></tr>
 <tr><td>`schema:isBasedOn` / `schema:subjectOf`</td><td>`Metadata` type archiefbron (label + URI)</td></tr>
 <tr><td>`schema:contentUrl`, `schema:width`, `schema:height`, `schema:encodingFormat`</td><td>IIIF Image-URI, `Media.breedte`/`hoogte`/`mimeType`</td></tr>
-<tr><td>`schema:thumbnailUrl`</td><td>MinIO `thumbs`</td></tr>
+<tr><td>`schema:thumbnailUrl`</td><td>Object Storage `thumbs`</td></tr>
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam` + `Organisatie.website`</td></tr>
 <tr><td>`schema:isPartOf`</td><td>de projectdataset-IRI (`Media.projectId`)</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl` (NL-only, zie niet-functionele requirements)</td></tr>
@@ -254,14 +254,14 @@ Naast de RDF-datadump kan per project een **compleet exportpakket** worden aange
 └── data/
     ├── ro-crate-metadata.json        beschrijft alles (schema.org)
     ├── dump.nt.gz                    de RDF-datadump van het project
-    ├── media/{mediaId}.(tif|jpg|…)   originelen uit MinIO
+    ├── media/{mediaId}.(tif|jpg|…)   originelen uit de Object Storage
     ├── metadata/{mediaId}.jsonld     per jottem (schema.org AP NDE)
     └── annotaties/{mediaId}.jsonld   W3C Web Annotations per jottem
 ```
 
 Een instellingsspecifieke metadatalaag (**MDTO**, of een **E-ARK SIP/CSIP**-structuur) wordt bewust niet standaard gegenereerd: Nederlandse e-depots verschillen daarvoor te sterk (zie de [infrastructuuranalyse](../infra/analyse.html)); zo'n laag is maatwerk per ontvangende instelling en kan bovenop de bag worden toegevoegd. METS/PREMIS genereert het e-depot zelf bij ingest.
 
-**Proces.** De organisatiebeheerder start de export per project; een worker stelt het pakket **asynchroon** samen (originelen uit MinIO, metadata en annotaties uit de bronlagen) en plaatst het in een aparte `exports`-bucket met beperkte bewaartermijn. Zodra het pakket klaar is, ontvangt de organisatiebeheerder een e-mail met een directe downloadlink.
+**Proces.** De organisatiebeheerder start de export per project; een worker stelt het pakket **asynchroon** samen (originelen uit de Object Storage, metadata en annotaties uit de bronlagen) en plaatst het in een aparte `exports`-bucket met beperkte bewaartermijn. Zodra het pakket klaar is, ontvangt de organisatiebeheerder een e-mail met een directe downloadlink.
 
 <pre class="include">
 path: api-beschrijving.md
@@ -281,7 +281,7 @@ Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-sp
 <tr><td>item `link` / `guid`</td><td>duurzame jottem-URL</td></tr>
 <tr><td>item `description`</td><td>`Media.beschrijving` + thumbnail</td></tr>
 <tr><td>item `pubDate`</td><td>`Media.publicatieDatum`</td></tr>
-<tr><td>item `enclosure`</td><td>MinIO `thumbs` (met `Media.mimeType`)</td></tr>
+<tr><td>item `enclosure`</td><td>Object Storage `thumbs` (met `Media.mimeType`)</td></tr>
 </tbody>
 </table>
 
@@ -347,7 +347,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 
 Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
 
-* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + MinIO; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
+* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
 * **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
 * **Audio**: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

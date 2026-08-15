@@ -65,7 +65,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><td>Zoekmachine</td><td>**Elasticsearch**</td></tr>
 <tr><td>Relationele database</td><td>**PostgreSQL**</td></tr>
 <tr><td>Cache en taakwachtrij</td><td>**Valkey** — *afwijkend van de architectuursuggestie (Redis): drop-in compatibel, maar volledig open source (Linux Foundation)*</td></tr>
-<tr><td>Mediaopslag (S3)</td><td>**MinIO**</td></tr>
+<tr><td>Mediaopslag (S3)</td><td>**Externe Object Storage (S3)** — *herziene keuze (aug 2026): extern in plaats van zelf-gehost MinIO; geen eigen opslagbeheer en de opslag groeit mee zonder serverwijziging. Alle componenten spreken S3, dus MinIO blijft het zelf-gehoste alternatief; de leverancierskeuze is een exploitatiebesluit en blijft buiten het ontwerp*</td></tr>
 <tr><td>Detectie herkenbare personen</td><td>**[Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api)** (eigen dienst: FastAPI + YOLO-pose), interne container, synchroon aangeroepen door de backend bij upload</td></tr>
 <tr><td>Reverse proxy, TLS</td><td>**Traefik**</td></tr>
 <tr><td>Monitoring, logging, alerting</td><td>**Prometheus, Grafana, Loki, Alertmanager** (conform systeemarchitectuur)</td></tr>

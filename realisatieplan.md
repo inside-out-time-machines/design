@@ -48,7 +48,7 @@ preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrij
 <tr><th>Periode</th><th>Mijlpaal</th></tr>
 </thead>
 <tbody>
-<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, MinIO, Valkey, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal)</td></tr>
+<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, externe Object Storage (S3), backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal)</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, zoeken met facetten, kaart + pand-tijdlijn, huisstijl SAMH, Herkenbaar-integratie</td></tr>
 <tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, alle notificatiemails werkend (zie [[#notificaties]])</td></tr>
 <tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>

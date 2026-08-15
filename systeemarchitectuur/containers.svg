@@ -138,12 +138,12 @@
     <text x="450" y="570" text-anchor="middle" class="sub">sessies, API-cache,</text>
     <text x="450" y="582" text-anchor="middle" class="sub">taakwachtrij</text>
   </g>
-  <g class="db">
+  <g class="ext">
     <rect x="580" y="510" width="220" height="80" rx="6"/>
-    <text x="690" y="535" text-anchor="middle" class="lbl">Mediaopslag (S3)</text>
-    <text x="690" y="553" text-anchor="middle" class="oss">MinIO</text>
+    <text x="690" y="535" text-anchor="middle" class="lbl">Mediaopslag (S3, extern)</text>
+    <text x="690" y="553" text-anchor="middle" class="oss">externe Object Storage-dienst</text>
     <text x="690" y="570" text-anchor="middle" class="sub">originelen, pyramidal TIFF/JP2,</text>
-    <text x="690" y="582" text-anchor="middle" class="sub">thumbnails, audio-jottems</text>
+    <text x="690" y="582" text-anchor="middle" class="sub">thumbnails, audio, exports</text>
   </g>
   <g class="db">
     <rect x="840" y="510" width="200" height="80" rx="6"/>
@@ -227,7 +227,7 @@
   <path class="edged" d="M790,271 C700,300 620,315 565,330"/>
   <text x="655" y="322" class="elbl">303 naar RDF</text>
 
-  <!-- cantaloupe -> minio -->
+  <!-- cantaloupe -> mediaopslag (S3) -->
   <path class="edge" d="M140,416 C170,470 550,505 580,530"/>
   <text x="330" y="492" class="elbl">leest afgeleiden uit S3</text>
 

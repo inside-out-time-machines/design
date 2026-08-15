@@ -49,7 +49,7 @@ Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder,
 <tr><td>(intern)</td><td>Zoekmachine</td><td>Elasticsearch (genoemd in requirements)</td><td>OpenSearch</td></tr>
 <tr><td>(intern)</td><td>Relationele database</td><td>PostgreSQL</td><td>MariaDB</td></tr>
 <tr><td>(intern)</td><td>Cache en taakwachtrij</td><td>Valkey (gekozen; Redis-compatibel)</td><td>Redis, RabbitMQ (queue)</td></tr>
-<tr><td>(intern)</td><td>Mediaopslag (S3)</td><td>MinIO</td><td>externe S3-dienst (AWS S3, Scaleway, Backblaze B2)</td></tr>
+<tr><td>(extern)</td><td>Mediaopslag (S3)</td><td>Externe Object Storage-dienst (gekozen)</td><td>MinIO (zelf gehost)</td></tr>
 <tr><td>(intern)</td><td>Detectie herkenbare personen</td><td>Herkenbaar API (eigen dienst: FastAPI + YOLO-pose)</td><td>cloud vision API's (vallen af: beelden moeten on-premise blijven)</td></tr>
 <tr><td>(intern)</td><td>Async workers</td><td>Celery (bij FastAPI) of BullMQ (bij NestJS)</td><td>RQ, Sidekiq</td></tr>
 <tr><td>(edge)</td><td>Reverse proxy, TLS</td><td>Traefik</td><td>Caddy, nginx-proxy + acme-companion</td></tr>
@@ -137,7 +137,7 @@ Belangrijk duurzaamheidsprincipe: de ARK-registry (koppeling ARK naar actuele lo
 
 ## Dataopslag, caching en mediaopslag
 
-PostgreSQL is de primaire bron van waarheid voor het volledige ERD plus de ARK-registry en de moderatiestatussen. Valkey (Redis-compatibel) dient drie doelen: sessie-/API-cache, rate limiting en de taakwachtrij voor de workers. MinIO biedt S3-compatibele mediaopslag met gescheiden buckets: `originals` (niet publiek, alleen via API en workers), `derivatives` (pyramidal TIFF's voor Cantaloupe), `thumbs` (publiek, lange cache-headers) en `audio` voor audio-jottems zoals interviews uit de pilot Smaak van Gouda. Wie geen eigen opslag wil beheren, vervangt MinIO transparant door een externe S3-dienst; alle componenten spreken immers alleen het S3-protocol.
+PostgreSQL is de primaire bron van waarheid voor het volledige ERD plus de ARK-registry en de moderatiestatussen. Valkey (Redis-compatibel) dient drie doelen: sessie-/API-cache, rate limiting en de taakwachtrij voor de workers. De mediaopslag is een **externe Object Storage-dienst (S3)** — geen eigen opslagbeheer en de capaciteit groeit mee zonder serverwijziging — met gescheiden buckets: `originals` (niet publiek, alleen via API en workers), `derivatives` (pyramidal TIFF's voor Cantaloupe), `thumbs` (publiek, lange cache-headers), `audio` voor audio-jottems zoals interviews uit de pilot Smaak van Gouda en `exports` (e-depot-exportpakketten, beperkte bewaartermijn). Alle componenten spreken uitsluitend het S3-protocol, dus een zelf-gehost alternatief (MinIO) blijft transparant inwisselbaar; de leverancierskeuze is een exploitatiebesluit.
 
 Caching gebeurt op drie niveaus: Varnish voor IIIF-tiles en manifests, Valkey voor API-responses (zoekresultaten, collections, statistieken) en HTTP-cache-headers plus ETags op alle publieke endpoints zodat ook harvesters efficient werken.
 
@@ -172,7 +172,7 @@ services:
     environment:
       DATABASE_URL: postgres://jottem@postgres/jottem
       REDIS_URL: redis://valkey:6379
-      S3_ENDPOINT: http://minio:9000
+      S3_ENDPOINT: https://s3.example-objectstorage.eu   # externe Object Storage-dienst
       OIDC_ISSUER: https://auth.iotm.nl/application/o/jottem/
       ES_URL: http://elasticsearch:9200
     labels:
@@ -239,12 +239,6 @@ services:
     volumes: [es_data:/usr/share/elasticsearch/data]
     networks: [data]
 
-  minio:
-    image: minio/minio:latest
-    command: server /data
-    volumes: [minio_data:/data]
-    networks: [data]
-
   herkenbaar:
     build: ./herkenbaar-api
     networks: [app]
@@ -296,7 +290,6 @@ volumes:
   traefik_acme: {}
   pg_data: {}
   es_data: {}
-  minio_data: {}
   fuseki_tdb2: {}
   miiify_data: {}
   prometheus_data: {}
@@ -309,7 +302,7 @@ networks:
   data: { internal: true }
 ```
 
-Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor monitoring, logging en alerting (met exporters per datastore en een blackbox-exporter voor de publieke endpoints), pgBackRest voor database-backups en restic voor nachtelijke offsite backups van alle volumes naar een tweede S3-locatie. Samen met de Internet Archive-kopie van gepubliceerd materiaal ontstaat zo een dubbele duurzaamheidslaag. De inrichting van testen en monitoring is uitgewerkt in paragraaf 5.
+Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor monitoring, logging en alerting (met exporters per datastore en een blackbox-exporter voor de publieke endpoints), pgBackRest voor database-backups en restic voor nachtelijke offsite backups van alle volumes naar een tweede opslaglocatie; de externe mediabuckets worden separaat geback-upt (bijv. met rclone naar diezelfde backup-opslag). Samen met de Internet Archive-kopie van gepubliceerd materiaal ontstaat zo een dubbele duurzaamheidslaag. De inrichting van testen en monitoring is uitgewerkt in paragraaf 5.
 
 # Doorsnijdende aspecten
 
@@ -319,7 +312,7 @@ Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor moni
 
 **Geautomatiseerd testen.** Het testen volgt de testpiramide en draait volledig in CI (GitHub Actions of Forgejo Actions), met een gate op elke pull request en een nachtelijke volledige run:
 
-- *Unit- en integratietests* op de maatwerkcomponenten: pytest (met httpx/testcontainers voor Postgres, Valkey, MinIO en Elasticsearch) voor de backend-API en workers, Vitest/Jest plus Testing Library voor de frontend. Doelstelling is dekking op de bedrijfslogica (moderatieworkflow, autorisatie op objectniveau, ARK-minting, RDF-mapping), niet op boilerplate.
+- *Unit- en integratietests* op de maatwerkcomponenten: pytest (met httpx/testcontainers voor Postgres, Valkey, een S3-testcontainer en Elasticsearch) voor de backend-API en workers, Vitest/Jest plus Testing Library voor de frontend. Doelstelling is dekking op de bedrijfslogica (moderatieworkflow, autorisatie op objectniveau, ARK-minting, RDF-mapping), niet op boilerplate.
 - *Contracttests op de publieke standaarden*, zodat "standaarden aan de buitenkant" ook aantoonbaar blijft: de IIIF Presentation- en Image API-validators, de W3C Web Annotation Protocol-testsuite tegen `anno.iotm.nl`, SHACL-validatie van de gegenereerde RDF tegen het schema.org AP NDE-profiel, smoke-queries op het SPARQL-endpoint en schemavalidatie van de RSS- en ActivityStreams-feeds. Deze tests bewaken dat harvesters (o.a. NDE) zonder maatwerk blijven aansluiten.
 - *End-to-end tests* met Playwright over de docker-compose-stack, die de kritieke ketens doorlopen: registratie/inlog via Authentik → upload via presigned URL → moderatie → publicatie → ARK-resolving met content negotiation → IIIF-manifest en tiles → annotatie → verschijnen in zoekindex, RDF en Change Discovery-feed. Dezelfde suite draait als synthetische monitoring in productie (zie hieronder).
 - *Third-party open-source componenten* (Authentik, Cantaloupe, miiify, Fuseki) testen we niet zelf op unitniveau, maar dekken we af met health-/smoke-tests, versie-pinning en gecontroleerde updates via Renovate/Dependabot; de contract- en e2e-suite fungeert als regressienet bij elke image-update. Security scanning (Trivy op images, dependency-audit) hangt aan dezelfde pipeline.
@@ -360,7 +353,7 @@ Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel 
 <tr><td>RSS per organisatie</td><td>Backend-API</td></tr>
 <tr><td>schema.org AP NDE + datasetbeschrijvingen</td><td>Fuseki op data.iotm.nl + NDE Datasetregister</td></tr>
 <tr><td>Internet Archive integratie</td><td>Workerpool met internetarchive-client</td></tr>
-<tr><td>Mediaopslag (S3)</td><td>MinIO of externe S3-dienst</td></tr>
+<tr><td>Mediaopslag (S3)</td><td>externe Object Storage-dienst (S3); MinIO als zelf-gehost alternatief</td></tr>
 <tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in miiify/metadata</td></tr>
 <tr><td>Termen en vocabulaires (CHT, term-URI's)</td><td>NDE Termennetwerk GraphQL API, via backend-proxy met bronnenselectie per project</td></tr>
 <tr><td>Detectie herkenbare personen (portretrecht)</td><td>Herkenbaar API, synchroon aangeroepen bij upload</td></tr>

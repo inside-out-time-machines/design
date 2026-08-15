@@ -109,11 +109,6 @@
     <text x="500" y="474" text-anchor="middle" class="lbl">elasticsearch</text>
     <text x="500" y="490" text-anchor="middle" class="sub">single node</text>
   </g>
-  <g class="db">
-    <rect x="600" y="450" width="150" height="60" rx="6"/>
-    <text x="675" y="474" text-anchor="middle" class="lbl">minio</text>
-    <text x="675" y="490" text-anchor="middle" class="sub">S3-compatible</text>
-  </g>
 
   <!-- monitoring/observability (services op app-netwerk) -->
   <rect class="net" x="50" y="552" width="760" height="98" rx="8" stroke="#3a6ea5"/>
@@ -152,11 +147,9 @@
     <rect class="volr" x="250" y="666" width="110" height="26" rx="13"/>
     <text x="305" y="683" text-anchor="middle" class="sub">es_data</text>
     <rect class="volr" x="370" y="666" width="110" height="26" rx="13"/>
-    <text x="425" y="683" text-anchor="middle" class="sub">minio_data</text>
-    <rect class="volr" x="490" y="666" width="110" height="26" rx="13"/>
-    <text x="545" y="683" text-anchor="middle" class="sub">fuseki_tdb2</text>
-    <rect class="volr" x="610" y="666" width="120" height="26" rx="13"/>
-    <text x="670" y="683" text-anchor="middle" class="sub">traefik_acme</text>
+    <text x="425" y="683" text-anchor="middle" class="sub">fuseki_tdb2</text>
+    <rect class="volr" x="490" y="666" width="120" height="26" rx="13"/>
+    <text x="550" y="683" text-anchor="middle" class="sub">traefik_acme</text>
     <rect class="volr" x="130" y="700" width="140" height="26" rx="13"/>
     <text x="200" y="717" text-anchor="middle" class="sub">prometheus_data</text>
     <rect class="volr" x="280" y="700" width="120" height="26" rx="13"/>
@@ -181,7 +174,12 @@
   <g>
     <rect x="870" y="420" width="180" height="64" rx="6" fill="#f7efe2" stroke="#b08850" stroke-width="1.5"/>
     <text x="960" y="445" text-anchor="middle" class="lbl">Offsite backup</text>
-    <text x="960" y="462" text-anchor="middle" class="sub">restic / pgBackRest naar S3</text>
+    <text x="960" y="462" text-anchor="middle" class="sub">restic / pgBackRest</text>
+  </g>
+  <g>
+    <rect x="870" y="540" width="180" height="64" rx="6" fill="#f7efe2" stroke="#b08850" stroke-width="1.5"/>
+    <text x="960" y="565" text-anchor="middle" class="lbl">Externe Object Storage</text>
+    <text x="960" y="582" text-anchor="middle" class="sub">mediaopslag (S3)</text>
   </g>
 
   <path class="edge" d="M870,152 L250,152"/>
@@ -190,4 +188,6 @@
   <text x="680" y="368" class="elbl" fill="#999">ia CLI (latere fase)</text>
   <path class="edge" d="M780,480 L870,452"/>
   <text x="800" y="466" class="elbl">nachtelijk</text>
+  <path class="edge" d="M810,380 C850,440 860,520 875,552"/>
+  <text x="828" y="520" class="elbl">S3 API</text>
 </svg>

@@ -88,6 +88,11 @@
     <text x="857" y="483" text-anchor="middle" class="lbl">NDE Termennetwerk</text>
     <text x="857" y="501" text-anchor="middle" class="sub">CHT, Wikidata, GTAA, ... (GraphQL)</text>
   </g>
+  <g class="ext">
+    <rect x="760" y="540" width="195" height="56" rx="4"/>
+    <text x="857" y="563" text-anchor="middle" class="lbl">Externe Object Storage</text>
+    <text x="857" y="581" text-anchor="middle" class="sub">mediaopslag (S3)</text>
+  </g>
 
   <!-- Edges actors -> system -->
   <path class="edge" d="M200,99 C270,99 280,200 330,210"/>
@@ -110,4 +115,6 @@
   <text x="672" y="370" class="elbl">SMTP</text>
   <path class="edge" d="M630,330 C700,350 710,485 760,488"/>
   <text x="674" y="440" class="elbl">GraphQL</text>
+  <path class="edge" d="M600,350 C660,430 690,550 760,564"/>
+  <text x="656" y="520" class="elbl">S3 API</text>
 </svg>

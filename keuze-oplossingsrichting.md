@@ -100,6 +100,21 @@ De salespitch belooft open source; de volgende besluiten maken dat concreet (aug
     hergebruik met naamsvermelding, passend bij de kennisdelingsbelofte uit het
     [[#activiteitenplan]].
 
+Samengevat, het licentiebeeld van het Jottem-ecosysteem:
+
+<table class="data">
+<thead>
+<tr><th>Onderdeel</th><th>Licentie</th></tr>
+</thead>
+<tbody>
+<tr><td>Platformcode ([jottem](https://github.com/inside-out-time-machines/jottem))</td><td>[EUPL-1.2](https://eupl.eu/1.2/nl/)</td></tr>
+<tr><td>[Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api)</td><td>[AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html)</td></tr>
+<tr><td>Ontwerpdocumenten ([design](https://github.com/inside-out-time-machines/design))</td><td>[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.nl)</td></tr>
+<tr><td>[Prototype](https://github.com/inside-out-time-machines/prototype), [website](https://github.com/inside-out-time-machines/website) en [merkgids](https://github.com/inside-out-time-machines/brand)</td><td>[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.nl)</td></tr>
+<tr><td>Lettertypes Fraunces en Albert Sans (huisstijl)</td><td>[SIL OFL 1.1](https://openfontlicense.org/)</td></tr>
+</tbody>
+</table>
+
 ## Consequenties voor de ontwerpdocumenten ## {#keuze-consequenties}
 
 * [[#functional-requirements]]: het ARK-requirement is gemarkeerd als latere fase; de

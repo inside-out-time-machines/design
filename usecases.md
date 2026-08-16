@@ -34,6 +34,8 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
 
+* kan ik via "wachtwoord vergeten" op de loginpagina een wachtwoordreset per e-mail starten; de resetlink verloopt na korte tijd  
+
 * inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen  
 * kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden  
 * kan ik een overzicht krijgen van geuploadde afbeeldingen, status een #annotaties en deellinks  

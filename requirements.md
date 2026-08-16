@@ -12,6 +12,7 @@
 * elke annotatie en reactie is te rapporteren (spam, reclame, ongepast), ook zonder in te loggen; meldingen komen in de moderatieomgeving van de organisatie en de afhandeling wordt gelogd
 * ondersteunde bestandstypen in de MVP: JPG, PNG en TIFF; PDF en audio (met bijbehorende conversiepipeline) volgen in fase 2
 * bij het uploaden bevestigt de uploader de licentie van het project; die wordt op de jottem vastgelegd
+* op apparaten met een camera (met name smartphones) biedt het uploadformulier naast bestandskeuze de mogelijkheid om **direct een foto te maken** met de camera; de aanwezigheid van een camera wordt gedetecteerd en zonder camera verschijnt alleen de bestandskeuze
 * de uploader prikt de locatie als speld op de kaart (coördinaten); adres en openings-/sluitingsjaren zijn metadata
 
 ## Niet-functionele requirements ## {#non-functional-requirements}

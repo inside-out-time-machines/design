@@ -40,7 +40,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## Uploader ## {#ac-uploader}
 
-* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF, tot 50 MB; daarboven of ander type: duidelijke weigering; PDF en audio volgen in fase 2) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie (speld op de kaart); ik bevestig de projectlicentie; de projectkeuze is verplicht - zonder project geen upload.
+* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF, tot 50 MB; daarboven of ander type: duidelijke weigering; PDF en audio volgen in fase 2) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie (speld op de kaart); ik bevestig de projectlicentie; de projectkeuze is verplicht - zonder project geen upload. Op een apparaat met camera kan ik in plaats van een bestand te kiezen direct een foto maken; op een apparaat zonder camera verschijnt die optie niet.
 * **UP-2** Direct na de upload zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; zonder verklaring kies ik zelf: annuleren of tóch indienen (vlag "toestemming: nee"); de moderator ziet signaal én verklaring of vlag.
 * **UP-3** Een afgekeurde jottem kan ik aanpassen en opnieuw indienen (status terug naar nieuw); een goedgekeurde jottem kan ik niet bewerken of verwijderen (403), een afgekeurde wél verwijderen.
 

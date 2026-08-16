@@ -46,6 +46,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
   * kan ik die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
   * bevestig ik bij het indienen de licentie van het project (vastgelegd op de jottem)  
+* kan ik op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  

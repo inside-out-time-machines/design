@@ -33,6 +33,7 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
 
+* Social login via Apple en Instagram (MVP: Google, Microsoft en Facebook; de Apple-aanvraag start eerder vanwege de doorlooptijd)
 * IIIF-collectie-import (bestaande collecties toevoegen; ontwerp-uitwerking gaat vooraf)
 * PDF- en audio-ondersteuning met conversiepipeline (multi-canvas Manifests, audio-canvas met `duration`)
 * E-depot-export per project (BagIt + RO-Crate)

@@ -100,7 +100,7 @@ De rate limiting is per IP-adres met burst, het strengst op de endpoints die dur
 
 ## Authenticatie en autorisatie (Authentik)
 
-Authentik fungeert als centrale OIDC-provider op `auth.iotm.nl` en doet uitsluitend **authenticatie**: registratie voor bezoekers, social login (Google, Facebook, Apple, Microsoft) via federatie, wachtwoord-login, TOTP-2FA en passkeys (WebAuthn). Voor accounts die via een beheeruitnodiging binnenkomen dwingt de enrollment-flow het instellen van een wachtwoord én een tweede factor (TOTP of passkey) af.
+Authentik fungeert als centrale OIDC-provider op `auth.iotm.nl` en doet uitsluitend **authenticatie**: registratie voor bezoekers, social login via federatie (MVP: Google, Microsoft en Facebook; Apple en Instagram volgen in fase 2 vanwege de aanvraag- en reviewdoorlooptijd), wachtwoord-login, TOTP-2FA en passkeys (WebAuthn). Voor accounts die via een beheeruitnodiging binnenkomen dwingt de enrollment-flow het instellen van een wachtwoord én een tweede factor (TOTP of passkey) af.
 
 **Autorisatie: de database is leidend.** Rollen staan niet in de IdP maar in `GebruikerRol` (per organisatie, meerdere rollen per gebruiker - zie het ERD in de data-architectuur). De backend koppelt het access-token via de `sub`-claim aan een `Gebruiker`-rij en bepaalt daarna zelf de rechten (bijv. "moderator van organisatie X mag alleen jottems van X beoordelen"). Zo blijven de uitnodigings- en beheerflows in de applicatie-UI, is er geen groepensynchronisatie met de IdP nodig en is er één bron van waarheid voor rollen.
 

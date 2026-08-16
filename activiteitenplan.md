@@ -165,7 +165,7 @@ Duurzame borging van de oplossing.
 
 - Beheersplan en samenwerkingsovereenkomsten met lokale partners. 
 
-> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate).
+> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate). Tot het duurzame beheer hoort ook de afleverbaarheid van de platformmail: vóór livegang worden SPF, DKIM en DMARC op het verzenddomein ingeregeld en krijgen de attenderingsmails one-click unsubscribe, zodat gebruikers ze makkelijk uitzetten in plaats van ze als spam te markeren; het volledige pakket maatregelen (reverse DNS, eigen MTA, bouncebeheer, reputatiemonitoring) staat in de [afleverbaarheidssectie](#notificaties-afleverbaarheid) van het ontwerp.
 
 ## Relatie met de Faro-kernwaarden
 

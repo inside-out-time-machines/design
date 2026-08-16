@@ -26,6 +26,7 @@
 * capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand; opslag- en verwerkingsgebruik per organisatie wordt gemonitord met alerts (harde quota per organisatie in een latere fase)
 * beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
 * beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA (TOTP of passkey) voor beheer- en moderatorrollen; een wachtwoordreset voor een onbekend e-mailadres is niet te onderscheiden van een bekend adres (altijd dezelfde neutrale boodschap, geen accountenumeratie)
+* mail-afleverbaarheid: SPF, DKIM en DMARC (met alignment) zijn ingeregeld op het verzenddomein; attenderingsmails dragen one-click unsubscribe-headers (RFC 8058) naast de uitschakellink; zie [[#notificaties-afleverbaarheid]] voor het volledige pakket (reverse DNS, bouncebeheer, reputatiemonitoring)
 * privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge
 * back-up & herstel: nachtelijkse offsite back-ups; RPO 24 uur, RTO 1 werkdag; jaarlijkse hersteltest
 * duurzaamheid/exit: periodieke publieke datadumps en een exportstrategie, zie [[#keuze-infra]]

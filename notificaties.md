@@ -1,8 +1,9 @@
 # Notificaties # {#notificaties}
 
 Alle notificatiemails op een rij: trigger, ontvanger en doel. Mails worden **asynchroon**
-verstuurd door de Celery-workers via de SMTP-relay (zie de
-[systeemarchitectuur](systeemarchitectuur/architectuur.html)), zijn Nederlandstalig en dragen
+verstuurd door de Celery-workers via de eigen mailserver (MTA, zie de
+[systeemarchitectuur](systeemarchitectuur/architectuur.html) en
+[[#notificaties-afleverbaarheid]]), zijn Nederlandstalig en dragen
 de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
 ## Overzicht ## {#notificaties-overzicht}
@@ -69,8 +70,56 @@ meertaligheid later zonder verbouwing kan.
 
 * Afzender is het platform (bijv. `noreply@iotm.nl`) met de organisatienaam in de weergavenaam.
 * Transactionele mails (1 t/m 9) zijn niet uitschakelbaar; attenderingsmails (10, 11) zijn
-    instelbaar in het profiel en bevatten een directe uitschakellink.
+    instelbaar in het profiel en bevatten een directe uitschakellink én one-click
+    unsubscribe-headers (zie [[#notificaties-afleverbaarheid]]).
 * Mails bevatten zo min mogelijk persoonsgegevens (AVG): geen inhoudelijke kopie van
     bijdragen, wel links naar de betreffende pagina's.
 * Elke verzending wordt als type in het `Gebeurtenislog` geregistreerd (voor statistiek en
     foutopsporing), zonder de mailinhoud op te slaan.
+
+## Afleverbaarheid ## {#notificaties-afleverbaarheid}
+
+Mail heeft alleen waarde als hij aankomt, en aankomen blíjft. De grote providers (Gmail,
+Yahoo, Microsoft) handhaven sinds 2024-2026 harde afzendereisen; onderstaande maatregelen
+zorgen dat Jottem-mail daaraan voldoet en een goede verzendreputatie opbouwt en behoudt.
+
+**Authenticatie (verplicht).** Op het verzenddomein staan drie DNS-records ingeregeld:
+
+* **SPF**: het verzendende IP is geautoriseerd voor het domein;
+* **DKIM**: elke mail is ondertekend met een sleutel van minimaal 2048 bits;
+* **DMARC**: met *alignment* op het `From:`-domein (het domein dat de ontvanger ziet is
+    hetzelfde als het domein waarop SPF/DKIM slagen). Het beleid start op `p=none` met
+    `rua`-rapportage om de stroom te observeren, en groeit vóór de livegang door naar
+    `p=quarantine` en uiteindelijk `p=reject`.
+
+Daarnaast: een kloppende reverse DNS (PTR-record) op het verzendende IP, een
+HELO-naam die daarmee consistent is, en TLS op de verzendverbinding.
+
+**Makkelijk uitschrijven.** Wie een attenderingsmail (10, 11) niet meer wil, moet er
+zonder moeite vanaf kunnen; anders wordt de spamknop het uitschrijfmechanisme en die
+klachten beschadigen de reputatie van het hele platform. Daarom dragen attenderingsmails
+naast de uitschakellink in de voettekst de headers `List-Unsubscribe` (mailto én https)
+en `List-Unsubscribe-Post: List-Unsubscribe=One-Click` ([RFC 8058](https://www.rfc-editor.org/rfc/rfc8058)),
+zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven werkt direct en
+zonder inloggen (de uitschakellink bevat een token) en wordt binnen 48 uur verwerkt
+(in de praktijk: meteen). Transactionele mails (1 t/m 9) vallen hier bewust buiten;
+die horen bij een handeling van de gebruiker zelf.
+
+**Verzendroute: eigen MTA.** De platformmail loopt via een eigen MTA (Postfix met
+DKIM-ondertekening, bijv. via rspamd of OpenDKIM) als container in de stack; een externe
+(betaalde) verzenddienst is op deze schaal niet nodig. Randvoorwaarden: een vast IPv4-adres
+met instelbare PTR, uitgaande poort 25 open bij de hostingprovider, en consistente
+HELO-/PTR-/A-records.
+
+**Reputatie.** Het platform schrijft alleen geverifieerde adressen aan (e-mailverificatie
+bij registratie is al verplicht). Bounces worden verwerkt: hard bounces gaan op een
+suppressielijst en worden niet opnieuw aangeschreven. Bij livegang wordt het volume
+rustig opgebouwd in plaats van in één keer bulk te versturen. De attenderingen zijn
+gebundeld tot maximaal één mail per dag (zie het overzicht), wat het volume en de
+irritatie laag houdt.
+
+**Monitoring.** De DMARC-rapporten (`rua`) worden periodiek bekeken; het platform is
+aangemeld bij Google Postmaster Tools en Microsoft SNDS/JMRP zodat reputatie en
+spamklachtratio zichtbaar zijn. De spamklachtratio blijft onder de 0,3% (de harde grens
+van de grote providers), met minder dan 0,1% als streefwaarde. De adressen `postmaster@`
+en `abuse@` op het verzenddomein bestaan en worden gelezen ([RFC 2142](https://www.rfc-editor.org/rfc/rfc2142)).

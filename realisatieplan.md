@@ -55,7 +55,7 @@ harde opslagquota per organisatie (MVP: monitoring met alerts).
 <tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, externe Object Storage (S3), backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, zoeken met facetten, kaart + pand-tijdlijn, huisstijl SAMH, Herkenbaar-integratie</td></tr>
 <tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, alle notificatiemails werkend (zie [[#notificaties]])</td></tr>
-<tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>
+<tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>
 </tbody>
 </table>
 
@@ -70,7 +70,10 @@ De pilot gaat live wanneer aantoonbaar:
     klopt en de datasetbeschrijving valideert tegen het NDE Datasetregister;
 3. de juridische documenten door een jurist zijn getoetst en de DPIA is afgerond;
 4. moderatie is ingericht (getrainde moderatoren, [handreiking](juridisch/handreiking-moderatie.html));
-5. back-ups, monitoring en alerting draaien en de hersteltest is uitgevoerd.
+5. back-ups, monitoring en alerting draaien en de hersteltest is uitgevoerd;
+6. SPF, DKIM en DMARC staan op het productie-verzenddomein en een testmail bereikt de
+    inbox van de grote providers (Gmail, Outlook) zonder spammarkering
+    (zie [[#notificaties-afleverbaarheid]]).
 
 ## Huisstijl Jottem-platform ## {#realisatie-huisstijl}
 

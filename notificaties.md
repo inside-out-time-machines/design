@@ -29,7 +29,10 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 ## Afbakening ## {#notificaties-afbakening}
 
 * **Accountmails** (e-mailverificatie bij registratie, wachtwoord-reset, 2FA-/passkey-herstel) worden
-    door **Authentik** zelf verstuurd, niet door de backend.
+    door **Authentik** zelf verstuurd, niet door de backend. De opmaak en tekst wijken daarbij
+    niet af van de rest van het platform: de Authentik-mailtemplates worden via een
+    template-override (mount op `/templates`) vervangen door Nederlandstalige versies in de
+    huisstijl, visueel gelijk aan de platformnotificaties hierboven.
 * **Datasetregister-aanmelding** geeft het resultaat (gevalideerd/aangemeld of foutmelding)
     synchroon terug in de beheer-UI; daar hoort geen mail bij.
 * **Operationele alerts** (endpoint down, backlog, gefaalde back-ups) lopen via Alertmanager

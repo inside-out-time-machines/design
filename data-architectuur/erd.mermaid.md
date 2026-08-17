@@ -53,6 +53,9 @@
     string titel
     string beschrijving
     string bestandsnaam
+    string bron "upload | iiif | url"
+    string bronUrl "manifest-/info.json-/foto-URL bij externe bron"
+    string externeIiifService "image service-basis bij een beeldbank-bron"
     string genre
     string licentie
     int breedte

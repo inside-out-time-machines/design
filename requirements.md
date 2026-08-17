@@ -13,6 +13,7 @@
 * ondersteunde bestandstypen in de MVP: JPG, PNG en TIFF; PDF en audio (met bijbehorende conversiepipeline) volgen in fase 2
 * bij het uploaden bevestigt de uploader de licentie van het project; die wordt op de jottem vastgelegd
 * op apparaten met een camera (met name smartphones) biedt het uploadformulier naast bestandskeuze de mogelijkheid om **direct een foto te maken** met de camera; de aanwezigheid van een camera wordt gedetecteerd en zonder camera verschijnt alleen de bestandskeuze
+* naast bestand en camera accepteert het uploadformulier een beeldbank-permalink (herleid tot IIIF Manifest of info.json, te beginnen met Memorix/SAMH) of een directe foto-URL (server-side gecontroleerd op een werkende afbeelding); externe beelden worden alleen verwezen, niet gekopieerd, en doorlopen dezelfde Herkenbaar-check en moderatie
 * de uploader prikt de locatie als speld op de kaart (coördinaten); adres en openings-/sluitingsjaren zijn metadata
 
 ## Niet-functionele requirements ## {#non-functional-requirements}

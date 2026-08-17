@@ -14,6 +14,8 @@
 * bij het uploaden bevestigt de uploader de licentie van het project; die wordt op de jottem vastgelegd
 * op apparaten met een camera (met name smartphones) biedt het uploadformulier naast bestandskeuze de mogelijkheid om **direct een foto te maken** met de camera; de aanwezigheid van een camera wordt gedetecteerd en zonder camera verschijnt alleen de bestandskeuze
 * naast bestand en camera accepteert het uploadformulier een beeldbank-permalink (herleid tot IIIF Manifest of info.json, te beginnen met Memorix/SAMH) of een directe foto-URL (server-side gecontroleerd op een werkende afbeelding); externe beelden worden alleen verwezen, niet gekopieerd, en doorlopen dezelfde Herkenbaar-check en moderatie
+* de organisatiebeheerder stelt per project in welke van de vier uploadwijzen (bestand kiezen, foto maken met de camera, beeldbank-permalink, foto-URL) actief zijn, met altijd minstens één actieve wijze (standaard: alle vier); het uploadformulier toont alleen de actieve wijzen en de server dwingt de instelling bij het indienen af
+* uploaden gaat altijd via een project (de knoppen op de startpagina en de projectpagina's); zonder projectkeuze leidt de uploadpagina terug naar de startpagina met het overzicht van de lopende projecten en het hoofdmenu bevat daarom geen aparte uploadlink
 * de uploader prikt de locatie als speld op de kaart (coördinaten); adres en openings-/sluitingsjaren zijn metadata
 
 ## Niet-functionele requirements ## {#non-functional-requirements}

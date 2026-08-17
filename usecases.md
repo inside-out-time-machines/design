@@ -18,6 +18,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
+* kan ik per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink, foto-URL), met altijd minstens één actieve wijze (standaard: alle vier)  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
 * kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
 * kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink

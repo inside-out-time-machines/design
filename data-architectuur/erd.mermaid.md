@@ -26,6 +26,8 @@
     string afbeelding
     string datasetLicentie
     string terminologiebronnen
+    string verrijkingen
+    string uploadWijzen
     string status
     int organisatieId FK
   }

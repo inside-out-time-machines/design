@@ -212,7 +212,7 @@ De annotatieserver hanteert **één container per jottem** (containernaam = `med
 
 ## Mapping naar schema.org AP NDE ## {#rdf-mapping}
 
-Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profiel van NDE](https://docs.nde.nl/schema-profile/) en upsert deze in Fuseki (named graph per organisatie). De representatie is opvraagbaar via content negotiation op de duurzame URL, via SPARQL en via de datadump.
+Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profiel van NDE](https://docs.nde.nl/schema-profile/) en herbouwt de betreffende named graph in Fuseki (**named graph per project**, met de projectdataset-IRI als graafnaam; organisatiebrede vragen beslaan de grafen van de projecten van die organisatie). Een nachtelijke reconciliatietaak herbouwt alle grafen uit PostgreSQL. De representatie is opvraagbaar via content negotiation op de duurzame URL, via SPARQL en via de datadump.
 
 <table class="data">
 <thead>
@@ -265,7 +265,7 @@ Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt allee
 </tbody>
 </table>
 
-De datadump wordt per project periodiek (nachtelijks) door een worker gegenereerd uit Fuseki (named graph per project) en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
+De datadump wordt per project on-the-fly gegenereerd uit PostgreSQL (dezelfde mapping als de Fuseki-graaf, met korte cache; consistent by construction) en is tevens onderdeel van de exit-/exportstrategie uit het [keuzedocument](../index.html#keuze-infra): de dumps plus de mediabestanden vormen samen een volledige, herbruikbare export van de gepubliceerde data.
 
 **Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving - uitsluitend wanneer het project openbare (gepubliceerde) data heeft - valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`) en kan deze ook weer afmelden (`DELETE /datasets`). Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
 

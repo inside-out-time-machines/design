@@ -13,11 +13,14 @@ servers:
 
 paths:
 
-  /organisatie:
+  /organisaties:
     get:
       tags: [Organisaties]
       summary: Haal een lijst van alle deelnemende organisaties (verenigingen, archiefinstellingen, instituten, ...) op
-      description: Geeft een overzicht van alle organisaties met hun slug en naam.
+      description: >
+        Geeft een overzicht van alle organisaties met hun huisstijl (kleuren, logo) en
+        actieve projecten, inclusief per project de ingeschakelde uploadwijzen
+        (`uploadWijzen`); gebruikt door de startpagina en het uploadformulier.
       responses:
         '200':
           description: Een lijst met organisaties
@@ -30,17 +33,26 @@ paths:
               example:
                 - slug: "diegoude"
                   naam: "Historische Vereniging Die Goude"
-                - slug: "onsamsterdam"
-                  naam: "Vereniging Ons Amsterdam"
-                - slug: "albertusperk"
-                  naam: "Hilversumse Historische Kring"
-                - slug: "oudutrecht"
-                  naam: "Oud Utrecht"
+                - slug: "samh"
+                  naam: "Streekarchief Midden-Holland"
 
-  /organisatie/rss:
+  /organisatie/{organisatieSlug}/publiek:
+    get:
+      tags: [Organisaties]
+      summary: Publieke organisatiepagina-gegevens (info, huisstijl en actieve projecten)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200':
+          description: Organisatie-info met actieve projecten en aantallen jottems
+          content:
+            application/json:
+              schema: { type: object }
+
+  /rss:
     get:
       tags: [Organisaties, RSS]
-      summary: RSS-feed van nieuwe organisaties op IOTM
+      summary: RSS-feed van de aangesloten organisaties op het platform
       responses:
         '200':
           description: RSS Feed (XML)
@@ -81,10 +93,10 @@ paths:
             application/ld+json:
               schema: { type: object }
 
-  /organisatie/{organisatieSlug}/jottem/rss:
+  /organisatie/{organisatieSlug}/rss:
     get:
       tags: [RSS]
-      summary: RSS-feed van nieuwe jottems
+      summary: RSS-feed van nieuwe jottems van een organisatie
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -128,6 +140,7 @@ paths:
       tags: [Jottems]
       summary: Doorzoek jottems
       description: >
+        **Nog niet gerealiseerd (gepland).**
         Doorzoekt gepubliceerde jottems via een afgebakende zoektaal; de backend vertaalt de
         aanvraag naar Elasticsearch (de zoekmachine zelf is niet direct bevraagbaar).
       requestBody:
@@ -167,6 +180,9 @@ paths:
     get:
       tags: [Jottems]
       summary: Haal jottems op per organisatie
+      description: >
+        **Nog niet gerealiseerd (gepland).** De gepubliceerde jottems van een organisatie
+        zijn nu beschikbaar via de IIIF Collection en de RSS-feed van de organisatie.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -179,49 +195,30 @@ paths:
                 items:
                   $ref: '#/components/schemas/Jottem'
 
-  /organisatie/{organisatieSlug}/projecten:
+  /organisatie/{organisatieSlug}/project/{projectSlug}/publiek:
     get:
-      tags: [Projecten]
-      summary: Haal de projecten van een organisatie op
-      description: Elke organisatie heeft minstens één project (bijv. "Smaak van Gouda"); elke jottem hoort bij precies één project.
+      tags: [Projecten, Jottems]
+      summary: Publieke projectpagina-gegevens met gepubliceerde jottems (gepagineerd)
+      description: >
+        Projectinfo (naam, oproep, periode, licentie, huisstijl van de organisatie) plus
+        het gepagineerde overzicht van gepubliceerde jottems met thumbnails; elke
+        organisatie heeft minstens één project en elke jottem hoort bij precies één project.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
+        - name: projectSlug
+          in: path
+          required: true
+          schema: { type: string }
+        - name: pagina
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, default: 1 }
       responses:
         '200':
-          description: Lijst van projecten
-          content:
-            application/json:
-              schema:
-                type: array
-                items: { $ref: '#/components/schemas/Project' }
-
-  /project/{projectId}:
-    get:
-      tags: [Projecten]
-      summary: Haal een specifiek project op
-      parameters:
-        - $ref: '#/components/parameters/projectId'
-      responses:
-        '200':
-          description: Projectdetails
+          description: Projectdetails met gepagineerde jottemtegels
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Project' }
-
-  /project/{projectId}/jottems:
-    get:
-      tags: [Projecten, Jottems]
-      summary: Haal de (gepubliceerde) jottems van een project op
-      parameters:
-        - $ref: '#/components/parameters/projectId'
-      responses:
-        '200':
-          description: Lijst van jottems
-          content:
-            application/json:
-              schema:
-                type: array
-                items: { $ref: '#/components/schemas/Jottem' }
 
   /project/{projectId}/iiif/collection:
     get:
@@ -304,11 +301,21 @@ paths:
             application/ld+json:
               schema: { $ref: '#/components/schemas/Dataset' }
 
-  /annotation/{annotationId}:
+  /w3c/{jottemId}/{annotationId}:
     get:
       tags: [Annotations]
-      summary: Haal specifieke annotatie op
+      summary: Haal een specifieke annotatie op (annotatieserver)
+      description: >
+        Losse annotaties worden direct door de annotatieserver (AnnoRepo) geserveerd;
+        de annotatie-IRI is `https://anno.iotm.nl/w3c/{jottemId}/{annotationId}`.
+      servers:
+        - url: https://anno.iotm.nl
+          description: Annotatieserver (AnnoRepo)
       parameters:
+        - name: jottemId
+          in: path
+          required: true
+          schema: { type: string }
         - name: annotationId
           in: path
           required: true
@@ -327,7 +334,7 @@ paths:
       description: >
         Levert de AnnotationCollection van de jottem, conform het W3C Web Annotation Protocol.
         De annotatieserver hanteert een container per jottem; dit endpoint verwijst door naar
-        https://anno.iotm.nl/annotations/{jottemId}/ (het IIIF Manifest verwijst hier via
+        https://anno.iotm.nl/w3c/{jottemId}/ (het IIIF Manifest verwijst hier via
         "annotations" ook naar).
       parameters:
         - name: jottemId
@@ -357,6 +364,74 @@ paths:
           content:
             application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
               schema: { $ref: '#/components/schemas/AnnotationCollection' }
+
+  /project/{projectId}/dump.nt.gz:
+    get:
+      tags: [Projecten, Datasetbeschrijvingen]
+      summary: Oude dump-URL zonder projectslug (permanente doorverwijzing)
+      deprecated: true
+      description: >
+        Verwijst met een 301 permanent door naar `dump-{projectSlug}.nt.gz`; blijft
+        bestaan omdat eerder gepubliceerde datasetbeschrijvingen deze URL bevatten.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '301':
+          description: Doorverwijzing naar de dump met projectslug in de naam
+
+  /jottem/{jottemId}/detail:
+    get:
+      tags: [Jottems]
+      summary: Detailweergave van een jottem voor de frontend
+      description: >
+        Interne detailweergave (JSON) waarmee de webapplicatie de jottem-pagina opbouwt:
+        metadata, afbeeldings-URL, IIIF-verwijzingen, bron en de ingeschakelde
+        verrijkingen (CTA's) van het project.
+      parameters:
+        - name: jottemId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Jottem-detail (JSON)
+          content:
+            application/json:
+              schema: { type: object }
+
+  /verrijkingen:
+    get:
+      tags: [Annotations]
+      summary: Catalogus van verrijkingsmogelijkheden (labels en CTA's)
+      description: >
+        De MVP-verrijkingencatalogus uit het verrijkingendocument: per verrijking de
+        sleutel, het label, de call-to-action, de W3C-motivation en het doel; o.a.
+        gebruikt door het projectbeheer om verrijkingen per project in of uit te schakelen.
+      responses:
+        '200':
+          description: Lijst van verrijkingen
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object }
+
+  /attenderingen/uit:
+    get:
+      tags: [Organisaties]
+      summary: Attenderingsmails uitschakelen via de link in de e-mail (werkt zonder inloggen)
+      description: >
+        One-click uitschakelen van attenderingen (RFC 8058-vriendelijk): de link in elke
+        attenderingsmail bevat een geheim token (`token`-queryparameter) waarmee de
+        voorkeur direct wordt uitgezet, zonder inloggen.
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Bevestiging dat attenderingen uit staan
 
   /datacatalog:
     get:
@@ -571,7 +646,20 @@ components:
           type: string
           description: De volledige naam van de organisatie.
           example: "Historische Vereniging Die Goude"
-        logo:
+        beschrijving:
+          type: string
+        website:
+          type: string
+          format: uri
+        kleurPrimair:
+          type: string
+          description: Primaire huisstijlkleur (hex).
+          example: "#a2401f"
+        logoUrl:
           type: string
           format: uri
           description: URL naar het logo van de organisatie.
+        projecten:
+          type: array
+          description: Actieve projecten, met per project o.a. slug, oproep, datasetLicentie en de ingeschakelde uploadwijzen (uploadWijzen).
+          items: { type: object }

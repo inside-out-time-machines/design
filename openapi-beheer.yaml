@@ -74,17 +74,18 @@ paths:
                   uploadUrl: { type: string, format: uri }
                   mediaKey: { type: string }
 
-  /organisatie/{organisatieSlug}/jottem:
+  /jottem:
     post:
       tags: [Uploads]
       summary: Maak een nieuwe jottem aan (status "nieuw", wacht op moderatie)
       description: >
-        Bij het aanmaken wordt de afbeelding synchroon gecontroleerd op herkenbare personen
-        (Herkenbaar API); het resultaat wordt vastgelegd bij de media en teruggegeven, zodat
-        de frontend bij "herkenbaar: ja" direct om een toestemmingsverklaring kan vragen
-        (via toestemmingPersonen in een vervolgaanroep of in deze request).
-      parameters:
-        - $ref: '#/components/parameters/organisatieSlug'
+        Het project (`projectId`) staat in de body en bepaalt de organisatie en de licentie.
+        In plaats van een geüpload bestand kan een externe bron worden meegegeven
+        (`externeBron` met soort `beeldbank` of `url`); de server valideert die opnieuw en
+        legt alleen een verwijzing vast. Bij het aanmaken wordt de afbeelding gecontroleerd
+        op herkenbare personen (Herkenbaar API); bij "herkenbaar: ja" zonder
+        toestemmingsverklaring antwoordt de server met een 422, waarna de frontend de
+        toestemmingsvraag stelt en opnieuw indient met `toestemming: ja` of `nee`.
       requestBody:
         required: true
         content:
@@ -92,14 +93,68 @@ paths:
             schema: { $ref: '#/components/schemas/JottemNieuw' }
       responses:
         '201':
-          description: Jottem aangemaakt, status "nieuw", inclusief detectieresultaat
+          description: Jottem aangemaakt, status "nieuw"
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   jottemId: { type: string }
-                  herkenbaar: { type: string, enum: [ja, nee], description: "Resultaat Herkenbaar API" }
+        '422':
+          description: Toestemmingsvraag (herkenbare personen gedetecteerd) of validatiefout
+
+  /upload/externe-bron:
+    post:
+      tags: [Uploads]
+      summary: Valideer een beeldbank-permalink of foto-URL als externe fotobron
+      description: >
+        Voor de popup in het uploadformulier: een beeldbank-permalink wordt herleid tot een
+        IIIF Manifest of info.json (te beginnen met Memorix/SAMH; directe IIIF-links werken
+        ook), een foto-URL wordt server-side gecontroleerd op een werkende afbeelding
+        (statuscode en content-type). Het antwoord toont wat er opgeslagen gaat worden
+        (bron, bronUrl, preview, afmetingen); er wordt alleen verwezen, niets gekopieerd.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [soort, url]
+              properties:
+                soort: { type: string, enum: [beeldbank, url] }
+                url: { type: string, format: uri }
+      responses:
+        '200':
+          description: Gevalideerde externe bron (bron, bronUrl, previewUrl, service, afmetingen)
+        '422':
+          description: De link is geen herkende beeldbank-permalink of levert geen werkende afbeelding op
+
+  /herkenbaar-check:
+    post:
+      tags: [Uploads]
+      summary: Controleer een geüpload bestand op herkenbare personen (vóór het indienen)
+      description: >
+        Directe controle via de Herkenbaar API, na de upload en vóór het indienen; bij
+        "ja" stelt de frontend de toestemmingsvraag. De controle bij het indienen zelf
+        blijft gezaghebbend.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mediaId]
+              properties:
+                mediaId: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Detectieresultaat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  herkenbaar: { type: boolean, nullable: true }
                   betrouwbaarheid: { type: number, format: float, example: 0.9421 }
 
   /mijn/jottems:
@@ -141,6 +196,8 @@ paths:
     delete:
       tags: [Uploads]
       summary: Verwijder een eigen afgekeurde jottem (goedgekeurde jottems kunnen niet worden verwijderd)
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - $ref: '#/components/parameters/jottemId'
       responses:
@@ -209,6 +266,8 @@ paths:
     get:
       tags: [Favorieten]
       summary: Overzicht van eigen favoriete jottems
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       responses:
         '200':
           description: Lijst van favorieten
@@ -222,6 +281,8 @@ paths:
     put:
       tags: [Favorieten]
       summary: Markeer een jottem als favoriet
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - $ref: '#/components/parameters/jottemId'
       responses:
@@ -229,6 +290,8 @@ paths:
     delete:
       tags: [Favorieten]
       summary: Verwijder de favorietmarkering
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - $ref: '#/components/parameters/jottemId'
       responses:
@@ -238,6 +301,8 @@ paths:
     put:
       tags: [Favorieten]
       summary: Stel eigen favorietenoverzicht in als openbaar (deelbare, niet-duurzame link) of privé
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       requestBody:
         required: true
         content:
@@ -277,12 +342,17 @@ paths:
       responses:
         '201': { description: Annotatie aangemaakt }
 
-  /annotation/{annotationId}:
+  /annotation/{jottemId}/{annotationNaam}:
     put:
       tags: [Annotaties]
-      summary: Bewerk een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in de annotatieserver)
+      summary: Bewerk een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in het Gebeurtenislog)
+      description: >
+        De annotatie wordt geadresseerd met de jottem-id (container) en de annotatienaam,
+        zoals in de annotatie-IRI `https://anno.iotm.nl/w3c/{jottemId}/{annotationNaam}`;
+        de backend schrijft met If-Match/ETag naar de annotatieserver.
       parameters:
-        - $ref: '#/components/parameters/annotationId'
+        - $ref: '#/components/parameters/jottemId'
+        - $ref: '#/components/parameters/annotationNaam'
       requestBody:
         required: true
         content:
@@ -293,9 +363,10 @@ paths:
         '403': { description: Niet de maker van deze annotatie }
     delete:
       tags: [Annotaties]
-      summary: Verwijder een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in de annotatieserver)
+      summary: Verwijder een eigen annotatie (wijzigingsgeschiedenis blijft bewaard in het Gebeurtenislog)
       parameters:
-        - $ref: '#/components/parameters/annotationId'
+        - $ref: '#/components/parameters/jottemId'
+        - $ref: '#/components/parameters/annotationNaam'
       responses:
         '204': { description: Verwijderd }
         '403': { description: Niet de maker van deze annotatie }
@@ -385,6 +456,9 @@ paths:
     put:
       tags: [Gebruikersbeheer]
       summary: Wijzig een gebruiker of diens rol binnen de organisatie
+      description: >
+        **Nog niet gerealiseerd (gepland).** Een rol wijzigen kan nu door de rol te
+        verwijderen en opnieuw toe te voegen.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
         - $ref: '#/components/parameters/gebruikersId'
@@ -407,6 +481,17 @@ paths:
   # --- Organisatiebeheer (rol platformbeheerder; wijzigen ook organisatiebeheerder) ---
 
   /organisatie:
+    get:
+      tags: [Organisatiebeheer]
+      summary: Overzicht van alle organisaties met beheerders en aantallen (rol platformbeheerder)
+      responses:
+        '200':
+          description: Lijst van organisaties met beheergegevens
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/OrganisatieBeheer' }
     post:
       tags: [Organisatiebeheer]
       summary: Definieer een nieuwe organisatiejottem
@@ -431,6 +516,76 @@ paths:
             schema: { $ref: '#/components/schemas/OrganisatieBeheer' }
       responses:
         '200': { description: Bijgewerkt }
+    delete:
+      tags: [Organisatiebeheer]
+      summary: Verwijder een organisatie zonder jottems (rol platformbeheerder)
+      description: >
+        Alleen mogelijk als de organisatie geen jottems bevat; rollen en projecten worden
+        mee verwijderd en het Gebeurtenislog wordt ontkoppeld (blijft bewaard). De
+        beheerinterface vraagt ter bevestiging de slug na te typen.
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '204': { description: Verwijderd }
+        '409': { description: Organisatie bevat jottems en kan niet worden verwijderd }
+
+  /organisatie/{organisatieSlug}/huisstijl-upload:
+    post:
+      tags: [Organisatiebeheer]
+      summary: Vraag een presigned upload-URL aan voor logo of favicon
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bestandsnaam, contentType]
+              properties:
+                bestandsnaam: { type: string }
+                contentType: { type: string, example: "image/png" }
+      responses:
+        '201':
+          description: Presigned upload-URL en objectKey (daarna vastleggen via PUT op de organisatie)
+
+  /project/{projectId}/afbeelding-upload:
+    post:
+      tags: [Projecten]
+      summary: Vraag een presigned upload-URL aan voor de projectafbeelding
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bestandsnaam, contentType]
+              properties:
+                bestandsnaam: { type: string }
+                contentType: { type: string, example: "image/jpeg" }
+      responses:
+        '201':
+          description: Presigned upload-URL en objectKey (daarna vastleggen via PUT op het project)
+
+  /mijn/profiel-afbeelding-upload:
+    post:
+      tags: [Profiel]
+      summary: Vraag een presigned upload-URL aan voor de eigen profielafbeelding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [bestandsnaam, contentType]
+              properties:
+                bestandsnaam: { type: string }
+                contentType: { type: string, example: "image/jpeg" }
+      responses:
+        '201':
+          description: Presigned upload-URL en objectKey (daarna vastleggen via PUT op het profiel)
 
   /project/{projectId}/datasetbeschrijving:
     get:
@@ -496,7 +651,7 @@ paths:
       tags: [Projecten]
       summary: Maak een e-depot-exportpakket van het project aan (BagIt + RO-Crate)
       description: >
-        Rol organisatiebeheerder. Start een asynchrone job die al het materiaal van het
+        **Nog niet gerealiseerd (gepland).** Rol organisatiebeheerder. Start een asynchrone job die al het materiaal van het
         project inpakt als BagIt-zip (checksummanifesten) met een RO-Crate-beschrijving
         (schema.org JSON-LD): originelen, metadata per jottem, annotaties en de RDF-datadump.
         Geschikt voor ingest in een e-depot (Archivematica ondersteunt BagIt native;
@@ -528,12 +683,38 @@ paths:
                     uri: { type: string, format: uri }
                     naam: { type: string, example: "Cultuurhistorische Thesaurus" }
 
+  /termennetwerk/zoek:
+    get:
+      tags: [Projecten]
+      summary: Zoek termen in het NDE Termennetwerk (voor term-URI's bij metadata en annotaties)
+      description: >
+        Proxy op de terms-query van de Termennetwerk GraphQL API; zoekt binnen de
+        terminologiebronnen die voor het project zijn ingesteld (queryparameter
+        `projectId`; zonder projectbeperking zoeken alle bronnen mee).
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: { type: string }
+        - name: projectId
+          in: query
+          required: false
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Gevonden termen met URI, label en bron
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: object }
+
   /organisatie/{organisatieSlug}/import:
     post:
       tags: [Organisatiebeheer]
       summary: Importeer een bestaande collectie (metadata en online afbeeldingen via IIIF)
       description: >
-        Start een asynchrone import van een bestaande collectie op basis van een
+        **Nog niet gerealiseerd (gepland).** Start een asynchrone import van een bestaande collectie op basis van een
         IIIF Collection- of Manifest-URL; de geïmporteerde jottems doorlopen de reguliere
         moderatieworkflow.
       parameters:
@@ -557,6 +738,8 @@ paths:
     get:
       tags: [Statistieken]
       summary: Statistieken van de organisatie (logins per dag, jottems geüpload/goedgekeurd/afgekeurd, annotaties)
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -570,6 +753,8 @@ paths:
     get:
       tags: [Statistieken]
       summary: Platformbrede statistieken, uitgesplitst per organisatie (rol platformbeheerder)
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       responses:
         '200':
           description: Statistieken per organisatie
@@ -585,6 +770,8 @@ paths:
     post:
       tags: [Verwijderverzoeken]
       summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       security: []
       requestBody:
         required: true
@@ -598,6 +785,8 @@ paths:
     get:
       tags: [Verwijderverzoeken]
       summary: Overzicht van openstaande verwijderverzoeken van de organisatie
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -613,6 +802,8 @@ paths:
     put:
       tags: [Verwijderverzoeken]
       summary: Handel een verwijderverzoek af (bij honorering krijgt de jottem status "gedepubliceerd", incl. cache-purge en schoning van alle outputs; anders afwijzing met reden)
+      description: >
+        **Nog niet gerealiseerd (gepland).**
       parameters:
         - name: verzoekId
           in: path
@@ -631,16 +822,14 @@ paths:
       responses:
         '200': { description: Verzoek afgehandeld }
 
-  /annotation/{annotationId}/melding:
+  /annotation/{jottemId}/{annotationNaam}/melding:
     post:
       tags: [Meldingen]
       summary: Rapporteer een annotatie of reactie (spam, reclame, ongepast); kan zonder account, met rate limiting
       security: []
       parameters:
-        - name: annotationId
-          in: path
-          required: true
-          schema: { type: string }
+        - $ref: '#/components/parameters/jottemId'
+        - $ref: '#/components/parameters/annotationNaam'
       requestBody:
         required: true
         content:
@@ -715,11 +904,12 @@ components:
       in: path
       required: true
       schema: { type: string, format: uuid }
-    annotationId:
-      name: annotationId
+    annotationNaam:
+      name: annotationNaam
       in: path
       required: true
       schema: { type: string }
+      description: De annotatienaam binnen de container van de jottem (laatste deel van de annotatie-IRI)
     gebruikersId:
       name: gebruikersId
       in: path

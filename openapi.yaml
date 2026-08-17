@@ -554,7 +554,8 @@ components:
           items:
             type: object
             properties:
-              encodingFormat: { type: string, example: "application/n-triples" }
+              encodingFormat: { type: string, example: "application/n-triples+gzip", description: "Uitsluitend het MIME-type" }
+              usageInfo: { type: string, format: uri, description: "Optioneel profiel bij het MIME-type (bijv. het IIIF Presentation- of W3C anno-profiel)" }
               contentUrl: { type: string, format: uri }
 
     DataCatalog:

@@ -29,6 +29,7 @@
     string verrijkingen
     string uploadWijzen
     string status
+    date creatieDatum
     int organisatieId FK
   }
 

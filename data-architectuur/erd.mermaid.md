@@ -13,6 +13,8 @@
     string identifier
     string spatialUri
     string spatialNaam
+    float spatialLat
+    float spatialLon
     string NAAN
     string kleurenpalet
     string logo

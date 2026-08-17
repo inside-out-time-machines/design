@@ -85,8 +85,8 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 <tr><td>IIIF Image API</td><td>`https://iiif.iotm.nl/3/{mediaId}` (`/info.json`, tiles)</td></tr>
 <tr><td>IIIF Manifest</td><td>`https://api.iotm.nl/v1/jottem/{mediaId}/iiif/manifest`</td></tr>
 <tr><td>IIIF Collection</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/jottems/iiif/collection` en `https://api.iotm.nl/v1/project/{projectId}/iiif/collection`</td></tr>
-<tr><td>Annotaties van een jottem (container)</td><td>`https://anno.iotm.nl/annotations/{jottemId}/`</td></tr>
-<tr><td>Annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}`</td></tr>
+<tr><td>Annotaties van een jottem (container)</td><td>`https://anno.iotm.nl/w3c/{jottemId}/`</td></tr>
+<tr><td>Annotatie</td><td>`https://anno.iotm.nl/w3c/{jottemId}/{annotationId}`</td></tr>
 <tr><td>Annotaties van organisatie / project</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/annotations` en `https://api.iotm.nl/v1/project/{projectId}/annotations`</td></tr>
 <tr><td>Projectdataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset` (beschrijving), `https://data.iotm.nl/project/{projectId}/dump-{projectSlug}.nt.gz` (dump; de oude naam zonder slug verwijst permanent door), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
 </tbody>
@@ -201,8 +201,8 @@ De annotatieserver hanteert **één container per jottem** (containernaam = `med
 <tr><th>Niveau</th><th>Endpoint</th><th>Output</th></tr>
 </thead>
 <tbody>
-<tr><td>Individuele annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}` (en `GET /annotation/{annotationId}` in de publieke API)</td><td>`Annotation`</td></tr>
-<tr><td>Per jottem</td><td>`GET https://anno.iotm.nl/annotations/{jottemId}/` - rechtstreeks uit de container; de publieke API biedt `GET /jottem/{jottemId}/annotations` als doorverwijzing en het IIIF Manifest verwijst hiernaar via `annotations`</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
+<tr><td>Individuele annotatie</td><td>`https://anno.iotm.nl/w3c/{jottemId}/{annotationId}` (en `GET /annotation/{annotationId}` in de publieke API)</td><td>`Annotation`</td></tr>
+<tr><td>Per jottem</td><td>`GET https://anno.iotm.nl/w3c/{jottemId}/` - rechtstreeks uit de container; de publieke API biedt `GET /jottem/{jottemId}/annotations` als doorverwijzing en het IIIF Manifest verwijst hiernaar via `annotations`</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
 <tr><td>Per project</td><td>`GET /project/{projectId}/annotations` in de publieke API - de backend aggregeert de containers van alle gepubliceerde jottems van het project (jottem-lijst uit `Media.projectId`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
 <tr><td>Per organisatie</td><td>`GET /organisatie/{slug}/annotations` in de publieke API - de backend aggregeert de containers van alle gepubliceerde jottems van de organisatie (jottem-lijst uit `Media`)</td><td>`AnnotationCollection` (gepagineerd via `AnnotationPage`s)</td></tr>
 </tbody>

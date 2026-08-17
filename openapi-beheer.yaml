@@ -604,8 +604,9 @@ paths:
       summary: Bewerk de velden waaruit de datasetbeschrijving wordt gegenereerd
       description: >
         Rol organisatiebeheerder. De datasetbeschrijving zelf wordt gegenereerd; bewerken
-        gebeurt via de onderliggende projectvelden (naam, beschrijving, datasetLicentie);
-        publisher-gegevens komen uit de organisatie.
+        gebeurt via de onderliggende projectvelden (naam, beschrijving, datasetLicentie)
+        en het publisher-e-mailadres (Organisatie.email, verplicht in de beschrijving);
+        overige publisher-gegevens komen uit de organisatie.
       parameters:
         - $ref: '#/components/parameters/projectId'
       requestBody:
@@ -618,6 +619,7 @@ paths:
                 naam: { type: string }
                 beschrijving: { type: string }
                 datasetLicentie: { type: string, format: uri }
+                publisherEmail: { type: string, format: email, description: "Publiek contactadres van de publisher (schrijft Organisatie.email)" }
       responses:
         '200': { description: Bijgewerkt; de gegenereerde datasetbeschrijving is direct actueel }
 
@@ -1006,12 +1008,13 @@ components:
 
     OrganisatieBeheer:
       type: object
-      required: [naam, slug]
+      required: [naam, slug, email]
       properties:
         naam: { type: string, example: "Streekarchief Midden-Holland" }
         slug: { type: string, example: "samh" }
         beschrijving: { type: string, description: "Gebruikt in o.a. publisher-informatie, IIIF provider en RSS" }
         website: { type: string, format: uri }
+        email: { type: string, format: email, description: "Publiek contactadres; staat als publisher-e-mailadres en contactPoint in de datasetbeschrijving (verplicht)" }
         favicon: { type: string, format: uri }
         logo: { type: string, format: uri }
         kleurenpalet:

@@ -31,7 +31,9 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     op de data-host (per project alle uitgangen, Swagger UI van de publieke API en de
     broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl)
 * **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting en de contracttests uit de
-    systeemarchitectuur
+    systeemarchitectuur (de basis-monitoringstack draait op dev: Prometheus/Grafana met
+    exporters, overzichtsdashboard en basisalerts; Grafana achter Authentik-OIDC,
+    alleen voor platformbeheerders)
 
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
 

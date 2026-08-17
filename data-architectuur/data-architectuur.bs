@@ -275,19 +275,19 @@ De datadump wordt per project on-the-fly gegenereerd uit PostgreSQL (dezelfde ma
 
 ## Aanvullende distributies (verkenning) ## {#aanvullende-distributies}
 
-Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen van een project als `schema:distribution` in de projectdatasetbeschrijving worden opgenomen; een distributie vereist slechts een `schema:contentUrl` en `schema:encodingFormat`, en het SHACL-shape van het register staat extra distributies toe. Dat maakt álle toegangswegen tot de projectdata vindbaar via één datasetbeschrijving:
+Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen van een project als `schema:distribution` in de projectdatasetbeschrijving worden opgenomen; een distributie vereist slechts een `schema:contentUrl` en `schema:encodingFormat` (uitsluitend het MIME-type; een eventueel profiel staat apart in `schema:usageInfo`), en het SHACL-shape van het register staat extra distributies toe. Dat maakt álle toegangswegen tot de projectdata vindbaar via één datasetbeschrijving:
 
 <table class="data">
 <thead>
 <tr><th>Kandidaat-distributie</th><th>contentUrl</th><th>encodingFormat</th><th>Overwegingen</th></tr>
 </thead>
 <tbody>
-<tr><td>RDF-datadump *(bestaand)*</td><td>`https://data.iotm.nl/project/{projectId}/dump.nt.gz`</td><td>`application/n-triples`</td><td>de kern-distributie voor NDE-compatibiliteit</td></tr>
+<tr><td>RDF-datadump *(bestaand)*</td><td>`https://data.iotm.nl/project/{projectId}/dump-{projectSlug}.nt.gz`</td><td>`application/n-triples+gzip`</td><td>de kern-distributie voor NDE-compatibiliteit</td></tr>
 <tr><td>SPARQL-endpoint *(bestaand)*</td><td>`https://data.iotm.nl/sparql`</td><td>`application/sparql-results+json`</td><td>bevraagbaar per named graph (project)</td></tr>
-<tr><td>IIIF Collection</td><td>de collection per project</td><td>`application/ld+json` (IIIF Presentation-profile)</td><td>direct bruikbaar in IIIF-viewers en -aggregators; bestaat in de publieke API</td></tr>
+<tr><td>IIIF Collection</td><td>de collection per project</td><td>`application/ld+json` (usageInfo: het IIIF Presentation-profiel)</td><td>direct bruikbaar in IIIF-viewers en -aggregators; bestaat in de publieke API</td></tr>
 <tr><td>RSS</td><td>de jottem-feed per project</td><td>`application/rss+xml`</td><td>laagdrempelig volgen van nieuwe jottems in het project; geen linked data, maar als distributie toegestaan</td></tr>
-<tr><td>Webannotaties per project</td><td>`GET /project/{projectId}/annotations` (zie [[#annotaties-ontsluiting]])</td><td>`application/ld+json` (W3C anno-profile)</td><td>ontsluit de verrijkingslaag als zelfstandig herbruikbare (deel)dataset; het aggregerende endpoint bestaat in de publieke API (containerindeling: per jottem)</td></tr>
-<tr><td>IIIF Change Discovery</td><td>de ActivityStreams-feed per organisatie</td><td>`application/ld+json`</td><td>maakt *incrementeel* harvesten vindbaar; kanttekening: de feed is organisatiebreed (activiteiten van alle projecten), harvesters filteren desgewenst op de Manifest-URI's van het project</td></tr>
+<tr><td>Webannotaties per project</td><td>`GET /project/{projectId}/annotations` (zie [[#annotaties-ontsluiting]])</td><td>`application/ld+json` (usageInfo: het W3C anno-profiel)</td><td>ontsluit de verrijkingslaag als zelfstandig herbruikbare (deel)dataset; het aggregerende endpoint bestaat in de publieke API (containerindeling: per jottem)</td></tr>
+<tr><td>IIIF Change Discovery</td><td>de ActivityStreams-feed per project</td><td>`application/ld+json`</td><td>maakt *incrementeel* harvesten vindbaar; er is ook een organisatiebrede feed</td></tr>
 </tbody>
 </table>
 

@@ -604,9 +604,9 @@ paths:
       summary: Bewerk de velden waaruit de datasetbeschrijving wordt gegenereerd
       description: >
         Rol organisatiebeheerder. De datasetbeschrijving zelf wordt gegenereerd; bewerken
-        gebeurt via de onderliggende projectvelden (naam, beschrijving, datasetLicentie)
-        en het publisher-e-mailadres (Organisatie.email, verplicht in de beschrijving);
-        overige publisher-gegevens komen uit de organisatie.
+        gebeurt via de onderliggende projectvelden (naam, beschrijving, datasetLicentie);
+        publisher-gegevens (naam, e-mailadres, identifier, plaats) komen uit de
+        organisatie en worden door de platformbeheerder beheerd.
       parameters:
         - $ref: '#/components/parameters/projectId'
       requestBody:
@@ -619,7 +619,6 @@ paths:
                 naam: { type: string }
                 beschrijving: { type: string }
                 datasetLicentie: { type: string, format: uri }
-                publisherEmail: { type: string, format: email, description: "Publiek contactadres van de publisher (schrijft Organisatie.email)" }
       responses:
         '200': { description: Bijgewerkt; de gegenereerde datasetbeschrijving is direct actueel }
 
@@ -1015,6 +1014,9 @@ components:
         beschrijving: { type: string, description: "Gebruikt in o.a. publisher-informatie, IIIF provider en RSS" }
         website: { type: string, format: uri }
         email: { type: string, format: email, description: "Publiek contactadres; staat als publisher-e-mailadres en contactPoint in de datasetbeschrijving (verplicht)" }
+        identifier: { type: string, description: "Optionele organisatie-identificatie (bijv. ISIL of KvK-nummer); publisher-identifier in de datasetbeschrijving" }
+        spatialUri: { type: string, format: uri, description: "Optionele GeoNames-URI (gekozen via het NDE Termennetwerk); schema:spatialCoverage in de datasetbeschrijvingen" }
+        spatialNaam: { type: string, description: "Label bij spatialUri" }
         favicon: { type: string, format: uri }
         logo: { type: string, format: uri }
         kleurenpalet:

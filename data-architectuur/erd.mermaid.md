@@ -9,6 +9,10 @@
     string slug
     string beschrijving
     string website
+    string email
+    string identifier
+    string spatialUri
+    string spatialNaam
     string NAAN
     string kleurenpalet
     string logo

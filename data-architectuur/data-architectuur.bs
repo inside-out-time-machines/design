@@ -139,7 +139,7 @@ De backend genereert per jottem een **Manifest** en per organisatie en per proje
 <tr><td>`label`</td><td>`Media.titel`</td></tr>
 <tr><td>`summary`</td><td>`Media.beschrijving`</td></tr>
 <tr><td>`metadata` (paren)</td><td>`Metadata`-rijen (vervaardiger, datering, plaats, steekwoorden, ...)</td></tr>
-<tr><td>`rights`</td><td>`Media.licentie` (URI)</td></tr>
+<tr><td>`rights`</td><td>`Media.licentie` (URI), genormaliseerd naar de canonieke `http://`-vorm van Creative Commons/RightsStatements.org zoals de Presentation-spec eist; in RDF en de datasetbeschrijving blijft de `https://`-vorm conform de NDE-requirements</td></tr>
 <tr><td>`requiredStatement` (bronvermelding)</td><td>`Organisatie.naam` + inzender (indien `Gebruiker.naamPubliek`)</td></tr>
 <tr><td>`provider`</td><td>`Organisatie.naam`, `Organisatie.logo`, `Organisatie.website`</td></tr>
 <tr><td>`navDate`</td><td>`Metadata` type datering</td></tr>

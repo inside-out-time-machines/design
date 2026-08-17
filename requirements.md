@@ -42,7 +42,7 @@
 * [IIIF Image API](https://iiif.io/api/image/3.0/) (info.json)
 * [IIIF Presentation API](https://iiif.io/api/presentation/3.0/) (manifest/collection)
 * [IIIF Change Discovery](https://iiif.io/api/discovery/1.0/)
-* [Miifi API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml)
+* [AnnoRepo API](https://github.com/knaw-huc/annorepo/blob/main/docs/api-usage.md) (W3C Web Annotation Protocol-server)
 * [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (eigen dienst: detectie van herkenbare personen op afbeeldingen)
 * [NDE Termennetwerk GraphQL API](https://docs.nde.nl/services/network-of-terms/graphql) (term-lookups; genres via de [Cultuurhistorische Thesaurus](https://data.cultureelerfgoed.nl/term/id/cht))
 * geo-annotaties (plek fotograaf, zichtveld, locatie) worden vastgelegd als WKT/GeoJSON

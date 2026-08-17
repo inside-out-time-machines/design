@@ -58,13 +58,13 @@ De data leeft in drie lagen:
 <tr><th>Laag</th><th>Opslag</th><th>Inhoud</th></tr>
 </thead>
 <tbody>
-<tr><td>**Bronlaag**</td><td>PostgreSQL (ERD), externe Object Storage (S3), miiify</td><td>PostgreSQL is de bron van waarheid voor organisaties, gebruikers, media en metadata; de externe Object Storage (S3) bevat de mediabestanden (originelen, afgeleiden, thumbnails, audio); miiify bevat de W3C-annotaties met versiegeschiedenis.</td></tr>
+<tr><td>**Bronlaag**</td><td>PostgreSQL (ERD), externe Object Storage (S3), AnnoRepo</td><td>PostgreSQL is de bron van waarheid voor organisaties, gebruikers, media en metadata; de externe Object Storage (S3) bevat de mediabestanden (originelen, afgeleiden, thumbnails, audio); AnnoRepo bevat de W3C-annotaties; de versiegeschiedenis van elke annotatiemutatie staat in het Gebeurtenislog.</td></tr>
 <tr><td>**Verwerkingslaag**</td><td>Celery-workers, Elasticsearch, Fuseki</td><td>Workers genereren afgeleiden en thumbnails, mappen metadata naar RDF (upsert in Fuseki), indexeren in Elasticsearch en versturen e-mail. Elasticsearch en Fuseki zijn afgeleide stores: ze zijn altijd volledig te herbouwen uit de bronlaag.</td></tr>
 <tr><td>**Outputlaag**</td><td>api/iiif/anno/data.iotm.nl, RSS</td><td>De standaard-interfaces voor de buitenwereld: IIIF (Image, Presentation, Change Discovery), W3C Web Annotation Protocol, RDF/SPARQL/datadump met datasetbeschrijving, de REST-API's en RSS-feeds.</td></tr>
 </tbody>
 </table>
 
-Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** - elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten - en **PostgreSQL plus miiify en de Object Storage als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
+Leidend principe (zie ook de [systeemarchitectuur](../systeemarchitectuur/architectuur.html)): **standaarden aan de buitenkant** - elke output volgt een open standaard zodat harvesters en aggregators (o.a. NDE) zonder maatwerk kunnen aansluiten - en **PostgreSQL plus AnnoRepo en de Object Storage als bron van waarheid**, zodat elke afgeleide store en elke output reproduceerbaar is.
 
 <pre class="include">
 path: erd.mermaid.md
@@ -146,7 +146,7 @@ De backend genereert per jottem een **Manifest** en per organisatie en per proje
 <tr><td>`thumbnail`</td><td>Object Storage `thumbs`</td></tr>
 <tr><td>canvas (`width`/`height`)</td><td>`Media.breedte`, `Media.hoogte`</td></tr>
 <tr><td>image service</td><td>IIIF Image API (zie boven)</td></tr>
-<tr><td>`annotations` (AnnotationPage)</td><td>miiify, per jottem-target</td></tr>
+<tr><td>`annotations` (AnnotationPage)</td><td>AnnoRepo, container per jottem</td></tr>
 <tr><td>Collection-items</td><td>`Media` per `organisatieId`/`projectId` (status goedgekeurd)</td></tr>
 </tbody>
 </table>
@@ -169,18 +169,18 @@ Per organisatie publiceert de backend een ActivityStreams-feed (`OrderedCollecti
 </tbody>
 </table>
 
-**Regel:** elke mutatie die de outputs raakt - metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie - werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt. Het verwijderen van een **annotatie** levert daarbij een `Update`-activity op de jottem op (géén `Delete`: de jottem zelf blijft bestaan; `Delete`/tombstone is voorbehouden aan depublicatie van de jottem). De AnnotationCollections komen live uit miiify en tonen de verwijderde annotatie direct niet meer; de workers hersynchroniseren daarna de named graph in Fuseki en de zoekindex via het outbox-mechanisme uit de [systeemarchitectuur](../systeemarchitectuur/architectuur.html).
+**Regel:** elke mutatie die de outputs raakt - metadata-wijziging, nieuwe/gewijzigde/verwijderde annotatie, depublicatie - werkt `Media.wijzigingsDatum` bij, zodat de Change Discovery-feed (en `schema:dateModified` in de RDF) ook annotatie-wijzigingen omvat, zoals de usecase voor API-gebruikers vraagt. Het verwijderen van een **annotatie** levert daarbij een `Update`-activity op de jottem op (géén `Delete`: de jottem zelf blijft bestaan; `Delete`/tombstone is voorbehouden aan depublicatie van de jottem). De AnnotationCollections komen live uit AnnoRepo en tonen de verwijderde annotatie direct niet meer; de workers hersynchroniseren daarna de named graph in Fuseki en de zoekindex via het outbox-mechanisme uit de [systeemarchitectuur](../systeemarchitectuur/architectuur.html).
 
 # Annotaties # {#annotaties}
 
-Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/) en worden opgeslagen in miiify; lezen kan publiek en standaardconform via het [W3C Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/) op `anno.iotm.nl` (de [Miifi API](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/nationalarchives/miiify/main/doc/swagger.yml)). Schrijven verloopt via de beheer-API, die de geauthenticeerde gebruiker als `creator` toevoegt en autorisatie bewaakt (eigen annotaties bewerken en verwijderen; de git-backend van miiify bewaart de versiegeschiedenis).
+Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/) en worden opgeslagen in [AnnoRepo](https://github.com/knaw-huc/annorepo); lezen kan publiek en standaardconform via het [W3C Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/) op `anno.iotm.nl` (container per jottem: `/w3c/{jottemId}/`, annotatie: `/w3c/{jottemId}/{annotationId}`). Schrijven verloopt via de beheer-API, die de geauthenticeerde gebruiker als `creator` toevoegt (geanonimiseerd als `naamPubliek` uit staat) en autorisatie bewaakt (eigen annotaties bewerken en verwijderen); elke mutatie wordt met volledige payload vastgelegd in het `Gebeurtenislog`, dat daarmee de versiegeschiedenis draagt. Platform-extensies (`jottem:aard`, `jottem:verrijking`) zijn gedefinieerd in een eigen JSON-LD-context op `/ns/jottem.jsonld`.
 
 <table class="data">
 <thead>
 <tr><th>Element</th><th>Bron</th></tr>
 </thead>
 <tbody>
-<tr><td>`id`, `created`, `modified`</td><td>miiify</td></tr>
+<tr><td>`id`, `created`, `modified`</td><td>AnnoRepo / beheer-API</td></tr>
 <tr><td>`motivation`</td><td>vocabulaire, zie [[#vocabulaires]]</td></tr>
 <tr><td>`target` (gehele jottem)</td><td>duurzame jottem-URL of Canvas-URI</td></tr>
 <tr><td>`target` (getekend vlak)</td><td>Canvas-URI + SVG/FragmentSelector (Annotorious)</td></tr>
@@ -363,7 +363,7 @@ Alle term-lookups (genres én term-URI's) verlopen via de [GraphQL API van het N
 <tbody>
 <tr><td>`titel`, `beschrijving`</td><td>`Media`</td><td>fulltext</td></tr>
 <tr><td>`metadata_labels`, `steekwoorden`</td><td>`Metadata`</td><td>fulltext + facet</td></tr>
-<tr><td>`annotatie_teksten`</td><td>miiify (gesynct bij annotatie-mutatie)</td><td>fulltext (usecase: annotaties zoeken)</td></tr>
+<tr><td>`annotatie_teksten`</td><td>AnnoRepo (gesynct bij annotatie-mutatie)</td><td>fulltext (usecase: annotaties zoeken)</td></tr>
 <tr><td>`genre`, `organisatie`, `project`</td><td>`Media`, `Organisatie`, `Project`</td><td>facet</td></tr>
 <tr><td>`periode`</td><td>`Metadata` datering/jaren</td><td>facet/range</td></tr>
 <tr><td>`locatie` (geo_point/geo_shape)</td><td>`Metadata` WKT/GeoJSON</td><td>kaartzoeken</td></tr>
@@ -396,7 +396,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 
 Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
 
-* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + miiify + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
+* **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + AnnoRepo + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
 * **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
 * **Audio** *(fase 2)*: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

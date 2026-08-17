@@ -584,9 +584,10 @@ transcriptie en begrippenverklaring, zonder gebruikers te overladen met knoppen.
 
 ## Aanvullende requirements ## {#verrijking-requirements}
 
-*Deze set requirements hoort vooralsnog alleen bij dit hoofdstuk en werkt nog niet door in
-de overige ontwerpdocumenten (requirements, usecases, ERD, API's); dat doorwerken is een
-vervolgstap na vaststelling.*
+*Status (augustus 2026): de MVP-verrijkingen uit dit hoofdstuk zijn gerealiseerd,
+inclusief V-1 t/m V-4, V-7 en V-8 (per project instelbaar, CTA's op de jottem-pagina,
+W3C-opslag in AnnoRepo, `jottem:aard`, meldingen/moderatie en de eigen JSON-LD-context
+`/ns/jottem.jsonld`). V-5 en V-6 blijven van kracht voor de fase 2-verrijkingen.*
 
 * **V-1** De organisatiebeheerder kan per project instellen welke verrijkingsmogelijkheden
     beschikbaar zijn; standaard staan de MVP-verrijkingen uit dit hoofdstuk aan.

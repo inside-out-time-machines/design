@@ -77,7 +77,7 @@ Het platform staat tussen vijf rollen (bezoeker, gebruiker/uploader/annoteerder,
 <tr><td>`api.iotm.nl`</td><td>Backend-API (REST, IIIF Presentation, Change Discovery, RSS, zoeken)</td><td>FastAPI (Python) met iiif-prezi3</td><td>NestJS, Laravel, Django REST Framework</td></tr>
 <tr><td>`auth.iotm.nl`</td><td>Identity provider (OIDC, social login, 2FA/passkeys)</td><td>Authentik (gekozen)</td><td>Keycloak, Ory Kratos/Hydra</td></tr>
 <tr><td>`iiif.iotm.nl`</td><td>IIIF Image API 3.0 + HTTP-cache</td><td>Cantaloupe achter Varnish</td><td>iipsrv, SIPI, go-iiif; nginx proxy_cache</td></tr>
-<tr><td>`anno.iotm.nl`</td><td>W3C Web Annotation server</td><td>miiify (expliciet genoemd in het designdocument)</td><td>SimpleAnnotationServer, Annotot</td></tr>
+<tr><td>`anno.iotm.nl`</td><td>W3C Web Annotation server</td><td>AnnoRepo (gekozen; miiify uit de eerdere versie van dit document is read-only geworden)</td><td>miiify, SimpleAnnotationServer, Annotot</td></tr>
 <tr><td>`ark.iotm.nl`</td><td>ARK-resolver en -minter</td><td>Arklet (Internet Archive)</td><td>eigen microservice + noid-bibliotheek (pynoid)</td></tr>
 <tr><td>`data.iotm.nl`</td><td>RDF-publicatie (schema.org AP NDE), SPARQL, datadumps, datasetbeschrijvingen</td><td>Apache Jena Fuseki</td><td>Oxigraph, QLever, Virtuoso OS</td></tr>
 <tr><td>(intern)</td><td>Zoekmachine</td><td>Elasticsearch (genoemd in requirements)</td><td>OpenSearch</td></tr>
@@ -142,9 +142,9 @@ De frontend op `www.iotm.nl` is een aparte container (Next.js of SvelteKit) met 
 
 Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regio's, formaten) en leest bronbestanden rechtstreeks uit de S3-opslag (S3Source). Bij goedkeuring van een jottem maakt een worker een pyramidal TIFF of JPEG2000 als afgeleide, wat tiling zonder zware rekenlast mogelijk maakt. Varnish (of nginx proxy_cache) staat ervoor en cachet tiles en info.json agressief; gepubliceerde beelden zijn immutable, dus lange TTL's zijn veilig. Zo blijft de image server ook bij piekverkeer (bijv. na een oproep in lokale media) responsief.
 
-## Annotaties (miiify)
+## Annotaties (AnnoRepo)
 
-miiify, de annotatieserver van The National Archives (UK) die ook in het designdocument wordt genoemd, implementeert het W3C Web Annotation Protocol en slaat annotaties versiebeheerd op (git-gebaseerde backend), wat goed past bij de wens om herinneringen, aanvullingen en correcties herleidbaar te houden. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar miiify; de API voegt daarbij de geauthenticeerde gebruiker als creator toe en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). Lezen kan publiek en standaardconform via `anno.iotm.nl`, zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
+[AnnoRepo](https://github.com/knaw-huc/annorepo) (KNAW Humanities Cluster) implementeert het W3C Web Annotation Protocol volledig, inclusief de schrijf-API, met autorisatie via api-keys en per container publiek-leesbare toegang (`readOnlyForAnonymousUsers`); opslag in MongoDB. Het eerder gekozen miiify is in 2025-2026 omgebouwd tot een read-only server (schrijven kan daar alleen nog via git-bestanden met een compileerstap), wat niet past bij live annoteren met moderatie; vandaar deze wissel. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar AnnoRepo; de API voegt daarbij de geauthenticeerde gebruiker als creator toe (of anonimiseert, afhankelijk van `naamPubliek`), valideert de verrijking tegen de projectinstellingen en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). De versiegeschiedenis van elke annotatiemutatie wordt met volledige payload vastgelegd in het `Gebeurtenislog`. Lezen kan publiek en standaardconform via `anno.iotm.nl` (containers per jottem: `/w3c/{jottemId}/`), zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
 
 ## Detectie herkenbare personen (Herkenbaar API)
 
@@ -246,11 +246,15 @@ services:
       - "traefik.http.routers.iiif.rule=Host(`iiif.iotm.nl`)"
     networks: [edge, app]
 
-  miiify:
-    image: nationalarchives/miiify:latest
+  mongo:
+    image: mongo:6
+    volumes: [mongo_data:/data/db]
+    networks: [app]
+
+  annorepo:
+    image: ghcr.io/knaw-huc/annorepo-server:0.9.0
     labels:
       - "traefik.http.routers.anno.rule=Host(`anno.iotm.nl`)"
-    volumes: [miiify_data:/data]
     networks: [edge, app]
 
   ark:
@@ -333,7 +337,7 @@ volumes:
   pg_data: {}
   es_data: {}
   fuseki_tdb2: {}
-  miiify_data: {}
+  mongo_data: {}
   prometheus_data: {}
   grafana_data: {}
   loki_data: {}
@@ -357,7 +361,7 @@ Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor moni
 - *Unit- en integratietests* op de maatwerkcomponenten: pytest (met httpx/testcontainers voor Postgres, Valkey, een S3-testcontainer en Elasticsearch) voor de backend-API en workers, Vitest/Jest plus Testing Library voor de frontend. Doelstelling is dekking op de bedrijfslogica (moderatieworkflow, autorisatie op objectniveau, ARK-minting, RDF-mapping), niet op boilerplate.
 - *Contracttests op de publieke standaarden*, zodat "standaarden aan de buitenkant" ook aantoonbaar blijft: de IIIF Presentation- en Image API-validators, de W3C Web Annotation Protocol-testsuite tegen `anno.iotm.nl`, SHACL-validatie van de gegenereerde RDF tegen het schema.org AP NDE-profiel, smoke-queries op het SPARQL-endpoint en schemavalidatie van de RSS- en ActivityStreams-feeds. Deze tests bewaken dat harvesters (o.a. NDE) zonder maatwerk blijven aansluiten.
 - *End-to-end tests* met Playwright over de docker-compose-stack, die de kritieke ketens doorlopen: registratie/inlog via Authentik → upload via presigned URL → moderatie → publicatie → duurzame link met content negotiation → IIIF-manifest en tiles → annotatie → verschijnen in zoekindex, RDF en Change Discovery-feed. Dezelfde suite draait als synthetische monitoring in productie (zie hieronder).
-- *Third-party open-source componenten* (Authentik, Cantaloupe, miiify, Fuseki) testen we niet zelf op unitniveau, maar dekken we af met health-/smoke-tests, versie-pinning en gecontroleerde updates via Renovate/Dependabot; de contract- en e2e-suite fungeert als regressienet bij elke image-update. Security scanning (Trivy op images, dependency-audit) hangt aan dezelfde pipeline.
+- *Third-party open-source componenten* (Authentik, Cantaloupe, AnnoRepo, Fuseki) testen we niet zelf op unitniveau, maar dekken we af met health-/smoke-tests, versie-pinning en gecontroleerde updates via Renovate/Dependabot; de contract- en e2e-suite fungeert als regressienet bij elke image-update. Security scanning (Trivy op images, dependency-audit) hangt aan dezelfde pipeline.
 
 **Monitoring en observability.** De observability-stack (Prometheus, Grafana, Loki, Alertmanager) uit paragraaf 4 wordt als volgt ingericht:
 
@@ -390,13 +394,13 @@ Voor Jottem is een dedicated server een prima, kostenefficiënte keuze met veel 
 <tr><td>IIIF Image API (info.json)</td><td>Cantaloupe + Varnish op iiif.iotm.nl</td></tr>
 <tr><td>IIIF Presentation API (manifest/collection)</td><td>Backend-API met iiif-prezi3</td></tr>
 <tr><td>IIIF Change Discovery</td><td>ActivityStreams-feed in backend-API</td></tr>
-<tr><td>W3C Web Annotations / Annotation Protocol</td><td>miiify op anno.iotm.nl</td></tr>
+<tr><td>W3C Web Annotations / Annotation Protocol</td><td>AnnoRepo op anno.iotm.nl</td></tr>
 <tr><td>Elasticsearch-zoekfunctie</td><td>Elasticsearch, geindexeerd door workers</td></tr>
 <tr><td>RSS per organisatie</td><td>Backend-API</td></tr>
 <tr><td>schema.org AP NDE + datasetbeschrijvingen</td><td>Fuseki op data.iotm.nl + NDE Datasetregister</td></tr>
 <tr><td>Internet Archive integratie</td><td>Workerpool met internetarchive-client</td></tr>
 <tr><td>Mediaopslag (S3)</td><td>externe Object Storage-dienst (S3); MinIO als zelf-gehost alternatief</td></tr>
-<tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in miiify/metadata</td></tr>
+<tr><td>Geo-annotaties (WKT/GeoJSON)</td><td>Annotorious + MapLibre, opslag in AnnoRepo/metadata</td></tr>
 <tr><td>Termen en vocabulaires (CHT, term-URI's)</td><td>NDE Termennetwerk GraphQL API, via backend-proxy met bronnenselectie per project</td></tr>
 <tr><td>Detectie herkenbare personen (portretrecht)</td><td>Herkenbaar API, synchroon aangeroepen bij upload</td></tr>
 <tr><td>Geautomatiseerd testen</td><td>CI-pipeline: unit/integratie (pytest, Vitest), contracttests op IIIF/W3C/SHACL/SPARQL, e2e met Playwright</td></tr>

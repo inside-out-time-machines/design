@@ -365,20 +365,6 @@ paths:
             application/ld+json; profile="http://www.w3.org/ns/anno.jsonld":
               schema: { $ref: '#/components/schemas/AnnotationCollection' }
 
-  /project/{projectId}/dump.nt.gz:
-    get:
-      tags: [Projecten, Datasetbeschrijvingen]
-      summary: Oude dump-URL zonder projectslug (permanente doorverwijzing)
-      deprecated: true
-      description: >
-        Verwijst met een 301 permanent door naar `dump-{projectSlug}.nt.gz`; blijft
-        bestaan omdat eerder gepubliceerde datasetbeschrijvingen deze URL bevatten.
-      parameters:
-        - $ref: '#/components/parameters/projectId'
-      responses:
-        '301':
-          description: Doorverwijzing naar de dump met projectslug in de naam
-
   /jottem/{jottemId}/detail:
     get:
       tags: [Jottems]

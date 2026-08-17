@@ -27,7 +27,9 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     pand-tijdlijn (eigen kaart; GTM-koppeling in fase 2), favorieten incl. openbare deellink
 * **Open data-outputs** - IIIF Image/Presentation/Change Discovery, W3C Annotation
     Protocol (AnnotationCollections), RSS, RDF/SPARQL, datasetbeschrijving + dump per project,
-    datacatalogus en aanmelding bij het NDE Datasetregister
+    datacatalogus en aanmelding bij het NDE Datasetregister, plus de open-data-landingspagina
+    op de data-host (per project alle uitgangen, Swagger UI van de publieke API en de
+    broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl)
 * **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting en de contracttests uit de
     systeemarchitectuur
 

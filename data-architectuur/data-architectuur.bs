@@ -99,16 +99,17 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 <tr><th>Open Graph-element</th><th>Bron</th></tr>
 </thead>
 <tbody>
-<tr><td>`og:title`</td><td>`Media.titel`</td></tr>
-<tr><td>`og:description`</td><td>`Media.beschrijving`</td></tr>
-<tr><td>`og:image` (+ `og:image:width/height`)</td><td>afgeleide uit de Object Storage (voldoende groot voor previews, ± 1200×630)</td></tr>
+<tr><td>`og:title`</td><td>`Media.titel` met de oproep "- weet jij hier meer van?" erachter, zodat een gedeelde link meteen om kennis vraagt</td></tr>
+<tr><td>`og:description`</td><td>`Media.beschrijving` (of, als die ontbreekt, een zin met project- en organisatienaam)</td></tr>
+<tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij bron `url` de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
+<tr><td>`og:image:width/height`</td><td>berekend uit `Media.breedte`/`Media.hoogte` en de gevraagde IIIF-maat, dus de werkelijke afmetingen van de preview; onbekend = weglaten</td></tr>
 <tr><td>`og:url`</td><td>de duurzame jottem-URL</td></tr>
 <tr><td>`og:image:alt`</td><td>`Media.titel`</td></tr>
-<tr><td>`og:type`</td><td>`article` bij jottems, `website` bij de overige pagina's</td></tr>
-<tr><td>`og:locale`</td><td>vast `nl_NL`</td></tr>
-<tr><td>`og:type`, `og:site_name`, `og:locale`</td><td>vast (`article`, "Jottem", `nl_NL`)</td></tr>
+<tr><td>`og:type`, `og:site_name`, `og:locale`</td><td>vast: `article` bij jottems en `website` bij de overige pagina's, "Jottem", `nl_NL`</td></tr>
 </tbody>
 </table>
+
+Elke publiekspagina (home, organisatie, project, jottem) draagt daarnaast een zelfverwijzende `<link rel="canonical">`; op een projectoverzicht houdt een vervolgpagina zijn eigen `?pagina`-parameter in de canonical, zodat zoekmachines elke pagina van de reeks als eigen pagina indexeren.
 
 De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE (303-redirect naar `data.iotm.nl`). De `mediaId` en `projectId` zijn niet-herbruikbare, betekenisloze identifiers (UUID); duurzame data-URI's zijn daarop gebaseerd, terwijl publiekspagina's leesbare slugs gebruiken. Zo kan in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource worden gelegd.
 

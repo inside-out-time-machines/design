@@ -92,7 +92,7 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 </tbody>
 </table>
 
-**Deelbaarheid.** Elke jottem-detailpagina toont deelknoppen naar sociale media (nog te realiseren) en de HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, met sitebrede fallback), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
+**Deelbaarheid.** Elke jottem-detailpagina toont deelknoppen naar sociale media (nog te realiseren) en de HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
 
 <table class="data">
 <thead>

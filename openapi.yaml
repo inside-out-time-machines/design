@@ -48,18 +48,37 @@ paths:
             application/rss+xml:
               schema: { type: string }
 
-  /organisatie/{organisatieSlug}/jottems/iiif/change-discovery:
+  /organisatie/{organisatieSlug}/activity-stream:
     get:
       tags: [Jottems, IIIF]
-      summary: IIIF Change Discovery Activity Stream
-      description: Voor het periodiek harvesten van nieuwe of gewijzigde jottems en annotaties.
+      summary: IIIF Change Discovery Activity Stream van een organisatie
+      description: >
+        Voor het periodiek harvesten van nieuwe of gewijzigde jottems en annotaties:
+        OrderedCollection zonder page-parameter, OrderedCollectionPage met `?page=n`.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
           description: IIIF Change Discovery Activity Stream
           content:
-            application/json:
+            application/ld+json:
+              schema: { type: object }
+
+  /project/{projectId}/activity-stream:
+    get:
+      tags: [Projecten, IIIF]
+      summary: IIIF Change Discovery Activity Stream van een project
+      description: >
+        Activiteiten (Create/Update/Delete) van de jottems binnen één project; de
+        distributie waarnaar de projectdatasetbeschrijving verwijst. OrderedCollection
+        zonder page-parameter, OrderedCollectionPage met `?page=n`.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: IIIF Change Discovery Activity Stream
+          content:
+            application/ld+json:
               schema: { type: object }
 
   /organisatie/{organisatieSlug}/jottem/rss:
@@ -245,14 +264,37 @@ paths:
             application/rss+xml:
               schema: { type: string }
 
+  /project/{projectId}/dump-{projectSlug}.nt.gz:
+    get:
+      tags: [Projecten, Datasetbeschrijvingen]
+      summary: RDF-datadump van een project (N-Triples, gecomprimeerd)
+      description: >
+        Alle gepubliceerde jottems van het project als N-Triples (schema.org AP NDE),
+        gzip-gecomprimeerd (encodingFormat `application/n-triples+gzip`); de
+        kern-distributie van de projectdataset. De projectslug staat in de bestandsnaam;
+        de oude URL zonder slug (`dump.nt.gz`) verwijst permanent door.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - name: projectSlug
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Gecomprimeerde N-Triples-dump
+          content:
+            application/gzip:
+              schema: { type: string, format: binary }
+
   /project/{projectId}/dataset:
     get:
       tags: [Projecten, Datasetbeschrijvingen]
       summary: Datasetbeschrijving van een project met datadump-distributie (schema.org)
       description: >
         Retourneert de metadata-beschrijving van de projectdataset conform schema.org
-        (AP NDE), inclusief distributies (RDF-datadump, SPARQL, IIIF Collection, RSS,
-        AnnotationCollection).
+        (AP NDE), inclusief distributies (RDF-datadump `dump-{projectSlug}.nt.gz`,
+        SPARQL, IIIF Collection, RSS, AnnotationCollection en de activity-stream van
+        het project).
       parameters:
         - $ref: '#/components/parameters/projectId'
       responses:

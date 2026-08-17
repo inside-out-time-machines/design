@@ -88,7 +88,7 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 <tr><td>Annotaties van een jottem (container)</td><td>`https://anno.iotm.nl/annotations/{jottemId}/`</td></tr>
 <tr><td>Annotatie</td><td>`https://anno.iotm.nl/annotations/{jottemId}/{annotationId}`</td></tr>
 <tr><td>Annotaties van organisatie / project</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/annotations` en `https://api.iotm.nl/v1/project/{projectId}/annotations`</td></tr>
-<tr><td>Projectdataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset` (beschrijving), `https://data.iotm.nl/project/{projectId}/dump.nt.gz` (dump), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
+<tr><td>Projectdataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset` (beschrijving), `https://data.iotm.nl/project/{projectId}/dump-{projectSlug}.nt.gz` (dump; de oude naam zonder slug verwijst permanent door), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
 </tbody>
 </table>
 
@@ -155,7 +155,7 @@ Audio-jottems *(fase 2, zie de uploadscope in de requirements)* krijgen een mani
 
 ## IIIF Change Discovery v1 ## {#iiif-change-discovery}
 
-Per organisatie publiceert de backend een ActivityStreams-feed (`OrderedCollection` met pages) waarmee harvesters nieuwe en gewijzigde jottems kunnen volgen:
+Per organisatie én per project publiceert de backend een ActivityStreams-feed (`/organisatie/{slug}/activity-stream` resp. `/project/{projectId}/activity-stream`, `OrderedCollection` met pages) waarmee harvesters nieuwe en gewijzigde jottems kunnen volgen; de projectfeed is tevens een distributie in de projectdatasetbeschrijving:
 
 <table class="data">
 <thead>
@@ -258,7 +258,7 @@ Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt allee
 <tr><td>`schema:description`</td><td>`Project.beschrijving`</td></tr>
 <tr><td>`schema:license` (van de dataset)</td><td>`Project.datasetLicentie`</td></tr>
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam`, `Organisatie.website`</td></tr>
-<tr><td>`schema:distribution`</td><td>datadump (`dump.nt.gz`, `application/n-triples`) én SPARQL-endpoint; aanvullend zie [[#aanvullende-distributies]]</td></tr>
+<tr><td>`schema:distribution`</td><td>datadump (`dump-{projectSlug}.nt.gz`, `application/n-triples+gzip`) én SPARQL-endpoint; aanvullend zie [[#aanvullende-distributies]]</td></tr>
 <tr><td>`schema:dateModified`</td><td>afgeleid: max(`Media.wijzigingsDatum`) per project</td></tr>
 <tr><td>`schema:temporalCoverage`</td><td>`Project.startDatum` – `Project.eindDatum`</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl`</td></tr>

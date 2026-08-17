@@ -360,6 +360,17 @@ Alle term-lookups (genres én term-URI's) verlopen via de [GraphQL API van het N
 
 **Terminologiebronnen per project.** De organisatiebeheerder stelt per project in welke terminologiebronnen beschikbaar zijn voor term-URI's (`Project.terminologiebronnen`, een lijst van bron-URI's uit de `sources`-query; standaard staan alle bronnen open). De upload- en annotatie-interfaces beperken hun `terms`-queries tot die bronnen, zodat bijdragers per project passende thesauri aangeboden krijgen (bijv. CHT + Wikidata voor *Smaak van Gouda*). De backend biedt hiervoor een `sources`-proxy in de beheer-API.
 
+**Huisstijl in de publiekspagina's.** Het kleurenpalet van de organisatie
+(`kleurPrimair`, `kleurSecundair`) komt mee in de publieke API (`GET /organisaties`,
+de organisatie- en projectweergave en het jottem-detail) en kleurt de publiekspagina's
+van die organisatie: de **primaire** kleur de koppen, de bovenrand van projectkaarten,
+de header en alle annotaties (kaart in de lijst, kader op de foto, popup bij dat kader);
+de **secundaire** kleur de knoppen, de linkerrand van CTA-knoppen en de footer. De
+frontend zet daarvoor CSS-variabelen met de Jottem-kleuren als standaard, zodat
+beheer-, moderatie- en profielpagina's de basishuisstijl houden. Tekst op een gekleurd
+vlak wordt automatisch wit of inkt en tekst in de secundaire kleur wordt zo nodig
+verdonkerd, zodat de contrastverhouding altijd minimaal 4,5:1 is.
+
 **Plaats van de organisatie.** De platformbeheerder kiest per organisatie een plaats uit GeoNames (`Organisatie.spatialUri` + `spatialNaam`); die vult `schema:spatialCoverage` in de datasetbeschrijvingen van de organisatie. Bij het opslaan haalt de backend eenmalig de coördinaten bij die URI op (content negotiation naar RDF, `wgs84_pos:lat`/`long`) en bewaart ze in `spatialLat`/`spatialLon`. Dat is afgeleide data: niet zichtbaar of bewerkbaar in de beheerinterface, en niet opgenomen in de datasetbeschrijving. De coördinaten dienen als startpunt van de kaarten, zodat elke organisatie in de eigen omgeving begint: de speld bij het uploaden en het standpunt van de fotograaf bij de zichtveld-annotatie. Een jottem met een eigen speld wint altijd van de organisatieplaats.
 
 # Zoekindex en geo-data # {#zoekindex-geo}

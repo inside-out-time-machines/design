@@ -34,7 +34,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 ## Gebruiker ## {#ac-gebruiker}
 
 * **GE-1** Ik kan registreren en inloggen, ook via social login; bij eerste login bestaat mijn profiel (koppeling via `sub`).
-* **GE-2** Ik kan in mijn profiel mijn naam, afbeelding, `naamPubliek` en de attenderingen (aan/uit) beheren; met `naamPubliek` uit verschijnt mijn naam nergens publiek (annotaties tonen dan een geanonimiseerde vermelding).
+* **GE-2** Ik kan in mijn profiel mijn naam, afbeelding, `naamPubliek` en de attenderingen (aan/uit) beheren; met `naamPubliek` aan staan mijn naam en profielfoto bij mijn jottems, annotaties en reacties ("*naam* heeft dit gisteren geplaatst"), met `naamPubliek` uit verschijnen naam noch foto publiek (dan een geanonimiseerde vermelding met een neutraal poppetje).
 * **GE-3** Ik zie een overzicht van mijn uploads met status, aantal annotaties en deellinks.
 * **GE-4** Ik kan jottems als favoriet markeren/ontmarkeren en mijn favorieten openbaar maken; de deellink toont mijn favorieten zonder inloggen en is géén duurzame link.
 

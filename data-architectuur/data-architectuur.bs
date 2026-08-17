@@ -371,6 +371,14 @@ beheer-, moderatie- en profielpagina's de basishuisstijl houden. Tekst op een ge
 vlak wordt automatisch wit of inkt en tekst in de secundaire kleur wordt zo nodig
 verdonkerd, zodat de contrastverhouding altijd minimaal 4,5:1 is.
 
+**Wie heeft dit geplaatst.** Bij een jottem, een annotatie en een reactie toont de
+publiekspagina de inzender in één regel: profielfoto (of een neutraal poppetje), naam en
+hoe lang geleden ("vandaag", "gisteren", "3 dagen geleden", daarna de datum). De naam
+zit al in de annotatie (`creator`); de bijbehorende profielfoto komt uit
+`GET /deelnemers?ids=...`, dat alleen gebruikers teruggeeft die hun naam publiek delen
+(`Gebruiker.naamPubliek`). Staat die uit, dan toont de pagina de anonieme weergave
+zonder foto.
+
 **Plaats van de organisatie.** De platformbeheerder kiest per organisatie een plaats uit GeoNames (`Organisatie.spatialUri` + `spatialNaam`); die vult `schema:spatialCoverage` in de datasetbeschrijvingen van de organisatie. Bij het opslaan haalt de backend eenmalig de coördinaten bij die URI op (content negotiation naar RDF, `wgs84_pos:lat`/`long`) en bewaart ze in `spatialLat`/`spatialLon`. Dat is afgeleide data: niet zichtbaar of bewerkbaar in de beheerinterface, en niet opgenomen in de datasetbeschrijving. De coördinaten dienen als startpunt van de kaarten, zodat elke organisatie in de eigen omgeving begint: de speld bij het uploaden en het standpunt van de fotograaf bij de zichtveld-annotatie. Een jottem met een eigen speld wint altijd van de organisatieplaats.
 
 # Zoekindex en geo-data # {#zoekindex-geo}

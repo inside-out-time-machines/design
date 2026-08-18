@@ -9,4 +9,4 @@ De voornoemde documenten en de volgende documenten dienen om de risico's te behe
 - [Handreiking moderatie](juridisch/handreiking-moderatie.html)
 - [Interviewprotocol](juridisch/interviewprotocol.html)
 
-> **Let op**: alle concept documenten zijn gemaakt door een niet-jurist en dienen we vóór gebruik te laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/).
+> **Let op**: alle concept documenten zijn gemaakt door een niet-jurist en dienen we vóór gebruik te laten controleren door een jurist.

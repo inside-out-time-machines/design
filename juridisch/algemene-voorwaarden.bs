@@ -47,7 +47,7 @@ html:root {
 }
 </style>
 
-<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
+<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
 
 Welkom bij Jottem! Jottem is het platform waar jij, samen met anderen, de geschiedenis van jouw stad, wijk, straat of huis levend houdt. Wij geloven dat erfgoed van iedereen is en door iedereen gemaakt wordt.
 
@@ -107,8 +107,9 @@ In deze voorwaarden bedoelen wij met:
 1. **Jouw materiaal blijft van jou.** Het auteursrecht op wat je inzendt blijft bij jou als maker of rechthebbende (Auteurswet).
 2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan (ook duurzaam bij externe bewaarplaatsen zoals het Internet Archive) en technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's).
 3. Bij het inzenden kies je onder welke voorwaarden anderen jouw materiaal mogen hergebruiken (bijvoorbeeld een Creative Commons-licentie). Hergebruik door derden mag alleen onder die voorwaarden.
-4. Je zendt alleen materiaal in waarvan je zeker weet dat je dat mag. Dat betekent: je bent zelf de maker, of je hebt toestemming van de rechthebbende, of het auteursrecht is verlopen.
-5. Wij vermelden waar mogelijk de bron en de maker bij gepubliceerd materiaal (artikel 25 Auteurswet, persoonlijkheidsrechten).
+4. **Die hergebruiklicentie is onherroepelijk.** Een Creative Commons-licentie kun je niet terugdraaien: wie jouw materiaal onder die licentie al heeft overgenomen, mag het blijven gebruiken. Vraag je later om verwijdering, dan halen wij het materiaal van het Platform, stoppen wij met aanbieden via onze API's en vragen wij externe bewaarplaatsen om verwijdering. Kies dus bewust: wat eenmaal open staat, staat open.
+5. Je zendt alleen materiaal in waarvan je zeker weet dat je dat mag. Dat betekent: je bent zelf de maker, of je hebt toestemming van de rechthebbende, of het auteursrecht is verlopen.
+6. Wij vermelden waar mogelijk de bron en de maker bij gepubliceerd materiaal (artikel 25 Auteurswet, persoonlijkheidsrechten).
 
 <h3 class="no-num">Artikel 5. Privacy en persoonsgegevens</h3>
 
@@ -117,9 +118,11 @@ In deze voorwaarden bedoelen wij met:
     - De **Platformbeheerder** is verwerkingsverantwoordelijke voor accountgegevens en platformstatistieken, en verwerker voor de Organisaties waar het hun Organisatiejottem betreft.
     - De **Organisatie** is verwerkingsverantwoordelijke voor de persoonsgegevens in de bijdragen binnen haar Organisatiejottem (zoals namen van personen op foto's).
     - De **Uploader of Annoteerder** is er zelf verantwoordelijk voor dat hij persoonsgegevens van anderen alleen deelt als dat mag.
-3. Recente foto's waarop mensen herkenbaar zijn, publiceren wij alleen met toestemming van die mensen. Hier speelt ook het portretrecht (artikel 19-21 Auteurswet): een geportretteerde kan zich tegen publicatie verzetten als hij daar een redelijk belang bij heeft.
-4. Iedereen kan een verzoek doen om eigen materiaal of materiaal waarop hij herkenbaar is te laten verwijderen. Zie artikel 7.
-5. Herinneringen zijn waardevol, maar niet altijd feitelijk juist. Het Platform maakt daarom onderscheid tussen persoonlijke herinneringen en verifieerbare feiten. Zo blijft de informatie eerlijk en betrouwbaar.
+3. Wij publiceren erfgoedmateriaal met persoonsgegevens op grond van een **gerechtvaardigd belang** (artikel 6 lid 1f AVG): erfgoed verzamelen, tonen en duurzaam bewaren. De afweging tussen dat belang en de privacy van betrokkenen ligt vast; wie daar bezwaar tegen wil maken, kan dat (artikel 21 AVG) via het Meldpunt.
+4. Daarnaast geldt het **portretrecht** (artikel 19-21 Auteurswet) als apart spoor: bij recente foto's waarop mensen herkenbaar zijn, vraagt de Uploader hun toestemming en controleert de Moderator dat vóór publicatie. Een geportretteerde kan zich tegen publicatie verzetten als hij daar een redelijk belang bij heeft.
+5. Voor **audio-interviews** werken wij wél met toestemming van de geïnterviewde (artikel 6 lid 1a AVG), vastgelegd op het toestemmingsformulier uit het interviewprotocol.
+6. Iedereen kan een verzoek doen om eigen materiaal of materiaal waarop hij herkenbaar is te laten verwijderen. Zie artikel 7.
+7. Herinneringen zijn waardevol, maar niet altijd feitelijk juist. Het Platform maakt daarom onderscheid tussen persoonlijke herinneringen en verifieerbare feiten. Zo blijft de informatie eerlijk en betrouwbaar.
 
 <h3 class="no-num">Artikel 6. Wat verwachten wij van iedereen?</h3>
 

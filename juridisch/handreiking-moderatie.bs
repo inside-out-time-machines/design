@@ -94,7 +94,7 @@ Dit is de belangrijkste check. Kernvraag: **staan er levende, herkenbare persone
 <tbody>
 <tr><td>Oude foto, personen zijn (vrijwel zeker) overleden</td><td>Goedkeuren kan. De AVG geldt niet voor overledenen. Blijf wel respectvol: geen beschamende context</td></tr>
 <tr><td>Oude foto, personen leven mogelijk nog (vuistregel: foto jonger dan ± 70-80 jaar en personen waren toen jong)</td><td>Kijk naar de context. Gewoon straatbeeld of groepsfoto in een normale situatie: meestal goed. Herkenbaar persoon prominent in beeld: vraag de uploader of er toestemming is of dat de persoon bezwaar zou kunnen hebben</td></tr>
-<tr><td>**Recente foto** (grofweg jonger dan 25 jaar) met herkenbare personen</td><td>**Alleen goedkeuren als er toestemming is.** De uploader moet dit bij de inzending hebben aangegeven. Geen toestemming? Afkeuren en om toestemming vragen, of vragen om de personen onherkenbaar te maken</td></tr>
+<tr><td>**Recente foto** (grofweg jonger dan 25 jaar) met herkenbare personen</td><td>**Alleen goedkeuren als er toestemming is.** De uploader moet dit bij de inzending hebben aangegeven. Geen toestemming? Afkeuren en om toestemming vragen, of vragen om de personen onherkenbaar te maken. Die toestemming is de portretrechtcheck (artikel 19-21 Auteurswet) en tegelijk het zorgvuldigheidsanker onder de belangenafweging waarop het platform publiceert</td></tr>
 <tr><td>Kinderen herkenbaar in beeld op recent materiaal</td><td>Extra streng: alleen met toestemming van ouders/verzorgers</td></tr>
 </tbody>
 </table>
@@ -186,7 +186,7 @@ Elke afkeuring is een uitnodiging om het beter aan te leveren, geen afwijzing va
 <h3 class="no-num">Spiekbriefje: de hele check in het kort</h3>
 
 1. **Kwaliteit**: bruikbaar en kloppend? ✔
-2. **Privacy**: levende, herkenbare personen? Recent = toestemming nodig. Gevoelige info over levenden = niet publiceren. ✔
+2. **Privacy**: levende, herkenbare personen? Recent = toestemming nodig. Gevoelige info over levenden = niet publiceren. Twijfel je? Publiceer niet: een eenmaal verstrekte hergebruiklicentie kun je niet terugdraaien. ✔
 3. **Auteursrecht**: eigen werk of publiek domein = ja. Professioneel werk zonder toestemming = nee. Bezit is geen auteursrecht. ✔
 4. **Herinnering of feit**: duidelijk gemarkeerd? ✔
 5. **Twijfel?** Niet goedkeuren, maar navragen of escaleren. ✔

@@ -104,9 +104,10 @@ De belangrijkste regel is simpel: **geen toestemming = geen publicatie**. De res
 
 Je hoeft dit niet uit je hoofd te kennen, maar het is goed om te weten waaróm we het zo doen:
 
-- **Privacy (AVG)**: een stem en een verhaal zijn persoonsgegevens. Voor publicatie hebben we toestemming nodig, en die moeten we kunnen aantonen. Toestemming mag altijd weer worden ingetrokken; dat geldt dan voor de toekomst.
-- **Naburige rechten (Wet op de naburige rechten)**: wie iets vertelt of voordraagt heeft rechten op die opname, net zoals een muzikant rechten heeft op zijn uitvoering. Met het formulier geeft de geïnterviewde toestemming om de opname te publiceren.
-- **Auteursrecht**: laat de geïnterviewde ook foto's of documenten zien die gescand worden? Dan geldt daarvoor het gewone uploadproces: de eigenaar/rechthebbende geeft daarvoor apart toestemming op het formulier.
+- **Privacy (AVG)**: een stem en een verhaal zijn persoonsgegevens. Anders dan bij foto's, waar het platform publiceert op grond van een gerechtvaardigd belang, werken we bij een interview met **toestemming** (artikel 6 lid 1a AVG): het is een bewuste, persoonlijke afspraak. Die toestemming moeten we kunnen aantonen, en ze mag altijd weer worden ingetrokken; dat geldt dan voor de toekomst.
+- **Auteursrecht**: de opname zelf kan een auteursrechtelijk werk zijn, en het verhaal dat de geïnterviewde vertelt kan dat ook zijn als het een eigen, creatieve vorm heeft. Daarom regelt het formulier niet alleen de toestemming voor de opname en de publicatie, maar ook of anderen het interview mogen hergebruiken.
+- **Let op: dit is géén naburig recht.** Naburige rechten gelden voor uitvoerend kunstenaars die een werk van letterkunde, wetenschap of kunst uitvoeren: iemand die een column voorleest of een lied zingt. Een interview is geen uitvoering van een werk, dus de geïnterviewde heeft daar geen naburig recht op.
+- **Meegebracht materiaal**: laat de geïnterviewde ook foto's of documenten zien die gescand worden? Dan geldt daarvoor het gewone uploadproces: de eigenaar/rechthebbende geeft daarvoor apart toestemming op het formulier.
 
 ---
 
@@ -131,13 +132,14 @@ Platform: Jottem
 - [ ] Mijn **naam** mag bij het interview worden vermeld.
   - [ ] Nee, publiceer het interview zonder mijn naam.
 - [ ] Er mogen **korte fragmenten** van het interview worden gebruikt in communicatie over het project (bijvoorbeeld nieuwsbrief of sociale media).
-- [ ] Anderen mogen het gepubliceerde interview **hergebruiken** onder de volgende licentie: [licentie invullen, bijv. CC BY-NC 4.0].
+- [ ] Anderen mogen het gepubliceerde interview **hergebruiken** onder de volgende licentie: [licentie invullen, bijv. CC BY-NC 4.0]. *Kruis dit alleen aan als u dat echt wilt: zo'n licentie is onherroepelijk. Kruist u niets aan, dan is het interview alleen op het platform te beluisteren en mogen anderen het niet hergebruiken.*
 - [ ] De **documenten of foto's** die ik tijdens het interview laat scannen mogen worden gepubliceerd op het platform. Ik verklaar dat ik daarover mag beslissen (ik ben eigenaar/rechthebbende of heb toestemming van de rechthebbende).
 
 **Goed om te weten**
 
 - U mag tijdens het interview altijd zeggen dat iets niet voor publicatie is. Dat wordt genoteerd en gerespecteerd.
-- U mag uw toestemming later intrekken. Dat kan via het Meldpunt op de website of via [contactgegevens organisatie]. Intrekken geldt voor de toekomst: we halen het materiaal dan van het platform en sturen een verwijderverzoek naar de externe bewaarplaats. Materiaal dat anderen al hebben overgenomen kunnen we niet altijd overal weghalen.
+- U mag uw toestemming later intrekken. Dat kan via het Meldpunt op de website of via [contactgegevens organisatie]. Intrekken geldt voor de toekomst: we halen het interview dan van het platform, stoppen met aanbieden via onze API's en sturen een verwijderverzoek naar de externe bewaarplaats.
+- Eén ding kunnen we niet terugdraaien: heeft u hierboven een **hergebruiklicentie** aangekruist, dan blijft die gelden voor kopieën die anderen onder die licentie al hebben gemaakt. Dat is inherent aan zo'n licentie.
 - Vragen over privacy? Zie het Privacybeleid Jottem op de website of neem contact op via [contactgegevens].
 
 **Ondertekening**

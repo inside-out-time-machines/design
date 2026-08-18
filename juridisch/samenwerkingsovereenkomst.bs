@@ -47,7 +47,7 @@ html:root {
 }
 </style>
 
-<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door [IP Squared](https://ip-squared.com/) of [ICTRecht](https://www.ictrecht.nl/)!!!</strong>
+<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
 
 <h3 class="no-num">Wie sluiten deze overeenkomst?</h3>
 
@@ -108,22 +108,24 @@ Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
     - De Organisatie is **verwerkingsverantwoordelijke** voor de persoonsgegevens in de bijdragen binnen haar organisatiejottem (zoals namen van personen op foto's en in metadata en annotaties).
     - De Platformbeheerder is voor die gegevens **verwerker**: wij verwerken ze alleen in opdracht van de Organisatie, om het platform te laten werken.
     - Voor accountgegevens en platformbrede statistieken is de Platformbeheerder zelf verwerkingsverantwoordelijke. Dat staat in het Privacybeleid Jottem.
-2. **Wat verwerken wij voor jullie?** Bijdragen (afbeeldingen, metadata, annotaties) met daarin mogelijk: namen, afbeeldingen van personen, locaties, herinneringen en contactgegevens van inzenders. Betrokkenen zijn: uploaders, annoteerders en personen die op materiaal voorkomen.
-3. **Onze plichten als verwerker.** Wij:
+2. **Grondslag.** De Organisatie publiceert bijdragen met persoonsgegevens op grond van een gerechtvaardigd belang (artikel 6 lid 1f AVG): erfgoed verzamelen, tonen en duurzaam bewaren. De Organisatie houdt die belangenafweging bij, handelt bezwaren (artikel 21 AVG) af en zorgt bij recente foto's van herkenbare personen voor toestemming in het kader van het portretrecht. Voor audio-interviews geldt toestemming van de geïnterviewde (artikel 6 lid 1a AVG).
+3. **Wat verwerken wij voor jullie?** Bijdragen (afbeeldingen, metadata, annotaties) met daarin mogelijk: namen, afbeeldingen van personen, locaties, herinneringen en contactgegevens van inzenders. Betrokkenen zijn: uploaders, annoteerders en personen die op materiaal voorkomen.
+4. **Onze plichten als verwerker.** Wij:
     - verwerken de gegevens alleen voor het doel van het platform en volgens jullie schriftelijke instructies;
     - zorgen voor passende beveiliging (artikel 32 AVG), zoals versleutelde verbindingen, toegangsbeheer en 2FA of passkeys voor beheerders;
     - laten alleen mensen bij de gegevens die dat voor hun werk nodig hebben en die tot geheimhouding verplicht zijn;
     - helpen jullie bij verzoeken van betrokkenen en bij datalekmeldingen;
     - melden een datalek zo snel mogelijk, uiterlijk binnen 48 uur na ontdekking, aan jullie;
     - verlenen medewerking aan controles (audits) die jullie redelijkerwijs nodig vinden.
-4. **Subverwerkers.** Wij gebruiken de volgende subverwerkers: [hostingpartij invullen] en het Internet Archive (voor duurzame opslag). Het Internet Archive is gevestigd in de Verenigde Staten; opslag daar betekent doorgifte buiten de EER. Deze doorgifte gebeurt op basis van [passende waarborg invullen, bijv. standaardcontractbepalingen] en alleen voor goedgekeurde, voor publicatie bestemde jottems. Nieuwe subverwerkers melden wij vooraf; jullie kunnen daartegen gemotiveerd bezwaar maken.
-5. **Na afloop.** Eindigt de overeenkomst? Dan geven wij de gegevens van jullie organisatiejottem terug of verwijderen wij ze, naar jullie keuze. Zie ook artikel 8 over wat er met gepubliceerd erfgoed gebeurt.
+5. **Subverwerkers.** Wij gebruiken de volgende subverwerkers: [hostingpartij invullen] en het Internet Archive (voor duurzame opslag). Het Internet Archive is gevestigd in de Verenigde Staten; opslag daar betekent doorgifte buiten de EER. Deze doorgifte gebeurt op basis van [passende waarborg invullen, bijv. standaardcontractbepalingen] en alleen voor goedgekeurde, voor publicatie bestemde jottems. Nieuwe subverwerkers melden wij vooraf; jullie kunnen daartegen gemotiveerd bezwaar maken.
+6. **Na afloop.** Eindigt de overeenkomst? Dan geven wij de gegevens van jullie organisatiejottem terug of verwijderen wij ze, naar jullie keuze. Zie ook artikel 8 over wat er met gepubliceerd erfgoed gebeurt.
 
 <h3 class="no-num">Artikel 6. Auteursrecht en licenties</h3>
 
 1. Het auteursrecht op bijdragen blijft bij de inzenders. De Organisatie en de Platformbeheerder krijgen de licentie zoals beschreven in de Algemene voorwaarden.
-2. De software van het platform is en blijft van de Platformbeheerder of van de open source gemeenschap. De Organisatie krijgt een gebruiksrecht voor de duur van deze overeenkomst.
-3. De huisstijl (naam, logo) van de Organisatie blijft van de Organisatie. Wij gebruiken die alleen voor de organisatiejottem en, na overleg, voor communicatie over het platform.
+2. De hergebruiklicentie die een inzender bij een bijdrage kiest (zoals een Creative Commons-licentie) is onherroepelijk. Wordt een bijdrage later verwijderd, dan stopt de publicatie op het platform en in de open data, maar blijven kopieën die anderen onder die licentie al maakten toegestaan. Houd daar rekening mee bij het instellen van de projectlicentie en bij de moderatie.
+3. De software van het platform is en blijft van de Platformbeheerder of van de open source gemeenschap. De Organisatie krijgt een gebruiksrecht voor de duur van deze overeenkomst.
+4. De huisstijl (naam, logo) van de Organisatie blijft van de Organisatie. Wij gebruiken die alleen voor de organisatiejottem en, na overleg, voor communicatie over het platform.
 
 <h3 class="no-num">Artikel 7. Kosten</h3>
 

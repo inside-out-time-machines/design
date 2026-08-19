@@ -167,7 +167,6 @@
 <image id="image9" width="102" height="102" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAABmCAIAAAC2vXM1AAAABmJLR0QA/wD/AP+gvaeTAAAANUlEQVR4nO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgaelIAAe6jhmkAAAAASUVORK5CYII="/>
 </defs>
 <g id="surface1">
-<rect x="0" y="0" width="960" height="540" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <use xlink:href="#image5" transform="matrix(0.381396,0,0,0.381388,294.55,125.48)"/>
 </g>

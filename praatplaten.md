@@ -2,7 +2,7 @@
 
 <style>
 img, svg {
-    background: white;
+    background: var(--bg);
     max-width: 100%;
 }
 </style>

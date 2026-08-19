@@ -3,7 +3,7 @@ Title: Interviewprotocol Jottem
 Shortname: interviewprotocol
 Level: 1
 Status: DREAM
-Boilerplate: conformance no, references no
+Boilerplate: conformance no, references no, table-of-contents no
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
 Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
@@ -45,9 +45,13 @@ html:root {
   --toclink-visited-text: #1f1e1c;
   --toclink-visited-underline: #d85a30;
 }
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
 </style>
 
-*Voor vrijwilligers die interviews afnemen - versie 1.0 - [datum invullen]*
+*Voor vrijwilligers die interviews afnemen - versie 1.1 - 18 augustus 2026*
 
 <h3 class="no-num">Waarom dit protocol?</h3>
 
@@ -128,7 +132,8 @@ Platform: Jottem
 **Ik geef toestemming voor het volgende** (aankruisen wat van toepassing is):
 
 - [ ] Het interview mag worden **opgenomen** (geluid).
-- [ ] De opname mag worden **gepubliceerd** op het Jottem platform en duurzaam worden bewaard, ook bij een externe bewaarplaats (zoals het Internet Archive, gevestigd in de Verenigde Staten).
+- [ ] De opname mag worden **gepubliceerd** op het Jottem platform en duurzaam worden bewaard bij een bewaarplaats binnen de Europese Economische Ruimte (EER).
+- [ ] Er mag ook een **extra kopie** worden bewaard bij het **Internet Archive in de Verenigde Staten**. Ik begrijp dat mijn gegevens daarmee buiten de EER worden opgeslagen, waar andere regels voor gegevensbescherming gelden. *(Niet aangekruist? Dan blijft de opname alleen binnen de EER bewaard.)*
 - [ ] Mijn **naam** mag bij het interview worden vermeld.
   - [ ] Nee, publiceer het interview zonder mijn naam.
 - [ ] Er mogen **korte fragmenten** van het interview worden gebruikt in communicatie over het project (bijvoorbeeld nieuwsbrief of sociale media).

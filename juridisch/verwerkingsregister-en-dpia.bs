@@ -1,0 +1,150 @@
+<pre class='metadata'>
+Title: Verwerkingsregister en DPIA Jottem
+Shortname: verwerkingsregister-en-dpia
+Level: 1
+Status: DREAM
+Boilerplate: conformance no, references no, table-of-contents no
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Verwerkingsregister (artikel 30 AVG) van de Platformbeheerder als verwerkingsverantwoordelijke en als verwerker, een modelregister voor deelnemende Organisaties, en een voorzet voor de gegevensbeschermingseffectbeoordeling (DPIA, artikel 35 AVG). Concept, nog niet juridisch gecontroleerd.
+</pre>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<p boilerplate="copyright">&copy; 2026 <a href="https://www.iotm.nl/">Inside Out Time Machines</a>. Dit document is beschikbaar onder de licentie <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.nl">CC BY-SA 4.0</a>: hergebruik met naamsvermelding, bewerkingen onder dezelfde licentie.</p>
+<style>
+/* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
+   html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+html:root {
+  --bg: #faf6f1;
+  --text: #1f1e1c;
+  --heading-text: #a2401f;
+  --a-normal-text: #a2401f;
+  --a-visited-text: #7d3018;
+  --a-hover-bg: rgba(216,90,48,.08);
+  --a-normal-underline: #d85a30;
+  --a-visited-underline: #a2401f;
+  --hr-text: #d85a30;
+  --tocsidebar-bg: #f2e9de;
+  --tocsidebar-heading-text: #a2401f;
+  --toclink-text: #1f1e1c;
+  --toclink-underline: #d85a30;
+  --toclink-visited-text: #1f1e1c;
+  --toclink-visited-underline: #d85a30;
+}
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
+</style>
+
+<strong>Versie 0.1 - 18 augustus 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
+
+Dit document bundelt drie AVG-verantwoordingsinstrumenten voor het Jottem platform:
+
+- **Deel 1**: het verwerkingsregister van de Platformbeheerder als **verwerkingsverantwoordelijke** (artikel 30 lid 1 AVG);
+- **Deel 2**: het register van de Platformbeheerder als **verwerker** voor de Organisaties (artikel 30 lid 2 AVG);
+- **Deel 3**: een **modelregister** dat elke deelnemende Organisatie invult voor haar eigen organisatiejottem;
+- **Deel 4**: een voorzet voor de **DPIA** (gegevensbeschermingseffectbeoordeling, artikel 35 AVG).
+
+De rolverdeling en grondslagen sluiten aan op het [Privacybeleid](privacybeleid.html), de [Samenwerkingsovereenkomst](samenwerkingsovereenkomst.html) (artikel 5) en de belangenafweging in [Risico's en wet- en regelgeving](risicos-en-wetgeving.html) (paragraaf 1.5).
+
+<h3 class="no-num">Deel 1. Register als verwerkingsverantwoordelijke</h3>
+
+Verwerkingsverantwoordelijke: [naam rechtspersoon invullen], [adres], [e-mailadres]. Functionaris voor gegevensbescherming: [niet aangesteld / naam invullen].
+
+<table class="data">
+<thead>
+<tr><th>Verwerking</th><th>Doel</th><th>Grondslag</th><th>Betrokkenen</th><th>Gegevens</th><th>Ontvangers</th><th>Bewaartermijn</th></tr>
+</thead>
+<tbody>
+<tr><td>Accountbeheer</td><td>Accounts laten werken, contact over bijdragen</td><td>Uitvoering overeenkomst (art. 6 lid 1b)</td><td>Gebruikers</td><td>Naam, e-mailadres, wachtwoord (versleuteld), profielfoto, rol, organisatie, privacy-instellingen</td><td>Hostingpartij (EER)</td><td>Zolang het account bestaat, daarna [6 maanden]</td></tr>
+<tr><td>Social login</td><td>Makkelijk en veilig inloggen</td><td>Uitvoering overeenkomst</td><td>Gebruikers</td><td>Naam en e-mailadres van de login-aanbieder</td><td>Hostingpartij</td><td>Als accountgegevens</td></tr>
+<tr><td>Beveiligingslogging</td><td>Beveiliging, misbruik voorkomen en aantonen</td><td>Gerechtvaardigd belang (art. 6 lid 1f): een veilig platform</td><td>Gebruikers, bezoekers</td><td>Logingegevens, tijdstippen, IP-adressen</td><td>Hostingpartij</td><td>[6 maanden]</td></tr>
+<tr><td>Platformstatistieken</td><td>Platform verbeteren, Organisaties inzicht geven</td><td>Gerechtvaardigd belang: goed beheer</td><td>Gebruikers</td><td>Geaggregeerd gebruik (geen profilering)</td><td>Organisaties (alleen eigen omgeving)</td><td>[24 maanden], daarna alleen geaggregeerd</td></tr>
+<tr><td>Meldpunt</td><td>Meldingen (notice-and-takedown) en AVG-verzoeken afhandelen en afhandeling aantonen</td><td>Wettelijke verplichting (DSA art. 16; AVG art. 12-21) en gerechtvaardigd belang</td><td>Melders, plaatsers van inhoud, betrokkenen</td><td>Naam, e-mailadres, inhoud melding, besluit en motivering</td><td>Betrokken Organisatie</td><td>[2 jaar]</td></tr>
+<tr><td>Supportcontact</td><td>Vragen beantwoorden</td><td>Gerechtvaardigd belang: dienstverlening</td><td>Gebruikers, beheerders</td><td>Naam, e-mailadres, inhoud correspondentie</td><td>-</td><td>[12 maanden]</td></tr>
+</tbody>
+</table>
+
+Beveiligingsmaatregelen (art. 32 AVG): zie het [Privacybeleid](privacybeleid.html) ("Hoe beveiligen we jouw gegevens?") en de [dienstenbijlage (SLA)](sla-bijlage.html). Doorgiften buiten de EER: alleen de optionele kopie bij het Internet Archive, zie het [doorgifte-memo](doorgifte-memo.html).
+
+<h3 class="no-num">Deel 2. Register als verwerker</h3>
+
+De Platformbeheerder verwerkt als verwerker, in opdracht van elke deelnemende Organisatie (verwerkersovereenkomst: SOK artikel 5):
+
+<table class="data">
+<thead>
+<tr><th>Onderdeel</th><th>Invulling</th></tr>
+</thead>
+<tbody>
+<tr><td>Verantwoordelijken</td><td>De deelnemende Organisaties: [lijst bijhouden, per Organisatie naam en contactgegevens]</td></tr>
+<tr><td>Categorieën verwerkingen</td><td>Opslaan, tonen, doorzoekbaar maken en duurzaam bewaren van bijdragen (afbeeldingen, audio, metadata, annotaties, herinneringen) binnen de organisatiejottem; ondersteunen van moderatie; afhandelen van verwijderingen</td></tr>
+<tr><td>Betrokkenen</td><td>Uploaders en annoteerders (naamsvermelding), personen die op materiaal voorkomen (herkenbaar in beeld, hoorbaar, of bij naam genoemd), geïnterviewden</td></tr>
+<tr><td>Gegevens</td><td>Namen, afbeeldingen en stemopnamen van personen, locaties, herinneringen en verhalen, toestemmingsverklaringen (portretrecht en interviews)</td></tr>
+<tr><td>Subverwerkers</td><td>[hostingpartij invullen] (hosting, EER); [EER-bewaarplaats invullen] (duurzame opslag); Internet Archive (VS, optionele extra kopie - zie het [doorgifte-memo](doorgifte-memo.html))</td></tr>
+<tr><td>Beveiliging</td><td>Zie Deel 1; aanvullend: moderatie-omgeving alleen toegankelijk met 2FA/passkey, toestemmingsverklaringen niet publiek</td></tr>
+</tbody>
+</table>
+
+<h3 class="no-num">Deel 3. Modelregister voor de Organisatie</h3>
+
+Elke Organisatie is verwerkingsverantwoordelijke voor de bijdragen in haar organisatiejottem en houdt daarvoor een eigen register bij. Dit model kan de Organisatie overnemen en aanvullen:
+
+<table class="data">
+<thead>
+<tr><th>Onderdeel</th><th>In te vullen door de Organisatie</th></tr>
+</thead>
+<tbody>
+<tr><td>Verantwoordelijke</td><td>[naam Organisatie, adres, e-mailadres, contactpersoon privacy]</td></tr>
+<tr><td>Verwerking</td><td>Publiceren en duurzaam bewaren van erfgoedbijdragen met persoonsgegevens in de organisatiejottem [naam/slug]</td></tr>
+<tr><td>Doel</td><td>Lokaal erfgoed verzamelen, tonen en duurzaam bewaren, samen met de gemeenschap</td></tr>
+<tr><td>Grondslag</td><td>Gerechtvaardigd belang (art. 6 lid 1f AVG) met de belangenafweging uit [Risico's en wet- en regelgeving](risicos-en-wetgeving.html) 1.5, door de Organisatie bekrachtigd op [datum]; toestemming (art. 6 lid 1a) voor audio-interviews</td></tr>
+<tr><td>Betrokkenen en gegevens</td><td>Zie Deel 2 (identiek voor elke organisatiejottem); aanvullen met eventuele eigen collecties of projecten</td></tr>
+<tr><td>Verwerker</td><td>De Platformbeheerder (verwerkersovereenkomst: SOK artikel 5)</td></tr>
+<tr><td>Bewaartermijnen</td><td>Conform [Privacybeleid](privacybeleid.html): gepubliceerde jottems blijvend, afgekeurde bijdragen [12 maanden]</td></tr>
+<tr><td>Bijzonderheden</td><td>[geïmporteerde collecties en hun rechtenstatus; eigen afspraken, bijv. met een krantenarchief]</td></tr>
+</tbody>
+</table>
+
+<h3 class="no-num">Deel 4. DPIA-voorzet</h3>
+
+**Waarom een DPIA?** Het platform publiceert stelselmatig persoonsgegevens van mensen die daar niet zelf voor kozen (personen op foto's, genoemden in herinneringen), maakt die gegevens als open data breed beschikbaar en zet automatische detectie van herkenbare personen in (het Herkenbaar-signaal). Die combinatie maakt een DPIA verstandig en vermoedelijk verplicht (art. 35 AVG; AP-lijst van verplichte DPIA-categorieën: [toetsen door jurist]). Deze voorzet volgt de gebruikelijke opbouw; de projectgroep vult aan en de verantwoordelijken bekrachtigen.
+
+**1. Beschrijving van de verwerking.** Zie Deel 1-3 en de systeembeschrijving in het [ontwerpdocument](https://inside-out-time-machines.github.io/design/). Kern: gebruikers zenden erfgoedmateriaal in; moderators beoordelen vóór publicatie op kwaliteit, privacy/portretrecht, auteursrecht en het onderscheid herinnering/feit; goedgekeurd materiaal wordt gepubliceerd, als open data aangeboden en duurzaam opgeslagen (primair binnen de EER).
+
+**2. Noodzaak en evenredigheid.** De uitgeschreven belangenafweging in [Risico's en wet- en regelgeving](risicos-en-wetgeving.html) 1.5 (belang, noodzaak, afweging) is hier onderdeel van deze DPIA. Kernpunten: zonder personen en namen verliest erfgoed zijn betekenis; beperking tot wat nodig is (geen contactgegevens, geen bijzondere categorieën, alleen materiaal binnen het projectthema); moderatie vóór publicatie als centrale waarborg.
+
+**3. Risico's voor betrokkenen en maatregelen.**
+
+<table class="data">
+<thead>
+<tr><th>Risico voor de betrokkene</th><th>Kans</th><th>Impact</th><th>Maatregelen</th></tr>
+</thead>
+<tbody>
+<tr><td>Herkenbaar gepubliceerd zonder medeweten (foto, stem, naam)</td><td>M</td><td>M</td><td>Moderatie vóór publicatie; Herkenbaar-signaal; toestemmingsvereiste bij recente foto's (vastgelegd bij de jottem); bezwaar en verwijdering zonder account via het Meldpunt</td></tr>
+<tr><td>Gevoelige of onjuiste beweringen in herinneringen</td><td>M</td><td>H</td><td>Verplicht onderscheid herinnering/feit; moderatieregels (geen gezondheid, schulden, relaties, strafbare feiten van levenden); correctie-annotaties; Meldpunt</td></tr>
+<tr><td>Verspreiding via open data maakt verwijdering onvolledig</td><td>M</td><td>M</td><td>Strenge controle vóór publicatie ("wat open staat, staat open"); verwijdersignalen via API (IIIF Change Discovery); verwijderplicht voor API-gebruikers; eerlijke communicatie over grenzen</td></tr>
+<tr><td>Doorgifte buiten de EER (Internet Archive)</td><td>L</td><td>M</td><td>EER-opslag als hoofdroute; VS-kopie alleen zonder persoonsgegevens van levenden of met uitdrukkelijke toestemming - zie het [doorgifte-memo](doorgifte-memo.html)</td></tr>
+<tr><td>Functiesluip van het Herkenbaar-signaal richting gezichtsherkenning</td><td>L</td><td>H</td><td>Vastgelegde afbakening: alleen detectie, geen identificatie, geen biometrische templates ([Privacybeleid](privacybeleid.html)); AI-toets vóór elke nieuwe AI-functie (AI-verordening)</td></tr>
+<tr><td>Minderjarigen herkenbaar of met account zonder oudertoestemming</td><td>L</td><td>H</td><td>16-jaarsgrens met oudertoestemming; extra strenge moderatie bij recent beeldmateriaal met kinderen</td></tr>
+<tr><td>Datalek van niet-gepubliceerd materiaal of accountgegevens</td><td>M</td><td>H</td><td>2FA/passkeys, versleuteling, toegangsbeheer, datalekprocedure ([SLA](sla-bijlage.html) 5)</td></tr>
+</tbody>
+</table>
+
+**4. Conclusie en besluit.** [In te vullen na bespreking: restrisico's aanvaardbaar ja/nee; bij een hoog restrisico voorafgaande raadpleging van de Autoriteit Persoonsgegevens (art. 36 AVG). Ondertekening door Platformbeheerder en deelnemende Organisaties.]
+
+**5. Herijking.** Jaarlijks, en altijd bij nieuwe functies die persoonsgegevens raken (nieuwe AI-functies, nieuwe datastromen, wijziging van de opslagketen).

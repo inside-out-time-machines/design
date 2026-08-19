@@ -45,9 +45,13 @@ html:root {
   --toclink-visited-text: #1f1e1c;
   --toclink-visited-underline: #d85a30;
 }
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
 </style>
 
-<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
+<strong>Versie 0.2 - 18 augustus 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
 
 Welkom bij Jottem! Jottem is het platform waar jij, samen met anderen, de geschiedenis van jouw stad, wijk, straat of huis levend houdt. Wij geloven dat erfgoed van iedereen is en door iedereen gemaakt wordt.
 
@@ -85,6 +89,7 @@ In deze voorwaarden bedoelen wij met:
 <tr><td>**Jottem**</td><td>Een bijdrage op het Platform: een afbeelding of ander bestand, samen met de metadata en annotaties die erbij horen.</td></tr>
 <tr><td>**Bijdrage**</td><td>Alles wat een Gebruiker op het Platform plaatst: jottems, metadata, annotaties, reacties en herinneringen.</td></tr>
 <tr><td>**Meldpunt**</td><td>De plek op het Platform waar iedereen onrechtmatige of onjuiste inhoud kan melden (notice-and-takedown).</td></tr>
+<tr><td>**Recente foto**</td><td>Een foto die korter dan 25 jaar geleden is gemaakt. Bij recente foto's gelden extra eisen rond portretrecht en toestemming (artikel 5).</td></tr>
 </tbody>
 </table>
 
@@ -101,11 +106,12 @@ In deze voorwaarden bedoelen wij met:
 2. De Platformbeheerder levert een **hostingdienst** in de zin van artikel 6 van de Digitaledienstenverordening (DSA). Dat betekent: wij stellen de techniek beschikbaar waarmee anderen informatie kunnen opslaan en delen. Wij bepalen niet zelf welke bijdragen worden geplaatst of goedgekeurd; dat doen Uploaders en Moderators.
 3. Wij zijn daarom niet verplicht om alle bijdragen vooraf te controleren (artikel 8 DSA). Wél treden wij op zodra wij weten dat inhoud onrechtmatig is. Hoe dat werkt lees je in artikel 7 (Meldpunt).
 4. Wij doen ons best om het Platform goed beschikbaar te houden. Soms is onderhoud nodig of gaat er iets mis. Wij geven geen garantie dat het Platform altijd en foutloos werkt.
+5. Ons contactpunt voor autoriteiten én voor gebruikers (artikel 11 en 12 DSA) is [e-mailadres invullen]. Je kunt daar terecht in het Nederlands en het Engels. Voor meldingen over inhoud gebruik je bij voorkeur het Meldpunt (artikel 7).
 
 <h3 class="no-num">Artikel 4. Auteursrecht en licentie</h3>
 
 1. **Jouw materiaal blijft van jou.** Het auteursrecht op wat je inzendt blijft bij jou als maker of rechthebbende (Auteurswet).
-2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan (ook duurzaam bij externe bewaarplaatsen zoals het Internet Archive) en technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's).
+2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **niet-exclusieve, wereldwijde, royaltyvrije licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan (ook duurzaam bij externe bewaarplaatsen), technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's) en te tonen in communicatie óver het Platform en zijn projecten (bijvoorbeeld een nieuwsbrief of presentatie), altijd met bronvermelding. Deze licentie omvat het recht om sublicenties te geven voor zover dat voor deze doelen nodig is, blijft gelden zolang jouw Bijdrage gepubliceerd is - ook nadat je je account hebt opgezegd (artikel 10.2) - en mag worden overgedragen aan een partij die de exploitatie van het Platform voortzet. Jouw auteursrecht zelf blijft gewoon van jou.
 3. Bij het inzenden kies je onder welke voorwaarden anderen jouw materiaal mogen hergebruiken (bijvoorbeeld een Creative Commons-licentie). Hergebruik door derden mag alleen onder die voorwaarden.
 4. **Die hergebruiklicentie is onherroepelijk.** Een Creative Commons-licentie kun je niet terugdraaien: wie jouw materiaal onder die licentie al heeft overgenomen, mag het blijven gebruiken. Vraag je later om verwijdering, dan halen wij het materiaal van het Platform, stoppen wij met aanbieden via onze API's en vragen wij externe bewaarplaatsen om verwijdering. Kies dus bewust: wat eenmaal open staat, staat open.
 5. Je zendt alleen materiaal in waarvan je zeker weet dat je dat mag. Dat betekent: je bent zelf de maker, of je hebt toestemming van de rechthebbende, of het auteursrecht is verlopen.
@@ -118,7 +124,7 @@ In deze voorwaarden bedoelen wij met:
     - De **Platformbeheerder** is verwerkingsverantwoordelijke voor accountgegevens en platformstatistieken, en verwerker voor de Organisaties waar het hun Organisatiejottem betreft.
     - De **Organisatie** is verwerkingsverantwoordelijke voor de persoonsgegevens in de bijdragen binnen haar Organisatiejottem (zoals namen van personen op foto's).
     - De **Uploader of Annoteerder** is er zelf verantwoordelijk voor dat hij persoonsgegevens van anderen alleen deelt als dat mag.
-3. Wij publiceren erfgoedmateriaal met persoonsgegevens op grond van een **gerechtvaardigd belang** (artikel 6 lid 1f AVG): erfgoed verzamelen, tonen en duurzaam bewaren. De afweging tussen dat belang en de privacy van betrokkenen ligt vast; wie daar bezwaar tegen wil maken, kan dat (artikel 21 AVG) via het Meldpunt.
+3. De Organisatie publiceert erfgoedmateriaal met persoonsgegevens op grond van een **gerechtvaardigd belang** (artikel 6 lid 1f AVG): erfgoed verzamelen, tonen en duurzaam bewaren. De Platformbeheerder faciliteert die publicatie als verwerker. De afweging tussen dat belang en de privacy van betrokkenen ligt vast; wie daar bezwaar tegen wil maken, kan dat (artikel 21 AVG) via het Meldpunt.
 4. Daarnaast geldt het **portretrecht** (artikel 19-21 Auteurswet) als apart spoor: bij recente foto's waarop mensen herkenbaar zijn, vraagt de Uploader hun toestemming en controleert de Moderator dat vóór publicatie. Een geportretteerde kan zich tegen publicatie verzetten als hij daar een redelijk belang bij heeft.
 5. Voor **audio-interviews** werken wij wél met toestemming van de geïnterviewde (artikel 6 lid 1a AVG), vastgelegd op het toestemmingsformulier uit het interviewprotocol.
 6. Iedereen kan een verzoek doen om eigen materiaal of materiaal waarop hij herkenbaar is te laten verwijderen. Zie artikel 7.
@@ -129,7 +135,7 @@ In deze voorwaarden bedoelen wij met:
 1. Je gebruikt het Platform met respect voor anderen. Je plaatst geen inhoud die beledigend, discriminerend, misleidend of anderszins onrechtmatig is.
 2. Je plaatst geen inhoud die inbreuk maakt op rechten van anderen, zoals auteursrecht, portretrecht of privacy.
 3. Je probeert het Platform niet te verstoren, te misbruiken of onbevoegd binnen te dringen (artikel 138ab Wetboek van Strafrecht).
-4. Je houdt je inloggegevens geheim. Wat er via jouw account gebeurt, valt onder jouw verantwoordelijkheid, tenzij je kunt aantonen dat je account is misbruikt buiten jouw schuld.
+4. Je houdt je inloggegevens geheim. Wij mogen erop vertrouwen dat handelingen via jouw account door jou zijn gedaan. Denk je dat iemand anders toegang heeft tot je account? Meld dat dan direct, dan blokkeren we het account en kijken we samen wat er is gebeurd.
 
 <h3 class="no-num">Artikel 7. Meldpunt: melden en verwijderen (notice-and-takedown)</h3>
 
@@ -143,10 +149,12 @@ In deze voorwaarden bedoelen wij met:
 
 1. Wij stellen het Platform met zorg beschikbaar. Toch kunnen wij niet alles garanderen. Onze aansprakelijkheid is als volgt begrensd:
     - De Platformbeheerder is **niet aansprakelijk voor bijdragen van gebruikers**, zolang wij geen kennis hebben van onrechtmatige inhoud en wij na een melding snel handelen (artikel 6 DSA).
-    - De Platformbeheerder is **niet aansprakelijk voor schendingen van de AVG of het auteursrecht door Uploaders, Annoteerders of Organisaties**. Die verantwoordelijkheid ligt bij degene die de inhoud plaatst of beoordeelt (zie de hoofdstukken per rol).
+    - Schendt een Uploader, Annoteerder of Organisatie de AVG of het auteursrecht? Dan ligt die verantwoordelijkheid **in onze onderlinge verhouding bij degene die de inhoud plaatste of het publicatiebesluit nam** (zie de hoofdstukken per rol). Moeten wij als platform toch iets betalen voor zo'n schending, dan kunnen wij dat verhalen op degene die de schending beging. Wij werken altijd mee aan het snel oplossen van zo'n situatie.
     - Wij zijn niet aansprakelijk voor indirecte schade, zoals gemiste kansen of verlies van gegevens die je zelf niet hebt bewaard.
 2. Deze beperkingen gelden niet bij opzet of bewuste roekeloosheid van de Platformbeheerder, en niet voor zover de wet beperking niet toestaat (artikel 6:248 BW).
 3. Plaats jij inhoud die onrechtmatig blijkt en krijgt de Platformbeheerder of een Organisatie daardoor een claim van een derde? Dan kan die claim op jou worden verhaald (vrijwaring).
+4. Zijn wij ondanks lid 1 toch aansprakelijk? Dan is onze aansprakelijkheid per gebeurtenis (waarbij samenhangende gebeurtenissen als één gebeurtenis gelden) beperkt tot het bedrag dat onze aansprakelijkheidsverzekering in dat geval uitkeert, of - als de verzekering niet uitkeert - tot € [500] per gebruiker per jaar. Deze beperking geldt niet bij opzet of bewuste roekeloosheid van onze leiding, bij schade door dood of letsel, of voor zover de wet de beperking niet toestaat. Ben je consument? Dan houd je altijd de rechten die de wet je dwingend geeft.
+5. **Overmacht.** Soms kunnen wij onze afspraken niet nakomen door omstandigheden buiten onze redelijke controle, zoals stroom- of netwerkstoringen, storingen bij toeleveranciers of externe bewaarplaatsen, cyberaanvallen of overheidsmaatregelen. Daarvoor zijn wij niet aansprakelijk; wij doen wel ons best om de gevolgen te beperken en het Platform zo snel mogelijk te herstellen.
 
 <h3 class="no-num">Artikel 9. Duurzame opslag en open data</h3>
 
@@ -181,7 +189,7 @@ In deze voorwaarden bedoelen wij met:
 **Waarvoor zijn wij níet verantwoordelijk?**
 
 7. Wij zijn niet verantwoordelijk voor de inhoud van bijdragen. Of een bijdrage rechtmatig is, beoordelen de Uploader (bij het inzenden) en de Moderator (bij de kwaliteitscontrole).
-8. Wij zijn niet aansprakelijk voor schendingen van de AVG of het auteursrecht door gebruikers of Organisaties. Wel werken wij altijd mee aan het snel oplossen daarvan.
+8. Schendingen van de AVG of het auteursrecht door gebruikers of Organisaties komen in onze onderlinge verhouding voor rekening van degene die de schending beging (Deel A, artikel 8). Wel werken wij altijd mee aan het snel oplossen daarvan.
 
 <h3 class="no-num">Hoofdstuk 2. De Organisatiebeheerder</h3>
 
@@ -222,7 +230,7 @@ In deze voorwaarden bedoelen wij met:
 
 **Verantwoordelijkheid**
 
-7. Jouw beoordeling is de belangrijkste controle vóór publicatie. Jij handelt daarbij namens jouw Organisatie; de Organisatie draagt de verantwoordelijkheid voor het publicatiebesluit. Je bent als vrijwilliger niet persoonlijk aansprakelijk voor een beoordeling die je te goeder trouw en zorgvuldig hebt gemaakt.
+7. Jouw beoordeling is de belangrijkste controle vóór publicatie. Jij handelt daarbij namens jouw Organisatie; de Organisatie draagt de verantwoordelijkheid voor het publicatiebesluit. Word je als vrijwilliger toch persoonlijk aangesproken voor een beoordeling die je te goeder trouw en zorgvuldig hebt gemaakt? Dan vrijwaart jouw Organisatie je: zij neemt de afhandeling en de kosten over (zie de samenwerkingsovereenkomst).
 
 <h3 class="no-num">Hoofdstuk 4. De Gebruiker</h3>
 
@@ -254,7 +262,7 @@ In deze voorwaarden bedoelen wij met:
 
 4. **Jij staat ervoor in dat je het materiaal mag inzenden.** Dat betekent:
     - Je bent zelf de maker, óf je hebt toestemming van de rechthebbende, óf het auteursrecht is verlopen (70 jaar na het overlijden van de maker, artikel 37 Auteurswet).
-    - Staan er op een recente foto mensen herkenbaar in beeld? Dan heb je hun toestemming voor publicatie.
+    - Staan er op een recente foto (korter dan 25 jaar geleden gemaakt) mensen herkenbaar in beeld? Dan heb je hun toestemming voor publicatie en geef je dat bij de inzending aan: van wie je toestemming hebt en wanneer. Die verklaring bewaren wij bij de jottem; we publiceren haar niet. Zo kunnen de Organisatie en wij later laten zien dat het goed geregeld was.
     - Je metadata bevat geen onnodige persoonsgegevens van levende personen.
 5. Je geeft eerlijke en zo volledig mogelijke informatie bij je inzending, met bronvermelding waar dat kan.
 6. Je geeft duidelijk aan wat een persoonlijke herinnering is en wat een vaststaand feit.

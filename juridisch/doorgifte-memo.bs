@@ -1,0 +1,120 @@
+<pre class='metadata'>
+Title: Doorgifte-memo Jottem
+Shortname: doorgifte-memo
+Level: 1
+Status: DREAM
+Boilerplate: conformance no, references no, table-of-contents no
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Onderbouwing van de doorgifte van persoonsgegevens buiten de EER (Internet Archive, Verenigde Staten): de gemaakte keuze, het juridisch kader en een voorzet voor de transfer impact assessment (TIA). Verantwoordingsdocument onder artikel 5 lid 2 AVG. Concept, nog niet juridisch gecontroleerd.
+</pre>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<p boilerplate="copyright">&copy; 2026 <a href="https://www.iotm.nl/">Inside Out Time Machines</a>. Dit document is beschikbaar onder de licentie <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.nl">CC BY-SA 4.0</a>: hergebruik met naamsvermelding, bewerkingen onder dezelfde licentie.</p>
+<style>
+/* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
+   html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+html:root {
+  --bg: #faf6f1;
+  --text: #1f1e1c;
+  --heading-text: #a2401f;
+  --a-normal-text: #a2401f;
+  --a-visited-text: #7d3018;
+  --a-hover-bg: rgba(216,90,48,.08);
+  --a-normal-underline: #d85a30;
+  --a-visited-underline: #a2401f;
+  --hr-text: #d85a30;
+  --tocsidebar-bg: #f2e9de;
+  --tocsidebar-heading-text: #a2401f;
+  --toclink-text: #1f1e1c;
+  --toclink-underline: #d85a30;
+  --toclink-visited-text: #1f1e1c;
+  --toclink-visited-underline: #d85a30;
+}
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
+</style>
+
+<strong>Versie 0.1 - 18 augustus 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
+
+<h3 class="no-num">1. Aanleiding en besluit</h3>
+
+Jottem bewaart goedgekeurde jottems duurzaam. Het Internet Archive (San Francisco, VS) is daarvoor een aantrekkelijke bewaarplaats, maar opslag daar is een doorgifte van persoonsgegevens buiten de EER (artikel 44-49 AVG). Dit memo legt de gekozen aanpak en de afweging vast, als verantwoording onder artikel 5 lid 2 AVG. Het werkt de analyse uit [Risico's en wet- en regelgeving](risicos-en-wetgeving.html) (paragraaf 1.4) uit tot een besluit.
+
+**Besluit** (conform het voorstel in dat werkdocument):
+
+1. De **primaire duurzame opslag staat binnen de EER**, bij [EER-bewaarplaats invullen, bijv. via SURF, het e-depot van een deelnemend archief, of een Europese aanbieder zoals Hetzner of Scaleway].
+2. Het Internet Archive is een **optionele extra kopie**. Daarheen gaat alleen goedgekeurd, voor publicatie bestemd materiaal dat:
+    - **geen persoonsgegevens van levende personen** bevat (bijvoorbeeld historisch materiaal waarvan de afgebeelde personen zijn overleden), óf
+    - waarvoor de betrokkene **uitdrukkelijk heeft ingestemd** met opslag in de VS (artikel 49 lid 1a AVG), zoals via het toestemmingsformulier van het [interviewprotocol](interviewprotocol.html).
+3. Dit besluit is verwerkt in de [Samenwerkingsovereenkomst](samenwerkingsovereenkomst.html) (artikel 5.5) en het [Privacybeleid](privacybeleid.html), en wordt **jaarlijks herijkt** (zie hoofdstuk 6).
+
+<h3 class="no-num">2. Juridisch kader en afgevallen routes</h3>
+
+<table class="data">
+<thead>
+<tr><th>Route</th><th>Beoordeling</th></tr>
+</thead>
+<tbody>
+<tr><td>**Adequaatheidsbesluit / EU-US Data Privacy Framework** (art. 45)</td><td>Werkt alleen voor DPF-gecertificeerde organisaties. Certificering vereist toezicht van de FTC; dat geldt voor de meeste Amerikaanse non-profits niet, dus vermoedelijk ook niet voor het Internet Archive. **Actiepunt: status verifiëren bij het Internet Archive.** Zolang niet bevestigd: niet op bouwen</td></tr>
+<tr><td>**Standaardcontractbepalingen (SCC's)** (art. 46)</td><td>Juridisch de nette route, maar vereist dat het Internet Archive de modelclausules ondertekent, plus een transfer impact assessment. **Actiepunt: navragen of het Internet Archive standaardafspraken heeft met Europese erfgoedpartners.** Zolang die er niet zijn: niet beschikbaar</td></tr>
+<tr><td>**Uitdrukkelijke toestemming** (art. 49 lid 1a)</td><td>Bruikbaar, maar de EDPB ziet deze uitzondering als bedoeld voor incidentele doorgiften. Daarom niet als hoofdroute, wel als dekking voor de optionele extra kopie van individuele, met toestemming ingezonden opnamen</td></tr>
+<tr><td>**Architectuurkeuze: EER-opslag**</td><td>De sterkste beheersmaatregel: geen structurele doorgifte, dus geen waarborg nodig. Gekozen als hoofdroute</td></tr>
+</tbody>
+</table>
+
+<h3 class="no-num">3. Wat gaat wél en niet naar de Verenigde Staten?</h3>
+
+<table class="data">
+<thead>
+<tr><th>Materiaal</th><th>Naar Internet Archive?</th></tr>
+</thead>
+<tbody>
+<tr><td>Historisch materiaal zonder persoonsgegevens van levende personen (de bulk van de collectie)</td><td>Ja</td></tr>
+<tr><td>Audio-interviews waarvoor de geïnterviewde de VS-optie op het toestemmingsformulier heeft aangekruist</td><td>Ja</td></tr>
+<tr><td>Materiaal met (mogelijk) levende, herkenbare of genoemde personen zonder zo'n uitdrukkelijke toestemming</td><td>Nee - alleen EER-opslag</td></tr>
+<tr><td>Accountgegevens, niet-gepubliceerde bijdragen, moderatiegegevens, toestemmingsverklaringen</td><td>Nooit</td></tr>
+</tbody>
+</table>
+
+De moderator bepaalt bij goedkeuring of een jottem aan de criteria voldoet; het platform registreert die keuze en stuurt alleen gemarkeerd materiaal door. [Actiepunt: dit als veld/regel opnemen in het moderatieproces en de requirements.]
+
+<h3 class="no-num">4. Transfer impact assessment (voorzet)</h3>
+
+Voor de beperkte VS-kopie is de impact als volgt beoordeeld:
+
+1. **Aard van de gegevens.** Uitsluitend voor publicatie bestemd, door de betrokkene zelf of met diens toestemming gedeeld erfgoedmateriaal, dat ook op het openbare platform staat. Geen bijzondere categorieën, geen contactgegevens, geen niet-publieke gegevens.
+2. **Amerikaanse wetgeving** (o.a. FISA section 702, CLOUD Act). Die ziet op toegang tot gegevens door inlichtingen- en opsporingsdiensten. Voor materiaal dat al openbaar gepubliceerd is, voegt die toegangsmogelijkheid vrijwel geen risico toe: de gegevens zijn per definitie al publiek raadpleegbaar.
+3. **Ontvanger.** Het Internet Archive is een non-profitbibliotheek met een publieke missie en langjarige staat van dienst in erfgoedbewaring; het is geen advertentie- of dataplatform.
+4. **Restrisico.** Laag: het reële risico van de doorgifte is niet vertrouwelijkheidsverlies (het materiaal is openbaar), maar beperkte afdwingbaarheid van verwijdering. Dat risico bestaat bij elke open-datapublicatie en wordt beheerst met de verwijderafspraken uit hoofdstuk 5 en eerlijke communicatie vooraf ("wat open staat, staat open").
+
+**Conclusie:** de beperkte VS-kopie is met deze afbakening verdedigbaar. [Door de jurist te toetsen en door de projectgroep te bekrachtigen op (datum).]
+
+<h3 class="no-num">5. Afspraken met het Internet Archive</h3>
+
+Vast te leggen met het Internet Archive (of te verifiëren in hun voorwaarden) - **actiepunten**:
+
+1. Hoe een verwijderverzoek wordt ingediend en binnen welke termijn het wordt uitgevoerd.
+2. Dat aangeleverd materiaal de bijbehorende licentie- en bronvermelding behoudt.
+3. Of het Internet Archive DPF-gecertificeerd is of SCC's kan tekenen (zie hoofdstuk 2); zo ja, dan kan de afbakening uit hoofdstuk 3 worden verruimd.
+4. Contactpunt voor juridische verzoeken.
+
+<h3 class="no-num">6. Herijking</h3>
+
+Dit memo wordt **jaarlijks** herijkt door [projectgroep/platformbeheerder invullen], en tussentijds bij: wijziging van de DPF-status van het Internet Archive, nieuwe EDPB-richtsnoeren over artikel 49, een wijziging van de opslagketen, of signalen dat verwijderverzoeken niet worden nagekomen. Herijkingen worden genoteerd in het risicoregister ([Risico's en wet- en regelgeving](risicos-en-wetgeving.html), risico J4).

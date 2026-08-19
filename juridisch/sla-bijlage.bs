@@ -1,0 +1,104 @@
+<pre class='metadata'>
+Title: Dienstenbijlage (SLA) Jottem
+Shortname: sla-bijlage
+Level: 1
+Status: DREAM
+Boilerplate: conformance no, references no, table-of-contents no
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Operationele dienstenbijlage (SLA) bij de Samenwerkingsovereenkomst Jottem: beschikbaarheid, onderhoud, back-ups, support, incidenten en datalekken. Concept, nog niet juridisch gecontroleerd.
+</pre>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<p boilerplate="copyright">&copy; 2026 <a href="https://www.iotm.nl/">Inside Out Time Machines</a>. Dit document is beschikbaar onder de licentie <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.nl">CC BY-SA 4.0</a>: hergebruik met naamsvermelding, bewerkingen onder dezelfde licentie.</p>
+<style>
+/* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
+   html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+html:root {
+  --bg: #faf6f1;
+  --text: #1f1e1c;
+  --heading-text: #a2401f;
+  --a-normal-text: #a2401f;
+  --a-visited-text: #7d3018;
+  --a-hover-bg: rgba(216,90,48,.08);
+  --a-normal-underline: #d85a30;
+  --a-visited-underline: #a2401f;
+  --hr-text: #d85a30;
+  --tocsidebar-bg: #f2e9de;
+  --tocsidebar-heading-text: #a2401f;
+  --toclink-text: #1f1e1c;
+  --toclink-underline: #d85a30;
+  --toclink-visited-text: #1f1e1c;
+  --toclink-visited-underline: #d85a30;
+}
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
+</style>
+
+<strong>Versie 0.1 - 18 augustus 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
+
+Deze bijlage hoort bij artikel 2 van de [Samenwerkingsovereenkomst Jottem](samenwerkingsovereenkomst.html) (SOK) en beschrijft de operationele afspraken tussen de Platformbeheerder ("wij") en de Organisatie ("jullie"). De SOK zelf blijft ongewijzigd als deze bijlage wordt bijgesteld; wijzigingen van de bijlage spreken we af in het overleg van SOK artikel 13 en leggen we schriftelijk vast.
+
+<h3 class="no-num">1. Beschikbaarheid</h3>
+
+1. Wij streven naar een beschikbaarheid van [99%] per kalenderjaar, als inspanningsverplichting (SOK artikel 2.1).
+2. **Meting**: beschikbaarheid meten we met externe monitoring op de publiekspagina's en de API, met een meetinterval van [5 minuten]. Wij rapporteren de gemeten beschikbaarheid in het periodieke overleg.
+3. **Telt niet mee als onbeschikbaarheid**: vooraf aangekondigd onderhoud, storingen bij externe partijen (hostingpartij, externe bewaarplaatsen, kaartkoppelingen), overmacht, en onbeschikbaarheid door misbruik of aanvallen van buitenaf (zoals DDoS).
+
+<h3 class="no-num">2. Onderhoud</h3>
+
+1. Gepland onderhoud voeren we waar mogelijk uit buiten de piekuren, in het onderhoudsvenster [werkdagen 07:00-09:00 / invullen].
+2. Onderhoud met verwachte onderbreking kondigen we minimaal [5] werkdagen van tevoren aan via [kanaal invullen].
+3. Spoedonderhoud (bijvoorbeeld een beveiligingsupdate) mag direct; we melden het zo snel mogelijk.
+
+<h3 class="no-num">3. Back-ups en herstel</h3>
+
+1. Wij maken dagelijks een back-up van alle gegevens en bewaren die [30] dagen (SOK artikel 2.2).
+2. Bij gegevensverlies kunnen we terug naar de laatste back-up: er kan dus maximaal [24 uur] aan wijzigingen verloren gaan.
+3. Na een ernstige storing streven we ernaar het platform binnen [1 werkdag] te herstellen.
+4. Wij testen minimaal [eenmaal per jaar] of een back-up daadwerkelijk teruggezet kan worden.
+
+<h3 class="no-num">4. Support</h3>
+
+1. Organisatiebeheerders en moderators kunnen met vragen terecht via [e-mailadres/kanaal invullen], op werkdagen.
+2. Reactietijden (richttijden, geen resultaatsverplichting):
+
+<table class="data">
+<thead>
+<tr><th>Prioriteit</th><th>Voorbeeld</th><th>Eerste reactie</th></tr>
+</thead>
+<tbody>
+<tr><td>Hoog: platform of moderatie onbruikbaar</td><td>Website niet bereikbaar, inloggen onmogelijk</td><td>[1 werkdag]</td></tr>
+<tr><td>Midden: functie werkt niet, omweg mogelijk</td><td>Import mislukt, statistieken tonen niets</td><td>[2 werkdagen]</td></tr>
+<tr><td>Laag: vraag of wens</td><td>Uitleg nodig, verbetersuggestie</td><td>[5 werkdagen]</td></tr>
+</tbody>
+</table>
+
+3. Meldingen via het Meldpunt volgen de notice-and-takedown-procedure uit de Algemene voorwaarden (artikel 7) en gaan vóór op gewone supportvragen.
+
+<h3 class="no-num">5. Incidenten en datalekken</h3>
+
+1. Bij een ernstig incident (uitval, hack, gegevensverlies) informeren wij de getroffen Organisaties zo snel mogelijk via [kanaal invullen], met wat we weten en wat we doen.
+2. Bij een **inbreuk in verband met persoonsgegevens** (datalek) die jullie organisatiejottem raakt, melden wij dat zonder onredelijke vertraging, waar mogelijk binnen 48 uur na vaststelling (SOK artikel 5.4), met: wat er is gebeurd, welke gegevens en betrokkenen het raakt, welke maatregelen we hebben genomen en wat wij adviseren. Jullie beslissen als verwerkingsverantwoordelijke over melding aan de Autoriteit Persoonsgegevens en aan betrokkenen; wij leveren de informatie die daarvoor nodig is.
+3. Contactpersonen voor incidenten: bij de Platformbeheerder [naam en telefoonnummer invullen], bij de Organisatie de organisatiebeheerder(s). Beide partijen houden deze gegevens actueel.
+4. Na een ernstig incident evalueren we samen en leggen we de lessen vast.
+
+<h3 class="no-num">6. Wijzigingen van deze bijlage</h3>
+
+Deze bijlage kan in onderling overleg worden bijgesteld (SOK artikel 13), bijvoorbeeld als het platform groeit of het beheer verandert. De actuele versie staat altijd op [vindplaats invullen]; bovenaan zie je versie en datum.

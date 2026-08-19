@@ -45,6 +45,10 @@ html:root {
   --toclink-visited-text: #1f1e1c;
   --toclink-visited-underline: #d85a30;
 }
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
 </style>
 
 **Werkdocument voor de projectgroep**

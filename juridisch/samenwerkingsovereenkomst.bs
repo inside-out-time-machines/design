@@ -3,7 +3,7 @@ Title: Samenwerkingsovereenkomst Jottem
 Shortname: samenwerkingsovereenkomst
 Level: 1
 Status: DREAM
-Boilerplate: conformance no, references no
+Boilerplate: conformance no, references no, table-of-contents no
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
 Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
@@ -45,9 +45,13 @@ html:root {
   --toclink-visited-text: #1f1e1c;
   --toclink-visited-underline: #d85a30;
 }
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
 </style>
 
-<strong>Versie 0.1 - 24 juli 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
+<strong>Versie 0.2 - 18 augustus 2026 - concept door een niet-jurist, vóór gebruik laten controleren door een jurist!!!</strong>
 
 <h3 class="no-num">Wie sluiten deze overeenkomst?</h3>
 
@@ -77,7 +81,7 @@ De begrippen in deze overeenkomst hebben dezelfde betekenis als in de Algemene v
 
 <h3 class="no-num">Artikel 2. Wat doet de Platformbeheerder?</h3>
 
-1. Wij houden het platform beschikbaar, veilig en actueel. Wij streven naar een beschikbaarheid van [bijv. 99%] per jaar, gemeten over het hele jaar. Gepland onderhoud kondigen wij vooraf aan.
+1. Wij spannen ons in om het platform beschikbaar, veilig en actueel te houden en streven naar een beschikbaarheid van [bijv. 99%] per kalenderjaar. Bij het meten tellen niet mee: vooraf aangekondigd onderhoud, storingen bij externe partijen (zoals de hostingpartij of externe bewaarplaatsen), overmacht en onbeschikbaarheid door misbruik of aanvallen van buitenaf. Halen we het streven structureel niet, dan bespreken we dat in het overleg van artikel 13 en maken we verbeterafspraken; het streefpercentage is een inspanningsverplichting en geeft geen recht op schadevergoeding. De operationele details (meetmethode, onderhoudsvensters, reactietijden en incidentafhandeling) staan in de [dienstenbijlage (SLA)](sla-bijlage.html).
 2. Wij maken dagelijks back-ups en bewaren die [aantal] dagen.
 3. Wij beheren het centrale Meldpunt (notice-and-takedown) en betrekken de Organisatie bij meldingen over haar organisatiejottem.
 4. Wij ondersteunen de Organisatie bij vragen via [e-mailadres/kanaal invullen]. Wij reageren binnen [aantal] werkdagen.
@@ -97,8 +101,9 @@ De begrippen in deze overeenkomst hebben dezelfde betekenis als in de Algemene v
 1. De Platformbeheerder levert de techniek en is een hostingdienst in de zin van artikel 6 van de Digitaledienstenverordening (DSA). Wij bepalen niet welke bijdragen worden gepubliceerd.
 2. De Organisatie beslist over publicatie (via haar moderators) en draagt de verantwoordelijkheid voor die publicatiebesluiten.
 3. Uploaders en annoteerders blijven zelf verantwoordelijk voor de rechtmatigheid van hun eigen bijdragen, zoals beschreven in de Algemene voorwaarden.
-4. Krijgt een partij een claim van een derde door een fout van de andere partij? Dan vrijwaart de partij die de fout maakte de andere partij voor die claim.
-5. De aansprakelijkheid van partijen tegenover elkaar is beperkt tot directe schade en tot een maximum van [bedrag] per gebeurtenis, behalve bij opzet of bewuste roekeloosheid.
+4. Krijgt een partij een claim van een derde die het gevolg is van een toerekenbare tekortkoming of onrechtmatige daad van de andere partij? Dan vrijwaart die andere partij haar daarvoor: zij neemt op eerste verzoek het verweer over (in overleg over de aanpak), draagt de redelijke kosten en vergoedt wat de aangesproken partij aan de derde verschuldigd wordt. De aangesproken partij informeert de ander direct over de claim en treft zonder overleg geen schikking.
+5. De aansprakelijkheid van partijen tegenover elkaar - verplichtingen uit lid 4 daaronder begrepen - is beperkt tot directe schade en tot [bedrag, bijv. de in de voorafgaande 12 maanden betaalde vergoeding met een minimum van EUR X] per gebeurtenis (waarbij samenhangende gebeurtenissen als één gebeurtenis gelden) en [tweemaal dat bedrag] per contractjaar. Deze beperkingen gelden niet bij opzet of bewuste roekeloosheid. [Met de jurist te bespreken: of vrijwaringen wegens schending van artikel 5 (persoonsgegevens) of van intellectuele-eigendomsrechten van derden buiten deze beperking horen te vallen.]
+6. De Organisatie vrijwaart haar vrijwilligers (organisatiebeheerders en moderators) voor claims van derden over beoordelingen en besluiten die zij te goeder trouw en zorgvuldig namens de Organisatie hebben genomen.
 
 <h3 class="no-num">Artikel 5. Persoonsgegevens: afspraken volgens de AVG</h3>
 
@@ -111,13 +116,13 @@ Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
 2. **Grondslag.** De Organisatie publiceert bijdragen met persoonsgegevens op grond van een gerechtvaardigd belang (artikel 6 lid 1f AVG): erfgoed verzamelen, tonen en duurzaam bewaren. De Organisatie houdt die belangenafweging bij, handelt bezwaren (artikel 21 AVG) af en zorgt bij recente foto's van herkenbare personen voor toestemming in het kader van het portretrecht. Voor audio-interviews geldt toestemming van de geïnterviewde (artikel 6 lid 1a AVG).
 3. **Wat verwerken wij voor jullie?** Bijdragen (afbeeldingen, metadata, annotaties) met daarin mogelijk: namen, afbeeldingen van personen, locaties, herinneringen en contactgegevens van inzenders. Betrokkenen zijn: uploaders, annoteerders en personen die op materiaal voorkomen.
 4. **Onze plichten als verwerker.** Wij:
-    - verwerken de gegevens alleen voor het doel van het platform en volgens jullie schriftelijke instructies;
+    - verwerken de gegevens alleen voor het doel van het platform. Deze overeenkomst, de Algemene voorwaarden en het Privacybeleid zijn samen jullie volledige instructie. Willen jullie iets extra's of anders? Dan overleggen we: aanvullende instructies voeren we uit voor zover ze technisch redelijkerwijs passen binnen het gedeelde platform en niet strijdig zijn met de wet; meerkosten zijn voor jullie;
     - zorgen voor passende beveiliging (artikel 32 AVG), zoals versleutelde verbindingen, toegangsbeheer en 2FA of passkeys voor beheerders;
     - laten alleen mensen bij de gegevens die dat voor hun werk nodig hebben en die tot geheimhouding verplicht zijn;
     - helpen jullie bij verzoeken van betrokkenen en bij datalekmeldingen;
-    - melden een datalek zo snel mogelijk, uiterlijk binnen 48 uur na ontdekking, aan jullie;
-    - verlenen medewerking aan controles (audits) die jullie redelijkerwijs nodig vinden.
-5. **Subverwerkers.** Wij gebruiken de volgende subverwerkers: [hostingpartij invullen] en het Internet Archive (voor duurzame opslag). Het Internet Archive is gevestigd in de Verenigde Staten; opslag daar betekent doorgifte buiten de EER. Deze doorgifte gebeurt op basis van [passende waarborg invullen, bijv. standaardcontractbepalingen] en alleen voor goedgekeurde, voor publicatie bestemde jottems. Nieuwe subverwerkers melden wij vooraf; jullie kunnen daartegen gemotiveerd bezwaar maken.
+    - melden een inbreuk in verband met persoonsgegevens die jullie organisatiejottem raakt zonder onredelijke vertraging, waar mogelijk binnen 48 uur na vaststelling, aan jullie, met de informatie die jullie voor jullie eigen meldplicht nodig hebben;
+    - verlenen medewerking aan een audit: maximaal eenmaal per jaar, minimaal 30 dagen vooraf aangekondigd, op jullie kosten, uitgevoerd door een deskundige die geheimhouding aanvaardt en zonder toegang tot gegevens van andere Organisaties. Eerst leveren wij een rapportage of verklaring over onze maatregelen; alleen als die echt onvoldoende antwoord geeft, volgt onderzoek op locatie of in de systemen.
+5. **Subverwerkers.** Wij gebruiken de volgende subverwerkers: [hostingpartij invullen] voor hosting en [EER-bewaarplaats invullen] voor de primaire duurzame opslag, beide binnen de EER, en - als optionele extra kopie - het Internet Archive. Het Internet Archive is gevestigd in de Verenigde Staten; opslag daar betekent doorgifte buiten de EER. Daarheen gaat alleen goedgekeurd, voor publicatie bestemd materiaal zónder persoonsgegevens van levende personen, of materiaal waarvoor de betrokkene uitdrukkelijk met die opslag heeft ingestemd (artikel 49 lid 1a AVG). De onderbouwing staat in het [doorgifte-memo](doorgifte-memo.html). Nieuwe subverwerkers melden wij vooraf; jullie kunnen daartegen gemotiveerd bezwaar maken.
 6. **Na afloop.** Eindigt de overeenkomst? Dan geven wij de gegevens van jullie organisatiejottem terug of verwijderen wij ze, naar jullie keuze. Zie ook artikel 8 over wat er met gepubliceerd erfgoed gebeurt.
 
 <h3 class="no-num">Artikel 6. Auteursrecht en licenties</h3>
@@ -126,11 +131,13 @@ Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
 2. De hergebruiklicentie die een inzender bij een bijdrage kiest (zoals een Creative Commons-licentie) is onherroepelijk. Wordt een bijdrage later verwijderd, dan stopt de publicatie op het platform en in de open data, maar blijven kopieën die anderen onder die licentie al maakten toegestaan. Houd daar rekening mee bij het instellen van de projectlicentie en bij de moderatie.
 3. De software van het platform is en blijft van de Platformbeheerder of van de open source gemeenschap. De Organisatie krijgt een gebruiksrecht voor de duur van deze overeenkomst.
 4. De huisstijl (naam, logo) van de Organisatie blijft van de Organisatie. Wij gebruiken die alleen voor de organisatiejottem en, na overleg, voor communicatie over het platform.
+5. Door het verzamelen, controleren en presenteren van alle bijdragen ontstaat op het platform als geheel een databank. Het databankenrecht daarop berust bij de Platformbeheerder. Wij zetten dat recht alleen in om het platform en de open data in stand te houden: de gepubliceerde gegevens blijven beschikbaar onder de licenties die bij de jottems horen, en de Organisatie behoudt haar recht op export (artikel 8.4). Draagt de Platformbeheerder de exploitatie over, dan gaat dit recht mee over naar de partij die het platform voortzet, onder dezelfde afspraken (artikel 12).
 
 <h3 class="no-num">Artikel 7. Kosten</h3>
 
 1. De Organisatie betaalt voor het gebruik van het platform: [bedrag/kostenmodel invullen, bijv. een jaarlijkse bijdrage van EUR X, of: geen vergoeding gedurende de projectperiode].
-2. Prijswijzigingen kondigen wij minimaal drie maanden van tevoren aan en gaan pas in bij een nieuw contractjaar.
+2. Facturen betalen jullie binnen [30] dagen. Blijft betaling na een herinnering en een redelijke termijn uit? Dan mogen wij de toegang tot de organisatiejottem beperken totdat is betaald; gepubliceerde jottems blijven daarbij gewoon zichtbaar.
+3. Prijswijzigingen kondigen wij minimaal drie maanden van tevoren aan en gaan pas in bij een nieuw contractjaar.
 
 <h3 class="no-num">Artikel 8. Duur, opzegging en einde</h3>
 
@@ -142,12 +149,32 @@ Dit artikel geldt als verwerkersovereenkomst in de zin van artikel 28 AVG.
     - De Organisatie ontvangt op verzoek een export van alle gegevens van haar organisatiejottem in open formaten (afbeeldingen plus metadata en annotaties in RDF/JSON).
     - Accounts en niet-gepubliceerde bijdragen worden na [aantal] maanden verwijderd.
 
-<h3 class="no-num">Artikel 9. Overleg en wijzigingen</h3>
+<h3 class="no-num">Artikel 9. Opschorting</h3>
+
+1. Wij mogen een organisatiejottem tijdelijk beperken (bijvoorbeeld nieuwe publicaties pauzeren) als de moderatie structureel stilvalt of als dat nodig is om een ernstig juridisch risico af te wenden. Zonder werkende moderatie valt immers de grondslag onder de publicaties weg (zie de belangenafweging in [Risico's en wet- en regelgeving](risicos-en-wetgeving.html)).
+2. We doen dat niet zomaar: eerst overleg, tenzij de situatie geen uitstel duldt, en altijd met uitleg en een redelijke kans op herstel.
+
+<h3 class="no-num">Artikel 10. Geheimhouding</h3>
+
+1. Partijen behandelen vertrouwelijke informatie van de ander vertrouwelijk: niet-gepubliceerd materiaal, gegevens van vrijwilligers en gebruikers, beveiligingsdetails en niet-openbare statistieken. We gebruiken die informatie alleen voor deze samenwerking en delen haar niet met anderen.
+2. Deze plicht geldt niet voor informatie die al openbaar is, of die een partij wettelijk verplicht is te verstrekken; in dat laatste geval informeren we elkaar vooraf als dat mag. De plicht blijft ook na het einde van deze overeenkomst gelden.
+
+<h3 class="no-num">Artikel 11. Overmacht</h3>
+
+1. Kan een partij haar afspraken niet nakomen door omstandigheden buiten haar redelijke controle - zoals stroom- of netwerkstoringen, storingen bij toeleveranciers of externe bewaarplaatsen, cyberaanvallen of overheidsmaatregelen - dan is dat geen tekortkoming en is zij daarvoor niet aansprakelijk. De getroffen partij meldt de situatie snel en beperkt de gevolgen zoveel mogelijk.
+2. Duurt de overmacht langer dan [60] dagen? Dan mag ieder van ons de overeenkomst beëindigen zonder schadevergoeding; de afspraken over het erfgoed na het einde (artikel 8.4) blijven gelden.
+
+<h3 class="no-num">Artikel 12. Overdracht van de exploitatie</h3>
+
+1. Duurzaamheid betekent ook: het platform moet verder kunnen als de Platformbeheerder stopt. De Platformbeheerder mag deze overeenkomst daarom overdragen aan een partij die de exploitatie van het platform ongewijzigd voortzet. De Organisatie verleent daaraan nu alvast haar medewerking (artikel 6:159 BW).
+2. Wij informeren de Organisatie minimaal [2 maanden] vóór zo'n overdracht. Heeft de Organisatie geen vertrouwen in de opvolger? Dan mag zij de overeenkomst opzeggen tegen de datum van de overdracht, met de gewone einde-afspraken van artikel 8.
+
+<h3 class="no-num">Artikel 13. Overleg en wijzigingen</h3>
 
 1. Partijen overleggen minimaal [tweemaal] per jaar over de samenwerking, wensen en verbeterpunten.
 2. Wijzigingen van deze overeenkomst spreken we schriftelijk af en ondertekenen we allebei.
 
-<h3 class="no-num">Artikel 10. Toepasselijk recht</h3>
+<h3 class="no-num">Artikel 14. Toepasselijk recht</h3>
 
 1. Op deze overeenkomst is Nederlands recht van toepassing.
 2. Geschillen leggen we eerst in goed overleg aan elkaar voor. Komen we er niet uit, dan is de rechtbank [plaats invullen] bevoegd.

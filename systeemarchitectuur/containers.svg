@@ -69,7 +69,7 @@
     <rect x="960" y="185" width="170" height="86" rx="6"/>
     <text x="1045" y="203" text-anchor="middle" class="dom">anno.iotm.nl</text>
     <text x="1045" y="222" text-anchor="middle" class="lbl">Annotatieserver</text>
-    <text x="1045" y="239" text-anchor="middle" class="oss">miiify</text>
+    <text x="1045" y="239" text-anchor="middle" class="oss">AnnoRepo</text>
     <text x="1045" y="254" text-anchor="middle" class="sub">W3C Web Annotation</text>
     <text x="1045" y="266" text-anchor="middle" class="sub">Protocol</text>
   </g>

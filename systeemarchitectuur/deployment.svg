@@ -72,7 +72,7 @@
   </g>
   <g class="svc">
     <rect x="580" y="260" width="150" height="60" rx="6"/>
-    <text x="655" y="284" text-anchor="middle" class="lbl">miiify</text>
+    <text x="655" y="284" text-anchor="middle" class="lbl">AnnoRepo</text>
     <text x="655" y="300" text-anchor="middle" class="sub">anno.iotm.nl</text>
   </g>
   <g class="svc">
@@ -157,7 +157,7 @@
     <rect class="volr" x="410" y="700" width="110" height="26" rx="13"/>
     <text x="465" y="717" text-anchor="middle" class="sub">loki_data</text>
     <rect class="volr" x="530" y="700" width="120" height="26" rx="13"/>
-    <text x="590" y="717" text-anchor="middle" class="sub">miiify_data</text>
+    <text x="590" y="717" text-anchor="middle" class="sub">mongo_data</text>
   </g>
 
   <!-- Outside host -->

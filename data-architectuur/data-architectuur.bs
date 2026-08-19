@@ -363,8 +363,8 @@ Naast de RDF-datadump en het SPARQL-endpoint kunnen ook de andere outputkanalen 
 
 Naast de RDF-datadump kan per project een **compleet exportpakket** worden aangemaakt waarmee al het materiaal van een project kan worden aangeboden aan het e-depot van een archiefinstelling (het SIP in OAIS-termen), en dat tevens de exit-strategie uit het [keuzedocument](../index.html#keuze-infra) concreet maakt:
 
-* **[BagIt](https://www.rfc-editor.org/rfc/rfc8493) (RFC 8493) als omhulsel** - een zip met `data/`-payload en checksummanifesten (`manifest-sha512.txt`, `bag-info.txt`), zodat de ontvangende instelling bit-integriteit bij ingest kan verifiëren. BagIt wordt **native ondersteund door Archivematica** en wordt probleemloos geaccepteerd door **Preservica** - de systemen achter de meeste Nederlandse e-depots.
-* **[RO-Crate](https://www.researchobject.org/ro-crate/) als inhoudelijke beschrijving** - een `ro-crate-metadata.json` (JSON-LD op basis van schema.org) die alle bestanden in het pakket beschrijft en relateert. Omdat de Jottem-metadata al schema.org AP NDE is, volgt de crate vrijwel direct uit de bestaande [RDF-mapping](#rdf-mapping); het pakket blijft daardoor ook búiten een e-depot zelfbeschrijvend en herbruikbaar.
+* <strong>[BagIt](https://www.rfc-editor.org/rfc/rfc8493) (RFC 8493) als omhulsel</strong> - een zip met `data/`-payload en checksummanifesten (`manifest-sha512.txt`, `bag-info.txt`), zodat de ontvangende instelling bit-integriteit bij ingest kan verifiëren. BagIt wordt **native ondersteund door Archivematica** en wordt probleemloos geaccepteerd door **Preservica** - de systemen achter de meeste Nederlandse e-depots.
+* <strong>[RO-Crate](https://www.researchobject.org/ro-crate/) als inhoudelijke beschrijving</strong> - een `ro-crate-metadata.json` (JSON-LD op basis van schema.org) die alle bestanden in het pakket beschrijft en relateert. Omdat de Jottem-metadata al schema.org AP NDE is, volgt de crate vrijwel direct uit de bestaande [RDF-mapping](#rdf-mapping); het pakket blijft daardoor ook búiten een e-depot zelfbeschrijvend en herbruikbaar.
 
 ```
 {projectSlug}-{datum}.zip  (BagIt)

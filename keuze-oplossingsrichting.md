@@ -66,7 +66,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><td>Relationele database</td><td>**PostgreSQL**</td></tr>
 <tr><td>Cache en taakwachtrij</td><td>**Valkey** - *afwijkend van de architectuursuggestie (Redis): drop-in compatibel, maar volledig open source (Linux Foundation)*</td></tr>
 <tr><td>Mediaopslag (S3)</td><td>**Externe Object Storage (S3)** - *herziene keuze (aug 2026): extern in plaats van zelf-gehost MinIO; geen eigen opslagbeheer en de opslag groeit mee zonder serverwijziging. Alle componenten spreken S3, dus MinIO blijft het zelf-gehoste alternatief; de leverancierskeuze is een exploitatiebesluit en blijft buiten het ontwerp*</td></tr>
-<tr><td>Detectie herkenbare personen</td><td>**[Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api)** (eigen dienst: FastAPI + YOLO-pose), interne container, synchroon aangeroepen door de backend bij upload</td></tr>
+<tr><td>Detectie herkenbare personen</td><td>[**Herkenbaar API**](https://github.com/inside-out-time-machines/herkenbaar-api) (eigen dienst: FastAPI + YOLO-pose), interne container, synchroon aangeroepen door de backend bij upload</td></tr>
 <tr><td>Reverse proxy, TLS</td><td>**Traefik**</td></tr>
 <tr><td>Monitoring, logging, alerting</td><td>**Prometheus, Grafana, Loki, Alertmanager** (conform systeemarchitectuur)</td></tr>
 <tr><td>ARK-resolver (`ark.iotm.nl`)</td><td>*vervalt in de MVP* - latere fase, zie [[#keuze-open-vragen]]</td></tr>
@@ -86,7 +86,7 @@ De salespitch belooft open source; de volgende besluiten maken dat concreet (aug
     eerdere Apache-2.0-licentie strijdig was; de repo is omgezet naar AGPL-3.0. Doordat het
     een losse netwerkdienst is, stopt de AGPL bij de API-grens: het platform zelf blijft
     EUPL-1.2.
-* **Monorepo `jottem`.** Backend, frontend, workers, docker-compose en contracttests leven in
+* <strong>Monorepo `jottem`.</strong> Backend, frontend, workers, docker-compose en contracttests leven in
     één repository ([inside-out-time-machines/jottem](https://github.com/inside-out-time-machines/jottem)):
     API-contractwijzigingen zijn atomair, één CI en issue-tracker. De Herkenbaar API blijft
     bewust een aparte repo - de licentiegrens valt samen met de repogrens. Secrets komen

@@ -297,13 +297,15 @@ controleren.
 dereferencen: dat contextdocument mapt kale termen namelijk naar `http://schema.org/`, een
 andere namespace dan de `https://schema.org/`-IRI's die de Turtle-, RDF/XML-, dump- en
 SPARQL-representaties gebruiken. Dezelfde pinning geldt voor de JSON-LD-representaties zelf,
-zodat alle serialisaties van dezelfde jottem ook werkelijk dezelfde graaf opleveren; dit is
-vastgesteld naar aanleiding van de toets van de frames tegen de live uitvoer en wordt in de
-API-uitvoer gelijkgetrokken. Voor
+zodat alle serialisaties van dezelfde jottem ook werkelijk dezelfde graaf opleveren. Dit kwam
+aan het licht bij de toets van de frames tegen de live uitvoer en is in de API doorgevoerd; het
+SHACL-shape van het NDE Datasetregister valideert de gepinde vorm. Voor
 annotaties geldt hetzelfde uitgangspunt: elke representatie, ook de aggregerende
 `AnnotationCollection`, draagt naast `http://www.w3.org/ns/anno.jsonld` de prefixafspraak
 `{"jottem": "https://iotm.nl/ns/jottem.jsonld#"}`, anders zijn `jottem:verrijking` en
-`jottem:aard` in dat document geen resolvebare termen.
+`jottem:aard` in dat document geen resolvebare termen. Ook dat is doorgevoerd: de vijf frames
+zijn met [pyld](https://github.com/digitalbazaar/pyld) getoetst tegen de live uitvoer, de
+datadump en een losse annotatie, en leveren in alle gevallen dezelfde tripels op als de bron.
 
 **Kanttekening bij dumps.** Framen vraagt dat de hele graaf in het geheugen past. Voor grote
 projecten is het advies per named graph te framen (die is per project) of eerst een `CONSTRUCT`

@@ -32,8 +32,8 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl)
 * **Vorm van de JSON-LD** - per kernentiteit een vastgelegd JSON-LD-frame
     ([data-architectuur](data-architectuur/data-architectuur.html#frames));
-    het gelijktrekken van de schema.org-namespace en de annotatieprefix over alle
-    serialisaties, en ondersteuning van het framed-profiel
+    de schema.org-namespace en de annotatieprefix zijn over alle serialisaties
+    gelijkgetrokken; ondersteuning van het framed-profiel
     (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`) op de
     duurzame URL's staat nog open
 * **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting en de contracttests uit de

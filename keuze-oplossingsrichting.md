@@ -41,8 +41,8 @@ minter en resolver volgen zodra ARK wordt geactiveerd. URL's worden zo gekozen d
 ARK-koppeling zonder linkbreuk kan.
 
 **Annotaties: bewerken en verwijderen door de annoteerder zelf.** Annoteerders kunnen hun eigen
-annotaties bewerken én verwijderen. De versiegeschiedenis blijft bewaard in de annotatieserver
-(miiify, git-gebaseerde backend), zodat herinneringen, aanvullingen en correcties herleidbaar
+annotaties bewerken én verwijderen. De versiegeschiedenis wordt met volledige payload vastgelegd in het
+`Gebeurtenislog` van het platform, zodat herinneringen, aanvullingen en correcties herleidbaar
 blijven.
 
 ## Technologiestack ## {#keuze-stack}
@@ -60,7 +60,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><td>Async workers</td><td>**Celery** met Valkey als broker</td></tr>
 <tr><td>Identity provider (`auth.iotm.nl`)</td><td>**Authentik** (OIDC, social login, 2FA via TOTP of passkey/WebAuthn) - *afwijkend van de architectuursuggestie (Keycloak): lichter in beheer bij gelijkwaardige functionaliteit (identity brokering, 2FA-afdwinging per rol, uitnodigingsflows)*</td></tr>
 <tr><td>IIIF Image API (`iiif.iotm.nl`)</td><td>**Cantaloupe** achter **Varnish**</td></tr>
-<tr><td>Annotatieserver (`anno.iotm.nl`)</td><td>**miiify**</td></tr>
+<tr><td>Annotatieserver (`anno.iotm.nl`)</td><td>**AnnoRepo** (KNAW HuC) met MongoDB - *afwijkend van de architectuursuggestie (miiify): dat is read-only geworden, zie de [afweging in de systeemarchitectuur](systeemarchitectuur/architectuur.html#annotaties-annorepo)*</td></tr>
 <tr><td>RDF-publicatie (`data.iotm.nl`)</td><td>**Apache Jena Fuseki**</td></tr>
 <tr><td>Zoekmachine</td><td>**Elasticsearch**</td></tr>
 <tr><td>Relationele database</td><td>**PostgreSQL**</td></tr>

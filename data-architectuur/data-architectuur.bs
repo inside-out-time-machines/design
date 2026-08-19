@@ -117,7 +117,7 @@ De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` 
 
 ## IIIF Image API v3 ## {#iiif-image}
 
-Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en formaten op basis van de pyramidal TIFF/JP2-afgeleide in de Object Storage (`derivatives`-bucket). De benodigde data:
+Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en formaten op basis van de pyramidal-TIFF-afgeleide in de Object Storage (`derivatives`-bucket). De benodigde data:
 
 <table class="data">
 <thead>
@@ -126,7 +126,7 @@ Cantaloupe serveert per gepubliceerde jottem `info.json`, tiles, regio's en form
 <tbody>
 <tr><td>`id`</td><td>URI-strategie (afgeleid van `Media.mediaId`)</td></tr>
 <tr><td>`width`, `height`</td><td>`Media.breedte`, `Media.hoogte` (vastgelegd bij verwerking van de upload)</td></tr>
-<tr><td>beeldata (tiles)</td><td>Object Storage `derivatives` (pyramidal TIFF/JP2, gegenereerd door worker)</td></tr>
+<tr><td>beeldata (tiles)</td><td>Object Storage `derivatives` (pyramidal TIFF, gegenereerd door worker)</td></tr>
 </tbody>
 </table>
 

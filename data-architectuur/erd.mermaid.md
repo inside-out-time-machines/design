@@ -169,7 +169,7 @@
   %% De coordinaten komen van de speld die de uploader op de kaart prikt (lat/lon als
   %% Metadata-rijen); er is geen geocoding-dienst in de MVP.
   %% Melding: rapportage van een annotatie of reactie (spam/ongepast) door bezoekers;
-  %% annotatieIri wijst naar de W3C-annotatie in miiify, status: nieuw / afgehandeld /
+  %% annotatieIri wijst naar de W3C-annotatie in de annotatieserver, status: nieuw / afgehandeld /
   %% afgewezen. Afhandeling door de moderator, gelogd in het Gebeurtenislog.
   %% Gebeurtenislog is tevens de transactional outbox (zie systeemarchitectuur):
   %% payload beschrijft de mutatie, verwerktOp markeert succesvolle doorwerking naar

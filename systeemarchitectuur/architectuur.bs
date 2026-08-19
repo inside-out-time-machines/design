@@ -140,11 +140,48 @@ De frontend op `www.iotm.nl` is een aparte container (Next.js of SvelteKit) met 
 
 ## IIIF Image API (Cantaloupe + Varnish)
 
-Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regio's, formaten) en leest bronbestanden rechtstreeks uit de S3-opslag (S3Source). Bij goedkeuring van een jottem maakt een worker een pyramidal TIFF of JPEG2000 als afgeleide, wat tiling zonder zware rekenlast mogelijk maakt. Varnish (of nginx proxy_cache) staat ervoor en cachet tiles en info.json agressief; gepubliceerde beelden zijn immutable, dus lange TTL's zijn veilig. Zo blijft de image server ook bij piekverkeer (bijv. na een oproep in lokale media) responsief.
+Cantaloupe serveert op `iiif.iotm.nl` de Image API 3.0 (`info.json`, tiles, regio's, formaten) en leest bronbestanden rechtstreeks uit de S3-opslag (S3Source). Bij goedkeuring van een jottem maakt een worker met libvips een pyramidal TIFF als afgeleide (tegels van 256 pixels, JPEG-compressie), wat tiling zonder zware rekenlast mogelijk maakt. Varnish (of nginx proxy_cache) staat ervoor en cachet tiles en info.json agressief; gepubliceerde beelden zijn immutable, dus lange TTL's zijn veilig. Zo blijft de image server ook bij piekverkeer (bijv. na een oproep in lokale media) responsief.
+
+**Afweging.** De kandidaten zijn beoordeeld op ondersteuning van de Image API 3.0, het kunnen lezen uit objectopslag, beheerslast en de mate waarin de erfgoedsector er ervaring mee heeft.
+
+<table class="data">
+<thead>
+<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
+</thead>
+<tbody>
+<tr><td>**[Cantaloupe](https://cantaloupe-project.github.io/)** (gekozen)</td><td>Volwassen en veel gebruikt in de erfgoedsector; Image API 3.0 uit de doos; `S3Source` leest bronbestanden rechtstreeks uit de objectopslag, zodat de server zelf geen persistente opslag nodig heeft; volledig configureerbaar via omgevingsvariabelen; laat zich achter een cache verbergen zonder eigen publieke route</td><td>Java: een JVM met een vaste heapgrens is de facto de bovengrens voor gelijktijdige tile-decodes; vraagt een eigen derivatenstap (pyramidal TIFF) vóór de server; de Image API 3.0 beantwoordt een `!w,h`-verzoek op een kleiner bronbeeld terecht met een 400, wat bij verkleinen om expliciete logica vraagt</td></tr>
+<tr><td>[IIPImage](https://github.com/iipimage/iipsrv) (iipsrv)</td><td>C++, zeer snel en licht; de meest gebruikte IIIF-imageserver, volledig level 2 en conform Image API 1, 2 en 3; sterk op zeer grote beelden en wetenschappelijke formaten</td><td>Werkt op lokale bestanden, dus objectopslag vraagt een tussenstap (mount of synchronisatie); deployment via FastCGI achter Apache of nginx past minder in een containerstack; configuratie hoort bij de webserver in plaats van bij de dienst</td></tr>
+<tr><td>[wolpi](https://github.com/dbmdz/wolpi) (dbmdz)</td><td>Gebruikt libvips, dezelfde bibliotheek waarmee het platform al derivaten maakt; Image API 2.1 en 3.0; uitbreidbaar met extensies in JavaScript of Python voor autorisatie, identifier-resolutie, aanvulling van `info.json`, caching en eigen uitvoerformaten; MIT-licentie</td><td>Jong en klein project met weinig gebruikers buiten de maker; vereist een recente Java-versie; geen brede praktijkervaring in de erfgoedsector; in dit project niet beproefd, dus de beoordeling berust op de projectdocumentatie</td></tr>
+<tr><td>[SIPI](https://github.com/dasch-swiss/sipi), [go-iiif](https://github.com/go-iiif/go-iiif)</td><td>SIPI: C++, Image API 3.0-compleet, ontwikkeld door de Zwitserse erfgoedsector (DaSCH). go-iiif: Go, eenvoudig te deployen als één binary</td><td>SIPI heeft een kleine community; go-iiif is minder featurerijk en mist onder meer de bronopties die hier nodig zijn</td></tr>
+</tbody>
+</table>
+
+**Besluit.** Cantaloupe, met Varnish ervoor. Doorslaggevend zijn `S3Source` (het platform bewaart alles in objectopslag, dus een server die daar rechtstreeks uit leest scheelt een hele synchronisatielaag) en de brede toepassing in de erfgoedsector. De prijs is het geheugenbeslag van de JVM en een eigen derivatenstap in de worker. Die prijs valt mee doordat het platform verder uitsluitend de standaard aanspreekt en niet het product: dezelfde code bedient ook de IIIF-services van externe beeldbanken, dus de imageserver is aantoonbaar inwisselbaar.
+
+**Herzien wanneer.** Het geheugenbeslag van de JVM knelt op de server, of de derivatenpijplijn wordt zwaarder dan de imageserver zelf. wolpi is dan de eerste kandidaat om te beproeven, omdat het op dezelfde libvips draait die het platform al gebruikt.
 
 ## Annotaties (AnnoRepo)
 
 [AnnoRepo](https://github.com/knaw-huc/annorepo) (KNAW Humanities Cluster) implementeert het W3C Web Annotation Protocol volledig, inclusief de schrijf-API, met autorisatie via api-keys en per container publiek-leesbare toegang (`readOnlyForAnonymousUsers`); opslag in MongoDB. Het eerder gekozen miiify is in 2025-2026 omgebouwd tot een read-only server (schrijven kan daar alleen nog via git-bestanden met een compileerstap), wat niet past bij live annoteren met moderatie; vandaar deze wissel. De frontend schrijft annotaties (vlak-identificaties van personen/gebouwen/bedrijven met naam + URI, plaatsnamen, gebeurtenissen, archiefbronkoppelingen, vrije tekst en reacties) via de backend-API naar AnnoRepo; de API voegt daarbij de geauthenticeerde gebruiker als creator toe (of anonimiseert, afhankelijk van `naamPubliek`), valideert de verrijking tegen de projectinstellingen en bewaakt autorisatie (bewerken/verwijderen van eigen annotaties). De versiegeschiedenis van elke annotatiemutatie wordt met volledige payload vastgelegd in het `Gebeurtenislog`. Lezen kan publiek en standaardconform via `anno.iotm.nl` (containers per jottem: `/w3c/{jottemId}/`), zodat externe partijen annotaties per jottem kunnen ophalen en doorzoeken.
+
+**Afweging.** Het oorspronkelijke ontwerp koos miiify. Bij de realisatie bleek dat product te zijn omgebouwd tot een read-only server, waarna de kandidaten opnieuw zijn beoordeeld op één harde eis: een schrijfbaar W3C Annotation Protocol, want annoteren met moderatie gebeurt live.
+
+<table class="data">
+<thead>
+<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
+</thead>
+<tbody>
+<tr><td>**[AnnoRepo](https://github.com/knaw-huc/annorepo)** (KNAW HuC, gekozen)</td><td>Volledig W3C Web Annotation Protocol inclusief schrijven; actief onderhouden en in gebruik bij Nederlandse onderzoeksprojecten; autorisatie met api-keys en per container `readOnlyForAnonymousUsers`, dus publiek lezen en schrijven alleen via de eigen API; container per jottem via de `Slug`-header; `ETag`/`If-Match` voor optimistic locking; server-side paginering; batch-upload en een zoek-API beschikbaar voor later</td><td>Brengt MongoDB als tweede datastore mee; het autorisatiemodel kent alleen een root-api-key, geen service-accounts; de server kent geen gebruikers, eigenaarschap, validatie of versiegeschiedenis, dus dat blijft platformwerk; elke wijziging kost twee aanroepen (eerst de ETag ophalen); een naamswijziging betekent alle annotaties van die gebruiker herschrijven; de containerpaden gebruiken `/w3c/`, wat afwijkt van het `/annotations/`-pad uit het oorspronkelijke ontwerp</td></tr>
+<tr><td>[miiify](https://github.com/nationalarchives/miiify), huidige versie (The National Archives UK)</td><td>Versiebeheer met git als opslagmodel, dus elke mutatie is herleidbaar zonder eigen historie; geen database nodig; MIT-licentie; goed schaalbaar in de leesrichting</td><td>Uitsluitend leesbaar: annotaties komen er als git-bestanden in, gevolgd door een compileerstap. Daarmee valt live annoteren met moderatie af</td></tr>
+<tr><td>miiify, bevroren image uit 2024</td><td>Heeft de schrijf-API nog wel en zou het oorspronkelijke ontwerp letterlijk volgen</td><td>Software zonder onderhoud, dus een groeiend beveiligings- en beheerrisico; moderatie (verbergen) en anonimisering zijn er lastig in te passen</td></tr>
+<tr><td>Eigen opslag in PostgreSQL</td><td>Alles in één database; moderatie, autorisatie en anonimisering direct geïntegreerd; geen extra dienst in de stack</td><td>Het platform zou dan zelf een publieke standaard implementeren en onderhouden, terwijl die juist extern herbruikbaar moet zijn; meer eigen code op precies het vlak waar standaardsoftware bestaat</td></tr>
+<tr><td>[SimpleAnnotationServer](https://github.com/glenrobson/SimpleAnnotationServer), [Annotot](https://github.com/mejackreed/annotot)</td><td>Beproefd in IIIF-viewers, klein en eenvoudig</td><td>Gericht op oudere annotatiemodellen (OpenAnnotation) of op een Rails-omgeving; geen actieve doorontwikkeling op het huidige W3C-protocol</td></tr>
+</tbody>
+</table>
+
+**Besluit.** AnnoRepo. Het is de enige kandidaat die het volledige W3C-protocol inclusief schrijven biedt én actief onderhouden wordt, waardoor het platform de standaard aan de buitenkant echt kan waarmaken in plaats van hem zelf na te bouwen. De prijs is MongoDB als extra datastore en het feit dat de versiegeschiedenis in het `Gebeurtenislog` van het platform leeft in plaats van in de annotatieserver, een bewuste afwijking van het oorspronkelijke ontwerp. Omdat AnnoRepo geen gebruikersbegrip kent, blijven creator, validatie en eigenaarschap werk van de backend-API; dat is tegelijk de reden dat schrijven uitsluitend via die API loopt.
+
+**Herzien wanneer.** De aggregatie over containers niet meer met een cache is af te vangen (dan wordt de zoek-API van AnnoRepo in gebruik genomen in plaats van een aanroep per jottem), of wanneer er een schrijfbare opvolger van miiify verschijnt. Een wissel raakt vooral de clientmodule van de backend; wél zijn de annotatie-IRI's publiek gepubliceerd in manifesten en RDF, dus een andere URL-vorm vraagt om een migratie van bestaande verwijzingen.
 
 ## Detectie herkenbare personen (Herkenbaar API)
 
@@ -164,6 +201,24 @@ Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naa
 - per organisatie een datasetbeschrijving als `schema:Dataset` conform de NDE-requirements voor datasets, met de dump en het SPARQL-endpoint als `schema:distribution`, aangemeld bij het NDE Datasetregister.
 
 De mapping zelf kan in applicatiecode (rdflib) of declaratief met RML/CARML; voor een overzichtelijk model als dit is applicatiecode het eenvoudigst te onderhouden.
+
+**Afweging.** De triplestore moet drie dingen goed doen: named graphs (Jottem herbouwt per project een volledige graaf), een publiek leesbaar SPARQL-endpoint, en beheersbaar blijven op één server.
+
+<table class="data">
+<thead>
+<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
+</thead>
+<tbody>
+<tr><td>**[Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/)** (gekozen)</td><td>De referentie-implementatie van SPARQL 1.1: goed gedocumenteerd, stabiel en voorspelbaar; volwaardige named graphs plus het Graph Store Protocol, waarmee een projectgraaf in één idempotente aanroep te herbouwen is; instelbare querytimeout; TDB2 als persistente opslag</td><td>Java, dus een JVM met bijbehorend geheugenbeslag; een publiek endpoint vraagt om afscherming, want een query kan met `SERVICE` zelf verbindingen opzetten, en dure queries moeten worden begrensd; leesprestaties zijn niet de sterkste van het veld</td></tr>
+<tr><td>[Oxigraph](https://github.com/oxigraph/oxigraph)</td><td>Rust: zeer licht en snel, één binary, eenvoudige deployment en een klein geheugenprofiel</td><td>Jonger project met beperktere tooling en een kleinere gemeenschap; geen full-text search</td></tr>
+<tr><td>[QLever](https://github.com/ad-freiburg/qlever)</td><td>C++: extreem snel op zeer grote datasets, ontworpen voor miljarden tripels</td><td>Overkill voor deze schaal en minder gangbaar als update-store, terwijl Jottem juist bij elke mutatie een graaf herschrijft</td></tr>
+<tr><td>[Virtuoso](https://github.com/openlink/virtuoso-opensource) (open source)</td><td>Bewezen op schaal, onder meer als store achter DBpedia</td><td>Gedateerd beheersmodel; de open-source-versie is beperkter dan de commerciële, wat de duurzaamheid van de keuze vertroebelt</td></tr>
+</tbody>
+</table>
+
+**Besluit.** Fuseki. Doorslaggevend zijn het Graph Store Protocol, dat het herbouwen van een projectgraaf tot één aanroep terugbrengt, en de voorspelbaarheid van een referentie-implementatie: bij een platform dat zijn data juist als open data publiceert, weegt standaardgetrouwheid zwaarder dan snelheid. De prijs is het geheugenbeslag van de JVM en de noodzaak het endpoint zorgvuldig af te schermen. Daarom staat Fuseki in een eigen netwerksegment, is alleen het leespad publiek en lopen updates uitsluitend intern via de worker.
+
+**Herzien wanneer.** Het geheugenbeslag knelt, of de dataomvang groeit zo dat leesprestaties gaan tellen. Oxigraph is dan de lichte kandidaat; de mapping en het Graph Store Protocol blijven daarbij gelijk, dus de wissel raakt vooral de deployment.
 
 ## ARK-resolving (latere fase)
 

@@ -158,7 +158,7 @@ Privacy-uitgangspunt: de inferentie draait volledig op de eigen server; beelden 
 
 Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naar RDF conform het schema.org-profiel van NDE (schema.org AP NDE) en deze upsert in Apache Jena Fuseki op `data.iotm.nl`. Daarmee ontstaat:
 
-- een resolvebare RDF-representatie per jottem (JSON-LD, Turtle, RDF/XML via content negotiation);
+- een resolvebare RDF-representatie per jottem (JSON-LD, Turtle, RDF/XML via content negotiation), met per kernentiteit een vastgelegd JSON-LD-frame voor de vorm van de JSON;
 - een SPARQL-endpoint per organisatie (aparte named graphs);
 - periodieke datadumps (N-Triples/Turtle, gzip) als distributie;
 - per organisatie een datasetbeschrijving als `schema:Dataset` conform de NDE-requirements voor datasets, met de dump en het SPARQL-endpoint als `schema:distribution`, aangemeld bij het NDE Datasetregister.

@@ -101,6 +101,15 @@
     date creatieDatum
   }
 
+  MediaRelatie {
+    int relatieId PK
+    uuid bronMediaId FK
+    uuid doelMediaId FK
+    string aard "zelfde-object"
+    int gebruikersId FK
+    date creatieDatum
+  }
+
   Verwijderverzoek {
     int verzoekId PK
     uuid mediaId FK
@@ -164,6 +173,11 @@
   %% getoond wordt.
   %% Organisatie.NAAN en Media.ark zijn gereserveerd voor de ARK-fase (uitgesteld,
   %% zie keuze-oplossingsrichting).
+  %% MediaRelatie koppelt twee jottems binnen hetzelfde project ("zelfde object, andere
+  %% foto", zie het verrijkingenhoofdstuk). Eén rij per koppeling; beide richtingen worden
+  %% bij het lezen samengevoegd, zodat de relatie bij allebei de jottems zichtbaar is. De
+  %% linking-annotatie en dcterms:relation in de RDF zijn hiervan afgeleid (V-9).
+
   %% Locatie- en tijdlijngegevens (adres, openings-/sluitingsjaar, geo-WKT, archiefbron)
   %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
   %% De coordinaten komen van de speld die de uploader op de kaart prikt (lat/lon als
@@ -189,6 +203,10 @@
 
   Gebruiker ||--o{ Favoriet : "maakt"
   Media ||--o{ Favoriet : "wordt_gefavoriet"
+
+  Media ||--o{ MediaRelatie : "verwijst_naar"
+  Media ||--o{ MediaRelatie : "wordt_verwezen"
+  Gebruiker ||--o{ MediaRelatie : "legt"
 
   Media ||--o{ Verwijderverzoek : "betreft"
   Media ||--o{ Melding : "betreft"

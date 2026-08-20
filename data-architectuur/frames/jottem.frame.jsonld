@@ -1,7 +1,8 @@
 {
   "@context": [
     {
-      "@vocab": "https://schema.org/"
+      "@vocab": "https://schema.org/",
+      "dcterms": "http://purl.org/dc/terms/"
     },
     {
       "keywords": {
@@ -22,6 +23,10 @@
       },
       "subjectOf": {
         "@id": "https://schema.org/subjectOf",
+        "@container": "@set"
+      },
+      "dcterms:relation": {
+        "@id": "http://purl.org/dc/terms/relation",
         "@container": "@set"
       }
     }
@@ -66,6 +71,9 @@
     "@embed": "@never"
   },
   "additionalType": {
+    "@embed": "@never"
+  },
+  "dcterms:relation": {
     "@embed": "@never"
   }
 }

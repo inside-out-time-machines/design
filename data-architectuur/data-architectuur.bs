@@ -246,6 +246,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam` + `Organisatie.website`</td></tr>
 <tr><td>`schema:isPartOf`</td><td>de projectdataset-IRI (`Media.projectId`)</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl` (NL-only, zie niet-functionele requirements)</td></tr>
+<tr><td>`dcterms:relation`</td><td>`MediaRelatie`: een andere jottem die hetzelfde object toont (zie [[#verrijking-zelfde-object]]); beide richtingen, alleen gepubliceerde jottems</td></tr>
 <tr><td>annotaties</td><td>verwijzing naar het W3C Annotation Protocol-endpoint per jottem</td></tr>
 </tbody>
 </table>
@@ -274,7 +275,7 @@ publiceert het platform per kernentiteit een frame:
 <tr><th>Entiteit</th><th>Frame</th><th>Vorm</th></tr>
 </thead>
 <tbody>
-<tr><td>jottem (`schema:ImageObject` / `schema:AudioObject`)</td><td>[jottem.frame.jsonld](frames/jottem.frame.jsonld)</td><td>`publisher`, `creator`/`contributor`, `contentLocation` (met `geo`) en `subjectOf` genest; `isPartOf`, `isBasedOn` en `additionalType` alleen als IRI; `keywords`, `about`, `inLanguage`, `contributor` en `subjectOf` altijd een array</td></tr>
+<tr><td>jottem (`schema:ImageObject` / `schema:AudioObject`)</td><td>[jottem.frame.jsonld](frames/jottem.frame.jsonld)</td><td>`publisher`, `creator`/`contributor`, `contentLocation` (met `geo`) en `subjectOf` genest; `isPartOf`, `isBasedOn`, `additionalType` en `dcterms:relation` alleen als IRI; `keywords`, `about`, `inLanguage`, `contributor`, `subjectOf` en `dcterms:relation` altijd een array</td></tr>
 <tr><td>projectdataset (`schema:Dataset`)</td><td>[dataset.frame.jsonld](frames/dataset.frame.jsonld)</td><td>`publisher` en `creator` genest (met `contactPoint`), `distribution` genest en altijd een array, `includedInDataCatalog` alleen als IRI</td></tr>
 <tr><td>datacatalogus (`schema:DataCatalog`)</td><td>[datacatalog.frame.jsonld](frames/datacatalog.frame.jsonld)</td><td>`dataset` altijd een array van dataset-identiteiten; wie de datasets zelf wil, framet die apart met het datasetframe</td></tr>
 <tr><td>webannotatie (`oa:Annotation`)</td><td>[annotatie.frame.jsonld](frames/annotatie.frame.jsonld)</td><td>`body`, `target` en `creator` genest; `body` en `target` altijd een array</td></tr>

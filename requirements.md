@@ -8,6 +8,9 @@
 * elke jottem behoort tot precies één project (een campagne op organisatieniveau, bijv. *Smaak van Gouda*); elke organisatie heeft minstens één project en elk project draagt een eigen datasetbeschrijving
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
+* twee jottems binnen hetzelfde project kunnen aan elkaar worden gekoppeld wanneer ze
+    hetzelfde object tonen (andere periode of andere hoek); de koppeling is bij beide
+    jottems zichtbaar en komt terug in de open data (zie [[#verrijking-zelfde-object]])
 * elke gepubliceerde jottem heeft deelknoppen naar sociale media en de HTML-weergave bevat de juiste Open Graph-metadata (`og:title`, `og:description`, `og:image`, `og:url`), zodat een gedeelde link een nette preview toont
 * elke annotatie en reactie is te rapporteren (spam, reclame, ongepast), ook zonder in te loggen; meldingen komen in de moderatieomgeving van de organisatie en de afhandeling wordt gelogd
 * ondersteunde bestandstypen in de MVP: JPG, PNG en TIFF; PDF en audio (met bijbehorende conversiepipeline) volgen in fase 2

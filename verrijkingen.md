@@ -400,8 +400,9 @@ verandering in de leefomgeving in beeld te brengen.
 zet hem ernaast."
 
 **Techniek/standaard:** de nu-foto is zelf een jottem (met eigen moderatie); de koppeling
-is een `linking`-annotatie tussen beide; weergave als voor/na-schuif in de viewer (IIIF
-Choice of twee canvassen). Impact: *middel* (upload-koppelflow en vergelijkingsweergave).
+loopt via dezelfde structurele relatie als bij [[#verrijking-zelfde-object]], met de
+`linking`-annotatie als afgeleide; weergave als voor/na-schuif in de viewer (IIIF Choice of
+twee canvassen). Impact: *middel* (upload-koppelflow en vergelijkingsweergave).
 
 **Als Web Annotation:**
 
@@ -418,6 +419,41 @@ Choice of twee canvassen). Impact: *middel* (upload-koppelflow en vergelijkingsw
 }
 ```
 
+### Zelfde object, andere foto ### {#verrijking-zelfde-object}
+
+Iemand herkent het onderwerp van een jottem en heeft er zelf een foto van: dezelfde gevel
+tien jaar later, hetzelfde interieur vanuit een andere hoek, dezelfde zaak op een
+ansichtkaart. Anders dan de andere verrijkingen levert dit geen uitspraak óver de bestaande
+jottem op, maar een nieuwe jottem plus een koppeling tussen de twee.
+
+**Call-to-action:** "Heb je zelf een foto van hetzelfde, maar uit een andere tijd of vanuit
+een andere hoek? Voeg hem toe."
+
+**Techniek/standaard:** de call-to-action opent een uitleg en leidt daarna naar het
+uploadformulier, met de jottem van herkomst in beeld; de nieuwe foto is zelf een jottem met
+eigen moderatie. De koppeling is een **structurele relatie in de database** (`MediaRelatie`,
+binnen hetzelfde project) en is daarmee de bron van waarheid; daaruit worden een
+`linking`-annotatie in de container van beide jottems en `dcterms:relation` in de RDF van
+beide jottems afgeleid, zodra allebei gepubliceerd zijn. Weergave: bij beide jottems een
+kaartje met thumbnail en link. Impact: *middel* (uploadkoppelflow en weergave aan twee
+kanten).
+
+**Als Web Annotation:**
+
+```json
+{
+  "type": "Annotation",
+  "motivation": "linking",
+  "target": "https://www.iotm.nl/jottem/{deze}",
+  "body": {
+    "type": "SpecificResource",
+    "purpose": "linking",
+    "source": "https://www.iotm.nl/jottem/{andere}"
+  },
+  "jottem:verrijking": "zelfde-object"
+}
+```
+
 ### Chronologische reeksen ### {#verrijking-reeksen}
 
 Het onderling koppelen van afbeeldingen om een tijdlijn van één specifieke locatie, familie
@@ -427,9 +463,10 @@ of evenement door de jaren heen op te bouwen.
 elkaar."
 
 **Techniek/standaard:** in de MVP ontstaat de pand-tijdlijn automatisch uit adres en
-openings-/sluitingsjaren (metadata); handmatige koppelingen als `linking`-annotaties;
-gepubliceerde reeksen als IIIF Collection of Range. Impact: *laag* (automatisch), *middel*
-(handmatig koppelen met UI).
+openings-/sluitingsjaren (metadata); handmatige koppelingen zijn structurele relaties zoals
+bij [[#verrijking-zelfde-object]], met de `linking`-annotatie als afgeleide; gepubliceerde
+reeksen als IIIF Collection of Range. Impact: *laag* (automatisch), *middel* (handmatig
+koppelen met UI).
 
 **Als Web Annotation:**
 
@@ -590,9 +627,10 @@ transcriptie en begrippenverklaring, zonder gebruikers te overladen met knoppen.
 ## Aanvullende requirements ## {#verrijking-requirements}
 
 *Status (augustus 2026): de MVP-verrijkingen uit dit hoofdstuk zijn gerealiseerd,
-inclusief V-1 t/m V-4, V-7 en V-8 (per project instelbaar, CTA's op de jottem-pagina,
-W3C-opslag in AnnoRepo, `jottem:aard`, meldingen/moderatie en de eigen JSON-LD-context
-`/ns/jottem.jsonld`). V-5 en V-6 blijven van kracht voor de fase 2-verrijkingen.*
+inclusief V-1 t/m V-4, V-7, V-8 en V-9 (per project instelbaar, CTA's op de jottem-pagina,
+W3C-opslag in AnnoRepo, `jottem:aard`, meldingen/moderatie, de eigen JSON-LD-context
+`/ns/jottem.jsonld` en de koppeling tussen twee jottems). V-5 en V-6 blijven van kracht voor
+de fase 2-verrijkingen.*
 
 * **V-1** De organisatiebeheerder kan per project instellen welke verrijkingsmogelijkheden
     beschikbaar zijn; standaard staan de MVP-verrijkingen uit dit hoofdstuk aan.
@@ -614,6 +652,10 @@ W3C-opslag in AnnoRepo, `jottem:aard`, meldingen/moderatie en de eigen JSON-LD-c
     conform de transparantieverplichting uit de AI Act (Verordening (EU) 2024/1689, art. 50).
 * **V-7** Voor alle verrijkingen gelden de bestaande meldingen- en moderatieflow en de
     bestaande autorisatie (eigen bijdragen bewerken en verwijderen).
+* **V-9** Een koppeling tussen twee jottems is een structurele relatie in de database,
+    binnen hetzelfde project; de `linking`-annotatie en `dcterms:relation` in de RDF zijn
+    daarvan afgeleid en verschijnen pas wanneer beide jottems gepubliceerd zijn. Verdwijnt
+    een van de twee uit publicatie, dan verdwijnt ook de koppeling uit de publieke uitvoer.
 * **V-8** Platform-extensies op het Web Annotation-model (zoals `jottem:aard` en
     `jottem:betrouwbaarheid`) worden gedefinieerd in een eigen JSON-LD-context, zodat de
     annotaties standaardconform blijven.

@@ -548,9 +548,33 @@ van. Impact: *hoog* (nieuwe dienst met twee modellen).
 
 *Gerealiseerd in augustus 2026 als de [Suggesties
 API](https://github.com/inside-out-time-machines/suggesties-api) (EUPL-1.2). Gemeten op de
-ontwikkelmachine (24 kernen, geen videokaart): **3,7 seconde per foto** en 2,7 GB geheugen.
-Een aanvaard steekwoord uit de thesaurus draagt zijn term-URI mee en komt in de RDF terug
-als `schema:about` met label en URI, niet als los woord in `schema:keywords`.*
+ontwikkelmachine (24 kernen, geen videokaart): **3,5 tot 5,4 seconde per foto** en 2,7 GB
+geheugen. Een aanvaard steekwoord uit de thesaurus draagt zijn term-URI mee en komt in de
+RDF terug als `schema:about` met label en URI, niet als los woord in `schema:keywords`.*
+
+**Steekproef van 22 archiefbeelden** (zeven foto's uit de SAMH-beeldbank, de rest
+historisch drukwerk uit Wikimedia Commons, verdeeld over de zeven categorieën):
+
+<table class="data">
+<thead>
+<tr><th>Veld</th><th>Uitkomst</th></tr>
+</thead>
+<tbody>
+<tr><td>titel</td><td>16 van de 22 direct bruikbaar, 4 zwak of vaag ("Een oud gebouw in een stad"), 2 fout ("Een man met een masker" bij een kledingstuk op een paspop). De beste zijn opvallend precies: "Een menukaart voor een hotel du cheval blanc", "Twee mannen in militaire uniformen poseren", "Een groot gebouw met rode luiken op de voorkant".</td></tr>
+<tr><td>categorie</td><td>20 van de 22 kregen een voorstel, waarvan 17 juist. Twee keer geen voorstel bij een beeld waar het model geen signaal vond, en dat is de bedoeling. Eén echte misser: een bronzen gedenkplaat werd "folder" genoemd.</td></tr>
+<tr><td>steekwoorden</td><td>19 voorstellen over 10 beelden, waarvan 14 raak. Rake voorbeelden: "stadhuizen" en "marktplaatsen" bij het Goudse stadhuis, "bruggen" en "grachten" bij een brug over een gracht, en drie treffers bij een reclamewagen. Misslagen zijn van het type "postkantoren" bij een marktplein: verwant maar onjuist. De helft van de beelden kreeg geen enkel steekwoord.</td></tr>
+</tbody>
+</table>
+
+De steekproef legde één instelfout bloot die met redeneren niet te vinden was: de
+ondergrens voor de categorie stond op een absolute waarde, en juist gewone historische
+foto's scoren absoluut laag. Vijf van de zeven echte foto's werden daardoor overgeslagen
+terwijl "foto" wel met ruime voorsprong won. Bij een keuze uit een gesloten lijst zegt de
+verhouding tot de nummer twee alles en de absolute waarde niets; na die correctie gingen
+de vijf gemiste foto's alsnog goed.
+
+*Let wel: 22 beelden is een indruk, geen maat. Voor de livegang hoort dit herhaald te
+worden op materiaal dat de pilot zelf oplevert.*
 
 #### Afweging: één dienst of drie #### {#verrijking-suggesties-architectuur}
 

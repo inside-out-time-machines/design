@@ -253,6 +253,10 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 
 Persoonsgegevens van inzenders komen **niet** in de RDF: de inzender wordt alleen als `schema:contributor` opgenomen indien `Gebruiker.naamPubliek`.
 
+**Taalmerk.** Alles wat een mens leest krijgt `@nl`: titel, beschrijving, genre, steekwoorden en de labels bij een term-URI, plus de namen van organisaties en onderwerpen. Dat is meer dan `schema:inLanguage`, want dat veld zegt iets over het werk als geheel en niet over een afzonderlijke literal; een afnemer die alleen `schema:about` binnenhaalt, ziet zonder taalmerk een label zonder te weten in welke taal het staat. Identificatoren, datums, formaten, licenties en URL's blijven ongemerkt: die zijn niet in een taal geschreven. Het merk staat in de JSON-LD-context en niet per waarde, zodat de JSON leesbaar blijft (`"keywords": ["menukaarten"]`) terwijl elke serialisatie er `"menukaarten"@nl` van maakt.
+
+**Term-URI's horen in de data, niet op de pagina.** Een steekwoord uit het Termennetwerk wordt opgeslagen als label plus URI. In de RDF, de dump en het IIIF-manifest gaan ze samen naar buiten, want daar is de URI het punt: die maakt het woord koppelbaar aan andere collecties. De publiekspagina toont alleen het label; anders zou onder elk steekwoord dezelfde term nog een keer staan, als lange URL.
+
 ## Frames naast shapes ## {#frames}
 
 Shapes en frames beantwoorden twee verschillende vragen. Een **SHACL-shape** (zoals dat van

@@ -195,6 +195,18 @@ De backend-API roept de dienst **synchroon** aan bij het aanmaken van een jottem
 
 Privacy-uitgangspunt: de inferentie draait volledig op de eigen server; beelden verlaten het platform niet en er worden geen gezichtsherkennings- of identificatietechnieken gebruikt, uitsluitend detectie van de aanwezigheid van herkenbare personen.
 
+## Uploaden in twee stappen
+
+Het uploadformulier loopt in twee stappen: eerst alleen de foto (bestand, camera, een permalink uit een beeldbank of een foto-URL), dan de gegevens erbij. Die knip verlaagt de drempel, en levert bovendien een moment op waarop het beeld al bekend is en het platform kan meedenken.
+
+**Afweging.** Een vroege terugkeer per stap binnen dezelfde pagina (gekozen) tegenover een eigen route per stap, of alles op één pagina met alleen visuele groepering. De eerste wint omdat de ingevulde gegevens vanzelf blijven staan en het patroon er al was voor het toestemmingsscherm bij herkenbare personen; een eigen route zou de halve upload deelbaar maken via een URL, wat niets oplevert en de terugkeer na inloggen ingewikkelder maakt.
+
+**Wanneer het bestand naar de opslag gaat.** Aan het eind van stap 1, niet pas bij het indienen. Daarmee loopt de controle op herkenbare personen (en later de suggestiedienst) terwijl de inzender de gegevens invult, zodat de wachttijd wegvalt achter het typen. De prijs is dat er bestanden in de objectopslag komen van formulieren die nooit worden afgemaakt; die verweesde objecten vragen een opruimtaak.
+
+**Gegevens uit de beeldbank.** Bij een permalink bevat het IIIF-manifest de beschrijving al: titel, samenvatting, datering en vervaardiger. Die worden overgenomen als voorstel, met een regel eronder waar ze vandaan komen. In de praktijk blijkt het manifestlabel niet altijd bruikbaar (een beeldbank kan er letterlijk "No title" of de archiefcode van het scanbestand in zetten), dus de titel komt uit de eerste kandidaat die als titel doorgaat, met de beschrijving uit het metadatablok als terugval.
+
+Suggesties voor titel, categorie en steekwoorden bij een eigen foto komen van een aparte interne dienst; zie het verrijkingenhoofdstuk, [Suggesties bij het uploaden](../index.html#verrijking-uploadsuggesties), waar ook de afweging per model staat.
+
 ## RDF-publicatie en datasetbeschrijvingen (Fuseki)
 
 Elke publicatie of wijziging triggert een worker die de jottem-metadata mapt naar RDF conform het schema.org-profiel van NDE (schema.org AP NDE) en deze upsert in Apache Jena Fuseki op `data.iotm.nl`. Daarmee ontstaat:

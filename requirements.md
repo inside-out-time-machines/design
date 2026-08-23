@@ -7,6 +7,11 @@
 * duurzame link per gepubliceerde jottem, in HTML weergave (die IIIF afbeelding / metadata / annotaties toont) en RDF (volgens schema.org AP NDE, annotaties via API) op basis van content-negotiation; het koppelen van een ARK (met objectname op basis van NOID of UUID) aan deze link is uitgesteld naar een latere fase (zie [[#keuze-open-vragen]])
 * elke jottem behoort tot precies één project (een campagne op organisatieniveau, bijv. *Smaak van Gouda*); elke organisatie heeft minstens één project en elk project draagt een eigen datasetbeschrijving
 * elke jottem kan een materiaaltype/genre dragen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning), zodat divers bronmateriaal naast foto's kan worden verzameld en gefilterd
+* het uploadformulier loopt in twee stappen (eerst de foto, dan de gegevens); bij een
+    permalink uit een beeldbank worden titel, beschrijving, datering en vervaardiger
+    overgenomen uit het IIIF-manifest, en bij een eigen foto stelt het platform titel,
+    categorie en steekwoorden voor; suggesties worden altijd door de inzender bevestigd
+    en zijn nooit blokkerend (zie [[#verrijking-uploadsuggesties]])
 * elke jottem kan koppelingen naar externe archiefbronnen bevatten (label + URI)
 * twee jottems binnen hetzelfde project kunnen aan elkaar worden gekoppeld wanneer ze
     hetzelfde object tonen (andere periode of andere hoek); de koppeling is bij beide

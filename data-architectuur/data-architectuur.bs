@@ -246,7 +246,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:publisher`</td><td>`Organisatie.naam` + `Organisatie.website`</td></tr>
 <tr><td>`schema:isPartOf`</td><td>de projectdataset-IRI (`Media.projectId`)</td></tr>
 <tr><td>`schema:inLanguage`</td><td>vast `nl` (NL-only, zie niet-functionele requirements)</td></tr>
-<tr><td>`dcterms:relation`</td><td>`MediaRelatie`: een andere jottem die hetzelfde object toont (zie [[#verrijking-zelfde-object]]); beide richtingen, alleen gepubliceerde jottems</td></tr>
+<tr><td>`dcterms:relation`</td><td>`MediaRelatie`: een andere jottem die hetzelfde object toont (zie [Zelfde object, andere foto](../index.html#verrijking-zelfde-object)); beide richtingen, alleen gepubliceerde jottems</td></tr>
 <tr><td>annotaties</td><td>verwijzing naar het W3C Annotation Protocol-endpoint per jottem</td></tr>
 </tbody>
 </table>

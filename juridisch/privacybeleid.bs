@@ -104,6 +104,7 @@ Op foto's en in verhalen kunnen mensen voorkomen: herkenbaar in beeld, of genoem
 - **Historisch materiaal** met personen die zijn overleden valt niet onder de AVG, maar we gaan er wel respectvol mee om.
 - Bij twijfel publiceren we niet, of maken we de persoon onherkenbaar. Bijzondere gegevens (zoals gezondheid, geloof of politieke voorkeur) en gevoelige situaties publiceren we niet.
 - Om moderators te helpen controleren we uploads automatisch op de **aanwezigheid** van herkenbare personen (het Herkenbaar-signaal). Dit is gezichtsdetectie, geen gezichtsherkenning: het systeem stelt niet vast wíe iemand is en bewaart geen biometrische kenmerken.
+- Bij het uploaden kan het platform een titel, een categorie en steekwoorden voorstellen op basis van je foto. Ook die analyse draait op onze eigen server: je foto verlaat het platform niet, er gaat niets naar een dienst van iemand anders, en er wordt niet vastgesteld wíe er op de foto staat. Je bepaalt zelf wat je overneemt; wat je niet bevestigt, wordt niet opgeslagen.
 - Sta je zelf op materiaal en wil je dat niet? Maak bezwaar of dien een verwijderingsverzoek in via het Meldpunt. Dat kan ook zonder account. Zie punt 7.
 
 ## Als je het platform alleen bezoekt

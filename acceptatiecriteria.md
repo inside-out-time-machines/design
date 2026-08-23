@@ -28,7 +28,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **MO-2** Bij goedkeuren krijgt de jottem een duurzame link, wordt hij zichtbaar in het project én verschijnt hij in zoekindex, RDF, IIIF Collection, Change Discovery en RSS; de uploader ontvangt de goedgekeurd-mail.
 * **MO-3** Afkeuren zonder reden is onmogelijk; bij afkeuren ontvangt de uploader de afgekeurd-mail met de reden en een werkende herindien-link.
 * **MO-4** Als er jottems wachten ontvang ik maximaal één digest-mail per dag; zonder wachtende jottems geen mail.
-* **MO-5** Bij een gehonoreerd verwijderverzoek krijgt de jottem status gedepubliceerd: de duurzame link toont een tombstone en de jottem is verdwenen uit zoekindex, RDF, feeds en IIIF-cache (purge); de indiener ontvangt de uitkomst-mail. Bij afwijzing is een toelichting verplicht.
+* **MO-5** Bij een gehonoreerd verwijderverzoek krijgt de jottem status gedepubliceerd: de duurzame link toont een tombstone en de jottem is verdwenen uit zoekindex, RDF, feeds en datadump. Ook het beeld zelf verdwijnt: het derivaat gaat uit de objectopslag en de IIIF-URL's worden in dezelfde beweging uit de cache gegooid, zodat een bezoeker die de URL kent binnen seconden een 404 krijgt in plaats van dagenlang de foto. Het origineel blijft als archiefexemplaar bewaard, alleen bereikbaar via de API. De indiener ontvangt de uitkomst-mail; bij afwijzing is een toelichting verplicht.
 * **MO-6** Gerapporteerde annotaties en reacties verschijnen in mijn moderatieoverzicht; ik kan de bijdrage verbergen/verwijderen of de melding afwijzen; de afhandeling is terug te vinden in het Gebeurtenislog.
 
 ## Gebruiker ## {#ac-gebruiker}

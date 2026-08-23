@@ -181,7 +181,7 @@ Per organisatie én per project publiceert de backend een ActivityStreams-feed (
 
 # Annotaties # {#annotaties}
 
-Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/) en worden opgeslagen in [AnnoRepo](https://github.com/knaw-huc/annorepo); lezen kan publiek en standaardconform via het [W3C Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/) op `anno.iotm.nl` (container per jottem: `/w3c/{jottemId}/`, annotatie: `/w3c/{jottemId}/{annotationId}`). Schrijven verloopt via de beheer-API, die de geauthenticeerde gebruiker als `creator` toevoegt (geanonimiseerd als `naamPubliek` uit staat) en autorisatie bewaakt (eigen annotaties bewerken en verwijderen); elke mutatie wordt met volledige payload vastgelegd in het `Gebeurtenislog`, dat daarmee de versiegeschiedenis draagt. Platform-extensies (`jottem:aard`, `jottem:verrijking`) zijn gedefinieerd in een eigen JSON-LD-context op `/ns/jottem.jsonld`.
+Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/) en worden opgeslagen in [AnnoRepo](https://github.com/knaw-huc/annorepo); lezen kan publiek en standaardconform via het [W3C Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/) op `anno.iotm.nl` (container per jottem: `/w3c/{jottemId}/`, annotatie: `/w3c/{jottemId}/{annotationId}`). Schrijven verloopt via de beheer-API, die de geauthenticeerde gebruiker als `creator` toevoegt (geanonimiseerd als `naamPubliek` uit staat) en autorisatie bewaakt (eigen annotaties bewerken en verwijderen); elke mutatie wordt met volledige payload vastgelegd in het `Gebeurtenislog`, dat daarmee de versiegeschiedenis draagt. Platform-extensies (`jottem:aard`, `jottem:verrijking`) zijn gedefinieerd in een eigen vocabulaire op [`https://data.iotm.nl/ns/jottem.jsonld`](https://data.dev.iotm.nl/ns/jottem.jsonld), dat tegelijk als JSON-LD-context dient. Dat document staat op het open-datadomein en wordt door de API uitgeleverd: een vocabulaire-URI staat in gepubliceerde tripels en hoort die te overleven, en de publiekssite is een applicatie die vervangen kan worden.
 
 <table class="data">
 <thead>
@@ -307,7 +307,7 @@ aan het licht bij de toets van de frames tegen de live uitvoer en is in de API d
 SHACL-shape van het NDE Datasetregister valideert de gepinde vorm. Voor
 annotaties geldt hetzelfde uitgangspunt: elke representatie, ook de aggregerende
 `AnnotationCollection`, draagt naast `http://www.w3.org/ns/anno.jsonld` de prefixafspraak
-`{"jottem": "https://iotm.nl/ns/jottem.jsonld#"}`, anders zijn `jottem:verrijking` en
+`{"jottem": "https://data.iotm.nl/ns/jottem.jsonld#"}`, anders zijn `jottem:verrijking` en
 `jottem:aard` in dat document geen resolvebare termen. Ook dat is doorgevoerd: de vijf frames
 zijn met [pyld](https://github.com/digitalbazaar/pyld) getoetst tegen de live uitvoer, de
 datadump en een losse annotatie, en leveren in alle gevallen dezelfde tripels op als de bron.
@@ -316,10 +316,18 @@ datadump en een losse annotatie, en leveren in alle gevallen dezelfde tripels op
 projecten is het advies per named graph te framen (die is per project) of eerst een `CONSTRUCT`
 te doen en het frame op dat resultaat toe te passen.
 
-**Volgende stap.** De frames zijn nu specificatie en meetlat. Ondersteuning van
-`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"` op de duurzame
-URL's staat op de realisatielijst; daarmee wordt het frame niet alleen documentatie maar ook
-uitvoerbaar contract.
+**Uitvoerbaar contract.** De frames zijn niet langer alleen documentatie: de API levert ze uit op `https://data.iotm.nl/ns/frames/{naam}.frame.jsonld` en past ze zelf toe wanneer een client erom vraagt met `Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`. Het antwoord noemt in zijn eigen `Content-Type` welk frame is toegepast, en herhaalt dat in een `Link`-header met `rel="describedby"`:
+
+<pre>
+Content-Type: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed
+              https://data.iotm.nl/ns/frames/jottem.frame.jsonld"
+Link: &lt;https://data.iotm.nl/ns/frames/jottem.frame.jsonld&gt;; rel="describedby"; type="application/ld+json"
+Vary: Accept
+</pre>
+
+Ondersteund op de jottem (`/jottem/{id}`), de projectdataset, de datacatalogus en de twee aggregerende annotatiecollecties. Bewust niet ondersteund, en dat is geen omissie: de losse annotatie (die levert de annotatieserver uit, niet de API), de datadump, de IIIF-manifesten en -collections, de Change Discovery-stromen en de RSS-feeds. Vraagt een client daar toch om het profiel, dan krijgt hij de gewone representatie en geen foutmelding: het gevraagde mediatype leveren we immers wel. Boven een aggregatie van vijfduizend annotaties vervalt het framen om dezelfde reden als in de kanttekening hierboven.
+
+Het frame dat de API toepast is byte-identiek aan het frame in dit document; een contracttest haalt beide op en vergelijkt ze. Diezelfde toets eist per ondersteunde URL dat de geframede en de gewone representatie dezelfde graaf opleveren: framen bepaalt de vorm, nooit de inhoud.
 
 ## Datasetbeschrijving en datadump ## {#datasetbeschrijving}
 

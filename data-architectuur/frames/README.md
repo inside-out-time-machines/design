@@ -13,7 +13,17 @@ frames presenteren. Zie de sectie
 | `annotatie.frame.jsonld` | `oa:Annotation` | een losse annotatie uit de annotatieserver |
 | `annotatiecollectie.frame.jsonld` | `as:OrderedCollection` | `/project/{projectId}/annotations`, `/organisatie/{slug}/annotations` |
 
-Toepassen, bijvoorbeeld met [pyld](https://github.com/digitalbazaar/pyld):
+Deze bestanden zijn ook de frames die de API zelf toepast. Ze worden uitgeleverd op
+`https://data.iotm.nl/ns/frames/{naam}.frame.jsonld` en een contracttest vergelijkt die kopie
+met deze, zodat documentatie en uitvoering niet uit elkaar kunnen lopen. Wie het geframede
+resultaat wil zonder zelf te framen, vraagt erom met een profiel in de Accept-header:
+
+```sh
+curl -H 'Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"' \
+     https://www.iotm.nl/jottem/{id}
+```
+
+Toepassen kan ook zelf, bijvoorbeeld met [pyld](https://github.com/digitalbazaar/pyld):
 
 ```python
 from pyld import jsonld

@@ -221,7 +221,8 @@ Zo is de naleving over de documenten verdeeld:
 - **AV**: DSA-positionering, meldpunt, licenties, gedragsregels, aansprakelijkheid, rolverantwoordelijkheden.
 - **SOK**: taakverdeling platformbeheerder-organisatie, verwerkersovereenkomst (art. 28 AVG), beveiligingsafspraken, exit-afspraken.
 - **PB**: informatieplichten AVG (art. 13-14), grondslagen, bewaartermijnen, rechten van betrokkenen, doorgifte, cookies.
-- **Nog te maken**: handreiking moderatie, interviewprotocol (toestemming audio), DSM-toets, toegankelijkheidscheck, AI-toets bij nieuwe functies.
+- **Gemaakt sinds de eerste versie**: [handreiking moderatie](handreiking-moderatie.html), [interviewprotocol](interviewprotocol.html) en de [AI-toets](ai-toets.html) voor de suggestiedienst.
+- **Nog te maken**: DSM-toets, toegankelijkheidscheck, en een nieuwe AI-toets bij elke volgende AI-functie.
 
 ---
 

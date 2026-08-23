@@ -1,0 +1,189 @@
+<pre class='metadata'>
+Title: AI-toets Suggesties bij het uploaden
+Shortname: ai-toets
+Level: 1
+Status: DREAM
+Boilerplate: conformance no, references no, table-of-contents no
+Markup Shorthands: css yes, markdown yes
+URL: https://github.com/inside-out-time-machines/design
+Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret
+Abstract: Toets van de suggestiedienst die bij het uploaden een titel, een categorie en steekwoorden voorstelt: wat het systeem doet, welke modellen erin zitten, hoe vaak het ernaast zit, welke plichten uit de AI-verordening gelden en onder welke voorwaarden de dienst aan mag.
+</pre>
+<section boilerplate="abstract"></section>
+<link rel="shortcut icon" href="../favicon.ico">
+<script>document.documentElement.lang = "nl"</script> <!-- Bikeshed genereert hard lang="en"; nl geeft correcte Nederlandse woordafbreking (hyphens: auto) -->
+<p boilerplate="copyright">&copy; 2026 <a href="https://www.iotm.nl/">Inside Out Time Machines</a>. Dit document is beschikbaar onder de licentie <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.nl">CC BY-SA 4.0</a>: hergebruik met naamsvermelding, bewerkingen onder dezelfde licentie.</p>
+<style>
+/* Jottem-huisstijl: oranje/roest/inkt op warm papier (woordmerk-palet).
+   html:root wint qua specificiteit van Bikesheds eigen :root-boilerplate (die later in het document staat). */
+/* Huisstijl-typografie (zie https://brand.iotm.nl/): Fraunces voor koppen, Albert Sans voor tekst.
+   Fonts lokaal gehost (absolute paden: dit blok staat ook in documenten in submappen). */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-v38-latin-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-v38-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/fraunces-v38-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/albert-sans-v4-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/albert-sans-v4-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/albert-sans-v4-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Albert Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/albert-sans-v4-latin-700.woff2') format('woff2'); }
+body { font-family: 'Albert Sans', 'Segoe UI', system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+html:root {
+  --bg: #faf6f1;
+  --text: #1f1e1c;
+  --heading-text: #a2401f;
+  --a-normal-text: #a2401f;
+  --a-visited-text: #7d3018;
+  --a-hover-bg: rgba(216,90,48,.08);
+  --a-normal-underline: #d85a30;
+  --a-visited-underline: #a2401f;
+  --hr-text: #d85a30;
+  --tocsidebar-bg: #f2e9de;
+  --tocsidebar-heading-text: #a2401f;
+  --toclink-text: #1f1e1c;
+  --toclink-underline: #d85a30;
+  --toclink-visited-text: #1f1e1c;
+  --toclink-visited-underline: #d85a30;
+}
+/* Diagrammen en logo's staan op het papier van het document, niet op wit. Bikeshed zet in
+   dark mode img { background: white } en die regel staat later in het document, dus hier is
+   een selector met hogere specificiteit nodig. */
+html:root img, html:root svg { background: var(--bg); }
+</style>
+<p class="note">Dit is een concept, opgesteld door een niet-jurist en nog niet juridisch gecontroleerd. Het beschrijft de toets die de [DPIA](verwerkingsregister-en-dpia.html) voorschrijft vóór ingebruikname van deze functie.</p>
+
+# Waarom deze toets # {#waarom}
+
+Jottem vult sinds augustus 2026 bij het uploaden drie velden voor: een titel, een categorie en steekwoorden. Die voorstellen komen van een eigen dienst die de foto bekijkt. Dat is de eerste plek waar het platform iets *zegt* over het materiaal in plaats van het alleen te bewaren, en dat vraagt om een verantwoording vooraf.
+
+Twee dingen dwingen die af. De [DPIA](verwerkingsregister-en-dpia.html) noemt bij het risico "suggesties verzinnen details die niet op de foto staan" als maatregel: *AI-toets uitvoeren vóór ingebruikname*. En [risico's en wet- en regelgeving](risicos-en-wetgeving.html) zet de AI-verordening op de lijst met als actie: *toetsen vóór inzet van AI-functies*. Zolang deze toets er niet lag, stond de dienst in productie uit.
+
+Er is ook een reden die niet uit een verplichting volgt. Het platform vraagt inwoners om hun herinneringen af te staan aan een archief. Dat vertrouwen verdraagt geen machine die ongevraagd meeschrijft zonder dat iemand kan nagaan wat die machine is, hoe vaak hij ernaast zit en wie hem kan overrulen.
+
+# Wat het systeem doet # {#werking}
+
+Tussen stap 1 (je foto) en stap 2 (vertel erover) van het uploadformulier is het beeld al bekend. Op dat moment stuurt de backend het beeld naar een interne dienst, die drie voorstellen teruggeeft met elk een score. Die voorstellen staan als voorgevulde waarden in het formulier, met bij elk veld een regel waar het voorstel vandaan komt.
+
+<table class="data">
+<thead>
+<tr><th>Veld</th><th>Hoe het voorstel ontstaat</th></tr>
+</thead>
+<tbody>
+<tr><td>Titel</td><td>Een beeldmodel maakt een Engelstalig onderschrift, een vertaalmodel maakt daar Nederlands van, en een korte regel maakt er een titel van (eerste letter groot, geen punt).</td></tr>
+<tr><td>Categorie</td><td>Een beeldmodel scoort zes categorieën (foto, menukaart, advertentie, folder, krantenartikel, vergunning) tegen het beeld. Alleen als de beste categorie een ruime voorsprong heeft op de tweede volgt er een voorstel.</td></tr>
+<tr><td>Steekwoorden</td><td>Hetzelfde beeldmodel scoort 109 termen uit de Cultuurhistorische Thesaurus en de Art &amp; Architecture Thesaurus. Wat boven de drempel komt, wordt voorgesteld, met de term-URI erbij, tot maximaal vijf.</td></tr>
+</tbody>
+</table>
+
+Komt het materiaal uit een beeldbank, dan gaat de eigen metadata van die beeldbank vóór: titel, beschrijving, datering en vervaardiger komen dan uit het IIIF-manifest en niet uit een model.
+
+# Wat het systeem niet doet # {#afbakening}
+
+* Het **beslist niets**. Er is geen veld dat het systeem invult zonder dat een mens het bevestigt, en geen bijdrage die op grond van een score wordt geweigerd, gepubliceerd of hoger gezet.
+* Het **herkent geen personen**. Er worden geen gezichten vergeleken, geen namen voorgesteld en geen biometrische kenmerken opgeslagen. De aparte detectie van herkenbare personen bij het uploaden is een ander systeem met een andere afbakening; die telt alleen of er mensen in beeld zijn en zegt nooit wie.
+* Het **profileert niemand**. De dienst kent de inzender niet: hij krijgt een beeld en geeft woorden terug. Er wordt niets over gebruikers afgeleid, opgeslagen of gecombineerd.
+* Het **leert niet van het materiaal**. De modelgewichten liggen vast in de container; inzendingen worden niet gebruikt om te trainen, ook niet later, ook niet geanonimiseerd.
+* Het **verlaat het platform niet**. De inferentie draait op dezelfde server, in een container zonder uitgaande verbinding naar een modelleverancier. Er gaat geen beeld naar een clouddienst.
+
+# Plaats onder de AI-verordening # {#ai-verordening}
+
+De [AI-verordening (EU) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) is sinds 1 augustus 2024 van kracht; de transparantieverplichtingen uit artikel 50 gelden sinds 2 augustus 2026.
+
+<table class="data">
+<thead>
+<tr><th>Vraag</th><th>Beoordeling</th></tr>
+</thead>
+<tbody>
+<tr><td>Is dit een AI-systeem?</td><td>Ja. Het leidt uit invoer (een beeld) uitvoer af (tekstvoorstellen) op een manier die niet vooraf is uitgeschreven.</td></tr>
+<tr><td>Welke rol heeft het platform?</td><td>Beide: aanbieder (de dienst wordt zelf samengesteld en onder eigen naam ingezet) én gebruiksverantwoordelijke (hij wordt in het eigen product gebruikt).</td></tr>
+<tr><td>Verboden praktijk (art. 5)?</td><td>Nee. Geen biometrische identificatie op afstand, geen emotieherkenning, geen sociale scoring, geen ongerichte verzameling van gezichtsbeelden.</td></tr>
+<tr><td>Hoog risico (bijlage III)?</td><td>Nee. Het systeem raakt geen van de genoemde terreinen (biometrie, onderwijs, werk, essentiële diensten, rechtshandhaving, migratie, rechtspraak). Het stelt metadata voor bij erfgoedmateriaal, en een fout leidt tot een verkeerd woord in een formulier dat de inzender voor zich ziet.</td></tr>
+<tr><td>Transparantieplicht (art. 50)?</td><td>Het systeem maakt synthetische tekst, dus de plicht is het uitgangspunt. Twee uitzonderingen liggen hier voor de hand: de tekst is een hulpmiddel bij standaardbewerking (een voorstel in een formulier) en er is menselijke redactionele verantwoordelijkheid vóór publicatie. Wij doen de melding hoe dan ook, bij elk voorgevuld veld, want de lezer heeft er meer aan dan de discussie over de uitzondering.</td></tr>
+<tr><td>AI-geletterdheid (art. 4)?</td><td>Van toepassing sinds 2 februari 2025. Wie modereert moet weten dat een voorgestelde titel van een model komt en niet van een mens. Dat hoort in de instructie van moderatoren thuis; zie de [handreiking moderatie](handreiking-moderatie.html).</td></tr>
+</tbody>
+</table>
+
+# De modellen # {#modellen}
+
+<table class="data">
+<thead>
+<tr><th>Taak</th><th>Model</th><th>Licentie</th><th>Herkomst</th></tr>
+</thead>
+<tbody>
+<tr><td>Onderschrift</td><td>Florence-2-base</td><td>MIT</td><td>Microsoft Research; hier gebruikt via de omgezette variant `florence-community/Florence-2-base`, zodat er geen modelcode van derden wordt uitgevoerd.</td></tr>
+<tr><td>Vertaling</td><td>opus-mt-en-nl</td><td>Apache-2.0 (CC-BY-4.0 voor de modelkaart)</td><td>Helsinki-NLP, getraind op het OPUS-corpus.</td></tr>
+<tr><td>Categorie en steekwoorden</td><td>SigLIP 2 base (patch16-224)</td><td>Apache-2.0</td><td>Google; hier zero-shot toegepast tegen Nederlandse labels, dus zonder eigen training.</td></tr>
+</tbody>
+</table>
+
+Alle drie zijn permissief gelicentieerd, wat de dienst zelf onder [EUPL-1.2](https://github.com/inside-out-time-machines/suggesties-api) laat vallen, dezelfde licentie als het platform.
+
+**Wat we niet weten, en dat is wezenlijk.** Van geen van deze modellen is de trainingsdata volledig openbaar. We weten dus niet welke beelden erin zaten, hoe die zijn verzameld en of daar auteursrechtelijk of privacygevoelig materiaal bij was. Dat is de reden dat de uitvoer nergens als vaststelling wordt behandeld: het is een gok van een systeem waarvan we de opvoeding niet kennen. Wat we wél weten en kunnen aantonen is hoe vaak die gok klopt op ons eigen materiaal, en dat staat hieronder.
+
+**Bekende vertekening.** Deze modellen zijn overwegend getraind op hedendaags, Engelstalig, westers beeldmateriaal. Historisch Nederlands materiaal, zwart-wit, gescand drukwerk en streekgebonden onderwerpen zijn ondervertegenwoordigd. Dat is in de steekproef ook terug te zien: de modellen zijn goed in het benoemen van wat er staat en zwak in het duiden van waar het is.
+
+# Wat we hebben gemeten # {#steekproef}
+
+Steekproef van 22 archiefbeelden: zeven foto's uit de beeldbank van het Streekarchief Midden-Holland, de rest historisch drukwerk uit Wikimedia Commons, verdeeld over de categorieën die de dienst kent.
+
+<table class="data">
+<thead>
+<tr><th>Veld</th><th>Uitkomst</th><th>Wat dat betekent</th></tr>
+</thead>
+<tbody>
+<tr><td>Titel</td><td>16 van de 22 direct bruikbaar, 4 zwak of vaag, 2 fout.</td><td>Ongeveer één op de tien voorstellen is onjuist. Een fout voorbeeld: "Een man met een masker" bij een kledingstuk op een paspop.</td></tr>
+<tr><td>Categorie</td><td>20 voorstellen, waarvan 17 juist; 2 keer bewust geen voorstel.</td><td>Bij twijfel zwijgt de dienst liever, en dat werkt: de misser die overblijft is een bronzen gedenkplaat die "folder" werd genoemd.</td></tr>
+<tr><td>Steekwoorden</td><td>19 voorstellen over 10 beelden, waarvan 14 raak; de helft van de beelden kreeg er geen.</td><td>Zuinig maar bruikbaar. Misslagen zijn van het type "postkantoren" bij een marktplein: verwant maar onjuist.</td></tr>
+</tbody>
+</table>
+
+De steekproef legde ook een instelfout bloot die met redeneren niet te vinden was. De ondergrens voor de categorie stond op een absolute score, terwijl juist gewone historische foto's absoluut laag scoren; vijf van de zeven echte foto's kregen daardoor geen categorie terwijl de juiste wel met ruime voorsprong won. Dat is precies waarom een toets op echt materiaal hoort en een redenering niet volstaat.
+
+<p class="note">22 beelden is een indruk, geen maat. Vóór livegang hoort deze meting herhaald te worden op materiaal dat de pilot zelf oplevert, met per veld hetzelfde onderscheid tussen bruikbaar, zwak en fout.</p>
+
+# Menselijke tussenkomst # {#mens}
+
+Er zitten twee mensen tussen een voorstel en een publicatie.
+
+1. **De inzender** ziet elk voorstel als voorgevulde waarde en kan het overschrijven of leeghalen. Wat niet wordt bevestigd, wordt niet opgeslagen: het platform bewaart alleen wat de inzender heeft ingediend, niet wat het model opperde.
+2. **De moderator** beoordeelt de bijdrage zoals altijd, inclusief de titel en de steekwoorden, en ziet daarbij de foto en alle metadata bij elkaar.
+
+Daar komt bij dat de dienst een hulpsignaal is en geen schakel: ligt hij plat of duurt hij te lang, dan opent het formulier met lege velden en merkt de inzender daar niets van. Een suggestiedienst die uitvalt mag nooit een upload blokkeren.
+
+# Transparantie # {#transparantie}
+
+* Bij elk voorgevuld veld staat waar het voorstel vandaan komt, in gewone taal.
+* Het wachtscherm tussen de twee stappen zegt wat er gebeurt: "We kijken even naar je foto, zodat we een titel kunnen voorstellen."
+* De dienst is [openbron](https://github.com/inside-out-time-machines/suggesties-api) en dit document beschrijft welke modellen erin zitten en hoe vaak ze ernaast zitten.
+* Het platform bewaart geen scores bij gepubliceerde bijdragen; wat er staat, staat er omdat een mens het heeft bevestigd. De naamsruimte kent daarvoor wel een term (`jottem:betrouwbaarheid`), gereserveerd voor het geval een latere functie wél een AI-uitvoer publiceert. Dan hoort daar ook een zichtbaar label bij.
+
+# Risico's en maatregelen # {#risicos}
+
+<table class="data">
+<thead>
+<tr><th>Risico</th><th>Kans</th><th>Impact</th><th>Maatregel</th></tr>
+</thead>
+<tbody>
+<tr><td>Een voorstel verzint een detail dat niet op de foto staat, en de inzender neemt het over zonder te kijken</td><td>M</td><td>L</td><td>Voorstellen zijn zichtbaar als voorstel en herkomst staat erbij; de moderator beoordeelt de tekst; een fout is achteraf te corrigeren via een melding.</td></tr>
+<tr><td>Voorgevulde velden maken inzenders luier, waardoor er minder eigen kennis wordt toegevoegd</td><td>M</td><td>M</td><td>Alleen titel, categorie en steekwoorden worden voorgesteld, nooit de beschrijving of de herinnering: juist het deel waarvoor het platform bestaat blijft leeg. Bij de evaluatie van de pilot meten of ingezonden beschrijvingen korter worden.</td></tr>
+<tr><td>Een categorie of steekwoord dat er systematisch naast zit, vervuilt de zoekindex en de open data</td><td>L</td><td>M</td><td>Steekwoorden komen uit een gesloten lijst met term-URI's, dus een misser is een verkeerde term en geen onzinwoord; de moderator ziet ze; de dienst zwijgt liever dan te gokken.</td></tr>
+<tr><td>Functiesluip: de dienst wordt later ingezet om te publiceren zonder tussenkomst</td><td>L</td><td>H</td><td>Deze toets legt vast dat het een hulpsignaal is. Een uitbreiding richting publicatie zonder tussenkomst vraagt een nieuwe toets, en het herzieningsmoment hieronder noemt dat expliciet.</td></tr>
+<tr><td>Een model blijkt achteraf op onrechtmatig materiaal getraind</td><td>L</td><td>M</td><td>Alleen permissief gelicentieerde modellen, uitwisselbaar achter één endpoint; de dienst kan worden uitgezet zonder dat het uploaden stopt. Gepubliceerde bijdragen zijn dan nog steeds door mensen bevestigd.</td></tr>
+</tbody>
+</table>
+
+# Gegevensbescherming # {#avg}
+
+De dienst verwerkt beelden die persoonsgegevens kunnen bevatten (mensen op een foto), maar leidt daar niets over personen uit af en bewaart niets. Het beeld gaat van de eigen backend naar de eigen container en wordt na de aanroep vergeten; er is geen logregel met beeldinhoud en geen opslag van tussenresultaten. Daarmee blijft dit binnen de verwerking die de [DPIA](verwerkingsregister-en-dpia.html) al beschrijft voor het uploaden zelf, en ontstaat er geen doorgifte buiten de EER.
+
+# Besluit # {#besluit}
+
+De suggestiedienst mag in gebruik worden genomen onder de volgende voorwaarden:
+
+1. Voorstellen blijven voorstellen: geen veld wordt zonder bevestiging opgeslagen, en er wordt niets gepubliceerd zonder moderatie.
+2. Bij elk voorgevuld veld blijft zichtbaar waar het voorstel vandaan komt.
+3. De meting uit dit document wordt vóór livegang herhaald op pilotmateriaal, met dezelfde indeling per veld, en de uitkomst wordt hier opgenomen.
+4. De moderatie-instructie vermeldt dat titel, categorie en steekwoorden voorgesteld kunnen zijn door een model.
+5. Wordt de dienst uitgebreid, krijgt hij een ander model, of gaat uitvoer zonder menselijke tussenkomst de open data in, dan wordt deze toets opnieuw gedaan vóórdat die wijziging live gaat.
+
+<p class="note">In te vullen na bespreking: vastgesteld door [naam], op [datum]. Tot die vaststelling blijft de dienst in productie uit (`JOTTEM_SUGGESTIES_URL` leeg).</p>

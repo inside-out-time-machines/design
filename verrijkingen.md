@@ -546,6 +546,12 @@ semantiek als het Herkenbaar-signaal: een hulpsignaal, geen poortwachter. Ligt d
 plat of duurt hij te lang, dan opent stap 2 met lege velden en merkt de inzender daar niets
 van. Impact: *hoog* (nieuwe dienst met twee modellen).
 
+*Gerealiseerd in augustus 2026 als de [Suggesties
+API](https://github.com/inside-out-time-machines/suggesties-api) (EUPL-1.2). Gemeten op de
+ontwikkelmachine (24 kernen, geen videokaart): **3,7 seconde per foto** en 2,7 GB geheugen.
+Een aanvaard steekwoord uit de thesaurus draagt zijn term-URI mee en komt in de RDF terug
+als `schema:about` met label en URI, niet als los woord in `schema:keywords`.*
+
 #### Afweging: één dienst of drie #### {#verrijking-suggesties-architectuur}
 
 <table class="data">
@@ -574,7 +580,7 @@ verdient; dan is het ook het moment om per taak te splitsen.
 <tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
 </thead>
 <tbody>
-<tr><td>**[Florence-2-base](https://huggingface.co/microsoft/Florence-2-base) plus een vertaalmodel** (gekozen)</td><td>MIT; 0,23 miljard parameters, dus bescheiden geheugen; onderschrijven is precies waarvoor het model gemaakt is; het vertaalmodel (opus-mt-en-nl) is ongeveer 300 MB en klaar binnen een seconde; twee kleine, voorspelbare stappen die los te beproeven zijn</td><td>Twee modellen in plaats van één; vijf tot tien seconden per foto op een machine zonder videokaart; de vertaalstap voegt een foutbron toe en Engelse woordvolgorde schemert soms door</td></tr>
+<tr><td>**[Florence-2-base](https://huggingface.co/florence-community/Florence-2-base) plus een vertaalmodel** (gekozen)</td><td>MIT; 0,23 miljard parameters, dus bescheiden geheugen; onderschrijven is precies waarvoor het model gemaakt is; het vertaalmodel (opus-mt-en-nl) is ongeveer 300 MB en klaar binnen een seconde; twee kleine, voorspelbare stappen die los te beproeven zijn</td><td>Twee modellen in plaats van één; gemeten 3,7 seconde per foto op onze machine (de schatting was vijf tot tien); de vertaalstap voegt een foutbron toe en Engelse woordvolgorde schemert soms door</td></tr>
 <tr><td>[Florence-2-large](https://huggingface.co/microsoft/Florence-2-large)</td><td>Merkbaar betere onderschriften, vooral op rommelige historische foto's</td><td>0,77 miljard parameters en ongeveer drie keer zo traag; op onze machine tegen de dertig seconden per foto</td></tr>
 <tr><td>Een meertalig VLM zoals [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct)</td><td>Praat direct Nederlands, dus geen vertaalstap; kan in één prompt titel, categorie én steekwoorden geven</td><td>Fors trager en zwaarder zonder videokaart; een generatief model verzint eerder details die niet op de foto staan, en bij erfgoed is een verzonnen detail schadelijker dan een ontbrekend</td></tr>
 <tr><td>[BLIP](https://huggingface.co/Salesforce/blip-image-captioning-base) of BLIP-2</td><td>Beproefd en veel gebruikt, ruime documentatie</td><td>Ouder; kortere en vlakkere onderschriften; nog steeds Engels, dus de vertaalstap blijft</td></tr>
@@ -589,6 +595,13 @@ die valt weg achter het invullen van stap 2.
 
 **Herzien wanneer.** Er een klein meertalig model verschijnt dat op enkel CPU binnen een paar
 seconden Nederlands onderschrijft; dan vervalt de vertaalstap.
+
+**Gemeten les bij het inrichten.** Meer rekenkernen maakte de dienst dramatisch tráger:
+dezelfde foto kostte 3,7 seconde met zes threads, 4,5 met acht, twintig met twaalf en
+drieënvijftig met vierentwintig. PyTorch pakt standaard de helft van de kernen en zit daarmee
+ver in het verkeerde gebied, zeker op een machine die de rest van de stack ook draait. Het
+aantal threads is daarom instelbaar en staat op zes; op een andere machine ligt het optimum
+elders en moet het opnieuw gemeten worden.
 
 #### Afweging: het model voor de categorie #### {#verrijking-suggesties-categorie}
 

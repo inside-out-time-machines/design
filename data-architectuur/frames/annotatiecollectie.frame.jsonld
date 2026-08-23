@@ -2,7 +2,7 @@
   "@context": [
     "http://www.w3.org/ns/anno.jsonld",
     {
-      "jottem": "https://dev.iotm.nl/ns/jottem.jsonld#",
+      "jottem": "https://data.iotm.nl/ns/jottem.jsonld#",
       "body": {
         "@id": "http://www.w3.org/ns/oa#hasBody",
         "@container": "@set"

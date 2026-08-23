@@ -25,6 +25,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 ## Moderator ## {#ac-moderator}
 
 * **MO-1** Ik zie alle jottems van mijn organisatie met status; ik kan filteren op nieuw/goedgekeurd/afgekeurd/gedepubliceerd; jottems van andere organisaties zijn onbereikbaar (403).
+* **MO-1b** Ik kan een wachtende bijdrage openen en zien waarover ik beslis: de foto zelf, alle metadata die de inzender opgaf, de herkomst, wie het inzond en of diens naam straks in de open data komt, plus het signaal over herkenbare personen met de verklaring van de inzender over toestemming. Goedkeuren en afkeuren gebeurt vanaf datzelfde scherm. De publiekspagina kan die rol niet vervullen: die bestaat pas na goedkeuring.
 * **MO-2** Bij goedkeuren krijgt de jottem een duurzame link, wordt hij zichtbaar in het project én verschijnt hij in zoekindex, RDF, IIIF Collection, Change Discovery en RSS; de uploader ontvangt de goedgekeurd-mail.
 * **MO-3** Afkeuren zonder reden is onmogelijk; bij afkeuren ontvangt de uploader de afgekeurd-mail met de reden en een werkende herindien-link.
 * **MO-4** Als er jottems wachten ontvang ik maximaal één digest-mail per dag; zonder wachtende jottems geen mail.

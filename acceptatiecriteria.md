@@ -45,7 +45,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
     vul ik de gegevens in. Bij een permalink uit een beeldbank staan titel, beschrijving,
     datering en vervaardiger al voorgevuld, met vermelding waar ze vandaan komen; ik kan
     ze aanpassen. Terug naar stap 1 kan zonder mijn invoer kwijt te raken.
-* **UP-2** Direct na de upload zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; zonder verklaring kies ik zelf: annuleren of tóch indienen (vlag "toestemming: nee"); de moderator ziet signaal én verklaring of vlag.
+* **UP-2** Meteen na het kiezen van mijn foto, en dus vóórdat ik gegevens invul, zie ik het resultaat van de Herkenbaar-check; bij "herkenbaar: ja" word ik om een toestemmingsverklaring gevraagd en wordt die vastgelegd; zonder verklaring kies ik zelf: annuleren of tóch verdergaan (vlag "toestemming: nee"); de moderator ziet signaal én verklaring of vlag.
 * **UP-3** Een afgekeurde jottem kan ik aanpassen en opnieuw indienen (status terug naar nieuw); een goedgekeurde jottem kan ik niet bewerken of verwijderen (403), een afgekeurde wél verwijderen.
 
 ## Annoteerder ## {#ac-annoteerder}

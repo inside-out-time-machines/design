@@ -538,7 +538,10 @@ Bij een beeldbank-permalink komt de eerste vulling gratis: het IIIF-manifest bev
 beschrijving, datering en vervaardiger. Bij een eigen foto komt hij van een interne dienst.
 
 **Call-to-action:** geen knop; de velden staan voorgevuld met een regel eronder waar het
-voorstel vandaan komt.
+voorstel vandaan komt. Is de dienst nog bezig wanneer de inzender aan de gegevens toe is,
+dan overbrugt een wachtscherm dat moment: een vis, getekend naar het beeldmerk, die rustig
+deint tot de voorstellen er zijn. Dat scherm knippert niet bij een snelle dienst, houdt
+niemand langer dan vijftien seconden op, en is altijd over te slaan.
 
 **Techniek/standaard:** één interne dienst naast de Herkenbaar API, met één endpoint dat
 titel, categorie en steekwoorden teruggeeft, elk met een betrouwbaarheidsscore. Dezelfde
@@ -811,7 +814,8 @@ fase 2-verrijkingen.*
     bevestigt of overschrijft; ze worden nooit zonder tussenkomst opgeslagen. Bij elk
     voorgevuld veld staat waar het voorstel vandaan komt. Valt de suggestiedienst uit, dan
     opent stap 2 met lege velden en merkt de inzender daar niets van: een hulpsignaal, geen
-    poortwachter, net als het Herkenbaar-signaal.
+    poortwachter, net als het Herkenbaar-signaal. Wachten op de suggesties mag nooit
+    blokkeren: het wachtscherm is over te slaan en geeft na vijftien seconden vanzelf op.
 * **V-9** Een koppeling tussen twee jottems is een structurele relatie in de database,
     binnen hetzelfde project; de `linking`-annotatie en `dcterms:relation` in de RDF zijn
     daarvan afgeleid en verschijnen pas wanneer beide jottems gepubliceerd zijn. Verdwijnt

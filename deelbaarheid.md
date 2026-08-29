@@ -112,12 +112,40 @@ widget-URL's, de voorbeeldcode voor beide inbedvormen (kopieerbaar) en een leven
 voorbeeld van de widgets, zodat de beheerder zonder technische hulp de code op de eigen
 site kan plakken.
 
+## oEmbed ## {#deelbaarheid-oembed}
+
+Platforms met [oEmbed](https://oembed.com/)-ondersteuning (WordPress, Mastodon, diverse
+CMS'en) tonen een geplakte Jottem-URL automatisch als embed; plakken van voorbeeldcode
+is dan niet nodig. Het endpoint is `GET /oembed` op de publiekssite, en elke project- en
+jottem-pagina draagt een discovery-link
+(`<link rel="alternate" type="application/json+oembed" href="…">`) zodat consumers het
+endpoint zelf vinden. *Status (augustus 2026): gerealiseerd.*
+
+<table class="data">
+<thead>
+<tr><th>Parameter</th><th>Betekenis</th></tr>
+</thead>
+<tbody>
+<tr><td>`url`</td><td>de geplakte pagina-URL; alleen project- en jottem-pagina's van het platform zelf, anders 404</td></tr>
+<tr><td>`format`</td><td>alleen `json`; `xml` geeft 501 (toegestaan volgens de spec voor een niet-ondersteund formaat)</td></tr>
+<tr><td>`maxwidth`, `maxheight`</td><td>bovengrens die de consumer meegeeft; het antwoord blijft eronder</td></tr>
+</tbody>
+</table>
+
+Het antwoord hangt af van het soort URL:
+
+* **Projectpagina** → type `rich`: de recente-jottems-widget uit
+    [[#deelbaarheid-widget]] als iframe (standaard 600×240), met projectnaam en
+    organisatienaam als titel.
+* **Jottem-pagina** → type `photo`: de duurzame IIIF-afbeelding (dezelfde
+    geen-presigned-regel als bij `og:image`), met als titel de jottem-titel plus een
+    willekeurige actieve verrijkings-call-to-action, en de inzendernaam als
+    `author_name` wanneer die publiek is. Alleen goedgekeurde jottems; een jottem
+    zonder duurzame beeld-URL geeft 404. De rijkere enkele-jottem-embed (widget met
+    CTA-knop) blijft fase 2.
+
 ## Fase 2 ## {#deelbaarheid-fase2}
 
-* **oEmbed-endpoint.** Een `/oembed`-endpoint plus discovery-`<link>` op project- en
-    jottem-pagina's, zodat platforms met oEmbed-ondersteuning (WordPress, Mastodon,
-    diverse CMS'en) een geplakte Jottem-URL automatisch als embed tonen; plakken van
-    voorbeeldcode is dan niet meer nodig.
 * **Jottem-badge.** Een klein "Bekijk op Jottem"-knopje in huisstijl (vergelijkbaar met
     social-badges) dat organisaties naast hun eigen collectie-items zetten; levert
     herkenbaarheid van het merk op andere sites.
@@ -127,7 +155,7 @@ site kan plakken.
 ## Aanvullende requirements ## {#deelbaarheid-requirements}
 
 *Status (augustus 2026): social login en deelknoppen/Open Graph waren al gerealiseerd;
-D-1 t/m D-6 worden in de huidige iteratie gerealiseerd, D-7 en D-8 zijn fase 2.*
+D-1 t/m D-7 zijn in de huidige iteratie gerealiseerd, D-8 is fase 2.*
 
 * **D-1** Het platform levert per project drie widget-routes (projectinfo, recente
     jottems, willekeurige jottems) als zelfstandige HTML met minimale inline CSS zonder
@@ -145,7 +173,9 @@ D-1 t/m D-6 worden in de huidige iteratie gerealiseerd, D-7 en D-8 zijn fase 2.*
     "weet jij hier meer van?" als terugval.
 * **D-6** De organisatiebeheerder ziet op de projectbeheerpagina de widget-URL's,
     kopieerbare voorbeeldcode voor beide inbedvormen en een levend voorbeeld.
-* **D-7** *(fase 2)* Het platform biedt een oEmbed-endpoint met discovery-links op
-    project- en jottem-pagina's.
+* **D-7** Het platform biedt een oEmbed-endpoint met discovery-links op project- en
+    jottem-pagina's: projectpagina's leveren type `rich` (de jottems-widget als
+    iframe), jottem-pagina's type `photo` (de duurzame IIIF-afbeelding met de
+    verrijkings-CTA in de titel); `maxwidth`/`maxheight` worden gerespecteerd.
 * **D-8** *(fase 2)* Er is een Jottem-badge in huisstijl die naar een project of jottem
     verwijst.

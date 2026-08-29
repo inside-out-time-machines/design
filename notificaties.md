@@ -83,6 +83,12 @@ Mail heeft alleen waarde als hij aankomt, en aankomen blíjft. De grote provider
 Yahoo, Microsoft) handhaven sinds 2024-2026 harde afzendereisen; onderstaande maatregelen
 zorgen dat Jottem-mail daaraan voldoet en een goede verzendreputatie opbouwt en behoudt.
 
+*Status (augustus 2026): de ontwikkelomgeving verstuurt echt, via een bestaande
+exim-relay met gevestigde reputatie (SPF, DKIM met een 2048-bit sleutel op selector
+`jottem`, DMARC `p=none` met rapportage, kloppende PTR/HELO); de attenderingsmails
+dragen de RFC 8058-headers. De eigen MTA in de stack blijft het productiedoel
+hieronder; bouncebeheer en DMARC-aanscherping volgen richting livegang.*
+
 **Authenticatie (verplicht).** Op het verzenddomein staan drie DNS-records ingeregeld:
 
 * **SPF**: het verzendende IP is geautoriseerd voor het domein;

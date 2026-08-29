@@ -96,14 +96,14 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 </tbody>
 </table>
 
-**Deelbaarheid.** Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API tonen de knop niet. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
+**Deelbaarheid.** (Zie ook het overkoepelende hoofdstuk [Deelbaarheid](../index.html#deelbaarheid), met onder meer de inbedbare widgets.) Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API tonen de knop niet. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
 
 <table class="data">
 <thead>
 <tr><th>Open Graph-element</th><th>Bron</th></tr>
 </thead>
 <tbody>
-<tr><td>`og:title`</td><td>`Media.titel` met de oproep "- weet jij hier meer van?" erachter, zodat een gedeelde link meteen om kennis vraagt</td></tr>
+<tr><td>`og:title`</td><td>`Media.titel` met daarachter een willekeurige, binnen het project actieve verrijkings-call-to-action (terugval: de vaste oproep "- weet jij hier meer van?"), zodat een gedeelde link meteen om een concrete bijdrage vraagt; zie het hoofdstuk [Deelbaarheid](../index.html#deelbaarheid)</td></tr>
 <tr><td>`og:description`</td><td>`Media.beschrijving` (of, als die ontbreekt, een zin met project- en organisatienaam)</td></tr>
 <tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij bron `url` de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
 <tr><td>`og:image:width/height`</td><td>berekend uit `Media.breedte`/`Media.hoogte` en de gevraagde IIIF-maat, dus de werkelijke afmetingen van de preview; onbekend = weglaten</td></tr>

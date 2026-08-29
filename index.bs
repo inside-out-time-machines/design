@@ -85,6 +85,10 @@ path: verrijkingen.md
 </pre>
 
 <pre class="include">
+path: deelbaarheid.md
+</pre>
+
+<pre class="include">
 path: acceptatiecriteria.md
 </pre>
 

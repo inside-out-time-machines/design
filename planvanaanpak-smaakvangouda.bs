@@ -3,7 +3,7 @@ Title: Plan van aanpak: Smaak van Gouda op Jottem
 Shortname: planvanaanpak-smaakvangouda
 Level: 1
 Status: DREAM
-Boilerplate: conformance no, references no, table-of-contents no
+Boilerplate: conformance no, references no, table-of-contents yes
 Markup Shorthands: css yes, markdown yes
 URL: https://github.com/inside-out-time-machines/design
 Editor: Bob Coret, Gouda Tijdmachine https://www.goudatijdmachine.nl, bob@coret.org, https://github.com/coret

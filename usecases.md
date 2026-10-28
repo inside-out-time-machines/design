@@ -19,6 +19,11 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
 * kan ik per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink, foto-URL), met altijd minstens één actieve wijze (standaard: alle vier)  
+* kan ik per project de openbaarheid instellen: **openbaar** (standaard) of **besloten**; bij een besloten project ziet alleen wie is uitgenodigd de jottems, de projectinformatie (logo, intro, oproep) blijft voor iedereen leesbaar en de open data van het project blijft openbaar  
+  * kan ik bij een besloten project leden (naam, e-mail) toevoegen; de ledenadministratie hoort bij het project, niet bij de organisatie  
+  * bij toevoegen wordt het lid als gebruiker klaargezet en krijgt het een account bij de identity provider; het lid ontvangt een e-mail met uitleg over het besloten project, de projectlink en een link naar de wachtwoord-vergeten-functie waarmee het een wachtwoord instelt (wie al een account heeft, logt direct in)  
+  * kan ik het lidmaatschap van een project weer intrekken; het account van de gebruiker blijft bestaan  
+  * als organisatiebeheerder heb ik, net als de moderatoren van mijn organisatie en de platformbeheerder, altijd toegang tot de besloten projecten van mijn organisatie zonder zelf lid te zijn  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
 * kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
 * kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
@@ -42,6 +47,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik een overzicht krijgen van geuploadde afbeeldingen, status een #annotaties en deellinks  
 * kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen  
 * kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)
+* kan ik, als ik voor een besloten project ben uitgenodigd, na inloggen de jottems van dat project bekijken, uploaden en annoteren zoals in elk ander project; ben ik geen lid, dan meldt de projectpagina dat toegang op uitnodiging is  
 
 ## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
 
@@ -82,7 +88,8 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
 * per organisatie / project een IIIF collection opvragen  
 * per project een datasetbeschrijving, RSS-feed en aggregerende AnnotationCollection opvragen  
 * per jottem IIIF info.json + manifest opvragen  
-* per project een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen; de platformbrede datacatalogus bundelt alle projectdatasets
+* per project een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen; de platformbrede datacatalogus bundelt alle projectdatasets  
+* de open data van een besloten project op dezelfde manier ophalen als die van een openbaar project: de openbaarheid van een project beperkt alleen de webapplicatie, niet de machine-leesbare uitvoer
 
 ## Als bezoeker kan ik ## {#bezoeker}
 
@@ -90,6 +97,7 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
 * de organisatie- en projectpagina’s lezen met informatie over doel, oproep tot actie  
   * mezelf registreren (waarmee je een gebruiker wordt)  
   * gepubliceerde jottems bekijken/doorzoeken  
+  * bij een besloten project zie ik logo, intro en oproep, maar geen jottems: de pagina toont een inlogknop en de melding dat toegang tot dit project op uitnodiging is; ook de jottem-pagina's van dat project en de widgets zijn dan niet beschikbaar  
   * favorieten van gebruikers bekijken
   * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
 * via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  

@@ -35,8 +35,17 @@
     string verrijkingen
     string uploadWijzen
     string status
+    string zichtbaarheid
     date creatieDatum
     int organisatieId FK
+  }
+
+  ProjectLid {
+    int projectLidId PK
+    uuid projectId FK
+    int gebruikersId FK
+    int uitgenodigdDoor FK
+    date creatieDatum
   }
 
   Gebruiker {
@@ -150,6 +159,13 @@
   %% dit project beschikbaar zijn voor term-URI's (standaard: alle bronnen).
   %% Publiek zichtbare identifiers (mediaId, projectId) zijn betekenisloze UUID's; interne
   %% id's (gebruikersId e.d.) blijven interne sleutels.
+  %% Project.zichtbaarheid: openbaar (standaard) / besloten. Een besloten project toont in de
+  %% webapplicatie alleen jottems aan ingelogde leden (ProjectLid) en aan beheerders en
+  %% moderatoren van de organisatie; de open data (RDF, IIIF, RSS, activity stream, dump,
+  %% SPARQL) blijft voor besloten projecten ongewijzigd openbaar (bewuste keuze).
+  %% ProjectLid: ledenadministratie per project. Lidmaatschap is GEEN rol: geen sterke factor,
+  %% geen GebruikerRol-rij; uitgenodigdDoor verwijst naar de organisatiebeheerder. Een genodigde
+  %% wordt als Gebruiker klaargezet (zonder sub) en gekoppeld bij de eerste login.
   %% Rollen: een gebruiker kan meerdere rollen hebben, per organisatie (GebruikerRol);
   %% de rol platformbeheerder heeft geen organisatieId. Lidmaatschap van een organisatie
   %% volgt uit de GebruikerRol-rijen. GebruikerRol is de LEIDENDE bron voor autorisatie;
@@ -195,6 +211,8 @@
   Organisatie ||--o{ Project : "voert_uit"
 
   Project ||--o{ Media : "verzamelt"
+  Project ||--o{ ProjectLid : "laat_toe"
+  Gebruiker ||--o{ ProjectLid : "is_lid"
 
   Gebruiker ||--o{ GebruikerRol : "heeft"
   Gebruiker ||--o{ Media : "uploadt"

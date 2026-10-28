@@ -20,7 +20,9 @@ paths:
       description: >
         Geeft een overzicht van alle organisaties met hun huisstijl (kleuren, logo) en
         actieve projecten, inclusief per project de ingeschakelde uploadwijzen
-        (`uploadWijzen`); gebruikt door de startpagina en het uploadformulier.
+        (`uploadWijzen`) en de `zichtbaarheid` (openbaar of besloten); gebruikt door de
+        startpagina, het uploadformulier en de open-data-pagina. De aantallen jottems
+        worden ook voor besloten projecten getoond: die zijn uit de open data af te leiden.
       responses:
         '200':
           description: Een lijst met organisaties
@@ -44,7 +46,7 @@ paths:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
         '200':
-          description: Organisatie-info met actieve projecten en aantallen jottems
+          description: Organisatie-info met actieve projecten (met `zichtbaarheid`) en aantallen jottems
           content:
             application/json:
               schema: { type: object }
@@ -203,6 +205,15 @@ paths:
         Projectinfo (naam, oproep, periode, licentie, huisstijl van de organisatie) plus
         het gepagineerde overzicht van gepubliceerde jottems met thumbnails; elke
         organisatie heeft minstens één project en elke jottem hoort bij precies één project.
+
+
+        **Besloten project.** De projectinfo is altijd openbaar, de jottems niet. Zonder
+        geldig access-token, of met een token van een gebruiker die geen lid, beheerder of
+        moderator is, geeft het antwoord `jottems: []`, `aantalJottems: 0` en `toegang`
+        `inloggen` respectievelijk `geen-lid`; de webapplicatie toont dan de inlogknop en
+        de melding dat toegang op uitnodiging is. Met toegang is `toegang` `ja` en is het
+        antwoord gelijk aan dat van een openbaar project. Een optioneel
+        `Authorization: Bearer`-token wordt dus ook op dit publieke endpoint gelezen.
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
         - name: projectSlug
@@ -215,7 +226,7 @@ paths:
           schema: { type: integer, minimum: 1, default: 1 }
       responses:
         '200':
-          description: Projectdetails met gepagineerde jottemtegels
+          description: Projectdetails met gepagineerde jottemtegels (bij een besloten project zonder toegang zonder tegels)
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Project' }
@@ -291,7 +302,9 @@ paths:
         Retourneert de metadata-beschrijving van de projectdataset conform schema.org
         (AP NDE), inclusief distributies (RDF-datadump `dump-{projectSlug}.nt.gz`,
         SPARQL, IIIF Collection, RSS, AnnotationCollection en de activity-stream van
-        het project).
+        het project). De datasetbeschrijving en al deze distributies filteren niet op
+        de `zichtbaarheid` van het project: ook een besloten project publiceert zijn
+        gepubliceerde jottems als open data (bewuste keuze, zie de requirements).
       parameters:
         - $ref: '#/components/parameters/projectId'
       responses:
@@ -372,7 +385,12 @@ paths:
       description: >
         Interne detailweergave (JSON) waarmee de webapplicatie de jottem-pagina opbouwt:
         metadata, afbeeldings-URL, IIIF-verwijzingen, bron en de ingeschakelde
-        verrijkingen (CTA's) van het project.
+        verrijkingen (CTA's) van het project. Hoort de jottem bij een besloten project,
+        dan is een access-token vereist (401 zonder) van een lid, beheerder of moderator
+        van de organisatie (anders 403); de open-data-representaties van dezelfde jottem
+        (`/jottem/{jottemId}` met content negotiation, IIIF-manifest, annotaties) blijven
+        openbaar. Gerelateerde jottems uit een besloten project worden alleen getoond aan
+        wie daar toegang toe heeft.
       parameters:
         - name: jottemId
           in: path
@@ -384,6 +402,8 @@ paths:
           content:
             application/json:
               schema: { type: object }
+        '401': { description: Besloten project; inloggen vereist }
+        '403': { description: Besloten project; dit account is geen lid }
 
   /verrijkingen:
     get:
@@ -541,6 +561,19 @@ components:
         afbeelding: { type: string, format: uri }
         datasetLicentie: { type: string, format: uri }
         status: { type: string, enum: [actief, afgerond] }
+        zichtbaarheid:
+          type: string
+          enum: [openbaar, besloten]
+          description: >
+            Besloten projecten tonen hun jottems in de webapplicatie alleen aan leden,
+            beheerders en moderatoren; de open data van het project blijft openbaar.
+        toegang:
+          type: string
+          enum: [ja, inloggen, geen-lid]
+          description: >
+            Alleen op `/organisatie/{organisatieSlug}/project/{projectSlug}/publiek`:
+            of de aanvrager de jottems mag zien. `inloggen` = besloten project zonder
+            (geldig) token; `geen-lid` = ingelogd maar geen lid, beheerder of moderator.
         organisatieSlug: { type: string, example: "samh" }
 
     Dataset:

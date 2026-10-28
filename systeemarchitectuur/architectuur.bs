@@ -127,6 +127,8 @@ Het JWT-claims-contract dat de backend van Authentik nodig heeft, is daarmee kle
 
 De uitnodigingsflow: de beheer-API verstuurt de uitnodigingsmail met bevestigingslink en zet de `GebruikerRol` klaar; de link leidt naar een Authentik-enrollment-flow (wachtwoord + verplichte tweede factor: TOTP of passkey); bij de eerste login koppelt de backend de `sub` aan de uitgenodigde `Gebruiker`-rij.
 
+**Leden van besloten projecten** volgen hetzelfde klaarzetpatroon, maar zonder rol en zonder tweede factor: het lidmaatschap staat in `ProjectLid` (per project, zie het ERD) en is geen `GebruikerRol`. Omdat de uitnodigingsmail naar de wachtwoord-vergeten-flow linkt, moet het account bij de identity provider al bestaan: de beheer-API maakt het daarom bij uitnodigen aan via de Authentik-API (een service-account met alleen de rechten om gebruikers aan te maken en op te zoeken; token via de omgeving), tenzij er al een account op dat e-mailadres is. Dat is de enige plek waar de backend naar Authentik schrijft; Authentik blijft uitsluitend authenticatie doen en de toegang tot een besloten project wordt per request in de API bepaald (lid, of beheerder/moderator van de organisatie, of platformbeheerder). De server-gerenderde publiekspagina's krijgen het access-token van de browser als cookie mee en sturen het door naar de API, zodat ook de projectpagina en de jottem-pagina weten wie er kijkt.
+
 Fijnmazige autorisatie op objectniveau (eigen afgekeurde jottems verwijderen, goedgekeurde niet) hoort in de backend thuis; wie dit declaratief wil, kan een policy engine als Casbin of OpenFGA toevoegen, maar voor deze schaal volstaat autorisatielogica in de API-laag.
 
 ## Backend-API en frontend

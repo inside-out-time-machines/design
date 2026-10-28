@@ -240,7 +240,7 @@ paths:
   /project/{projectId}:
     put:
       tags: [Projecten]
-      summary: Wijzig een project (naam, beschrijving, oproep, periode, afbeelding, datasetlicentie, status)
+      summary: Wijzig een project (naam, beschrijving, oproep, periode, afbeelding, datasetlicentie, status, zichtbaarheid)
       parameters:
         - $ref: '#/components/parameters/projectId'
       requestBody:
@@ -259,6 +259,69 @@ paths:
       responses:
         '204': { description: Verwijderd }
         '409': { description: Project bevat jottems of is het laatste project van de organisatie }
+
+  /project/{projectId}/leden:
+    get:
+      tags: [Projecten]
+      summary: Ledenadministratie van een (besloten) project
+      description: >
+        De leden die toegang hebben tot een besloten project, met per lid of het account al
+        is gekoppeld (eerste login gedaan). Alleen voor beheerders van de organisatie
+        (organisatiebeheerder of platformbeheerder, met sterke factor). Beheerders en
+        moderatoren van de organisatie staan hier niet in: zij hebben impliciet toegang.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Lijst van leden
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/ProjectLid' }
+    post:
+      tags: [Projecten]
+      summary: Nodig een lid uit voor het project
+      description: >
+        Zet de gebruiker klaar (bestaat het e-mailadres nog niet, dan ontstaat een
+        `Gebruiker`-rij zonder `sub`), registreert het lidmaatschap en laat de identity
+        provider een account op dat e-mailadres aanmaken als dat er nog niet is. De
+        genodigde ontvangt mail 12 (zie notificaties): uitleg over het besloten project, de
+        projectlink en de link naar "wachtwoord vergeten" waarmee het nieuwe account een
+        wachtwoord krijgt; wie al eens heeft ingelogd krijgt de variant "log in met je
+        bestaande account". Uitnodigen kan ook bij een openbaar project: het lidmaatschap
+        wordt pas betekenisvol zodra het project besloten wordt.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [naam, email]
+              properties:
+                naam: { type: string }
+                email: { type: string, format: email }
+      responses:
+        '201': { description: Lid uitgenodigd }
+        '409': { description: Deze gebruiker is al lid van het project }
+        '422': { description: Geen geldig e-mailadres }
+
+  /project/{projectId}/lid/{gebruikersId}:
+    delete:
+      tags: [Projecten]
+      summary: Trek het lidmaatschap van een project in
+      description: >
+        De gebruiker verliest de toegang tot het besloten project; het account en eventuele
+        andere lidmaatschappen of rollen blijven bestaan. De intrekking wordt gelogd in het
+        Gebeurtenislog.
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/gebruikersId'
+      responses:
+        '204': { description: Lidmaatschap ingetrokken }
+        '404': { description: Deze gebruiker is geen lid van het project }
 
   # --- Favorieten (rol gebruiker) ---
 
@@ -995,6 +1058,27 @@ components:
             voor term-URI's; leeg/afwezig betekent alle bronnen.
           items: { type: string, format: uri }
         status: { type: string, enum: [actief, afgerond] }
+        zichtbaarheid:
+          type: string
+          enum: [openbaar, besloten]
+          default: openbaar
+          description: >
+            Openbaar: iedereen ziet de gepubliceerde jottems. Besloten: de webapplicatie
+            toont jottems alleen aan ingelogde leden (zie `/project/{projectId}/leden`) en
+            aan beheerders en moderatoren van de organisatie; de open data blijft openbaar.
+
+    ProjectLid:
+      type: object
+      required: [naam, email]
+      properties:
+        gebruikersId: { type: integer, readOnly: true }
+        naam: { type: string }
+        email: { type: string, format: email }
+        gekoppeld:
+          type: boolean
+          readOnly: true
+          description: false zolang de genodigde nog niet voor het eerst heeft ingelogd
+        creatieDatum: { type: string, format: date-time, readOnly: true }
 
     GebruikerRol:
       type: object

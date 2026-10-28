@@ -22,6 +22,10 @@ foto's, menukaarten, advertenties en persoonlijke herinneringen worden verzameld
 duurzaam ontsloten. De pilot valideert de bestaande platformfunctionaliteit (zie [[#usecases]]) en
 brengt een aantal eisen scherp in beeld.
 
+Hoe het project wordt ingericht, getest en in gebruik genomen (instellingen en keuzes,
+testscripts, moderatie, communicatie en widgets) staat in het
+[plan van aanpak Smaak van Gouda](planvanaanpak-smaakvangouda.html).
+
 ## Wat dit van het platform vraagt ## {#pilot-platformeisen}
 
 * **Getypeerd bronmateriaal** - naast foto's ook menukaarten, advertenties, folders,

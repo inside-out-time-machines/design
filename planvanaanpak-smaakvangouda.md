@@ -11,7 +11,7 @@ Achtergrond: [pilot Smaak van Gouda](./#pilot-smaak-van-gouda), de
 [usecases](./#usecases) en de [acceptatiecriteria](./#acceptatiecriteria) in het
 ontwerpdocument. Keuzes die nog open staan zijn gemarkeerd met `[ ] keuze`.
 
-## Rollen en mensen ## {#pva-rollen-en-mensen}
+# Rollen en mensen # {#pva-rollen-en-mensen}
 
 <table class="data">
 <thead>
@@ -30,9 +30,9 @@ Beheerders en moderatoren loggen in met een wachtwoord plus tweestapsverificatie
 (TOTP-app of passkey); dat wordt afgedwongen bij de eerste login na de uitnodiging.
 Gewone gebruikers loggen in met e-mail en wachtwoord of via Google, Microsoft of Facebook.
 
-## Fase 1: Inrichten (op de testomgeving dev.iotm.nl) ## {#pva-fase-1-inrichten-op-de-testomgeving-dev-iotm-nl}
+# Fase 1: Inrichten (op de testomgeving dev.iotm.nl) # {#pva-fase-1-inrichten-op-de-testomgeving-dev-iotm-nl}
 
-### 1.1 Organisatie Streekarchief Midden-Holland ### {#pva-1-1-organisatie-streekarchief-midden-holland}
+## Organisatie Streekarchief Midden-Holland ## {#pva-1-1-organisatie-streekarchief-midden-holland}
 
 Door de platformbeheerder via Platformbeheer, daarna bij te werken door de
 organisatiebeheerder.
@@ -52,7 +52,7 @@ organisatiebeheerder.
 </tbody>
 </table>
 
-### 1.2 Project Smaak van Gouda ### {#pva-1-2-project-smaak-van-gouda}
+## Project Smaak van Gouda ## {#pva-1-2-project-smaak-van-gouda}
 
 Door de organisatiebeheerder via Organisatiebeheer, Bewerken.
 
@@ -102,7 +102,7 @@ Door de organisatiebeheerder via Organisatiebeheer, Bewerken.
 De beschrijving wordt gegenereerd uit de projectvelden. Aanmelden bij het NDE
 Datasetregister kan pas als er gepubliceerde jottems zijn; dat is een stap voor fase 3.
 
-### 1.3 Moderatoren en ledenbeheer ### {#pva-1-3-moderatoren-en-ledenbeheer}
+## Moderatoren en ledenbeheer ## {#pva-1-3-moderatoren-en-ledenbeheer}
 
 * Minimaal twee moderatoren uitnodigen (naam, e-mail) via Organisatiebeheer; zij
     ontvangen mail 2 met de spelregels en de link naar de
@@ -111,7 +111,7 @@ Datasetregister kan pas als er gepubliceerde jottems zijn; dat is een stap voor 
     Gezamenlijke Toekomst) ook moderator worden, of alleen SAMH-medewerkers.
 * Ledenbeheer is alleen nodig bij een besloten project en blijft voor Smaak van Gouda leeg.
 
-### 1.4 Teksten en juridische stukken klaarzetten ### {#pva-1-4-teksten-en-juridische-stukken-klaarzetten}
+## Teksten en juridische stukken klaarzetten ## {#pva-1-4-teksten-en-juridische-stukken-klaarzetten}
 
 * Spelregels, privacybeleid en algemene voorwaarden staan onder
     [juridisch](https://design.iotm.nl/juridisch/); controleren dat de versie klopt met
@@ -123,13 +123,13 @@ Opleverpunt fase 1: de projectpagina op dev.iotm.nl staat ingericht, de beheerde
 moderatoren zijn ingelogd met tweestapsverificatie, en de keuzes hierboven zijn
 vastgelegd (de `[ ]`-punten zijn aangevinkt).
 
-## Fase 2: Testen (op dev.iotm.nl) ## {#pva-fase-2-testen-op-dev-iotm-nl}
+# Fase 2: Testen (op dev.iotm.nl) # {#pva-fase-2-testen-op-dev-iotm-nl}
 
 Doel: elk pad dat een inwoner, moderator of beheerder straks bewandelt is één keer
 echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
 [acceptatiecriteria](./#acceptatiecriteria); de nummers hieronder verwijzen daarnaar.
 
-### 2.1 Testscripts ### {#pva-2-1-testscripts}
+## Testscripts ## {#pva-2-1-testscripts}
 
 **Bezoeker zonder account (BE-1, BE-2, BE-6)**
 
@@ -185,7 +185,7 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
     op data.dev.iotm.nl; laad de collectie in een externe IIIF-viewer.
 2. Doe een SPARQL-vraag op de projectgraaf (bijvoorbeeld alle jottems met een adres).
 
-### 2.2 Werkwijze ### {#pva-2-2-werkwijze}
+## Werkwijze ## {#pva-2-2-werkwijze}
 
 * Twee testrondes van een week: ronde 1 met SAMH-medewerkers, ronde 2 met drie tot
     vijf inwoners die niet bij het project betrokken zijn, met een korte
@@ -199,9 +199,9 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
 Opleverpunt fase 2: alle blokkerende bevindingen zijn opgelost en opnieuw getest; de
 moderatoren hebben elk minstens tien jottems beoordeeld.
 
-## Fase 3: In gebruik nemen ## {#pva-fase-3-in-gebruik-nemen}
+# Fase 3: In gebruik nemen # {#pva-fase-3-in-gebruik-nemen}
 
-### 3.1 Moderatie klaar voor de start ### {#pva-3-1-moderatie-klaar-voor-de-start}
+## Moderatie klaar voor de start ## {#pva-3-1-moderatie-klaar-voor-de-start}
 
 <table class="data">
 <thead>
@@ -217,14 +217,14 @@ moderatoren hebben elk minstens tien jottems beoordeeld.
 </tbody>
 </table>
 
-### 3.2 Startmateriaal ### {#pva-3-2-startmateriaal}
+## Startmateriaal ## {#pva-3-2-startmateriaal}
 
 Een lege projectpagina nodigt niet uit. Vóór de lancering plaatst SAMH zelf een
 startset: `[ ] keuze` 20 tot 30 jottems uit de eigen beeldbank (via de
 Memorix-permalink, dus zonder kopie) met adres, datering en een eerste herinnering of
 vraag als annotatie. Daarmee werkt ook "zelfde object, andere foto" meteen zichtbaar.
 
-### 3.3 Communicatie ### {#pva-3-3-communicatie}
+## Communicatie ## {#pva-3-3-communicatie}
 
 <table class="data">
 <thead>
@@ -232,7 +232,7 @@ vraag als annotatie. Daarmee werkt ook "zelfde object, andere foto" meteen zicht
 </thead>
 <tbody>
 <tr><td>Projectpagina en oproep</td><td>definitieve oproeptekst en projectafbeelding (fase 1); de pagina is de landingsplek van alle communicatie</td></tr>
-<tr><td>Website samh.nl</td><td>een projectpagina met de Jottem-widgets (zie 3.4) en een directe link naar de projectpagina</td></tr>
+<tr><td>Website samh.nl</td><td>een projectpagina met de Jottem-widgets (zie <a href="#pva-3-4-widgets-en-inbedding-op-samh-nl">Widgets en inbedding op samh.nl</a>) en een directe link naar de projectpagina</td></tr>
 <tr><td>Persbericht en lokale media</td><td>bij de lancering, met de oproep en de data van verzameldagen (AD Groene Hart, Goudse Post, Gouda FM, Omroep West)</td></tr>
 <tr><td>Sociale media</td><td>elke week één gepubliceerde jottem delen met de deelknop; de preview toont een wisselende oproep tot bijdragen (bijvoorbeeld "Weet jij wanneer dit was?")</td></tr>
 <tr><td>Verzameldagen en scansessies</td><td>in het archief en in wijken; medewerkers helpen bij uploaden met de camera van de telefoon of scannen materiaal ter plekke; partners: wijkverenigingen, Stichting Gedeeld Verleden, Gezamenlijke Toekomst</td></tr>
@@ -244,7 +244,7 @@ vraag als annotatie. Daarmee werkt ook "zelfde object, andere foto" meteen zicht
 Alle uitingen gebruiken de huisstijl van SAMH (de projectpagina en widgets kleuren al
 mee) en het Jottem-woordmerk conform de [merkgids](https://brand.iotm.nl/).
 
-### 3.4 Widgets en inbedding op samh.nl ### {#pva-3-4-widgets-en-inbedding-op-samh-nl}
+## Widgets en inbedding op samh.nl ## {#pva-3-4-widgets-en-inbedding-op-samh-nl}
 
 De organisatiebeheerder vindt op de projectbewerkpagina onder "Widgets" de adressen
 en de kopieerbare code. Aanbeveling voor samh.nl:
@@ -266,14 +266,14 @@ stijl `accent` (SAMH-groen als accent) of `neutraal`.
 
 Idem op goudatijdmachine.nl.
 
-### 3.5 Open data en Datasetregister ### {#pva-3-5-open-data-en-datasetregister}
+## Open data en Datasetregister ## {#pva-3-5-open-data-en-datasetregister}
 
 * Zodra er gepubliceerde jottems zijn: datasetbeschrijving valideren en aanmelden bij
     het NDE Datasetregister (OB-4). Daarmee is Smaak van Gouda vindbaar voor andere
     erfgoedinstellingen en de Gouda Tijdmachine.
 * RSS-feed van het project aanbieden op samh.nl en aan de Gouda Tijdmachine.
 
-### 3.6 Nazorg en evaluatie ### {#pva-3-6-nazorg-en-evaluatie}
+## Nazorg en evaluatie ## {#pva-3-6-nazorg-en-evaluatie}
 
 * Na vier weken: aantal inzenders, jottems, annotaties en afkeurredenen bekijken
     (statistieken in het organisatiebeheer en het Gebeurtenislog); de oproeptekst en
@@ -282,7 +282,7 @@ Idem op goudatijdmachine.nl.
     (pand-tijdlijn, kaartkoppeling met de Gouda Tijdmachine, audio) en wat betekent dat
     voor fase 2.
 
-## Checklist ## {#pva-checklist}
+# Checklist # {#pva-checklist}
 
 **Fase 1, inrichten**
 

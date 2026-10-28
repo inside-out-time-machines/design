@@ -21,6 +21,8 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **OB-4** Ik kan per project de datasetbeschrijving bewerken en - uitsluitend als het project gepubliceerde jottems heeft - valideren en aanmelden bij het NDE Datasetregister; een SHACL-validatiefout toont de details (422), zonder openbare data volgt 409.
 * **OB-5** *(fase 2)* Ik kan een bestaande collectie via IIIF importeren in een project; geïmporteerde jottems doorlopen de reguliere moderatie.
 * **OB-6** *(fase 2)* Ik kan per project een e-depot-export starten (202); na afronding ontvang ik de export-gereed-mail en is de download een valide BagIt (checksums kloppen) met `ro-crate-metadata.json`.
+* **OB-7** Ik kan per project de openbaarheid instellen op openbaar (standaard) of besloten; de wijziging werkt direct door op de projectpagina, de jottem-pagina's en de widgets van dat project, en laat de open data (IIIF, RDF, RSS, activity stream, dump, SPARQL) ongemoeid.
+* **OB-8** Ik kan bij een project leden uitnodigen (naam, e-mail) en hun lidmaatschap intrekken; de ledenlijst toont per lid of het account al is gekoppeld. Bij uitnodigen ontvangt het lid mail 12 (uitleg, projectlink, link naar wachtwoord vergeten of "log in" bij een bestaand account) en bestaat er daarna een account op dat adres bij de identity provider; nogmaals uitnodigen geeft 409. Ikzelf, de moderatoren van mijn organisatie en de platformbeheerder hebben toegang zonder lid te zijn.
 
 ## Moderator ## {#ac-moderator}
 
@@ -38,6 +40,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **GE-2** Ik kan in mijn profiel mijn naam, afbeelding, `naamPubliek` en de attenderingen (aan/uit) beheren; met `naamPubliek` aan staan mijn naam en profielfoto bij mijn jottems, annotaties en reacties ("*naam* heeft dit gisteren geplaatst"), met `naamPubliek` uit verschijnen naam noch foto publiek (dan een geanonimiseerde vermelding met een neutraal poppetje).
 * **GE-3** Ik zie een overzicht van mijn uploads met status, aantal annotaties en deellinks.
 * **GE-4** Ik kan jottems als favoriet markeren/ontmarkeren en mijn favorieten openbaar maken; de deellink toont mijn favorieten zonder inloggen en is géén duurzame link.
+* **GE-5** Ben ik lid van een besloten project, dan zie ik na inloggen de projectpagina met alle gepubliceerde jottems en kan ik uploaden en annoteren zoals in een openbaar project; ben ik ingelogd maar geen lid, dan toont de projectpagina de melding dat toegang op uitnodiging is, geeft de jottem-pagina 403 en weigert de API uploaden en annoteren in dat project (403). Na intrekking van mijn lidmaatschap geldt direct dat laatste.
 
 ## Uploader ## {#ac-uploader}
 
@@ -75,3 +78,4 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **BE-5** Openbare favorietenpagina's van gebruikers zijn bereikbaar via hun deellink (GE-4).
 * **BE-6** Elke gepubliceerde jottem-pagina heeft een Delen-knop die het deelmenu van het apparaat opent (Web Share API: sociale media, e-mail, link kopiëren; zonder ondersteuning verschijnt de knop niet) en bevat correcte Open Graph-metadata (`og:title/description/image/url`); een gedeelde link toont titel, beschrijving en afbeelding in de preview (gecontroleerd met een OG-validator).
 * **BE-7** Ik kan bij elke annotatie en reactie een melding doen (rapporteren, ook zonder account, met rate limiting); ik krijg een bevestiging en de melding verschijnt in de moderatieomgeving (MO-6 dekt de afhandeling).
+* **BE-8** Bij een besloten project zie ik zonder account de projectinformatie (logo, intro, oproep, licentie) maar geen jottems: de pagina toont een inlogknop en de melding dat toegang op uitnodiging is; de jottem-pagina's van dat project vragen om inloggen (401), de widgets en het oEmbed-endpoint geven 404, en de open data van het project (IIIF-collectie, RSS, activity stream, datadump, datasetbeschrijving, SPARQL) geeft 200 met dezelfde inhoud als bij een openbaar project.

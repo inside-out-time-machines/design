@@ -24,6 +24,7 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 <tr><td>9</td><td>E-depot-export gereed</td><td>organisatiebeheerder (aanvrager)</td><td>directe downloadlink naar het BagIt-pakket + de beperkte bewaartermijn</td></tr>
 <tr><td>10</td><td>Nieuwe annotatie of reactie op jouw jottem</td><td>uploader</td><td>*instelbaar in het profiel (standaard aan)*; gebundeld tot maximaal één mail per dag</td></tr>
 <tr><td>11</td><td>Reactie op jouw annotatie</td><td>annoteerder</td><td>*instelbaar in het profiel (standaard aan)*; gebundeld tot maximaal één mail per dag</td></tr>
+<tr><td>12</td><td>Organisatiebeheerder voegt een lid toe aan een (besloten) project</td><td>uitgenodigde</td><td>uitleg dat het project besloten is en wie uitnodigt, de projectlink, en de link naar "wachtwoord vergeten" waarmee het door de uitnodiging aangemaakte account een wachtwoord krijgt; heeft de genodigde al eens ingelogd, dan in plaats daarvan de oproep om in te loggen met het bestaande account. Geen 2FA-eis: een lid is geen beheerder</td></tr>
 </tbody>
 </table>
 

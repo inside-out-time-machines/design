@@ -56,7 +56,10 @@ een iframe of een klein script worden ingebed.
 </table>
 
 Het aantal {n} is begrensd op 1 tot en met 12; daarbuiten weigert de route. Alleen
-goedgekeurde (gepubliceerde) jottems verschijnen in de widgets.
+goedgekeurde (gepubliceerde) jottems verschijnen in de widgets. Voor een **besloten
+project** (zie de usecases van de organisatiebeheerder) bestaan de widgets niet: de
+route geeft 404 met de standaard-foutmelding, want een widget op een externe site zou
+de afscherming van de projectpagina omzeilen.
 
 ### Vormgeving en gedrag ### {#deelbaarheid-widget-vormgeving}
 
@@ -126,7 +129,7 @@ endpoint zelf vinden. *Status (augustus 2026): gerealiseerd.*
 <tr><th>Parameter</th><th>Betekenis</th></tr>
 </thead>
 <tbody>
-<tr><td>`url`</td><td>de geplakte pagina-URL; alleen project- en jottem-pagina's van het platform zelf, anders 404</td></tr>
+<tr><td>`url`</td><td>de geplakte pagina-URL; alleen project- en jottem-pagina's van het platform zelf, anders 404; project- en jottem-pagina's van een besloten project geven eveneens 404</td></tr>
 <tr><td>`format`</td><td>alleen `json`; `xml` geeft 501 (toegestaan volgens de spec voor een niet-ondersteund formaat)</td></tr>
 <tr><td>`maxwidth`, `maxheight`</td><td>bovengrens die de consumer meegeeft; het antwoord blijft eronder</td></tr>
 </tbody>

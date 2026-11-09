@@ -197,7 +197,7 @@ Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/anno
 <tr><td>`body` (identificatie persoon/gebouw/bedrijf/plaats/gebeurtenis)</td><td>SpecificResource met label + externe URI (zie [[#vocabulaires]])</td></tr>
 <tr><td>`body` (geo: standpunt fotograaf, zichtveld)</td><td>WKT/GeoJSON-body, zie [[#zoekindex-geo]]</td></tr>
 <tr><td>reactie op annotatie</td><td>annotatie met de bestaande annotatie als `target`</td></tr>
-<tr><td>`creator`</td><td>`Gebruiker.naam` indien `Gebruiker.naamPubliek`, anders geanonimiseerd</td></tr>
+<tr><td>`creator`</td><td>opgeslagen: alleen `id` (`urn:uuid:{Gebruiker.publiekeId}`) en `type` `Person`. De naam (`Gebruiker.naam` indien `Gebruiker.naamPubliek`, anders "Een deelnemer") wordt pas bij het lezen ingevuld, door de verzamelroutes van het platform en de publiekspagina; zie [[#annotaties]]</td></tr>
 </tbody>
 </table>
 
@@ -455,11 +455,20 @@ verdonkerd, zodat de contrastverhouding altijd minimaal 4,5:1 is.
 
 **Wie heeft dit geplaatst.** Bij een jottem, een annotatie en een reactie toont de
 publiekspagina de inzender in één regel: profielfoto (of een neutraal poppetje), naam en
-hoe lang geleden ("vandaag", "gisteren", "3 dagen geleden", daarna de datum). De naam
-zit al in de annotatie (`creator`); de bijbehorende profielfoto komt uit
-`GET /deelnemers?ids=...`, dat alleen gebruikers teruggeeft die hun naam publiek delen
+hoe lang geleden ("vandaag", "gisteren", "3 dagen geleden", daarna de datum). Naam en
+profielfoto komen uit `GET /deelnemers?ids=...` op basis van de creator-IRI in de
+annotatie; die route geeft alleen gebruikers terug die hun naam publiek delen
 (`Gebruiker.naamPubliek`). Staat die uit, dan toont de pagina de anonieme weergave
 zonder foto.
+
+**De naam staat niet in de annotatieserver (late binding).** Een annotatie draagt alleen de
+stabiele creator-IRI. De verzamelroutes van het platform (`/project/{id}/annotations`,
+`/organisatie/{slug}/annotations`) en de moderatieomgeving vullen de naam in bij het
+uitleveren. Een naamswijziging of het uitzetten van `naamPubliek` werkt daardoor direct
+door, zonder dat er annotaties herschreven worden, en er staan geen persoonsnamen in de
+annotatieserver (wat ook het wissen uit de [requirements](../index.html#privacy-authenticity-copyright) eenvoudiger
+maakt). De prijs: wie een container rechtstreeks op de annotatieserver leest, ziet alleen de
+creator-IRI.
 
 **Plaats van de organisatie.** De platformbeheerder kiest per organisatie een plaats uit GeoNames (`Organisatie.spatialUri` + `spatialNaam`); die vult `schema:spatialCoverage` in de datasetbeschrijvingen van de organisatie. Bij het opslaan haalt de backend eenmalig de coördinaten bij die URI op (content negotiation naar RDF, `wgs84_pos:lat`/`long`) en bewaart ze in `spatialLat`/`spatialLon`. Dat is afgeleide data: niet zichtbaar of bewerkbaar in de beheerinterface, en niet opgenomen in de datasetbeschrijving. De coördinaten dienen als startpunt van de kaarten, zodat elke organisatie in de eigen omgeving begint: de speld bij het uploaden en het standpunt van de fotograaf bij de zichtveld-annotatie. Een jottem met een eigen speld wint altijd van de organisatieplaats.
 

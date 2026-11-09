@@ -74,6 +74,10 @@ Verder gepland:
 * Koppelvlak met externe tijdmachines (Gouda Tijdmachine) - interfacebeschrijving eerst
 * Uitrol naar de overige tijdmachines (Amsterdam, Utrecht, Hilversum)
 
+**Beslispunt na de evaluatie:** annotaties blijven in AnnoRepo, of de W3C-leesroutes worden
+uit PostgreSQL bediend en MongoDB vervalt (zie de
+[systeemarchitectuur](systeemarchitectuur/architectuur.html#annotaties-annorepo)).
+
 **Latere fase** (reeds besloten in [[#keuze-open-vragen]]): ARK-minting/resolving, externe
 preserveringskopie (Internet Archive/e-depot), Wikimedia-doorzetting van de vrije subset,
 harde opslagquota per organisatie (MVP: monitoring met alerts).

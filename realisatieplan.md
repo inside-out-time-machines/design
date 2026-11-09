@@ -10,7 +10,7 @@ voorjaar van 2027. Het bouwt voort op het [[#keuze-oplossingsrichting]] en de
 
 De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 
-* **Accounts & rollen** - registratie en (social) login via Authentik, 2FA/passkeys voor beheer- en
+* **Accounts & rollen** - registratie en (social) login via Authentik (identity provider, zie [[#keuze-stack]]), 2FA/passkeys voor beheer- en
     moderatierollen, uitnodigingsflows; autorisatie vanuit de database (GebruikerRol leidend)
 * **Organisatie & project** - organisatiejottem in eigen huisstijl (SAMH), projectbeheer
     (Smaak van Gouda als eerste project), terminologiebronnen per project, openbare en
@@ -236,7 +236,7 @@ Coret). Platform en mailsjablonen gebruiken hem al. De merkgids omvat:
 
 ## Openstaand ontwerp tijdens de bouw ## {#realisatie-openstaand}
 
-Uit de gap-analyse resteert ontwerpwerk dat ter voorbereiding op fase 2 wordt opgepakt:
+Nog uit te werken ontwerp, ter voorbereiding op fase 2:
 de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import.
 Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per usecase
 ([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels

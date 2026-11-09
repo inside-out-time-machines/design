@@ -10,7 +10,7 @@ De Time machines willen geschiedenis relevant maken voor de inwoners van hun ste
 
 ## Beoogde eindresultaat
 
-​​We maken het mogelijk dat mensen zelf informatie gaan bijdragen aan lokale time machines. Door op deze manier technologie, lokale geschiedenis en burgerparticipatie te combineren, maken we het voor inwoners makkelijker en leuker om actief betrokken te zijn bij het erfgoed van hun eigen leefomgeving. Daarmee dragen we bij aan het gevoel van verbondenheid met die leefomgeving.  
+We maken het mogelijk dat mensen zelf informatie gaan bijdragen aan lokale time machines. Door op deze manier technologie, lokale geschiedenis en burgerparticipatie te combineren, maken we het voor inwoners makkelijker en leuker om actief betrokken te zijn bij het erfgoed van hun eigen leefomgeving. Daarmee dragen we bij aan het gevoel van verbondenheid met die leefomgeving.  
 
 ## Deelactiviteiten
 
@@ -175,7 +175,7 @@ Duurzame borging van de oplossing.
 
 De Time Machines functioneren als platforms voor ontmoeting, herinnering en kennisdeling, en sluiten daarmee aan op de gedachte dat erfgoed bijdraagt aan identiteit, zelfbewustzijn en gemeenschapszin. Inwoners herkennen hun eigen geschiedenis in het grotere verhaal van hun stad en voelen zich daardoor meer verbonden met hun omgeving. Dit versterkt het gevoel van eigenaarschap en draagt bij aan het welzijn van mensen - erfgoed als bron van zingeving en verbondenheid.
 
-## Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro
+## Omschrijving hoofdthema en aansluiting bij de Uitvoeringsagenda Faro
 
 Het Time Machine-initiatief sluit goed aan bij het kantelende perspectief op dienstverlening zoals geformuleerd in de NDE-agenda: niet de collectie of technologie staat centraal, maar de gemeenschap als belanghebbende. In dit project draait het om wat inwoners zelf belangrijk vinden in hun leefomgeving, welke verhalen ze willen vertellen en hoe ze dat digitaal willen doen. De vraag is niet: “Wat kunnen wij ontsluiten?” maar: “Wat willen mensen delen, bewaren en doorgeven?” Daarmee sluit het project direct aan op het idee om erfgoedgemeenschappen mede vorm te laten geven aan digitaal erfgoed.
 
@@ -191,7 +191,7 @@ In plaats van erfgoed slechts te bewaren en ontsluiten, draait het in de lokale 
 
 Het project ontwikkelt en test een laagdrempelige, visueel aantrekkelijke annotatieomgeving waarin burgers op toegankelijke wijze kunnen participeren. Dit instrument biedt een concrete methodiek voor participatieve digitale erfgoedzorg, die breed toepasbaar en herbruikbaar is. Door technische samenwerking en uitwisseling tussen Time Machines ontstaat bovendien een schaalsprong: succesvolle toepassingen kunnen eenvoudig elders worden ingezet. Dit maakt het mogelijk om met beperkte middelen meer gemeenschappen te bedienen.
 
-Daarnaast stimuleert het project nieuwe coalities tussen erfgoedinstellingen, vrijwilligersorganisaties, burgerinitiatieven, ontwerpers, techpartners en educatieve instellingen. Een voorbeeld is de samenwerking in Hilversum met Hilversummers.nl, een een online platform dat zich inzet voor het versterken van de lokale gemeenschap in Hilversum; of de samenwerking in Gouda met een game-ontwikkelaar. Deze netwerken zorgen voor verankering, maar ook voor verrijking van het erfgoed met diverse perspectieven en kennisvormen. Zo wordt het erfgoedveld inclusiever, creatiever en beter verbonden met de samenleving.
+Daarnaast stimuleert het project nieuwe coalities tussen erfgoedinstellingen, vrijwilligersorganisaties, burgerinitiatieven, ontwerpers, techpartners en educatieve instellingen. Een voorbeeld is de samenwerking in Hilversum met Hilversummers.nl, een online platform dat zich inzet voor het versterken van de lokale gemeenschap in Hilversum; of de samenwerking in Gouda met een game-ontwikkelaar. Deze netwerken zorgen voor verankering, maar ook voor verrijking van het erfgoed met diverse perspectieven en kennisvormen. Zo wordt het erfgoedveld inclusiever, creatiever en beter verbonden met de samenleving.
 
 Kortom, het initiatief is geen tijdelijk experiment, maar een bouwsteen voor een digitale, meer democratische en participatieve erfgoedsector. Het laat zien hoe erfgoed midden in de samenleving kan staan als iets dat mensen samen vormgeven, betekenis geven en levend houden.
 
@@ -203,7 +203,7 @@ Het project zet actief in op kennisdeling met erfgoedprofessionals, burgers en b
 
 - **Nieuwsbrieven**: Er verschijnen vier digitale nieuwsbrieven (elk kwartaal) met updates over het project, ervaringen uit de deelnemende steden, technische keuzes en leerpunten. De nieuwsbrieven worden verspreid via partnerorganisaties en netwerken in de erfgoedsector. De doelgroep wordt gevormd door erfgoedprofessionals. 
 - **Sociale media**: Via LinkedIn, Mastodon en Bluesky delen we regelmatig korte berichten met foto’s, citaten van deelnemers en aankondigingen. Dit is afhankelijk van het onderwerp communicatie naar vrijwilligers en naar erfgoed professionals. 
-- **Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreërde participatieve mogelijkheden zal na het project plaatsvinden. 
+- **Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreëerde participatieve mogelijkheden zal na het project plaatsvinden. 
 
 ### Kennissessies en webinars
 Er worden minimaal twee kennissessies georganiseerd: 

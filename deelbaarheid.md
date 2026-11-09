@@ -16,7 +16,7 @@ niet andersom.
 Wie via een ander kanaal binnenkomt, moet zonder drempel kunnen meedoen. Daarom is
 inloggen laagdrempelig, inclusief **social login** via federatie: in de MVP Google,
 Microsoft en Facebook; Apple en Instagram volgen in fase 2 vanwege de aanvraag- en
-reviewdoorlooptijd. Authentik doet uitsluitend authenticatie; rollen komen uit de
+reviewdoorlooptijd. Authentik (de identity provider, zie [[#keuze-stack]]) doet uitsluitend authenticatie; rollen komen uit de
 database. Zie de [systeemarchitectuur](systeemarchitectuur/architectuur.html) voor de
 inrichting. *Status (augustus 2026): gerealiseerd.*
 

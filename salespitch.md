@@ -26,7 +26,7 @@ Jottem draait het perspectief om: **niet de collectie staat centraal, maar de ge
 
 **Voor burgers (uploaders & annoteerders):**
 - Upload eigen foto's met metadata (wie, wat, waar, wanneer)
-- Verrijk bestaande erfgoedmateriaal met herinneringen en kennis
+- Verrijk bestaand erfgoedmateriaal met herinneringen en kennis
 - Annoteer foto's: identificeer personen, gebouwen, bedrijven op afbeeldingen
 - Markeer locaties op kaarten en koppel gebeurtenissen
 - Reageer op elkaars bijdragen en bouw samen aan verhalen

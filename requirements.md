@@ -84,4 +84,6 @@
 * [anno.iotm.nl](https://anno.iotm.nl) - W3C annotatieserver
 * [data.iotm.nl](https://data.iotm.nl) - RDF, SPARQL en datadumps
 * [status.iotm.nl](https://status.iotm.nl) - status en monitoring
+* [brand.iotm.nl](https://brand.iotm.nl) - merkgids van het platform
+* ontwikkelomgeving: dezelfde hosts onder `dev.iotm.nl` (bijvoorbeeld `api.dev.iotm.nl`, `data.dev.iotm.nl`)
 * ark.iotm.nl - gereserveerd voor de ARK-resolver (latere fase, zie [[#keuze-open-vragen]])

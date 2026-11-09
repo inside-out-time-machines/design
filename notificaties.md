@@ -1,7 +1,7 @@
 # Notificaties # {#notificaties}
 
 Alle notificatiemails op een rij: trigger, ontvanger en doel. Mails worden **asynchroon**
-verstuurd door de Celery-workers via een bestaande mailrelay (zie
+verstuurd door de Celery-workers (zie de stacktabel in [[#keuze-stack]]) via een bestaande mailrelay (zie
 [[#notificaties-afleverbaarheid]]), zijn Nederlandstalig en dragen
 de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
@@ -63,7 +63,7 @@ met een README die per sjabloon de variabelen noemt.
 ## Afleverbaarheid ## {#notificaties-afleverbaarheid}
 
 Mail heeft alleen waarde als hij aankomt, en aankomen blíjft. De grote providers (Gmail,
-Yahoo, Microsoft) handhaven sinds 2024-2026 harde afzendereisen; onderstaande maatregelen
+Yahoo, Microsoft) handhaven sinds 2024 (Google en Yahoo, februari) en 2025 (Microsoft, mei) harde afzendereisen; onderstaande maatregelen
 zorgen dat Jottem-mail daaraan voldoet en een goede verzendreputatie opbouwt en behoudt.
 
 *Status (augustus 2026): de ontwikkelomgeving verstuurt echt, via een bestaande
@@ -88,9 +88,8 @@ zonder moeite vanaf kunnen; anders wordt de spamknop het uitschrijfmechanisme en
 klachten beschadigen de reputatie van het hele platform. Daarom dragen attenderingsmails
 naast de uitschakellink in de voettekst de headers `List-Unsubscribe` (mailto én https)
 en `List-Unsubscribe-Post: List-Unsubscribe=One-Click` ([RFC 8058](https://www.rfc-editor.org/rfc/rfc8058)),
-zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven werkt direct en
-zonder inloggen (de uitschakellink bevat een token) en wordt binnen 48 uur verwerkt
-(in de praktijk: meteen). Transactionele mails (1 t/m 9 en 12) vallen hier bewust buiten;
+zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven kan zonder inloggen (de uitschakellink bevat een token);
+de grote providers eisen verwerking binnen 48 uur, het platform verwerkt het direct. Transactionele mails (1 t/m 9 en 12) vallen hier bewust buiten;
 die horen bij een handeling van de gebruiker zelf.
 
 **Verzendroute: de bestaande exim-relay, ook in productie.** De platformmail loopt via de

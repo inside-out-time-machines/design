@@ -234,7 +234,7 @@ doelpunt maakt herbewerken mogelijk.
 
 ## Tekstuele verrijking en transcriptie (OCR/HTR) ## {#verrijking-tekst}
 
-### Vertaling en begrippenverklaring ### {#verrijking-begrippen}
+### Begrippenverklaring ### {#verrijking-begrippen}
 
 Het toelichten van verouderde termen, verdwenen beroepen, dialectwoorden of historische
 munteenheden die op het beeld of in menukaarten en documenten voorkomen.
@@ -513,16 +513,16 @@ fase 2-verrijkingen.*
     en, voor vlak-annotaties bij een jottem met herkenbare personen, de beoordeling vooraf uit
     [[#verrijking-vlak]]; verder gelden de
     bestaande autorisatie (eigen bijdragen bewerken en verwijderen).
+* **V-8** Platform-extensies op het Web Annotation-model (zoals `jottem:aard` en
+    `jottem:betrouwbaarheid`) worden gedefinieerd in een eigen JSON-LD-context, zodat de
+    annotaties standaardconform blijven.
+* **V-9** Een koppeling tussen twee jottems is een structurele relatie in de database,
+    binnen hetzelfde project; de `linking`-annotatie en `dcterms:relation` in de RDF zijn
+    daarvan afgeleid en verschijnen pas wanneer beide jottems gepubliceerd zijn. Verdwijnt
+    een van de twee uit publicatie, dan verdwijnt ook de koppeling uit de publieke uitvoer.
 * **V-10** Suggesties bij het uploaden vullen formuliervelden voor die de inzender
     bevestigt of overschrijft; ze worden nooit zonder tussenkomst opgeslagen. Bij elk
     voorgevuld veld staat waar het voorstel vandaan komt. Valt de suggestiedienst uit, dan
     opent stap 2 met lege velden en merkt de inzender daar niets van: een hulpsignaal, geen
     poortwachter, net als het Herkenbaar-signaal. Wachten op de suggesties mag nooit
     blokkeren: het wachtscherm is over te slaan en geeft na vijftien seconden vanzelf op.
-* **V-9** Een koppeling tussen twee jottems is een structurele relatie in de database,
-    binnen hetzelfde project; de `linking`-annotatie en `dcterms:relation` in de RDF zijn
-    daarvan afgeleid en verschijnen pas wanneer beide jottems gepubliceerd zijn. Verdwijnt
-    een van de twee uit publicatie, dan verdwijnt ook de koppeling uit de publieke uitvoer.
-* **V-8** Platform-extensies op het Web Annotation-model (zoals `jottem:aard` en
-    `jottem:betrouwbaarheid`) worden gedefinieerd in een eigen JSON-LD-context, zodat de
-    annotaties standaardconform blijven.

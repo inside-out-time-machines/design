@@ -40,7 +40,7 @@ wat het is." en "Ken je iemand op deze foto? Klik op die persoon."
   "type": "Annotation",
   "motivation": "identifying",
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": {
       "type": "FragmentSelector",
       "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -123,7 +123,7 @@ en bij bestaande vragen: "Iemand vraagt: wie is dit? Weet jij het antwoord?"
   "type": "Annotation",
   "motivation": "questioning",
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": { "type": "FragmentSelector", "value": "xywh=pixel:120,80,200,300" }
   },
   "body": { "type": "TextualBody", "purpose": "questioning", "value": "Wie kent deze persoon?" }
@@ -244,7 +244,7 @@ transcriptie-UI en, bij assistentie, een OCR/HTR-pipeline).
   "type": "Annotation",
   "motivation": "supplementing",
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": { "type": "FragmentSelector", "value": "xywh=pixel:60,340,480,60" }
   },
   "body": { "type": "TextualBody", "purpose": "supplementing", "value": "Babi pangang f 8,50" }
@@ -269,7 +269,7 @@ waar mogelijk met een term-URI (Termennetwerk) als tweede body. Impact: *laag*.
   "type": "Annotation",
   "motivation": "describing",
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": { "type": "FragmentSelector", "value": "xywh=pixel:60,340,180,40" }
   },
   "body": {
@@ -299,7 +299,7 @@ velden. Impact: *middel* (lijst-invoer-UI en indexering).
   "type": "Annotation",
   "motivation": "supplementing",
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": { "type": "FragmentSelector", "value": "xywh=pixel:220,120,160,40" }
   },
   "body": { "type": "TextualBody", "purpose": "identifying", "value": "J. van Dam, voorzitter" }
@@ -356,7 +356,7 @@ IIIF-audio-canvas). Impact: *hoog* (opname-UI en audio-pipeline).
   "target": "https://www.iotm.nl/jottem/{id}",
   "body": {
     "type": "Sound",
-    "id": "https://media.iotm.nl/audio/{opname}.mp3",
+    "id": "https://{objectopslag}/audio/{opname}.mp3",
     "format": "audio/mpeg"
   }
 }
@@ -519,7 +519,7 @@ bevestigingsflow).
   "generator": { "type": "Software", "name": "jottem-beeldherkenning" },
   "jottem:betrouwbaarheid": 0.87,
   "target": {
-    "source": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+    "source": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
     "selector": { "type": "FragmentSelector", "value": "xywh=pixel:40,300,220,180" }
   },
   "body": { "type": "TextualBody", "purpose": "tagging", "value": "bakfiets" }
@@ -703,12 +703,12 @@ hergebruik en in de API's behouden blijft. Impact: *hoog* (beeldpipeline).
 {
   "type": "Annotation",
   "motivation": "painting",
-  "target": "https://iiif.iotm.nl/jottem/{id}/canvas/1",
+  "target": "https://api.iotm.nl/jottem/{id}/iiif/manifest/canvas/1",
   "body": {
     "type": "Choice",
     "items": [
-      { "type": "Image", "id": "https://iiif.iotm.nl/{origineel}/full/max/0/default.jpg" },
-      { "type": "Image", "id": "https://iiif.iotm.nl/{ingekleurd}/full/max/0/default.jpg" }
+      { "type": "Image", "id": "https://iiif.iotm.nl/3/{origineel}/full/max/0/default.jpg" },
+      { "type": "Image", "id": "https://iiif.iotm.nl/3/{ingekleurd}/full/max/0/default.jpg" }
     ]
   }
 }
@@ -734,7 +734,7 @@ community-validatie. Impact: *middel*.
 {
   "type": "Annotation",
   "motivation": "assessing",
-  "target": "https://anno.iotm.nl/annotation/{bestaande-annotatie}",
+  "target": "https://anno.iotm.nl/w3c/{id}/{bestaande-annotatie}",
   "body": {
     "type": "TextualBody",
     "purpose": "assessing",

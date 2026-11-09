@@ -42,9 +42,10 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 * **Vorm van de JSON-LD** - per kernentiteit een vastgelegd JSON-LD-frame
     ([data-architectuur](data-architectuur/data-architectuur.html#frames));
     de schema.org-namespace en de annotatieprefix zijn over alle serialisaties
-    gelijkgetrokken; ondersteuning van het framed-profiel
-    (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`) op de
-    duurzame URL's staat nog open
+    gelijkgetrokken; het framed-profiel
+    (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`) wordt op
+    de API-URL's ondersteund (gereed). Content negotiation op de duurzame www-URL (303 naar
+    de API, AP-7) is bezig
 * **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting en de contracttests uit de
     systeemarchitectuur (de basis-monitoringstack draait op dev: Prometheus/Grafana met
     exporters, overzichtsdashboard en basisalerts; Grafana achter Authentik-OIDC,

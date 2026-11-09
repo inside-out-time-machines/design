@@ -67,7 +67,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`.
 * **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; *(fase 2)* audio-jottems hebben een canvas met `duration`.
 * **AP-6** De datasetbeschrijving per project valideert tegen het SHACL-shape van het Datasetregister; de datadump (N-Triples) valideert tegen schema.org AP NDE; `/datacatalog` bundelt alle projectdatasets.
-* **AP-7** De duurzame jottem-URL levert HTML bij `Accept: text/html` en JSON-LD/Turtle bij RDF-accept-headers (303); een gedepubliceerde jottem geeft een tombstone (410).
+* **AP-7** De duurzame jottem-URL levert HTML bij `Accept: text/html` en verwijst bij RDF-accept-headers (JSON-LD, Turtle, RDF/XML, ook met het framed-profiel) met een 303 naar de API-URL van de jottem, die de RDF levert; een gedepubliceerde jottem geeft een tombstone (410).
 
 ## Bezoeker ## {#ac-bezoeker}
 

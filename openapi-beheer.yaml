@@ -11,7 +11,7 @@ info:
   version: "0.1"
 
 servers:
-  - url: https://api.iotm.nl/v1
+  - url: https://api.iotm.nl
     description: Productie server
 
 security:

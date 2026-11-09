@@ -181,5 +181,11 @@ D-1 t/m D-7 zijn in de huidige iteratie gerealiseerd, D-8 is fase 2.*
     jottem-pagina's: projectpagina's leveren type `rich` (de jottems-widget als
     iframe), jottem-pagina's type `photo` (de duurzame IIIF-afbeelding met de
     verrijkings-CTA in de titel); `maxwidth`/`maxheight` worden gerespecteerd.
+* **D-9** Het script (`widget.js`) zet de widget in de pagina van de partner, dus op het
+    origin van die site. Het vertrouwt daarom niets wat het ophaalt: `data-src` moet van
+    hetzelfde origin komen als het script, en de opgehaalde HTML wordt vóór het invoegen
+    opgeschoond (alleen de elementen en attributen die de widgets gebruiken, geen
+    `on*`-attributen, links en beelden alleen via http(s)). Wie geen extern script wil
+    vertrouwen, gebruikt de iframe; die is volledig afgeschermd van de partnerpagina.
 * **D-8** *(fase 2)* Er is een Jottem-badge in huisstijl die naar een project of jottem
     verwijst.

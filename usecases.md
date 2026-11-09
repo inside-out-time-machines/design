@@ -54,13 +54,13 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 ## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
 
-* kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, en kies ik daarbij het project (van de organisatie) waaraan ik bijdraag  
+* kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, in het project van waaruit ik het uploadformulier opende  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
   * kan ik die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
   * bevestig ik bij het indienen van een eigen bestand de licentie van het project (vastgelegd op de jottem); bij beeldbankmateriaal neemt het platform de rechten van de bron over  
 * kan ik op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
 * kan ik in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; alleen beeldbanken op de ingestelde lijst, te beginnen met de Memorix-beeldbank van SAMH); beeldbankmateriaal wordt niet gekopieerd, alleen verwezen  
-* kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
+* kan ik bij het uploaden een genre kiezen uit de vaste lijst (foto, menukaart, advertentie, folder, krantenartikel, vergunning, overig)  
 * kan ik begin- en eindjaar toevoegen en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart verschijnt; adres en pand-tijdlijn volgen na de evaluatie  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
@@ -69,7 +69,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 
 * kan ik een extra metadata aan de gehele jottem toevoegen, waarbij term-URI's gezocht worden via het NDE Termennetwerk binnen de voor het project ingestelde terminologiebronnen, zoals  
   * een plaatsnaam (label+URI)  
-  * de plek waar de fotograaf stond (op de kaart) plus zichtveld (WKT)  
+  * de plek waar de fotograaf stond (op de kaart) plus zichtveld: kijkrichting en beeldhoek (GeoJSON)  
   * gebeurtenis (label+URI)   
   * koppeling naar een externe archiefbron (label+URI)  
   * vrije tekst: herinnering, aanvulling of correctie  
@@ -102,8 +102,8 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
   * gepubliceerde jottems bekijken (doorzoeken: na de evaluatie)  
   * bij een besloten project zie ik logo, intro en oproep, maar geen jottems: de pagina toont een inlogknop en de melding dat toegang tot dit project op uitnodiging is; ook de jottem-pagina's van dat project en de widgets zijn dan niet beschikbaar  
   * favorieten van gebruikers bekijken *(na de evaluatie)*
-  * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
+  * een jottem delen via de Delen-knop (het deelmenu van mijn apparaat, of anders de link kopiëren); de gedeelde link toont een nette preview  
 * op een kaart de gepubliceerde jottems als speldjes zien en doorklikken naar de jottem  
-* per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken, ook via de Gouda Tijdmachine *(na de evaluatie)*  
+* per pand de opeenvolgende functies als tijdlijn bekijken (bij Smaak van Gouda: de eetgelegenheden), ook via een externe tijdmachine *(na de evaluatie)*  
 * een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal, ook zonder account  
 * een annotatie of reactie rapporteren (spam, reclame, ongepast); de melding komt in de moderatieomgeving van de organisatie

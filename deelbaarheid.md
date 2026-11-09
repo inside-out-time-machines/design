@@ -23,7 +23,8 @@ inrichting. *Status (augustus 2026): gerealiseerd.*
 ## Deelknoppen en Open Graph ## {#deelbaarheid-deelknoppen}
 
 Elke gepubliceerde jottem-pagina heeft een **Delen**-knop die het deelmenu van het
-apparaat opent via de Web Share API, en elke publiekspagina draagt **Open
+apparaat opent via de Web Share API (kan de browser dat niet, zoals veel desktopbrowsers,
+dan kopieert de knop de link naar het klembord), en elke publiekspagina draagt **Open
 Graph-metadata** zodat een gedeelde link een nette preview toont. De volledige
 uitwerking (knopplaatsing, OG-elementen en hun bronnen, canonical-beleid) staat in de
 [data-architectuur](data-architectuur/data-architectuur.html#uri-strategie).
@@ -106,7 +107,7 @@ Voor WordPress is het iframe de eenvoudigste route (plakken in een
 "Aangepaste HTML"-blok); het script is het mooiste resultaat op sites die externe
 scripts toestaan. Een eigen WordPress-plugin of Gutenberg-block is bewust géén onderdeel
 van het ontwerp: het "Aangepaste HTML"-blok volstaat, en met het oEmbed-endpoint uit
-[[#deelbaarheid-fase2]] wordt zelfs dat plakken van code overbodig.
+[[#deelbaarheid-oembed]] wordt zelfs dat plakken van code overbodig.
 
 ### Widgetlinks in het projectbeheer ### {#deelbaarheid-widget-beheer}
 

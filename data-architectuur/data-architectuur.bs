@@ -97,7 +97,7 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 </tbody>
 </table>
 
-**Deelbaarheid.** (Zie ook het overkoepelende hoofdstuk [Deelbaarheid](../index.html#deelbaarheid), met onder meer de inbedbare widgets.) Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API tonen de knop niet. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
+**Deelbaarheid.** (Zie ook het overkoepelende hoofdstuk [Deelbaarheid](../index.html#deelbaarheid), met onder meer de inbedbare widgets.) Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API kopiëren met dezelfde knop de link naar het klembord. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
 
 <table class="data">
 <thead>
@@ -238,7 +238,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:dateCreated`</td><td>`Metadata` type datering</td></tr>
 <tr><td>`schema:creator`</td><td>`Metadata` type vervaardiger</td></tr>
 <tr><td>`schema:contentLocation`</td><td>`Metadata` type plaats/adres (`schema:Place`, `schema:sameAs` naar term-URI, `schema:geo` bij WKT/GeoJSON)</td></tr>
-<tr><td>`schema:temporalCoverage`</td><td>`Metadata` openings-/sluitingsjaar</td></tr>
+<tr><td>`schema:temporalCoverage`</td><td>`Metadata` begin- en eindjaar (`jaarVan`, `jaarTot`)</td></tr>
 <tr><td>`schema:about`</td><td>`Metadata`/annotaties: personen, gebouwen, bedrijven, gebeurtenissen (label + URI)</td></tr>
 <tr><td>`schema:keywords`</td><td>`Metadata` type steekwoord</td></tr>
 <tr><td>`schema:isBasedOn` / `schema:subjectOf`</td><td>`Metadata` type archiefbron (label + URI)</td></tr>
@@ -428,8 +428,8 @@ Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-sp
 
 Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken mogelijk:
 
-* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig - elk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)**, opgezocht via het NDE Termennetwerk (zie hieronder). De waardelijst met bijbehorende CHT-URI's is platformconfiguratie.
-* **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, openingsjaar, sluitingsjaar, persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
+* **Genre** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, overig (audio volgt in fase 2) - waar mogelijk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)** of de AAT; voor krantenartikel en overig is er geen passende term. De waardelijst met bijbehorende term-URI's is platformconfiguratie. "Categorie" in de suggestiedienst is dit veld.
+* **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, begin- en eindjaar (`jaarVan`, `jaarTot`), persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
 * **Annotatiemotivaties** (`motivation`, W3C-vocabulaire): `describing` (herinnering), `commenting` (reactie), `identifying` (persoon/gebouw/bedrijf op vlak), `tagging` (steekwoord), `linking` (archiefbron, gebeurtenis), `editing` (correctie).
 * **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), zodat de RDF-output linkbaar is.
 

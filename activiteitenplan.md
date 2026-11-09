@@ -59,7 +59,7 @@ Vaststellen welke (generieke of lokale) technische oplossing het meest geschikt 
 
 > **Status (augustus 2026):** de architectuurschets is uitgegroeid tot een volwaardige [systeemarchitectuur](systeemarchitectuur/architectuur.html) en [data-architectuur](data-architectuur/data-architectuur.html). De scenario-afweging is uitgevoerd in de [infrastructuuranalyse](infra/analyse.html) (vier richtingen); er is gekozen voor één generiek platform (Jottem) voor alle tijdmachines, in plaats van maatwerk per tijdmachine.
 
-### Keuze oplossingsrichting
+### Keuze oplossingsrichting ### {#activiteit-keuze-oplossingsrichting}
 
 **Aard & wijze van uitvoering:**
 
@@ -95,7 +95,7 @@ Functionele toepassing waarmee gebruikers foto's/verhalen kunnen toevoegen en/of
 
 - Werkende participatievoorziening binnen elke tijdmachine. 
 
-> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)). De eerste implementatie start met de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
+> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)) en de bouw is begonnen; de stand per onderdeel staat in het [[#realisatie-mijlpalen|realisatieplan]]. De eerste implementatie is voor de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
 
 ### Testen en nazorg
 

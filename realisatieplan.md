@@ -13,7 +13,8 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 * **Accounts & rollen** - registratie en (social) login via Authentik, 2FA/passkeys voor beheer- en
     moderatierollen, uitnodigingsflows; autorisatie vanuit de database (GebruikerRol leidend)
 * **Organisatie & project** - organisatiejottem in eigen huisstijl (SAMH), projectbeheer
-    (Smaak van Gouda als eerste project), terminologiebronnen per project
+    (Smaak van Gouda als eerste project), terminologiebronnen per project, openbare en
+    besloten projecten met ledenbeheer (mail 12)
 * **Uploaden** - upload (JPG/PNG/TIFF) met metadata, genre (CHT), locatie (speld op de kaart),
     begin- en eindjaar en licentiebevestiging; automatische Herkenbaar-check met
     toestemmingsverklaring. Begin- en eindjaar zijn generieke velden: de pilot verzamelt
@@ -38,21 +39,17 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     (AnnotationCollections), RSS, RDF, datasetbeschrijving + dump per project,
     datacatalogus en aanmelding bij het NDE Datasetregister, plus de open-data-landingspagina
     op de data-host (per project alle uitgangen, Swagger UI van de publieke API en de
-    broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl). IIIF Change
+    broncoderepo's; eigen repo `data`). IIIF Change
     Discovery, de aggregaten per organisatie en platform en het publieke SPARQL-endpoint
     zijn gebouwd, maar staan tijdens de pilot in productie uit: de pilot heeft ze niet
     nodig en de datadump wordt uit PostgreSQL gemaakt, niet uit de triplestore
-* **Vorm van de JSON-LD** - per kernentiteit een vastgelegd JSON-LD-frame
-    ([data-architectuur](data-architectuur/data-architectuur.html#frames));
-    de schema.org-namespace en de annotatieprefix zijn over alle serialisaties
-    gelijkgetrokken; het framed-profiel
-    (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`) wordt op
-    de API-URL's ondersteund (gereed). Content negotiation op de duurzame www-URL (303 naar
-    de API, AP-7) is bezig
-* **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting en de contracttests uit de
-    systeemarchitectuur (de basis-monitoringstack draait op dev: Prometheus/Grafana met
-    exporters, overzichtsdashboard en basisalerts; Grafana achter Authentik-OIDC,
-    alleen voor platformbeheerders)
+* **JSON-LD-frames** - per jottem, projectdataset en webannotatie een vastgelegd JSON-LD-frame
+    ([data-architectuur](data-architectuur/data-architectuur.html#frames)), op te vragen met
+    het framed-profiel (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`);
+    één schema.org-namespace en één annotatieprefix in alle serialisaties; content
+    negotiation op de duurzame www-URL (303 naar de API, AP-7)
+* **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting (Prometheus/Grafana, alleen
+    voor platformbeheerders) en de contracttests (zie [[#realisatie-werkpakketten]])
 
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
 
@@ -94,7 +91,7 @@ maar tijdens de pilot uitgeschakeld).
 <tr><th>Periode</th><th>Mijlpaal</th><th>Status</th></tr>
 </thead>
 <tbody>
-<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, S3-compatibele objectopslag, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td><td>stack, datamodel en keten: gereed (augustus 2026; op dev draait MinIO als objectopslag). Merkgids: gereed; vaststelling door de projectgroep: open</td></tr>
+<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, S3-compatibele objectopslag, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen** (zie [[#realisatie-huisstijl]])</td><td>stack, datamodel en keten: gereed (augustus 2026; op dev draait MinIO als objectopslag). Merkgids: gereed; vaststelling door de projectgroep: open, niet blokkerend</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, kaart met speldjes, huisstijl SAMH, Herkenbaar-integratie, begin- en eindjaar in het uploadformulier</td><td>detailpagina, annoteren, huisstijl SAMH en Herkenbaar: gereed. Kaart met speldjes: niet gestart. Begin- en eindjaar in het formulier: niet gestart. Zoeken met facetten en pand-tijdlijn: uitgesteld</td></tr>
 <tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), testronde 1 met SAMH-medewerkers (zie het [plan van aanpak](planvanaanpak-smaakvangouda.html#pva-2-2-werkwijze)), juridische toetsing gestart, alle notificatiemails van de MVP werkend (zie [[#notificaties]])</td><td>open-data-outputs, validatie en aanmelding: gereed. Change Discovery en SPARQL: uit in productie. Mails 1-4 en 10-12: gereed. Mail 5 (moderatiedigest) en mails 6-8 (verwijderverzoeken): niet gestart. Testronde 1 en juridische toetsing: open</td></tr>
 <tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, [[#realisatie-productie]], testronde 2 met inwoners (op productie), securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow: niet gestart. Overige punten: open</td></tr>
@@ -195,8 +192,9 @@ criteria om deze werkpakketten:
 
 Naast de huisstijl per organisatiejottem (logo, kleurenpalet, favicon op `Organisatie`) heeft
 het **platform zelf** een huisstijl. Die is uitgewerkt in de **merkgids** op
-[brand.iotm.nl](https://brand.iotm.nl/), met de projectgroep vast te stellen in de
-septembermijlpaal. De merkgids omvat:
+[brand.iotm.nl](https://brand.iotm.nl/). De merkgids is nog niet door de projectgroep
+vastgesteld; vaststelling vóór de livegang is wenselijk maar geen voorwaarde (eigenaar: Bob
+Coret). Platform en mailsjablonen gebruiken hem al. De merkgids omvat:
 
 * **merkverhaal en tone of voice** - positionering, kernwaarden en schrijfregels
     (heel begrijpelijk, taalniveau B1);
@@ -219,8 +217,6 @@ septembermijlpaal. De merkgids omvat:
 
 Uit de gap-analyse resteert ontwerpwerk dat ter voorbereiding op fase 2 wordt opgepakt:
 de interfacebeschrijving van de tijdmachine-koppeling en de uitwerking van de IIIF-import.
-De huisstijl van het platform is uitgewerkt in de [merkgids](https://brand.iotm.nl/) en wacht
-op vaststelling door de projectgroep ([[#realisatie-huisstijl]], septembermijlpaal).
 Het notificatie-overzicht ([[#notificaties]]) en de acceptatiecriteria per usecase
 ([[#acceptatiecriteria]]) zijn uitgewerkt. De open-sourcelicenties en repostructuur zijn inmiddels
 besloten, zie [[#keuze-opensource]]: EUPL-1.2 voor de platformcode in het monorepo

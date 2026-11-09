@@ -29,7 +29,7 @@ testscripts, moderatie, communicatie en widgets) staat in het
 ## Wat dit van het platform vraagt ## {#pilot-platformeisen}
 
 * **Getypeerd bronmateriaal** - naast foto's ook menukaarten, advertenties, folders,
-    krantenartikelen en vergunningen, via het materiaaltype/genre op een jottem (zie
+    krantenartikelen en vergunningen, via het genre op een jottem (zie
     [[#functional-requirements]]).
 * **Kaart** - bezoekers zien de gepubliceerde jottems als speldjes op een kaart (zie
     [[#bezoeker]]). Bij het uploaden worden begin- en eindjaar al vastgelegd. Een

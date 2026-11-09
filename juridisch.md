@@ -13,7 +13,7 @@ De voornoemde documenten en de volgende documenten dienen om de risico's te behe
 
 Ter verantwoording (AVG) horen daar de volgende documenten bij:
 - [Verwerkingsregister en DPIA](juridisch/verwerkingsregister-en-dpia.html) - registers van platformbeheerder en organisaties (artikel 30 AVG) en de gegevensbeschermingseffectbeoordeling (artikel 35 AVG)
-- [Doorgifte-memo](juridisch/doorgifte-memo.html) - onderbouwing en transfer impact assessment voor de opslag bij het Internet Archive (VS): primaire opslag binnen de EER, VS alleen als extra kopie zonder persoonsgegevens van levenden of met uitdrukkelijke toestemming
+- [Doorgifte-memo](juridisch/doorgifte-memo.html) - onderbouwing en transfer impact assessment voor een eventuele latere opslag bij het Internet Archive (VS), niet in de pilot: primaire opslag binnen de EER, VS alleen als extra kopie zonder persoonsgegevens van levenden of met uitdrukkelijke toestemming
 
 > **Let op**: alle concept documenten zijn gemaakt door een niet-jurist en dienen we vóór gebruik te laten controleren door een jurist.
 

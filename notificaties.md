@@ -69,7 +69,7 @@ meertaligheid later zonder verbouwing kan.
 ## Regels ## {#notificaties-regels}
 
 * Afzender is het platform (bijv. `noreply@iotm.nl`) met de organisatienaam in de weergavenaam.
-* Transactionele mails (1 t/m 9) zijn niet uitschakelbaar; attenderingsmails (10, 11) zijn
+* Transactionele mails (1 t/m 9 en 12) zijn niet uitschakelbaar; attenderingsmails (10, 11) zijn
     instelbaar in het profiel en bevatten een directe uitschakellink én one-click
     unsubscribe-headers (zie [[#notificaties-afleverbaarheid]]).
 * Mails bevatten zo min mogelijk persoonsgegevens (AVG): geen inhoudelijke kopie van
@@ -107,7 +107,7 @@ naast de uitschakellink in de voettekst de headers `List-Unsubscribe` (mailto é
 en `List-Unsubscribe-Post: List-Unsubscribe=One-Click` ([RFC 8058](https://www.rfc-editor.org/rfc/rfc8058)),
 zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven werkt direct en
 zonder inloggen (de uitschakellink bevat een token) en wordt binnen 48 uur verwerkt
-(in de praktijk: meteen). Transactionele mails (1 t/m 9) vallen hier bewust buiten;
+(in de praktijk: meteen). Transactionele mails (1 t/m 9 en 12) vallen hier bewust buiten;
 die horen bij een handeling van de gebruiker zelf.
 
 **Verzendroute: de bestaande exim-relay, ook in productie.** De platformmail loopt via de

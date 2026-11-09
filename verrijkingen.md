@@ -205,8 +205,9 @@ interactieve kaart of ruimtelijk-temporele omgeving, zoals de Gouda Tijdmachine.
 **Call-to-action:** "Waar stond de fotograaf? Zet een speld en draai het pijltje in de
 kijkrichting."
 
-**Techniek/standaard:** GeoJSON-punt met kijkrichting (bearing in graden) en zichtshoek;
-sluit aan op het GTM-koppelvlak (fase 2) en op de geo-requirements (WKT/GeoJSON). Impact:
+**Techniek/standaard:** een GeoJSON-Feature met het camerastandpunt als punt, de
+kijkrichting (`bearing`, in graden) en de beeldhoek (`fov`, in graden); sluit aan op het
+GTM-koppelvlak (fase 2) en op de geo-requirements (GeoJSON). Impact:
 *middel* (extra UI op de kaart). De invoer gebruikt
 [Leaflet.GeotagPhoto](https://github.com/nypl-spacetime/Leaflet.GeotagPhoto)
 (`L.geotagPhoto.camera`), dezelfde interactie als in de Gouda Tijdmachine: versleep de
@@ -226,7 +227,7 @@ doelpunt maakt herbewerken mogelijk.
     "type": "TextualBody",
     "purpose": "describing",
     "format": "application/geo+json",
-    "value": "{ \"type\": \"Point\", \"coordinates\": [4.7083, 52.0115], \"properties\": { \"bearing\": 220, \"fov\": 60 } }"
+    "value": "{ \"type\": \"Feature\", \"geometry\": { \"type\": \"Point\", \"coordinates\": [4.7083, 52.0115] }, \"properties\": { \"bearing\": 220, \"fov\": 60, \"target\": [4.7079, 52.0111] } }"
   }
 }
 ```

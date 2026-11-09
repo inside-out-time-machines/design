@@ -5,7 +5,10 @@ Dit plan beschrijft in drie fasen wat er moet gebeuren om het project in te rich
 te testen en in gebruik te nemen: welke instellingen gekozen worden en waarom, hoe we
 toetsen dat alles werkt, en wat er bij de lancering nodig is aan communicatie,
 moderatie en inbedding op de eigen website. De technische gang naar productie
-(infrastructuur, domeinen, beheer en exploitatie) valt buiten dit plan.
+(infrastructuur, domeinen, beheer en exploitatie) valt buiten dit plan en staat in de
+[productie-inrichting](./#realisatie-productie) van het realisatieplan. Productie start
+leeg: de inrichting uit fase 1 wordt daar herhaald, en testronde 2 en de startset
+gebeuren al op productie.
 
 Achtergrond: [pilot Smaak van Gouda](./#pilot-smaak-van-gouda), de
 [usecases](./#usecases) en de [acceptatiecriteria](./#acceptatiecriteria) in het
@@ -123,7 +126,7 @@ Opleverpunt fase 1: de projectpagina op dev.iotm.nl staat ingericht, de beheerde
 moderatoren zijn ingelogd met tweestapsverificatie, en de keuzes hierboven zijn
 vastgelegd (de `[ ]`-punten zijn aangevinkt).
 
-# Fase 2: Testen (op dev.iotm.nl) # {#pva-fase-2-testen-op-dev-iotm-nl}
+# Fase 2: Testen (ronde 1 op dev.iotm.nl, ronde 2 op productie) # {#pva-fase-2-testen-op-dev-iotm-nl}
 
 Doel: elk pad dat een inwoner, moderator of beheerder straks bewandelt is één keer
 echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
@@ -194,9 +197,11 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
     observatie (schermdelen of naast elkaar zitten).
 * Bevindingen in één lijst (GitHub-issues in `inside-out-time-machines/jottem`) met
     prioriteit: blokkerend voor lancering, hinderlijk, cosmetisch.
-* Testmateriaal is herkenbaar (titel begint met "TEST") en wordt vóór de lancering
-    gedepubliceerd en verwijderd, zodat de productiedata schoon begint. Jottems die bij
-    het testen zijn ingediend met echt materiaal van SAMH mogen blijven.
+* Testronde 1 draait op dev.iotm.nl, testronde 2 op de productieomgeving zodra die is
+    ingericht. Testmateriaal is herkenbaar (titel begint met "TEST") en wordt vóór de
+    lancering gedepubliceerd en verwijderd, zodat de productiedata schoon begint. Jottems
+    die in testronde 2 met echt materiaal van SAMH zijn ingediend mogen blijven; jottems
+    uit testronde 1 (dev) worden op productie opnieuw ingevoerd als ze moeten blijven.
 
 Opleverpunt fase 2: alle blokkerende bevindingen zijn opgelost en opnieuw getest; de
 moderatoren hebben elk minstens tien jottems beoordeeld.
@@ -221,8 +226,8 @@ moderatoren hebben elk minstens tien jottems beoordeeld.
 
 ## Startmateriaal ## {#pva-3-2-startmateriaal}
 
-Een lege projectpagina nodigt niet uit. Vóór de lancering plaatst SAMH zelf een
-startset: `[ ] keuze` 20 tot 30 jottems uit de eigen beeldbank (via de
+Een lege projectpagina nodigt niet uit. Vóór de lancering plaatst SAMH zelf op
+productie een startset: `[ ] keuze` 20 tot 30 jottems uit de eigen beeldbank (via de
 Memorix-permalink, dus zonder kopie) met adres, datering en een eerste herinnering of
 vraag als annotatie. Daarmee werkt ook "zelfde object, andere foto" meteen zichtbaar.
 
@@ -306,6 +311,7 @@ Idem op goudatijdmachine.nl.
 
 **Fase 3, in gebruik nemen**
 
+- [ ] Organisatie en project op productie ingericht (zelfde keuzes als fase 1)
 - [ ] Moderatierooster, reactietijd en escalatie afgesproken
 - [ ] Startset jottems geplaatst en gepubliceerd
 - [ ] Widgets op samh.nl geplaatst

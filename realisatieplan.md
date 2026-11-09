@@ -62,7 +62,7 @@ Na de evaluatie van de pilot, als de pilot erom vraagt:
 
 Verder gepland:
 
-* Social login via Apple en Instagram (MVP: Google, Microsoft en Facebook; de Apple-aanvraag start eerder vanwege de doorlooptijd)
+* Social login via Apple en Instagram (MVP: Google, Microsoft en Facebook; de Apple-aanvraag start eerder vanwege de doorlooptijd; eigenaar Bob Coret)
 * IIIF-collectie-import (bestaande collecties toevoegen; ontwerp-uitwerking gaat vooraf)
 * PDF- en audio-ondersteuning met conversiepipeline (multi-canvas Manifests, audio-canvas met `duration`)
 * E-depot-export per project (BagIt + RO-Crate)
@@ -89,7 +89,7 @@ maar tijdens de pilot uitgeschakeld).
 <tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, S3-compatibele objectopslag, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td><td>stack, datamodel en keten: gereed (augustus 2026; op dev draait MinIO als objectopslag). Merkgids: gereed; vaststelling door de projectgroep: open</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, kaart met speldjes, huisstijl SAMH, Herkenbaar-integratie, begin- en eindjaar in het uploadformulier</td><td>detailpagina, annoteren, huisstijl SAMH en Herkenbaar: gereed. Kaart met speldjes: niet gestart. Begin- en eindjaar in het formulier: niet gestart. Zoeken met facetten en pand-tijdlijn: uitgesteld</td></tr>
 <tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), testronde 1 met SAMH-medewerkers (zie het [plan van aanpak](planvanaanpak-smaakvangouda.html#pva-2-2-werkwijze)), juridische toetsing gestart, alle notificatiemails van de MVP werkend (zie [[#notificaties]])</td><td>open-data-outputs, validatie en aanmelding: gereed. Change Discovery en SPARQL: uit in productie. Mails 1-4 en 10-12: gereed. Mail 5 (moderatiedigest) en mails 6-8 (verwijderverzoeken): niet gestart. Testronde 1 en juridische toetsing: open</td></tr>
-<tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, testronde 2 met inwoners, securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow: niet gestart. Overige punten: open</td></tr>
+<tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, [[#realisatie-productie]], testronde 2 met inwoners (op productie), securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow: niet gestart. Overige punten: open</td></tr>
 </tbody>
 </table>
 
@@ -102,6 +102,41 @@ verwijderverzoeken-flow (met mails 5-8) en de kaart met speldjes. Ze wegen niet 
 * De **kaart met speldjes** is dat niet. Is de kaart half december niet aantoonbaar gereed,
     dan gaat de pilot live zonder kaart en volgt de kaart kort daarna. Bezoekers verkennen dan
     via de projectpagina.
+
+## Productie-inrichting ## {#realisatie-productie}
+
+Alles wordt gebouwd en getest op de ontwikkelomgeving (`dev.iotm.nl`). De productieomgeving
+wordt **apart en leeg** ingericht; er wordt geen data van dev overgezet. Daarmee hoeven
+annotatie-IRI's, JSON-LD-contextlinks en Datasetregister-aanmeldingen niet van het dev-domein
+naar het productiedomein gemigreerd te worden. Testronde 2 en het plaatsen van de startset
+(20-30 jottems uit de Memorix-beeldbank van SAMH) gebeuren al op productie, vóór de lancering.
+Jottems die tijdens testronde 1 op dev met echt SAMH-materiaal zijn gemaakt, worden op
+productie opnieuw ingevoerd.
+
+**Eigenaar:** Bob Coret. **Gereed:** vóór testronde 2 (begin december). **Status:** niet gestart.
+
+Checklist (de technische stappen staan in de README van de
+[jottem-repo](https://github.com/inside-out-time-machines/jottem), "domeinwissel"):
+
+1. **Server en opslag** - productieserver; externe S3-compatibele objectopslag in de EER,
+    met verwerkersovereenkomst; buckets aangemaakt (op dev doet `minio-init` dat, in
+    productie niet).
+2. **Configuratie** - productie-`.env` met `OMGEVING=productie`, `DEV_AUTH=0`,
+    `COMPOSE_PROFILES=prod`, lege `SUGGESTIES_URL` (zie [[#verrijking-uploadsuggesties]]),
+    `S3_ENDPOINT`/`S3_PUBLIEK`, `SMTP_HOST`/`SMTP_PORT`; vooraf gecontroleerd met
+    `docker compose --profile prod config`.
+3. **Domeinen** - DNS en TLS voor www, api, auth, iiif, anno en data onder `iotm.nl`
+    (zie [[#domains]]); de frontend gebouwd met de productiewaarden.
+4. **Inloggen** - Authentik-blueprints toegepast; redirect-URI's bij Google, Microsoft en
+    Facebook naar de productie-`auth`-host.
+5. **Mail** - verzendroute voor productie ingericht en getest (livegang-criterium 6).
+6. **www-overdracht** - `www.iotm.nl` gaat van de huidige website (repo `website`) naar het
+    platform; de projectinformatie van de huidige site krijgt een plek.
+7. **Open-data-landingspagina** - de hosts in de repo `data` wijzen naar productie.
+8. **Inhoud** - organisatie SAMH en het project ingericht volgens het
+    [plan van aanpak](planvanaanpak-smaakvangouda.html), startset geplaatst.
+9. **Datasetregister** - aanmelding alleen met productie-URL's; aanmeldingen van dev worden
+    ingetrokken.
 
 ## Livegang-criteria ## {#realisatie-criteria}
 
@@ -118,7 +153,8 @@ De pilot gaat live wanneer aantoonbaar:
 5. back-ups, monitoring en alerting draaien en de hersteltest is uitgevoerd;
 6. SPF, DKIM en DMARC staan op het productie-verzenddomein en een testmail bereikt de
     inbox van de grote providers (Gmail, Outlook) zonder spammarkering
-    (zie [[#notificaties-afleverbaarheid]]).
+    (zie [[#notificaties-afleverbaarheid]]);
+7. de productieomgeving is ingericht volgens de checklist in [[#realisatie-productie]].
 
 ## Huisstijl Jottem-platform ## {#realisatie-huisstijl}
 

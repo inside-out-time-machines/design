@@ -180,8 +180,9 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
     uploadformulier.
 2. Zet een testproject tijdelijk op besloten, nodig een lid uit, doorloop de
     wachtwoordmail en controleer de afscherming; zet daarna terug.
-3. Toon de datasetbeschrijving, valideer en meld aan bij het Datasetregister
-    (op dev tegen de testomgeving van het register).
+3. Toon de datasetbeschrijving en valideer die. Op dev wordt alleen gevalideerd en niet
+    aangemeld: een aanmelding bij het Datasetregister is definitief en hoort alleen met de
+    productie-URL's (fase 3).
 
 **Open data (AP-criteria)**
 

@@ -136,8 +136,8 @@ Checklist (de technische stappen staan in de README van de
 7. **Open-data-landingspagina** - de hosts in de repo `data` wijzen naar productie.
 8. **Inhoud** - organisatie SAMH en het project ingericht volgens het
     [plan van aanpak](planvanaanpak-smaakvangouda.html), startset geplaatst.
-9. **Datasetregister** - aanmelding alleen met productie-URL's; aanmeldingen van dev worden
-    ingetrokken.
+9. **Datasetregister** - aanmelding alleen met productie-URL's. Een aanmelding is definitief;
+    buiten productie valideert het platform daarom alleen en meldt het niet aan.
 
 ## Livegang-criteria ## {#realisatie-criteria}
 

@@ -25,7 +25,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * kan ik het lidmaatschap van een project weer intrekken; het account van de gebruiker blijft bestaan  
   * als organisatiebeheerder heb ik, net als de moderatoren van mijn organisatie en de platformbeheerder, altijd toegang tot de besloten projecten van mijn organisatie zonder zelf lid te zijn  
 * kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
-* kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
+* kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/); een aanmelding is definitief, het register kent geen afmelding
 * kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
 
 ## Als moderator kan ik ## {#moderator}

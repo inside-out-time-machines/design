@@ -695,21 +695,16 @@ paths:
         heeft. De backend valideert eerst via PUT /datasets/validate van de
         Datasetregister-API (https://datasetregister.netwerkdigitaalerfgoed.nl/api/) en meldt
         daarna aan via POST /datasets met de URL van de datasetbeschrijving. Het domein
-        iotm.nl moet eenmalig op de allowlist van het register staan.
+        iotm.nl moet eenmalig op de allowlist van het register staan. Een aanmelding is
+        definitief (het register kent geen afmelding); buiten de productieomgeving wordt
+        daarom alleen gevalideerd (200, status "gevalideerd").
       parameters:
         - $ref: '#/components/parameters/projectId'
       responses:
+        '200': { description: "Gevalideerd, niet aangemeld (buiten de productieomgeving)" }
         '202': { description: Gevalideerd en aangemeld bij het Datasetregister }
         '409': { description: Geen openbare data, aanmelden niet mogelijk }
         '422': { description: Validatie tegen het SHACL-shape van het register faalde (details in response) }
-    delete:
-      tags: [Projecten]
-      summary: Meld de projectdatasetbeschrijving af bij het NDE Datasetregister
-      description: Rol organisatiebeheerder; gebruikt DELETE /datasets van de Datasetregister-API.
-      parameters:
-        - $ref: '#/components/parameters/projectId'
-      responses:
-        '204': { description: Afgemeld }
 
   /project/{projectId}/export:
     post:

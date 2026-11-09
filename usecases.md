@@ -45,8 +45,8 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen  
 * kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden  
 * kan ik een overzicht krijgen van geuploadde afbeeldingen, status een #annotaties en deellinks  
-* kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen  
-* kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)
+* kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen *(na de evaluatie)*  
+* kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link) *(na de evaluatie)*
 * kan ik, als ik voor een besloten project ben uitgenodigd, na inloggen de jottems van dat project bekijken, uploaden en annoteren zoals in elk ander project; ben ik geen lid, dan meldt de projectpagina dat toegang op uitnodiging is  
 
 ## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
@@ -58,7 +58,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
 * kan ik in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; herkenning start met de Memorix-beeldbank van SAMH) of een **foto-URL van een website** (het platform controleert dat de link een werkende afbeelding oplevert); extern materiaal wordt niet gekopieerd, alleen verwezen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
-* kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
+* kan ik begin- en eindjaar toevoegen en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart verschijnt; adres en pand-tijdlijn volgen na de evaluatie  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
 
@@ -80,10 +80,10 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
 
 ## Als API gebruiker kan ik ## {#api-gebruiker}
 
-* per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD  
+* per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD *(gebouwd; tijdens de pilot in productie uit)*  
 * per organisatie nieuwe jottems via RSS  
-* kan ik jottems doorzoeken op basis van elasticsearch  
-* kan ik annotaties zoeken  
+* kan ik jottems doorzoeken op basis van elasticsearch *(na de evaluatie)*  
+* kan ik annotaties zoeken *(na de evaluatie)*  
 * annotaties ophalen via het W3C Web Annotation Protocol: per jottem (AnnotationCollection uit de container) en per organisatie (aggregerende AnnotationCollection)  
 * per organisatie / project een IIIF collection opvragen  
 * per project een datasetbeschrijving, RSS-feed en aggregerende AnnotationCollection opvragen  
@@ -96,11 +96,11 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
 * lezen over het iotm platform, faq, privacy, auteursrecht  
 * de organisatie- en projectpagina’s lezen met informatie over doel, oproep tot actie  
   * mezelf registreren (waarmee je een gebruiker wordt)  
-  * gepubliceerde jottems bekijken/doorzoeken  
+  * gepubliceerde jottems bekijken (doorzoeken: na de evaluatie)  
   * bij een besloten project zie ik logo, intro en oproep, maar geen jottems: de pagina toont een inlogknop en de melding dat toegang tot dit project op uitnodiging is; ook de jottem-pagina's van dat project en de widgets zijn dan niet beschikbaar  
-  * favorieten van gebruikers bekijken
+  * favorieten van gebruikers bekijken *(na de evaluatie)*
   * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
-* via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  
-* per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken  
+* op een kaart de gepubliceerde jottems als speldjes zien en doorklikken naar de jottem  
+* per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken, ook via de Gouda Tijdmachine *(na de evaluatie)*  
 * een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal  
 * een annotatie of reactie rapporteren (spam, reclame, ongepast); de melding komt in de moderatieomgeving van de organisatie

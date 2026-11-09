@@ -14,8 +14,10 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     moderatierollen, uitnodigingsflows; autorisatie vanuit de database (GebruikerRol leidend)
 * **Organisatie & project** - organisatiejottem in eigen huisstijl (SAMH), projectbeheer
     (Smaak van Gouda als eerste project), terminologiebronnen per project
-* **Uploaden** - upload (JPG/PNG/TIFF) met metadata, genre (CHT), locatie (speld op de kaart)
-    en licentiebevestiging; automatische Herkenbaar-check met toestemmingsverklaring
+* **Uploaden** - upload (JPG/PNG/TIFF) met metadata, genre (CHT), locatie (speld op de kaart),
+    begin- en eindjaar en licentiebevestiging; automatische Herkenbaar-check met
+    toestemmingsverklaring. Begin- en eindjaar zijn generieke velden: de pilot verzamelt
+    daarmee al de gegevens voor een latere pand-tijdlijn
 * **Moderatie** - wachtrij, goedkeuren/afkeuren met reden, bewerken en opnieuw indienen door
     de uploader, depubliceren via verwijderverzoeken, afhandelen van meldingen (gerapporteerde
     annotaties en reacties)
@@ -23,13 +25,20 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     (IIIF-viewer + metadata + annotaties), publiceren binnen het project
 * **Annoteren** - jottem-brede en vlak-annotaties, term-URI's via het NDE Termennetwerk,
     reacties, eigen annotaties bewerken/verwijderen
-* **Verkennen** - zoeken met facetten (afgebakende zoek-DSL), interactieve kaart met
-    pand-tijdlijn (eigen kaart; GTM-koppeling in fase 2), favorieten incl. openbare deellink
-* **Open data-outputs** - IIIF Image/Presentation/Change Discovery, W3C Annotation
-    Protocol (AnnotationCollections), RSS, RDF/SPARQL, datasetbeschrijving + dump per project,
+* **Verkennen** - de projectpagina en een kaart met de gepubliceerde jottems als speldjes.
+    Zoeken met facetten, favorieten en de pand-tijdlijn volgen na de evaluatie (zie
+    [[#realisatie-fase2]]); tot die tijd kan de Gouda Tijdmachine de RSS-feed en de
+    IIIF-collectie van het project gebruiken
+* **Delen** - Delen-knop met Open Graph-metadata, widgets (iframe en script) en oEmbed
+    (zie [[#deelbaarheid]])
+* **Open data-outputs** - IIIF Image/Presentation, W3C Annotation Protocol
+    (AnnotationCollections), RSS, RDF, datasetbeschrijving + dump per project,
     datacatalogus en aanmelding bij het NDE Datasetregister, plus de open-data-landingspagina
     op de data-host (per project alle uitgangen, Swagger UI van de publieke API en de
-    broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl)
+    broncoderepo's; eigen repo `data`, in deze fase op data.dev.iotm.nl). IIIF Change
+    Discovery, de aggregaten per organisatie en platform en het publieke SPARQL-endpoint
+    zijn gebouwd, maar staan tijdens de pilot in productie uit: de pilot heeft ze niet
+    nodig en de datadump wordt uit PostgreSQL gemaakt, niet uit de triplestore
 * **Vorm van de JSON-LD** - per kernentiteit een vastgelegd JSON-LD-frame
     ([data-architectuur](data-architectuur/data-architectuur.html#frames));
     de schema.org-namespace en de annotatieprefix zijn over alle serialisaties
@@ -42,6 +51,16 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     alleen voor platformbeheerders)
 
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
+
+Na de evaluatie van de pilot, als de pilot erom vraagt:
+
+* Zoeken met facetten (Elasticsearch met afgebakende zoek-DSL, AP-3)
+* Favorieten, met openbare deellink (GE-4, BE-5)
+* Pand-tijdlijn op de kaart en de kaartkoppeling met de Gouda Tijdmachine (BE-3)
+* IIIF Change Discovery, de aggregaten per organisatie en platform, en het publieke
+    SPARQL-endpoint in productie aanzetten (AP-1)
+
+Verder gepland:
 
 * Social login via Apple en Instagram (MVP: Google, Microsoft en Facebook; de Apple-aanvraag start eerder vanwege de doorlooptijd)
 * IIIF-collectie-import (bestaande collecties toevoegen; ontwerp-uitwerking gaat vooraf)
@@ -57,23 +76,39 @@ harde opslagquota per organisatie (MVP: monitoring met alerts).
 
 ## Mijlpalen 2026 ## {#realisatie-mijlpalen}
 
+Stand van zaken op 9 november 2026. Statuswaarden: **gereed** (gebouwd en op dev
+aangetoond), **bezig**, **niet gestart**, **open** (geen bouwwerk, nog niet aantoonbaar
+afgerond), **uitgesteld** (naar [[#realisatie-fase2]]) en **uit in productie** (gebouwd,
+maar tijdens de pilot uitgeschakeld).
+
 <table class="data">
 <thead>
-<tr><th>Periode</th><th>Mijlpaal</th></tr>
+<tr><th>Periode</th><th>Mijlpaal</th><th>Status</th></tr>
 </thead>
 <tbody>
-<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, externe Object Storage (S3), backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td></tr>
-<tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, zoeken met facetten, kaart + pand-tijdlijn, huisstijl SAMH, Herkenbaar-integratie</td></tr>
-<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), gebruikerssessie met SAMH-vrijwilligers, juridische toetsing gestart, alle notificatiemails werkend (zie [[#notificaties]])</td></tr>
-<tr><td>december</td><td>**Hardening & livegang**: securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td></tr>
+<tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, S3-compatibele objectopslag, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen en vastgesteld** (zie [[#realisatie-huisstijl]])</td><td>stack, datamodel en keten: gereed (augustus 2026; op dev draait MinIO als objectopslag). Merkgids: gereed; vaststelling door de projectgroep: open</td></tr>
+<tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, kaart met speldjes, huisstijl SAMH, Herkenbaar-integratie, begin- en eindjaar in het uploadformulier</td><td>detailpagina, annoteren, huisstijl SAMH en Herkenbaar: gereed. Kaart met speldjes: niet gestart. Begin- en eindjaar in het formulier: niet gestart. Zoeken met facetten en pand-tijdlijn: uitgesteld</td></tr>
+<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), testronde 1 met SAMH-medewerkers (zie het [plan van aanpak](planvanaanpak-smaakvangouda.html#pva-2-2-werkwijze)), juridische toetsing gestart, alle notificatiemails van de MVP werkend (zie [[#notificaties]])</td><td>open-data-outputs, validatie en aanmelding: gereed. Change Discovery en SPARQL: uit in productie. Mails 1-4 en 10-12: gereed. Mail 5 (moderatiedigest) en mails 6-8 (verwijderverzoeken): niet gestart. Testronde 1 en juridische toetsing: open</td></tr>
+<tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, testronde 2 met inwoners, securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow: niet gestart. Overige punten: open</td></tr>
 </tbody>
 </table>
+
+**Cut-lijn.** Twee onderdelen zijn nog niet gestart en blijven in de MVP: de
+verwijderverzoeken-flow (met mails 5-8) en de kaart met speldjes. Ze wegen niet even zwaar:
+
+* De **verwijderverzoeken-flow** is een harde voorwaarde voor livegang. Zonder die flow kan het
+    platform een verzoek op grond van de AVG of het portretrecht niet binnen de termijn van
+    30 dagen afhandelen.
+* De **kaart met speldjes** is dat niet. Is de kaart half december niet aantoonbaar gereed,
+    dan gaat de pilot live zonder kaart en volgt de kaart kort daarna. Bezoekers verkennen dan
+    via de projectpagina.
 
 ## Livegang-criteria ## {#realisatie-criteria}
 
 De pilot gaat live wanneer aantoonbaar:
 
-1. de kritieke keten (registratie → upload → moderatie → publicatie → annotatie → zoeken)
+1. de kritieke keten (registratie → upload → moderatie → publicatie → annotatie →
+    verwijderverzoek)
     end-to-end werkt en de [[#acceptatiecriteria]] van de MVP-usecases zijn aangetoond,
     incl. de e2e-test uit de systeemarchitectuur;
 2. de outputcontrole uit de [data-architectuur](data-architectuur/data-architectuur.html#outputcontrole)

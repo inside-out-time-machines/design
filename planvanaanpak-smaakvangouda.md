@@ -131,20 +131,21 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
 
 ## Testscripts ## {#pva-2-1-testscripts}
 
-**Bezoeker zonder account (BE-1, BE-2, BE-6)**
+**Bezoeker zonder account (BE-1, BE-2, BE-3, BE-6)**
 
 1. Open de projectpagina; controleer oproep, beschrijving, licentie, aantal jottems.
 2. Open een jottem; zoom in de viewer, lees de annotaties, bekijk de gerelateerde jottems.
 3. Deel een jottem via de Delen-knop (telefoon) en plak de link in WhatsApp of
     LinkedIn: titel, oproep en afbeelding verschijnen in de preview.
 4. Rapporteer een annotatie (BE-7) en controleer dat de melding in de moderatie staat.
+5. Open de kaart van het project en klik via een speldje door naar een jottem (BE-3).
 
 **Inwoner als inzender (GE-1, GE-2, UP-criteria)**
 
 1. Registreer met e-mail en met een social login; stel in het profiel naam en foto in,
     en kies of de naam publiek is.
-2. Upload vanaf een telefoon: foto maken met de camera, met adres, speld op de kaart
-    en openings- en sluitingsjaar. Bevestig de licentie.
+2. Upload vanaf een telefoon: foto maken met de camera, met speld op de kaart en
+    begin- en eindjaar. Bevestig de licentie.
 3. Upload een menukaart als bestand met genre "menukaart".
 4. Voeg een Memorix-permalink toe uit de SAMH-beeldbank; controleer dat titel en
     datering worden overgenomen.
@@ -183,7 +184,8 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
 
 1. Controleer IIIF-manifest en -collectie, RSS, de RDF-dump en de datasetbeschrijving
     op data.dev.iotm.nl; laad de collectie in een externe IIIF-viewer.
-2. Doe een SPARQL-vraag op de projectgraaf (bijvoorbeeld alle jottems met een adres).
+2. Controleer dat de datadump alle gepubliceerde jottems van het project bevat. (Het
+    publieke SPARQL-endpoint staat tijdens de pilot uit.)
 
 ## Werkwijze ## {#pva-2-2-werkwijze}
 
@@ -279,7 +281,8 @@ Idem op goudatijdmachine.nl.
     (statistieken in het organisatiebeheer en het Gebeurtenislog); de oproeptekst en
     verrijkingen bijstellen als bepaalde oproepen niet aanslaan.
 * Na drie maanden: evaluatie met SAMH en IOTM: wat vraagt het platform nog
-    (pand-tijdlijn, kaartkoppeling met de Gouda Tijdmachine, audio) en wat betekent dat
+    (zoeken met facetten, favorieten, pand-tijdlijn, kaartkoppeling met de Gouda
+    Tijdmachine, audio) en wat betekent dat
     voor fase 2.
 
 # Checklist # {#pva-checklist}

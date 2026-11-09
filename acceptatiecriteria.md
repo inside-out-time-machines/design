@@ -39,7 +39,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **GE-1** Ik kan registreren en inloggen, ook via social login; bij eerste login bestaat mijn profiel (koppeling via `sub`).
 * **GE-2** Ik kan in mijn profiel mijn naam, afbeelding, `naamPubliek` en de attenderingen (aan/uit) beheren; met `naamPubliek` aan staan mijn naam en profielfoto bij mijn jottems, annotaties en reacties ("*naam* heeft dit gisteren geplaatst"), met `naamPubliek` uit verschijnen naam noch foto publiek (dan een geanonimiseerde vermelding met een neutraal poppetje).
 * **GE-3** Ik zie een overzicht van mijn uploads met status, aantal annotaties en deellinks.
-* **GE-4** Ik kan jottems als favoriet markeren/ontmarkeren en mijn favorieten openbaar maken; de deellink toont mijn favorieten zonder inloggen en is géén duurzame link.
+* **GE-4** *(na de evaluatie)* Ik kan jottems als favoriet markeren/ontmarkeren en mijn favorieten openbaar maken; de deellink toont mijn favorieten zonder inloggen en is géén duurzame link.
 * **GE-5** Ben ik lid van een besloten project, dan zie ik na inloggen de projectpagina met alle gepubliceerde jottems en kan ik uploaden en annoteren zoals in een openbaar project; ben ik ingelogd maar geen lid, dan toont de projectpagina de melding dat toegang op uitnodiging is, geeft de jottem-pagina 403 en weigert de API uploaden en annoteren in dat project (403). Na intrekking van mijn lidmaatschap geldt direct dat laatste.
 
 ## Uploader ## {#ac-uploader}
@@ -61,9 +61,9 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## API-gebruiker ## {#ac-api-gebruiker}
 
-* **AP-1** De Change Discovery-feed per organisatie toont Create bij publicatie en Update bij metadata- én annotatiemutaties, in valide ActivityStreams-paginering.
+* **AP-1** *(gebouwd; tijdens de pilot in productie uit)* De Change Discovery-feed per organisatie toont Create bij publicatie en Update bij metadata- én annotatiemutaties, in valide ActivityStreams-paginering.
 * **AP-2** RSS-feeds (platform, organisatie, project) valideren tegen RSS 2.0 en tonen nieuwe jottems met duurzame link en thumbnail.
-* **AP-3** `/jottem/search` accepteert uitsluitend de gedefinieerde zoek-DSL en levert resultaten mét facetten; een rauwe Elasticsearch-query wordt geweigerd (422).
+* **AP-3** *(na de evaluatie)* `/jottem/search` accepteert uitsluitend de gedefinieerde zoek-DSL en levert resultaten mét facetten; een rauwe Elasticsearch-query wordt geweigerd (422).
 * **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`.
 * **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; *(fase 2)* audio-jottems hebben een canvas met `duration`.
 * **AP-6** De datasetbeschrijving per project valideert tegen het SHACL-shape van het Datasetregister; de datadump (N-Triples) valideert tegen schema.org AP NDE; `/datacatalog` bundelt alle projectdatasets.
@@ -72,10 +72,10 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 ## Bezoeker ## {#ac-bezoeker}
 
 * **BE-1** Ik kan zonder account de platforminformatie (FAQ, privacy, auteursrecht), organisatie- en projectpagina's (doel, oproep) lezen.
-* **BE-2** Ik kan gepubliceerde jottems verkennen: zoeken met facetten, en per jottem de detailpagina zien met IIIF-viewer (zoom), metadata en annotaties.
-* **BE-3** Ik kan via de interactieve kaart navigeren en per pand de opeenvolgende zaken als tijdlijn zien (afgeleid uit adres + openings-/sluitingsjaren).
+* **BE-2** Ik kan gepubliceerde jottems verkennen via de projectpagina en per jottem de detailpagina zien met IIIF-viewer (zoom), metadata en annotaties. *(Zoeken met facetten volgt na de evaluatie, zie AP-3.)*
+* **BE-3** Ik zie op de kaart van het project de gepubliceerde jottems als speldjes en kan vanaf een speldje doorklikken naar de jottem. *(De pand-tijdlijn, afgeleid uit adres en begin- en eindjaar, volgt na de evaluatie.)*
 * **BE-4** Ik kan een verwijderverzoek indienen en ontvang direct de ontvangstbevestiging per mail; de moderatoren ontvangen de melding (MO-5 dekt de afhandeling).
-* **BE-5** Openbare favorietenpagina's van gebruikers zijn bereikbaar via hun deellink (GE-4).
+* **BE-5** *(na de evaluatie)* Openbare favorietenpagina's van gebruikers zijn bereikbaar via hun deellink (GE-4).
 * **BE-6** Elke gepubliceerde jottem-pagina heeft een Delen-knop die het deelmenu van het apparaat opent (Web Share API: sociale media, e-mail, link kopiëren; zonder ondersteuning verschijnt de knop niet) en bevat correcte Open Graph-metadata (`og:title/description/image/url`); een gedeelde link toont titel, beschrijving en afbeelding in de preview (gecontroleerd met een OG-validator).
 * **BE-7** Ik kan bij elke annotatie en reactie een melding doen (rapporteren, ook zonder account, met rate limiting); ik krijg een bevestiging en de melding verschijnt in de moderatieomgeving (MO-6 dekt de afhandeling).
 * **BE-8** Bij een besloten project zie ik zonder account de projectinformatie (logo, intro, oproep, licentie) maar geen jottems: de pagina toont een inlogknop en de melding dat toegang op uitnodiging is; de jottem-pagina's van dat project vragen om inloggen (401), de widgets en het oEmbed-endpoint geven 404, en de open data van het project (IIIF-collectie, RSS, activity stream, datadump, datasetbeschrijving, SPARQL) geeft 200 met dezelfde inhoud als bij een openbaar project.

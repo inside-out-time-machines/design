@@ -31,10 +31,12 @@ testscripts, moderatie, communicatie en widgets) staat in het
 * **Getypeerd bronmateriaal** - naast foto's ook menukaarten, advertenties, folders,
     krantenartikelen en vergunningen, via het materiaaltype/genre op een jottem (zie
     [[#functional-requirements]]).
-* **Interactieve kaart, gekoppeld aan de Gouda Tijdmachine** - bezoekers navigeren door tijd en
-    plaats; per pand zijn de opeenvolgende eetgelegenheden zichtbaar als tijdlijn (zie [[#bezoeker]]).
-    De tijdlijn wordt afgeleid uit locatiemetadata (adres, openings-/sluitingsjaar) op de jottems;
-    er is geen apart locatiemodel nodig.
+* **Kaart** - bezoekers zien de gepubliceerde jottems als speldjes op een kaart (zie
+    [[#bezoeker]]). Bij het uploaden worden begin- en eindjaar al vastgelegd. Een
+    pand-tijdlijn (per pand de opeenvolgende eetgelegenheden) en een kaartkoppeling met de
+    Gouda Tijdmachine volgen na de evaluatie, als de pilot daarom vraagt (zie
+    [[#realisatie-fase2]]). Tot die tijd kan de Gouda Tijdmachine de RSS-feed en de
+    IIIF-collectie van het project gebruiken.
 * **Koppelingen naar archiefbronnen** - per jottem kunnen verwijzingen naar externe archiefbronnen
     worden vastgelegd (zie [[#gebruiker-annoteerder]]).
 * **Privacy, authenticiteit & auteursrecht** - zorgvuldige omgang met persoonsgegevens en

@@ -111,9 +111,9 @@ In deze voorwaarden bedoelen wij met:
 <h3 class="no-num">Artikel 4. Auteursrecht en licentie</h3>
 
 1. **Jouw materiaal blijft van jou.** Het auteursrecht op wat je inzendt blijft bij jou als maker of rechthebbende (Auteurswet).
-2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **niet-exclusieve, wereldwijde, royaltyvrije licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan (ook duurzaam bij externe bewaarplaatsen), technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's) en te tonen in communicatie óver het Platform en zijn projecten (bijvoorbeeld een nieuwsbrief of presentatie), altijd met bronvermelding. Deze licentie omvat het recht om sublicenties te geven voor zover dat voor deze doelen nodig is, blijft gelden zolang jouw Bijdrage gepubliceerd is - ook nadat je je account hebt opgezegd (artikel 10.2) - en mag worden overgedragen aan een partij die de exploitatie van het Platform voortzet. Jouw auteursrecht zelf blijft gewoon van jou.
-3. Bij het inzenden kies je onder welke voorwaarden anderen jouw materiaal mogen hergebruiken (bijvoorbeeld een Creative Commons-licentie). Hergebruik door derden mag alleen onder die voorwaarden.
-4. **Die hergebruiklicentie is onherroepelijk.** Een Creative Commons-licentie kun je niet terugdraaien: wie jouw materiaal onder die licentie al heeft overgenomen, mag het blijven gebruiken. Vraag je later om verwijdering, dan halen wij het materiaal van het Platform, stoppen wij met aanbieden via onze API's en vragen wij externe bewaarplaatsen om verwijdering. Kies dus bewust: wat eenmaal open staat, staat open.
+2. Door materiaal in te zenden geef je de Organisatie en de Platformbeheerder een **niet-exclusieve, wereldwijde, royaltyvrije licentie** om jouw Bijdrage te publiceren op het Platform, op te slaan, technisch te verwerken (bijvoorbeeld verkleinen, converteren en aanbieden via API's) en te tonen in communicatie óver het Platform en zijn projecten (bijvoorbeeld een nieuwsbrief of presentatie), altijd met bronvermelding. Deze licentie omvat het recht om sublicenties te geven voor zover dat voor deze doelen nodig is, blijft gelden zolang jouw Bijdrage gepubliceerd is - ook nadat je je account hebt opgezegd (artikel 10.2) - en mag worden overgedragen aan een partij die de exploitatie van het Platform voortzet. Jouw auteursrecht zelf blijft gewoon van jou.
+3. Elk project heeft één hergebruiklicentie (bijvoorbeeld een Creative Commons-licentie). Bij het inzenden van eigen materiaal bevestig je dat die licentie voor jouw Bijdrage geldt; hergebruik door derden mag alleen onder die voorwaarden. Voeg je materiaal toe uit de beeldbank van een erfgoedinstelling, dan blijven de rechten gelden die die instelling opgeeft; daarvoor bevestig je geen licentie.
+4. **Die hergebruiklicentie is onherroepelijk.** Een Creative Commons-licentie kun je niet terugdraaien: wie jouw materiaal onder die licentie al heeft overgenomen, mag het blijven gebruiken. Vraag je later om verwijdering, dan halen wij het materiaal van het Platform en stoppen wij met aanbieden via onze API's. Bevestig dus bewust: wat eenmaal open staat, staat open.
 5. Je zendt alleen materiaal in waarvan je zeker weet dat je dat mag. Dat betekent: je bent zelf de maker, of je hebt toestemming van de rechthebbende, of het auteursrecht is verlopen.
 6. Wij vermelden waar mogelijk de bron en de maker bij gepubliceerd materiaal (artikel 25 Auteurswet, persoonlijkheidsrechten).
 
@@ -143,7 +143,7 @@ In deze voorwaarden bedoelen wij met:
 2. Wij richten het Meldpunt in volgens artikel 16 DSA. Je melding bevat: een uitleg waarom de inhoud onrechtmatig is, de plek van de inhoud (bij voorkeur de link), jouw naam en e-mailadres, en een verklaring dat je melding juist en volledig is.
 3. Na jouw melding beoordelen wij, samen met de betrokken Organisatie, de inhoud zorgvuldig en snel. Is de inhoud duidelijk onrechtmatig? Dan verwijderen wij deze of maken wij deze ontoegankelijk (artikel 6 DSA).
 4. Wij laten jou en de plaatser van de inhoud weten wat wij hebben besloten en waarom (artikel 17 DSA). De plaatser kan op het besluit reageren.
-5. Verwijdering op het Platform betekent ook dat wij een verwijderverzoek sturen naar externe bewaarplaatsen waar het materiaal duurzaam is opgeslagen. Wij spannen ons daarvoor in, maar hebben geen volledige controle over die externe partijen.
+5. Verwijdering op het Platform betekent depubliceren (het origineel blijft als archiefexemplaar bij de Organisatie) of wissen (ook het origineel, de gegevens en de annotaties worden verwijderd); zie het Privacybeleid. Een externe bewaarplaats is er nu niet. Komt die er in een latere fase wel, dan sturen wij bij verwijdering ook daar een verwijderverzoek.
 
 <h3 class="no-num">Artikel 8. Aansprakelijkheid</h3>
 
@@ -158,7 +158,7 @@ In deze voorwaarden bedoelen wij met:
 
 <h3 class="no-num">Artikel 9. Duurzame opslag en open data</h3>
 
-1. Goedgekeurde jottems krijgen een duurzame link (ARK) en worden ook opgeslagen bij externe bewaarplaatsen, zoals het Internet Archive. Zo blijft erfgoed ook op lange termijn beschikbaar.
+1. Goedgekeurde jottems krijgen een duurzame link en worden opgeslagen in eigen beheer, binnen de EER. Een duurzame identifier (ARK) en opslag bij externe bewaarplaatsen, zoals het Internet Archive, kunnen in een latere fase volgen; daarover informeren wij vooraf.
 2. Metadata en annotaties worden als open data aangeboden via standaard-API's (zoals IIIF en W3C Web Annotations), zodat anderen het erfgoed kunnen hergebruiken binnen de gekozen licentievoorwaarden.
 
 <h3 class="no-num">Artikel 10. Wijzigen, beëindigen en toepasselijk recht</h3>
@@ -237,7 +237,7 @@ In deze voorwaarden bedoelen wij met:
 **Wat kun jij doen?**
 
 1. Jij hebt een account binnen een Organisatiejottem. Je kunt inloggen (ook met social login), je profiel beheren en je privacy-instellingen kiezen.
-2. Je kunt jottems bekijken, favorieten markeren en jouw favorietenlijst delen via een link (dit is geen duurzame link).
+2. Je kunt jottems bekijken en delen. (Favorieten markeren en een favorietenlijst delen komt in een latere fase.)
 
 **Wat verwachten wij van jou?**
 

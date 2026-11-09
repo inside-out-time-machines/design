@@ -119,8 +119,8 @@ Wij delen gegevens alleen als dat nodig is voor het platform:
 
 - **De Organisatie** waarbij je meedoet: zij ziet jouw bijdragen en beoordeelt ze.
 - **Onze hostingpartij** [naam invullen]: zij verzorgt de servers, binnen de EER.
-- **Onze duurzame bewaarplaats** [naam invullen]: goedgekeurde jottems slaan we daar duurzaam op, binnen de EER.
-- **Het Internet Archive**: van sommige goedgekeurde jottems bewaren we daar een extra kopie. Het Internet Archive zit in de Verenigde Staten; dat is een doorgifte buiten de EER. Daarheen gaat alleen materiaal zonder persoonsgegevens van levende personen, of materiaal waarvoor jij uitdrukkelijk met die opslag hebt ingestemd (artikel 49 lid 1a AVG). Hoe we die afweging hebben gemaakt lees je in het [doorgifte-memo](doorgifte-memo.html).
+- **Onze opslagpartij** [naam invullen]: daar staan de foto's en de afgeleide beelden, binnen de EER, onder een verwerkersovereenkomst.
+- Een **externe duurzame bewaarplaats** en een extra kopie bij het **Internet Archive** (in de Verenigde Staten) zijn er nu niet. Komen die er in een latere fase wel, dan passen we dit privacybeleid vooraf aan en vragen we waar nodig je toestemming (zie het [doorgifte-memo](doorgifte-memo.html)).
 - **API-gebruikers**: gepubliceerde jottems, metadata en annotaties zijn als open data beschikbaar. Wie die gegevens ophaalt en verder gebruikt, wordt daarvoor zelf verantwoordelijk en moet zich ook aan de AVG houden.
 
 Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
@@ -134,7 +134,10 @@ Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 <tbody>
 <tr><td>Accountgegevens</td><td>Zolang je account bestaat, daarna [6 maanden]</td></tr>
 <tr><td>Niet-gepubliceerde of afgekeurde bijdragen</td><td>[12 maanden] na afkeuring, daarna verwijderd</td></tr>
-<tr><td>Gepubliceerde jottems</td><td>Blijvend: het platform is bedoeld voor duurzaam erfgoed. Verwijdering kan via het Meldpunt</td></tr>
+<tr><td>Gepubliceerde jottems</td><td>Blijvend: het platform is bedoeld voor duurzaam erfgoed. Verwijdering kan via een verwijderverzoek (zie "Jouw rechten")</td></tr>
+<tr><td>Gebeurtenislog van het platform (wie wat wanneer deed)</td><td>12 maanden met de volledige inhoud, daarna alleen datum en soort gebeurtenis</td></tr>
+<tr><td>Verwijderverzoeken (e-mailadres en reden)</td><td>12 maanden na afhandeling</td></tr>
+<tr><td>Back-ups</td><td>35 dagen</td></tr>
 <tr><td>Logbestanden</td><td>[6 maanden]</td></tr>
 <tr><td>Meldingen via het Meldpunt</td><td>[2 jaar], om de afhandeling te kunnen aantonen</td></tr>
 </tbody>
@@ -145,7 +148,7 @@ Wij verstrekken gegevens verder alleen aan anderen als de wet dat verplicht.
 - Versleutelde verbindingen (https) voor al het verkeer.
 - Wachtwoorden slaan we versleuteld op; beheerders en moderators gebruiken tweefactorauthenticatie (2FA) of passkeys.
 - Alleen mensen die het voor hun taak nodig hebben, kunnen bij gegevens.
-- We maken dagelijks back-ups.
+- We maken dagelijks back-ups en bewaren die 35 dagen. Wat we wissen, is daarna ook uit de back-ups verdwenen.
 - Gaat er toch iets mis met persoonsgegevens (een datalek)? Dan melden we dat waar nodig aan de Autoriteit Persoonsgegevens en aan jou, zoals de AVG voorschrijft (artikel 33 en 34).
 
 # Jouw rechten
@@ -158,11 +161,11 @@ Je hebt op grond van de AVG deze rechten:
 - **Bezwaar**: bezwaar maken tegen publicatie op grond van een gerechtvaardigd belang (artikel 21). Vertel kort waarom het jou raakt; wij wegen jouw belang dan opnieuw af tegen het erfgoedbelang. Zo'n bezwaar is de gewone route voor materiaal waarop jij te zien of te horen bent.
 - **Beperking**: de verwerking tijdelijk laten stilzetten terwijl we jouw verzoek beoordelen (artikel 18).
 - **Overdraagbaarheid**: je eigen bijdragen en gegevens meekrijgen in een gangbaar formaat (artikel 20).
-- **Toestemming intrekken**: op een paar plaatsen werken we wél met toestemming, namelijk bij een audio-interview, bij opslag van jouw materiaal buiten de EER en bij een account van iemand onder de 16 (toestemming van de ouder). Die toestemming mag je altijd intrekken; intrekken geldt voor de toekomst.
+- **Toestemming intrekken**: op een paar plaatsen werken we wél met toestemming, namelijk bij een audio-interview en bij een account van iemand onder de 16 (toestemming van de ouder). Die toestemming mag je altijd intrekken; intrekken geldt voor de toekomst.
 
 Een verzoek doen is simpel: mail naar [e-mailadres] of gebruik het Meldpunt op de website. We reageren binnen één maand (artikel 12 AVG). We kunnen je vragen om aan te tonen dat jij het echt bent, zodat we geen gegevens aan de verkeerde geven.
 
-**Belangrijk om te weten bij verwijdering van gepubliceerd erfgoed**: gepubliceerde jottems staan ook bij externe bewaarplaatsen en kunnen door anderen zijn overgenomen via de open API's. Wij verwijderen het materiaal van het platform, sturen een verwijderverzoek naar de externe bewaarplaats en geven de wijziging door via onze API-signalen. Volledige verwijdering overal op internet kunnen we niet garanderen, maar we doen wat redelijkerwijs kan.
+**Belangrijk om te weten bij verwijdering van gepubliceerd erfgoed**: na een verwijderverzoek kiest een moderator één van twee uitkomsten. Bij *depubliceren* verdwijnt de jottem van het platform en uit de open data, maar bewaart de Organisatie het origineel als archiefexemplaar, alleen toegankelijk voor haar moderatoren en beheerders. Bij *wissen* verwijderen we ook het origineel, de gegevens en de annotaties; na 35 dagen is het materiaal ook uit de back-ups verdwenen. Voor een verzoek van iemand die op een foto staat of die zijn eigen bijdrage intrekt, is wissen de gewone uitkomst. Gepubliceerde jottems kunnen wel al door anderen zijn overgenomen via de open API's; volledige verwijdering overal op internet kunnen we niet garanderen, maar we doen wat redelijkerwijs kan.
 
 Eén ding kunnen we níet terugdraaien: de **hergebruiklicentie**. Staat er bij een jottem een Creative Commons-licentie, dan is die onherroepelijk. Wie het materiaal onder die licentie al heeft overgenomen, mag het blijven gebruiken volgens die voorwaarden. Wij stoppen wel met publiceren en met aanbieden via onze API's. Daarom kijken we vóór publicatie streng mee: wat eenmaal open staat, staat open.
 

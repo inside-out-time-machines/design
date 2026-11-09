@@ -17,7 +17,10 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 * **Uploaden** - upload (JPG/PNG/TIFF) met metadata, genre (CHT), locatie (speld op de kaart),
     begin- en eindjaar en licentiebevestiging; automatische Herkenbaar-check met
     toestemmingsverklaring. Begin- en eindjaar zijn generieke velden: de pilot verzamelt
-    daarmee al de gegevens voor een latere pand-tijdlijn
+    daarmee al de gegevens voor een latere pand-tijdlijn.
+    De suggestiedienst (titel, categorie en steekwoorden bij het uploaden) is gebouwd, maar
+    hoort niet bij de MVP en staat bij de livegang uit; hij gaat aan zodra de meting op
+    pilotmateriaal uit de AI-toets is geslaagd (zie [[#verrijking-uploadsuggesties]])
 * **Moderatie** - wachtrij, goedkeuren/afkeuren met reden, bewerken en opnieuw indienen door
     de uploader, depubliceren via verwijderverzoeken, afhandelen van meldingen (gerapporteerde
     annotaties en reacties)

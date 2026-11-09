@@ -579,107 +579,20 @@ de vijf gemiste foto's alsnog goed.
 *Let wel: 22 beelden is een indruk, geen maat. Voor de livegang hoort dit herhaald te
 worden op materiaal dat de pilot zelf oplevert.*
 
-#### Afweging: één dienst of drie #### {#verrijking-suggesties-architectuur}
+**Afwegingen.** Eén dienst met één endpoint, naast de Herkenbaar API en in een eigen repo:
+de modellen zijn permissief gelicentieerd (Florence-2 MIT, SigLIP 2 Apache-2.0), dus de dienst
+kan EUPL-1.2 dragen, terwijl de Herkenbaar API door YOLO AGPL-3.0 moet zijn. Voor de titel
+Florence-2-base met een vertaalmodel, voor categorie en steekwoorden SigLIP 2 zero-shot
+tegen de genres en een woordenlijst met term-URI's. De volledige vergelijking per model staat
+in [AFWEGINGEN.md](https://github.com/inside-out-time-machines/suggesties-api/blob/main/AFWEGINGEN.md)
+van de dienst.
 
-<table class="data">
-<thead>
-<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
-</thead>
-<tbody>
-<tr><td>**Eén nieuwe dienst met één endpoint** (gekozen)</td><td>De foto gaat één keer over de lijn en wordt één keer gedecodeerd; beide modellen delen dezelfde voorbewerking; één container, één health-check, één plek voor het AI-label; permissief gelicentieerde modellen, dus de dienst kan EUPL-1.2 zijn zoals het platform</td><td>Twee modellen in één proces, dus het geheugengebruik van beide tegelijk; een storing raakt alle drie de suggesties tegelijk</td></tr>
-<tr><td>Erbij in de Herkenbaar API</td><td>Geen extra container; het beeld is daar al in het geheugen</td><td>Die repo is AGPL-3.0 omdat ultralytics/YOLO dat afdwingt, en die grens valt bewust samen met de repogrens; bovendien zou één dienst twee ongelijksoortige dingen doen (portretrecht tegenover metadata)</td></tr>
-<tr><td>Drie losse diensten</td><td>Maximaal modulair; per taak apart te schalen of te vervangen</td><td>Drie containers, drie modelladingen en drie keer hetzelfde beeld over de lijn, zonder dat het iets oplevert op de schaal van dit platform</td></tr>
-</tbody>
-</table>
-
-**Besluit.** Eén nieuwe dienst in een eigen repo, naast de Herkenbaar API. Doorslaggevend is
-dat de licentiegrens hier ánders ligt: Florence-2 is MIT en SigLIP 2 is Apache-2.0, dus deze
-dienst hoeft niet AGPL te worden en kan dezelfde licentie dragen als het platform. De prijs
-is een tweede container die modelgewichten in het geheugen houdt.
-
-**Herzien wanneer.** De inferentie zo zwaar wordt dat hij een eigen machine of videokaart
-verdient; dan is het ook het moment om per taak te splitsen.
-
-#### Afweging: het model voor de titel #### {#verrijking-suggesties-titel}
-
-<table class="data">
-<thead>
-<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
-</thead>
-<tbody>
-<tr><td>**[Florence-2-base](https://huggingface.co/florence-community/Florence-2-base) plus een vertaalmodel** (gekozen)</td><td>MIT; 0,23 miljard parameters, dus bescheiden geheugen; onderschrijven is precies waarvoor het model gemaakt is; het vertaalmodel (opus-mt-en-nl) is ongeveer 300 MB en klaar binnen een seconde; twee kleine, voorspelbare stappen die los te beproeven zijn</td><td>Twee modellen in plaats van één; gemeten 3,7 seconde per foto op onze machine (de schatting was vijf tot tien); de vertaalstap voegt een foutbron toe en Engelse woordvolgorde schemert soms door</td></tr>
-<tr><td>[Florence-2-large](https://huggingface.co/microsoft/Florence-2-large)</td><td>Merkbaar betere onderschriften, vooral op rommelige historische foto's</td><td>0,77 miljard parameters en ongeveer drie keer zo traag; op onze machine tegen de dertig seconden per foto</td></tr>
-<tr><td>Een meertalig VLM zoals [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct)</td><td>Praat direct Nederlands, dus geen vertaalstap; kan in één prompt titel, categorie én steekwoorden geven</td><td>Fors trager en zwaarder zonder videokaart; een generatief model verzint eerder details die niet op de foto staan, en bij erfgoed is een verzonnen detail schadelijker dan een ontbrekend</td></tr>
-<tr><td>[BLIP](https://huggingface.co/Salesforce/blip-image-captioning-base) of BLIP-2</td><td>Beproefd en veel gebruikt, ruime documentatie</td><td>Ouder; kortere en vlakkere onderschriften; nog steeds Engels, dus de vertaalstap blijft</td></tr>
-<tr><td>Geen titelsuggestie</td><td>Nul risico op verzonnen tekst; de inzender weet zelf wat erop staat</td><td>Het lege titelveld is juist de plek waar mensen afhaken of "scan001" invullen</td></tr>
-</tbody>
-</table>
-
-**Besluit.** Florence-2-base met een vertaalstap. Een onderschrift is nog geen titel, dus er
-gaat een korte regel overheen die "een zwart-witfoto van een winkelpui met een uithangbord"
-terugbrengt tot "Winkelpui met uithangbord". De prijs is de vertaalstap en de wachttijd, en
-die valt weg achter het invullen van stap 2.
-
-**Herzien wanneer.** Er een klein meertalig model verschijnt dat op enkel CPU binnen een paar
-seconden Nederlands onderschrijft; dan vervalt de vertaalstap.
-
-**Gemeten les bij het inrichten.** Meer rekenkernen maakte de dienst dramatisch tráger:
-dezelfde foto kostte 3,7 seconde met zes threads, 4,5 met acht, twintig met twaalf en
-drieënvijftig met vierentwintig. PyTorch pakt standaard de helft van de kernen en zit daarmee
-ver in het verkeerde gebied, zeker op een machine die de rest van de stack ook draait. Het
-aantal threads is daarom instelbaar en staat op zes; op een andere machine ligt het optimum
-elders en moet het opnieuw gemeten worden.
-
-#### Afweging: het model voor de categorie #### {#verrijking-suggesties-categorie}
-
-De categorie is een keuze uit zeven vaste waarden (foto, menukaart, advertentie, folder,
-krantenartikel, vergunning, overig). Dat is het schoolvoorbeeld van zero-shot-classificatie:
-je geeft het model de kandidaatlabels als tekst en het kiest de best passende.
-
-<table class="data">
-<thead>
-<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
-</thead>
-<tbody>
-<tr><td>**[SigLIP 2 base](https://huggingface.co/google/siglip2-base-patch16-224) zero-shot** (gekozen)</td><td>Apache-2.0; 0,4 miljard parameters; meertalig, dus Nederlandse labels werken direct zonder vertaling; onder de seconde per foto; dezelfde modelfamilie doet ook de steekwoorden, dus één set gewichten voor twee taken</td><td>De labels moeten zorgvuldig geformuleerd worden ("een menukaart van een restaurant" werkt beter dan "menukaart"); folder en advertentie lijken op elkaar en worden matig onderscheiden</td></tr>
-<tr><td>[CLIP](https://github.com/openai/CLIP) (ViT-L/14)</td><td>De bekendste; veel voorbeeldcode en artikelen</td><td>Engelstalige tekstencoder, dus de labels moeten vertaald; ouder en zwakker op zero-shot dan SigLIP 2</td></tr>
-<tr><td>RAKE op de tekst</td><td>Licht, geen model nodig, geen rekentijd</td><td>Werkt hier niet: RAKE haalt sleutelwoorden uit *tekst*, en een geüploade foto bevat geen tekst. Het levert bovendien losse woorden op, geen keuze uit zeven categorieën</td></tr>
-<tr><td>Een eigen getraind classificatiemodel</td><td>Het scherpst op precies deze zeven categorieën</td><td>Vraagt een gelabelde verzameling die er niet is, en onderhoud bij elke wijziging van de lijst</td></tr>
-</tbody>
-</table>
-
-**Besluit.** SigLIP 2 zero-shot met Nederlandse labels. Onder een drempel stellen we niets
-voor, en "overig" is nooit een suggestie: dat brengt niemand verder.
-
-RAKE valt hier af omdat er geen tekst is, maar krijgt later wél een zinnige plek: op de
-beschrijving die de inzender zelf typt, en op getranscribeerde tekst van een menukaart of
-krantenartikel zodra [transcriptie](#verrijking-transcriptie) bestaat. Dan is er tekst om uit
-te putten.
-
-**Herzien wanneer.** De verwarring tussen folder en advertentie in de praktijk hindert; dan
-is een fijnmaziger labelformulering of een klein bijgetraind model de volgende stap.
-
-#### Afweging: de bron van de steekwoorden #### {#verrijking-suggesties-steekwoorden}
-
-<table class="data">
-<thead>
-<tr><th>Optie</th><th>Voordelen</th><th>Nadelen</th></tr>
-</thead>
-<tbody>
-<tr><td>**SigLIP 2 tegen een woordenlijst met term-URI's** (gekozen)</td><td>De voorstellen dragen meteen een term-URI, precies wat `schema:about` en `schema:keywords` willen; hetzelfde model als bij de categorie, dus geen extra gewichten; de lijst is per project in te perken, net als de terminologiebronnen nu al</td><td>Wat niet in de lijst staat wordt nooit voorgesteld; de lijst moet samengesteld en onderhouden worden</td></tr>
-<tr><td>Vrije labels uit het beeldmodel</td><td>Breder bereik, geen lijst nodig</td><td>Engels en zonder URI; de labels zijn bovendien algemeen ("building", "person") waar erfgoed juist om specifieke termen vraagt</td></tr>
-<tr><td>Kandidaten opvragen bij het Termennetwerk</td><td>Altijd actueel, geen eigen lijst te onderhouden</td><td>Het Termennetwerk zoekt op tekst, niet op beeld; er is dus eerst een zoekterm nodig, en die is er op dat moment nog niet</td></tr>
-<tr><td>Geen steekwoordsuggesties</td><td>Geen risico op verkeerde termen in de open data</td><td>Steekwoorden maken een foto vindbaar, en met de hand doet bijna niemand het</td></tr>
-</tbody>
-</table>
-
-**Besluit.** Zero-shot scoren tegen een lijst erfgoedtermen en de drie tot vijf best scorende
-voorstellen, boven een drempel. Zero-shot heeft hoe dan ook een kandidatenlijst nodig, en dat
-komt hier goed uit: de RDF wil term-URI's en geen losse woorden. De inzender kan altijd zelf
-typen; de bestaande term-zoeker levert dan alsnog een URI.
-
-**Herzien wanneer.** De woordenlijst te krap blijkt voor een project met een ander onderwerp;
-de lijst is dan per project uit te breiden zonder de dienst te wijzigen.
+**Status bij livegang.** De dienst is gebouwd maar hoort niet bij de MVP en staat bij de
+livegang uit (lege `SUGGESTIES_URL`, zie de [AI-toets](juridisch/ai-toets.html)). Hij gaat aan
+zodra de meting hierboven is herhaald op materiaal dat de pilot zelf oplevert en voldoet.
+Voorwaarde is ook dat de opslag van een aanvaard voorstel voldoet aan V-6 (herleidbaar, met
+generator en score). Zonder dienst blijft het uploadformulier in twee stappen werken; bij een
+beeldbank-permalink vult het manifest de velden.
 
 ### Digitale restauratie en inkleuring *(niet in MVP)* ### {#verrijking-restauratie}
 
@@ -786,8 +699,8 @@ inclusief V-1 t/m V-4, V-7, V-8 en V-9 (per project instelbaar, CTA's op de jott
 W3C-opslag in AnnoRepo, `jottem:aard`, meldingen/moderatie, de eigen JSON-LD-context
 `/ns/jottem.jsonld` en de koppeling tussen twee jottems). Het uploadformulier loopt sinds
 augustus 2026 in twee stappen en vult bij een beeldbank-permalink titel, beschrijving,
-datering en vervaardiger voor uit het IIIF-manifest; de suggestiedienst uit
-[[#verrijking-uploadsuggesties]] volgt daarna. V-5, V-6 en V-10 blijven van kracht voor de
+datering en vervaardiger voor uit het IIIF-manifest. De suggestiedienst uit
+[[#verrijking-uploadsuggesties]] is gebouwd, maar staat bij de livegang uit. V-5, V-6 en V-10 blijven van kracht voor de
 fase 2-verrijkingen.*
 
 * **V-1** De organisatiebeheerder kan per project instellen welke verrijkingsmogelijkheden

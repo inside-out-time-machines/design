@@ -33,6 +33,14 @@ wat het is." en "Ken je iemand op deze foto? Klik op die persoon."
 `xywh=pixel:`) of `SvgSelector` op het IIIF-canvas; Annotorious in de frontend. Impact:
 *laag* (kern van de bestaande annotatieflow).
 
+**Moderatie vooraf bij herkenbare personen.** Een vlak met een naam erbij kan een persoon
+identificeren, terwijl de foto zelf alleen met toestemming openbaar werd. Daarom wordt een
+vlak-annotatie bij een jottem waarop de Herkenbaar-check personen vond (`herkenbaar: ja`) niet
+direct in de annotatieserver geschreven. Hij wacht als `WachtendeAnnotatie` in PostgreSQL tot
+een moderator hem vrijgeeft; pas dan wordt hij een W3C-annotatie met een eigen IRI. Wijst de
+moderator hem af, dan wordt hij nooit openbaar. De annoteerder ziet direct dat zijn bijdrage
+eerst wordt bekeken. Alle andere annotaties blijven achteraf gemodereerd (V-7).
+
 **Als Web Annotation:**
 
 ```json
@@ -721,7 +729,9 @@ fase 2-verrijkingen.*
     moderator. Alle AI-gegenereerde of AI-bewerkte content (zoals ingekleurde weergaven en
     beeldherkenning-output) draagt een zichtbaar AI-label in de weergave én als metadata,
     conform de transparantieverplichting uit de AI Act (Verordening (EU) 2024/1689, art. 50).
-* **V-7** Voor alle verrijkingen gelden de bestaande meldingen- en moderatieflow en de
+* **V-7** Voor alle verrijkingen gelden de bestaande meldingen- en moderatieflow (achteraf)
+    en, voor vlak-annotaties bij een jottem met herkenbare personen, de beoordeling vooraf uit
+    [[#verrijking-vlak]]; verder gelden de
     bestaande autorisatie (eigen bijdragen bewerken en verwijderen).
 * **V-10** Suggesties bij het uploaden vullen formuliervelden voor die de inzender
     bevestigt of overschrijft; ze worden nooit zonder tussenkomst opgeslagen. Bij elk

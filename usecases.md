@@ -36,6 +36,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
   * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * gerapporteerde annotaties en reacties beoordelen: verbergen/verwijderen bij misbruik, of de melding afwijzen; de afhandeling wordt gelogd  
+* vlak-annotaties bij foto's met herkenbare personen beoordelen vóórdat ze openbaar worden: vrijgeven of afwijzen  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}

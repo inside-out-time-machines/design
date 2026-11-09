@@ -33,6 +33,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **MO-4** Als er jottems wachten ontvang ik maximaal één digest-mail per dag; zonder wachtende jottems geen mail.
 * **MO-5** Bij een gehonoreerd verwijderverzoek krijgt de jottem status gedepubliceerd: de duurzame link toont een tombstone en de jottem is verdwenen uit zoekindex, RDF, feeds en datadump. Ook het beeld zelf verdwijnt: het derivaat gaat uit de objectopslag en de IIIF-URL's worden in dezelfde beweging uit de cache gegooid, zodat een bezoeker die de URL kent binnen seconden een 404 krijgt in plaats van dagenlang de foto. Het origineel blijft als archiefexemplaar bewaard, alleen bereikbaar via de API. De indiener ontvangt de uitkomst-mail; bij afwijzing is een toelichting verplicht.
 * **MO-6** Gerapporteerde annotaties en reacties verschijnen in mijn moderatieoverzicht; ik kan de bijdrage verbergen/verwijderen of de melding afwijzen; de afhandeling is terug te vinden in het Gebeurtenislog.
+* **MO-7** Vlak-annotaties bij jottems met `herkenbaar: ja` verschijnen in mijn moderatieoverzicht vóórdat ze openbaar zijn; ik zie vlak, tekst en jottem, en kan vrijgeven (dan wordt het een openbare W3C-annotatie) of afwijzen (dan wordt het nooit openbaar). De afhandeling staat in het Gebeurtenislog.
 
 ## Gebruiker ## {#ac-gebruiker}
 
@@ -55,7 +56,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 ## Annoteerder ## {#ac-annoteerder}
 
 * **AN-1** Ik kan een annotatie op de hele jottem plaatsen (plaats, gebeurtenis, archiefbron, vrije tekst) waarbij term-URI's gezocht worden via het Termennetwerk, beperkt tot de projectbronnen (OB-3).
-* **AN-2** Ik kan een vlak tekenen en daaraan een identificatie (persoon/gebouw/bedrijf, naam + URI) koppelen; het vlak is terug te zien op de jottem-detailpagina.
+* **AN-2** Ik kan een vlak tekenen en daaraan een identificatie (persoon/gebouw/bedrijf, naam + URI) koppelen; het vlak is terug te zien op de jottem-detailpagina. Bij een jottem met `herkenbaar: ja` meldt het platform dat een moderator mijn vlak eerst bekijkt, en verschijnt het pas na vrijgave (MO-7).
 * **AN-3** Ik kan reageren op een annotatie; de reactie hangt als W3C-annotatie aan de oorspronkelijke annotatie.
 * **AN-4** Ik kan mijn eigen annotaties bewerken en verwijderen (andermans niet: 403); de versiegeschiedenis blijft bewaard in de annotatieserver; elke mutatie werkt `Media.wijzigingsDatum` bij (zichtbaar in Change Discovery).
 

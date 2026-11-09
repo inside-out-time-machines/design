@@ -130,6 +130,17 @@
     date afhandelDatum
   }
 
+  WachtendeAnnotatie {
+    int wachtendeAnnotatieId PK
+    uuid mediaId FK
+    int gebruikersId FK
+    json annotatie
+    string status
+    string annotatieIri
+    date creatieDatum
+    date afhandelDatum
+  }
+
   Melding {
     int meldingId PK
     uuid mediaId FK
@@ -198,6 +209,9 @@
   %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
   %% De coordinaten komen van de speld die de uploader op de kaart prikt (lat/lon als
   %% Metadata-rijen); er is geen geocoding-dienst in de MVP.
+  %% WachtendeAnnotatie: vlak-annotatie bij een jottem met herkenbaar = ja, die eerst door een
+  %% moderator wordt beoordeeld; status: wachtend / vrijgegeven / afgewezen. Bij vrijgeven wordt
+  %% de W3C-annotatie in de annotatieserver geschreven en annotatieIri ingevuld.
   %% Melding: rapportage van een annotatie of reactie (spam/ongepast) door bezoekers;
   %% annotatieIri wijst naar de W3C-annotatie in de annotatieserver, status: nieuw / afgehandeld /
   %% afgewezen. Afhandeling door de moderator, gelogd in het Gebeurtenislog.
@@ -228,6 +242,8 @@
 
   Media ||--o{ Verwijderverzoek : "betreft"
   Media ||--o{ Melding : "betreft"
+  Media ||--o{ WachtendeAnnotatie : "wacht_op"
+  Gebruiker ||--o{ WachtendeAnnotatie : "plaatst"
   Organisatie ||--o{ Gebeurtenislog : "logt"
 
   Gebruiker ||--o{ Metadata : "maakt"

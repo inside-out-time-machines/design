@@ -395,7 +395,8 @@ paths:
       description: >
         W3C Web Annotation; de API voegt de geauthenticeerde gebruiker als creator toe en
         schrijft de annotatie naar de annotatieserver. Reacties op annotaties zijn annotaties
-        met de bestaande annotatie als target.
+        met de bestaande annotatie als target. Een vlak-annotatie bij een jottem met
+        herkenbaar = ja wordt niet direct geschreven maar wacht op een moderator (202).
       parameters:
         - $ref: '#/components/parameters/jottemId'
       requestBody:
@@ -405,6 +406,7 @@ paths:
             schema: { type: object }
       responses:
         '201': { description: Annotatie aangemaakt }
+        '202': { description: "Vlak bij herkenbare personen: wacht op vrijgave door een moderator (MO-7)" }
 
   /annotation/{jottemId}/{annotationNaam}:
     put:
@@ -917,6 +919,38 @@ paths:
               schema:
                 type: array
                 items: { $ref: '#/components/schemas/Melding' }
+
+  /organisatie/{organisatieSlug}/wachtende-annotaties:
+    get:
+      tags: [Meldingen]
+      summary: Vlak-annotaties bij jottems met herkenbare personen die op vrijgave wachten (MO-7)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200': { description: Lijst van wachtende annotaties met jottem en voorgestelde W3C-annotatie }
+
+  /wachtende-annotatie/{wachtendeAnnotatieId}:
+    put:
+      tags: [Meldingen]
+      summary: Geef een wachtende annotatie vrij (wordt een W3C-annotatie) of wijs hem af; gelogd in het Gebeurtenislog
+      parameters:
+        - name: wachtendeAnnotatieId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [besluit]
+              properties:
+                besluit: { type: string, enum: [vrijgegeven, afgewezen] }
+                toelichting: { type: string }
+      responses:
+        '200': { description: Afgehandeld }
+        '409': { description: Al afgehandeld }
 
   /melding/{meldingId}:
     put:

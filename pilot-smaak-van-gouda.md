@@ -42,8 +42,10 @@ testscripts, moderatie, communicatie en widgets) staat in het
 * **Privacy, authenticiteit & auteursrecht** - zorgvuldige omgang met persoonsgegevens en
     herkenbare personen, en onderscheid tussen herinnering en verifieerbaar feit (zie
     [[#privacy-authenticity-copyright]]).
-* **Crowdsourcing-workflow** - uploaden, aanvullen, corrigeren en reageren, met redactionele
-    beoordeling vóór publicatie (zie [[#usecases]]).
+* **Crowdsourcing-workflow** - uploaden, aanvullen, corrigeren en reageren (zie [[#usecases]]).
+    Uploads worden vóór publicatie beoordeeld. Annotaties worden achteraf gemodereerd, via
+    meldingen; alleen een vlak-annotatie op een foto met herkenbare personen wacht eerst op een
+    moderator, omdat die een naam aan een gezicht kan koppelen (zie [[#verrijking-vlak]]).
 
 ## Te verzamelen materiaal ## {#pilot-materiaal}
 

@@ -64,10 +64,10 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 ## API-gebruiker ## {#ac-api-gebruiker}
 
 * **AP-1** *(gebouwd; tijdens de pilot in productie uit)* De Change Discovery-feed per organisatie toont Create bij publicatie en Update bij metadata- én annotatiemutaties, in valide ActivityStreams-paginering.
-* **AP-2** RSS-feeds (platform, organisatie, project) valideren tegen RSS 2.0 en tonen nieuwe jottems met duurzame link en thumbnail.
+* **AP-2** RSS-feeds (platform, organisatie, project) valideren tegen RSS 2.0 en tonen nieuwe jottems met duurzame link en thumbnail. *(Platform en organisatie: gebouwd, tijdens de pilot in productie uit.)*
 * **AP-3** *(na de evaluatie)* `/jottem/search` accepteert uitsluitend de gedefinieerde zoek-DSL en levert resultaten mét facetten; een rauwe Elasticsearch-query wordt geweigerd (422).
-* **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`.
-* **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project) passeren de IIIF-validators; *(fase 2)* audio-jottems hebben een canvas met `duration`.
+* **AP-4** Annotaties zijn opvraagbaar per annotatie, per jottem (container), per project en per organisatie - telkens als valide W3C `AnnotationCollection`/`Annotation`. *(Per organisatie: gebouwd, tijdens de pilot in productie uit.)*
+* **AP-5** IIIF `info.json`, Manifests en Collections (organisatie én project; de collectie per organisatie staat tijdens de pilot in productie uit) passeren de IIIF-validators; *(fase 2)* audio-jottems hebben een canvas met `duration`.
 * **AP-6** De datasetbeschrijving per project valideert tegen het SHACL-shape van het Datasetregister; de datadump (N-Triples) valideert tegen schema.org AP NDE; `/datacatalog` bundelt alle projectdatasets.
 * **AP-7** De duurzame jottem-URL levert HTML bij `Accept: text/html` en verwijst bij RDF-accept-headers (JSON-LD, Turtle, RDF/XML, ook met het framed-profiel) met een 303 naar de API-URL van de jottem, die de RDF levert; een gedepubliceerde jottem geeft een tombstone (410).
 

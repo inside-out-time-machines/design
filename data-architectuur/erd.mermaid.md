@@ -72,7 +72,7 @@
     string beschrijving
     string bestandsnaam
     string bron "upload | iiif | url"
-    string bronUrl "manifest-/info.json-/foto-URL bij externe bron"
+    string bronUrl "manifest-/info.json-URL bij beeldbankbron"
     string externeIiifService "image service-basis bij een beeldbank-bron"
     string genre
     string licentie
@@ -122,12 +122,29 @@
   Verwijderverzoek {
     int verzoekId PK
     uuid mediaId FK
+    string soort
     string reden
     string email
     string status
     string toelichting
     date creatieDatum
     date afhandelDatum
+  }
+
+  WachtendeAnnotatie {
+    int wachtendeAnnotatieId PK
+    uuid mediaId FK
+    int gebruikersId FK
+    json annotatie
+    string status
+    string annotatieIri
+    date creatieDatum
+    date afhandelDatum
+  }
+
+  Wislijst {
+    uuid mediaId PK
+    date gewistOp
   }
 
   Melding {
@@ -174,7 +191,9 @@
   %% afgekeurd. Afgekeurde jottems kunnen door de uploader worden bijgewerkt en opnieuw
   %% ingediend (terug naar nieuw); gedepubliceerd volgt uit een gehonoreerd verwijderverzoek
   %% (tombstone op de duurzame URL, schoning van alle outputs).
-  %% Verwijderverzoek.status: open / gehonoreerd / afgewezen.
+  %% Verwijderverzoek.soort: eigen-materiaal / herkenbaar / auteursrecht / anders;
+  %% Verwijderverzoek.status: open / gedepubliceerd / gewist / afgewezen.
+  %% Wislijst: mediaId's van gewiste jottems, opnieuw af te spelen na het terugzetten van een back-up.
   %% Gebeurtenislog: bron voor statistieken (type: login, upload, goedkeuring, afkeuring,
   %% annotatie, ...); persoonsgebonden regels worden na een bewaartermijn geaggregeerd of
   %% geanonimiseerd (AVG).
@@ -198,6 +217,9 @@
   %% worden vastgelegd als Metadata-rijen op Media; er is geen apart locatiemodel.
   %% De coordinaten komen van de speld die de uploader op de kaart prikt (lat/lon als
   %% Metadata-rijen); er is geen geocoding-dienst in de MVP.
+  %% WachtendeAnnotatie: vlak-annotatie bij een jottem met herkenbaar = ja, die eerst door een
+  %% moderator wordt beoordeeld; status: wachtend / vrijgegeven / afgewezen. Bij vrijgeven wordt
+  %% de W3C-annotatie in de annotatieserver geschreven en annotatieIri ingevuld.
   %% Melding: rapportage van een annotatie of reactie (spam/ongepast) door bezoekers;
   %% annotatieIri wijst naar de W3C-annotatie in de annotatieserver, status: nieuw / afgehandeld /
   %% afgewezen. Afhandeling door de moderator, gelogd in het Gebeurtenislog.
@@ -227,7 +249,10 @@
   Gebruiker ||--o{ MediaRelatie : "legt"
 
   Media ||--o{ Verwijderverzoek : "betreft"
+  Media ||--o| Wislijst : "gewist"
   Media ||--o{ Melding : "betreft"
+  Media ||--o{ WachtendeAnnotatie : "wacht_op"
+  Gebruiker ||--o{ WachtendeAnnotatie : "plaatst"
   Organisatie ||--o{ Gebeurtenislog : "logt"
 
   Gebruiker ||--o{ Metadata : "maakt"

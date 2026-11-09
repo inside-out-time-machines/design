@@ -57,11 +57,7 @@ path: introductie.md
 </pre>
 
 <pre class="include">
-path: salespitch.md
-</pre>
-
-<pre class="include">
-path: activiteitenplan.md
+path: begrippen.md
 </pre>
 
 <pre class="include">

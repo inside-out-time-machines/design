@@ -10,7 +10,7 @@ De Time machines willen geschiedenis relevant maken voor de inwoners van hun ste
 
 ## Beoogde eindresultaat
 
-​​We maken het mogelijk dat mensen zelf informatie gaan bijdragen aan lokale time machines. Door op deze manier technologie, lokale geschiedenis en burgerparticipatie te combineren, maken we het voor inwoners makkelijker en leuker om actief betrokken te zijn bij het erfgoed van hun eigen leefomgeving. Daarmee dragen we bij aan het gevoel van verbondenheid met die leefomgeving.  
+We maken het mogelijk dat mensen zelf informatie gaan bijdragen aan lokale time machines. Door op deze manier technologie, lokale geschiedenis en burgerparticipatie te combineren, maken we het voor inwoners makkelijker en leuker om actief betrokken te zijn bij het erfgoed van hun eigen leefomgeving. Daarmee dragen we bij aan het gevoel van verbondenheid met die leefomgeving.  
 
 ## Deelactiviteiten
 
@@ -36,7 +36,7 @@ Uitgewerkte lijst met functionele en niet-functionele requirements.
 
 Aanpak auteursrecht & participatie. 
 
-> **Status (augustus 2026):** de [functionele en niet-functionele requirements](#requirements) en [usecases per rol](#usecases) zijn uitgewerkt. Voor auteursrecht en participatie liggen er juridische conceptdocumenten (o.a. [risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html), [algemene voorwaarden](juridisch/algemene-voorwaarden.html) en een [handreiking moderatie](juridisch/handreiking-moderatie.html)), nog te toetsen door een jurist.
+> **Status (augustus 2026):** de [functionele en niet-functionele requirements](./#requirements) en [usecases per rol](./#usecases) zijn uitgewerkt. Voor auteursrecht en participatie liggen er juridische conceptdocumenten (o.a. [risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html), [algemene voorwaarden](juridisch/algemene-voorwaarden.html) en een [handreiking moderatie](juridisch/handreiking-moderatie.html)), nog te toetsen door een jurist.
 
 ### Verkenning technische oplossingsrichting
 
@@ -59,7 +59,7 @@ Vaststellen welke (generieke of lokale) technische oplossing het meest geschikt 
 
 > **Status (augustus 2026):** de architectuurschets is uitgegroeid tot een volwaardige [systeemarchitectuur](systeemarchitectuur/architectuur.html) en [data-architectuur](data-architectuur/data-architectuur.html). De scenario-afweging is uitgevoerd in de [infrastructuuranalyse](infra/analyse.html) (vier richtingen); er is gekozen voor één generiek platform (Jottem) voor alle tijdmachines, in plaats van maatwerk per tijdmachine.
 
-### Keuze oplossingsrichting
+### Keuze oplossingsrichting ### {#activiteit-keuze-oplossingsrichting}
 
 **Aard & wijze van uitvoering:**
 
@@ -75,7 +75,7 @@ Vaststellen van een gedragen en uitvoerbare oplossingsrichting.
 
 - Document met onderbouwing en selectie van gekozen oplossingsrichting. 
 
-> **Status (augustus 2026):** opgeleverd als het [keuzedocument](#keuze-oplossingsrichting): alles op de Jottem-server met een expliciete exit-/exportstrategie, een gekozen technologiestack en besliste openstaande vragen (o.a. ARK uitgesteld naar een latere fase).
+> **Status (augustus 2026):** opgeleverd als het [keuzedocument](./#keuze-oplossingsrichting): alles op de Jottem-server met een expliciete exit-/exportstrategie, een gekozen technologiestack en besliste openstaande vragen (o.a. ARK uitgesteld naar een latere fase).
 
 ### Implementatie per tijdmachine
 
@@ -95,7 +95,7 @@ Functionele toepassing waarmee gebruikers foto's/verhalen kunnen toevoegen en/of
 
 - Werkende participatievoorziening binnen elke tijdmachine. 
 
-> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)). De eerste implementatie start met de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
+> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](./#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)) en de bouw is begonnen; de stand per onderdeel staat in het [realisatieplan](./#realisatie-mijlpalen). De eerste implementatie is voor de pilot [Smaak van Gouda](./#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [realisatieplan](./#realisatieplan).
 
 ### Testen en nazorg
 
@@ -165,7 +165,7 @@ Duurzame borging van de oplossing.
 
 - Beheersplan en samenwerkingsovereenkomsten met lokale partners. 
 
-> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate). Tot het duurzame beheer hoort ook de afleverbaarheid van de platformmail: vóór livegang worden SPF, DKIM en DMARC op het verzenddomein ingeregeld en krijgen de attenderingsmails one-click unsubscribe, zodat gebruikers ze makkelijk uitzetten in plaats van ze als spam te markeren; het volledige pakket maatregelen (reverse DNS, eigen MTA, bouncebeheer, reputatiemonitoring) staat in de [afleverbaarheidssectie](#notificaties-afleverbaarheid) van het ontwerp.
+> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](./#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate). Tot het duurzame beheer hoort ook de afleverbaarheid van de platformmail: vóór livegang worden SPF, DKIM en DMARC op het verzenddomein ingeregeld en krijgen de attenderingsmails one-click unsubscribe, zodat gebruikers ze makkelijk uitzetten in plaats van ze als spam te markeren; het volledige pakket maatregelen (reverse DNS, eigen MTA, bouncebeheer, reputatiemonitoring) staat in de [afleverbaarheidssectie](./#notificaties-afleverbaarheid) van het ontwerp.
 
 ## Relatie met de Faro-kernwaarden
 
@@ -175,7 +175,7 @@ Duurzame borging van de oplossing.
 
 De Time Machines functioneren als platforms voor ontmoeting, herinnering en kennisdeling, en sluiten daarmee aan op de gedachte dat erfgoed bijdraagt aan identiteit, zelfbewustzijn en gemeenschapszin. Inwoners herkennen hun eigen geschiedenis in het grotere verhaal van hun stad en voelen zich daardoor meer verbonden met hun omgeving. Dit versterkt het gevoel van eigenaarschap en draagt bij aan het welzijn van mensen - erfgoed als bron van zingeving en verbondenheid.
 
-## Omschrijving hoofdthema en aanluiting bij de Uitvoeringsagenda Faro
+## Omschrijving hoofdthema en aansluiting bij de Uitvoeringsagenda Faro
 
 Het Time Machine-initiatief sluit goed aan bij het kantelende perspectief op dienstverlening zoals geformuleerd in de NDE-agenda: niet de collectie of technologie staat centraal, maar de gemeenschap als belanghebbende. In dit project draait het om wat inwoners zelf belangrijk vinden in hun leefomgeving, welke verhalen ze willen vertellen en hoe ze dat digitaal willen doen. De vraag is niet: “Wat kunnen wij ontsluiten?” maar: “Wat willen mensen delen, bewaren en doorgeven?” Daarmee sluit het project direct aan op het idee om erfgoedgemeenschappen mede vorm te laten geven aan digitaal erfgoed.
 
@@ -191,7 +191,7 @@ In plaats van erfgoed slechts te bewaren en ontsluiten, draait het in de lokale 
 
 Het project ontwikkelt en test een laagdrempelige, visueel aantrekkelijke annotatieomgeving waarin burgers op toegankelijke wijze kunnen participeren. Dit instrument biedt een concrete methodiek voor participatieve digitale erfgoedzorg, die breed toepasbaar en herbruikbaar is. Door technische samenwerking en uitwisseling tussen Time Machines ontstaat bovendien een schaalsprong: succesvolle toepassingen kunnen eenvoudig elders worden ingezet. Dit maakt het mogelijk om met beperkte middelen meer gemeenschappen te bedienen.
 
-Daarnaast stimuleert het project nieuwe coalities tussen erfgoedinstellingen, vrijwilligersorganisaties, burgerinitiatieven, ontwerpers, techpartners en educatieve instellingen. Een voorbeeld is de samenwerking in Hilversum met Hilversummers.nl, een een online platform dat zich inzet voor het versterken van de lokale gemeenschap in Hilversum; of de samenwerking in Gouda met een game-ontwikkelaar. Deze netwerken zorgen voor verankering, maar ook voor verrijking van het erfgoed met diverse perspectieven en kennisvormen. Zo wordt het erfgoedveld inclusiever, creatiever en beter verbonden met de samenleving.
+Daarnaast stimuleert het project nieuwe coalities tussen erfgoedinstellingen, vrijwilligersorganisaties, burgerinitiatieven, ontwerpers, techpartners en educatieve instellingen. Een voorbeeld is de samenwerking in Hilversum met Hilversummers.nl, een online platform dat zich inzet voor het versterken van de lokale gemeenschap in Hilversum; of de samenwerking in Gouda met een game-ontwikkelaar. Deze netwerken zorgen voor verankering, maar ook voor verrijking van het erfgoed met diverse perspectieven en kennisvormen. Zo wordt het erfgoedveld inclusiever, creatiever en beter verbonden met de samenleving.
 
 Kortom, het initiatief is geen tijdelijk experiment, maar een bouwsteen voor een digitale, meer democratische en participatieve erfgoedsector. Het laat zien hoe erfgoed midden in de samenleving kan staan als iets dat mensen samen vormgeven, betekenis geven en levend houden.
 
@@ -203,7 +203,7 @@ Het project zet actief in op kennisdeling met erfgoedprofessionals, burgers en b
 
 - **Nieuwsbrieven**: Er verschijnen vier digitale nieuwsbrieven (elk kwartaal) met updates over het project, ervaringen uit de deelnemende steden, technische keuzes en leerpunten. De nieuwsbrieven worden verspreid via partnerorganisaties en netwerken in de erfgoedsector. De doelgroep wordt gevormd door erfgoedprofessionals. 
 - **Sociale media**: Via LinkedIn, Mastodon en Bluesky delen we regelmatig korte berichten met foto’s, citaten van deelnemers en aankondigingen. Dit is afhankelijk van het onderwerp communicatie naar vrijwilligers en naar erfgoed professionals. 
-- **Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreërde participatieve mogelijkheden zal na het project plaatsvinden. 
+- **Partnersites**: We maken gebruik van bestaande kanalen van partners (bijvoorbeeld historische verenigingen en erfgoedorganisaties) om nieuws en oproepen tot participatie te delen. Communicatie met vrijwilligers en bewoners vindt plaats via bestaande kanalen en social media. Naar verwachting zal deze communicatie specifiek voor het project zijn, de werkelijke uitnutting van de gecreëerde participatieve mogelijkheden zal na het project plaatsvinden. 
 
 ### Kennissessies en webinars
 Er worden minimaal twee kennissessies georganiseerd: 

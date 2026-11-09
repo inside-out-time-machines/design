@@ -1,6 +1,8 @@
 # Usecases per rol # {#usecases}
 
-Ter ondersteuning van onderstaande usescases is er een [prototype](https://prototype.iotm.nl/).
+De rollen en hoe lidmaatschap werkt staan in [[#begrippen-rollen]].
+
+Ter ondersteuning van onderstaande usecases is er een [prototype](https://prototype.iotm.nl/).
 
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
 
@@ -8,25 +10,25 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * een organisatiejottem definiëren, deze heeft een naam (van vereniging, archiefinstelling, instituut, enz.), slug, favicon, logo, kleurenpalet (primary, secondary, background, …); het instellen van een ARK NAAN volgt in de latere ARK-fase (zie [[#keuze-open-vragen]])  
 * gebruikers (naam, e-mail) in de rol organisatiebeheerder van een organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA of passkey) ingesteld kan worden   
-* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie en per project
+* statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties per organisatie en per project
 
 ## Als organisatiebeheerder kan ik ## {#organisatiebeheerder}
 
 * inloggen, profiel (naam, afbeelding, privacy instellingen, wachtwoord, 2FA/passkey) inzien en wijzigen en uitloggen  
-* gebruikers (naam, e-mail) in de rol moderater binnen de organisatiejottem toevoegen, bewerken en verwijderen  
+* gebruikers (naam, e-mail) in de rol moderator binnen de organisatiejottem toevoegen, bewerken en verwijderen  
   * bij toevoegen van een gebruiker ontvangt deze een e-mail bericht met de regels en bevestigingslink, de link bevat een acceptatie knop waarna een wachtwoord (en 2FA of passkey) ingesteld kan worden   
-* kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
-* kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
-* kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
-* kan ik per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink, foto-URL), met altijd minstens één actieve wijze (standaard: alle vier)  
-* kan ik per project de openbaarheid instellen: **openbaar** (standaard) of **besloten**; bij een besloten project ziet alleen wie is uitgenodigd de jottems, de projectinformatie (logo, intro, oproep) blijft voor iedereen leesbaar en de open data van het project blijft openbaar  
-  * kan ik bij een besloten project leden (naam, e-mail) toevoegen; de ledenadministratie hoort bij het project, niet bij de organisatie  
+* statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
+* projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
+* per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
+* per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink), met altijd minstens één actieve wijze (standaard: alle drie)  
+* per project de openbaarheid instellen: **openbaar** (standaard) of **besloten**; bij een besloten project ziet alleen wie is uitgenodigd de jottems, de projectinformatie (logo, intro, oproep) blijft voor iedereen leesbaar en de open data van het project blijft openbaar  
+  * bij een besloten project leden (naam, e-mail) toevoegen; de ledenadministratie hoort bij het project, niet bij de organisatie  
   * bij toevoegen wordt het lid als gebruiker klaargezet en krijgt het een account bij de identity provider; het lid ontvangt een e-mail met uitleg over het besloten project, de projectlink en een link naar de wachtwoord-vergeten-functie waarmee het een wachtwoord instelt (wie al een account heeft, logt direct in)  
-  * kan ik het lidmaatschap van een project weer intrekken; het account van de gebruiker blijft bestaan  
+  * het lidmaatschap van een project weer intrekken; het account van de gebruiker blijft bestaan  
   * als organisatiebeheerder heb ik, net als de moderatoren van mijn organisatie en de platformbeheerder, altijd toegang tot de besloten projecten van mijn organisatie zonder zelf lid te zijn  
-* kan ik een reeds bestaande collectie (met metadata en online afbeeldingen > IIIF) als project toevoegen 
-* kan ik per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij (of afmelden van) het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/)
-* kan ik per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
+* een reeds bestaande collectie (met metadata en online afbeeldingen via IIIF) als project toevoegen 
+* per project de datasetbeschrijving bewerken en - indien er openbare (gepubliceerde) data is - deze valideren en aanmelden bij het [NDE Datasetregister](https://datasetregister.netwerkdigitaalerfgoed.nl/); een aanmelding is definitief, het register kent geen afmelding
+* per project een e-depot-export (BagIt met RO-Crate-beschrijving) laten aanmaken; het aanmaken is een asynchrone job en zodra het pakket klaar is ontvang ik een e-mail met een directe downloadlink
 
 ## Als moderator kan ik ## {#moderator}
 
@@ -36,57 +38,60 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * bij afkeuring ontvangt de uploader een e-mail bericht met de reden en wordt de mogelijkheid geboden om meer informatie aan te leveren  
   * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * gerapporteerde annotaties en reacties beoordelen: verbergen/verwijderen bij misbruik, of de melding afwijzen; de afhandeling wordt gelogd  
-* kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
+* vlak-annotaties bij foto's met herkenbare personen beoordelen vóórdat ze openbaar worden: vrijgeven of afwijzen  
+* verwijderverzoeken afhandelen: depubliceren (origineel blijft als archiefexemplaar), wissen (alles weg, op de wislijst) of afwijzen met toelichting  
+* de gegevens van een gepubliceerde jottem corrigeren (titel, beschrijving, genre, begin- en eindjaar, locatie, datering, vervaardiger, steekwoorden), bijvoorbeeld naar aanleiding van een correctie-annotatie of een verzoek van de inzender; de wijziging wordt gelogd  
+* statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
-## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
+## Als gebruiker kan ik ## {#gebruiker}
 
-* kan ik via "wachtwoord vergeten" op de loginpagina een wachtwoordreset per e-mail starten; de resetlink verloopt na korte tijd  
+* via "wachtwoord vergeten" op de loginpagina een wachtwoordreset per e-mail starten; de resetlink verloopt na korte tijd  
 
 * inloggen ook via social login, profiel (naam, afbeelding, privacy instellingen, wachtwoord) inzien en wijzigen en uitloggen  
-* kan ik lezen wat een jottem is en welke eisen hieraan gesteld worden  
-* kan ik een overzicht krijgen van geuploadde afbeeldingen, status een #annotaties en deellinks  
-* kan ik jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen  
-* kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link)
-* kan ik, als ik voor een besloten project ben uitgenodigd, na inloggen de jottems van dat project bekijken, uploaden en annoteren zoals in elk ander project; ben ik geen lid, dan meldt de projectpagina dat toegang op uitnodiging is  
+* lezen wat een jottem is en welke eisen hieraan gesteld worden  
+* een overzicht krijgen van geüploade afbeeldingen, met status, aantal annotaties en deellinks  
+* jottems markeren als favoriet, het overzicht van favorieten bekijken en de favoriet markering verwijderen *(na de evaluatie)*  
+* mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link) *(na de evaluatie)*
+* na inloggen de jottems van een besloten project waarvoor ik ben uitgenodigd bekijken, uploaden en annoteren zoals in elk ander project; ben ik geen lid, dan meldt de projectpagina dat toegang op uitnodiging is  
 
-## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
+## Als gebruiker/uploader kan ik ## {#gebruiker-uploader}
 
-* kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, en kies ik daarbij het project (van de organisatie) waaraan ik bijdraag  
+* een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, in het project van waaruit ik het uploadformulier opende  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
-  * kan ik die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
-  * bevestig ik bij het indienen de licentie van het project (vastgelegd op de jottem)  
-* kan ik op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
-* kan ik in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; herkenning start met de Memorix-beeldbank van SAMH) of een **foto-URL van een website** (het platform controleert dat de link een werkende afbeelding oplevert); extern materiaal wordt niet gekopieerd, alleen verwezen  
-* kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
-* kan ik locatiemetadata toevoegen (adres, openings-/sluitingsjaar) en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart en in een pand-tijdlijn kan verschijnen  
-* kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
-* kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
+  * die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
+  * bevestig ik bij het indienen van een eigen bestand de licentie van het project (vastgelegd op de jottem); bij beeldbankmateriaal neemt het platform de rechten van de bron over  
+* op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
+* in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; alleen beeldbanken op de ingestelde lijst, te beginnen met de Memorix-beeldbank van SAMH); beeldbankmateriaal wordt niet gekopieerd, alleen verwezen  
+* bij het uploaden een genre kiezen uit de vaste lijst (foto, menukaart, advertentie, folder, krantenartikel, vergunning, overig)  
+* begin- en eindjaar toevoegen en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart verschijnt; adres en pand-tijdlijn volgen na de evaluatie  
+* een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
+* afgekeurde jottems verwijderen (goedgekeurde jottems niet!)
 
-## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
+## Als gebruiker/annoteerder kan ik ## {#gebruiker-annoteerder}
 
-* kan ik een extra metadata aan de gehele jottem toevoegen, waarbij term-URI's gezocht worden via het NDE Termennetwerk binnen de voor het project ingestelde terminologiebronnen, zoals  
+* extra metadata aan de gehele jottem toevoegen, waarbij term-URI's gezocht worden via het NDE Termennetwerk binnen de voor het project ingestelde terminologiebronnen, zoals  
   * een plaatsnaam (label+URI)  
-  * de plek waar de fotograaf stond (op de kaart) plus zichtveld (WKT)  
+  * de plek waar de fotograaf stond (op de kaart) plus zichtveld: kijkrichting en beeldhoek (GeoJSON)  
   * gebeurtenis (label+URI)   
   * koppeling naar een externe archiefbron (label+URI)  
   * vrije tekst: herinnering, aanvulling of correctie  
-* kan ik een extra metadata aan een getekend vlak op de jottem toevoegen, zoals  
+* extra metadata aan een getekend vlak op de jottem toevoegen, zoals  
   * identificatie van persoon, gebouw, bedrijf (naam+URI)  
-* kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
-* kan ik mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in de annotatieserver
+* reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
+* mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in het Gebeurtenislog van het platform (volledige inhoud 12 maanden)
 
 Zie [[#verrijkingen]] voor de volledige catalogus van verrijkingsmogelijkheden, met per
 mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotation.
 
-## Als API gebruiker kan ik ## {#api-gebruiker}
+## Als API-gebruiker kan ik ## {#api-gebruiker}
 
-* per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD  
+* per organisatie nieuwe/bijgewerkte (=ook nieuwe annotaties) jottems harvesten via IIIF CD *(gebouwd; tijdens de pilot in productie uit)*  
 * per organisatie nieuwe jottems via RSS  
-* kan ik jottems doorzoeken op basis van elasticsearch  
-* kan ik annotaties zoeken  
+* jottems doorzoeken op basis van elasticsearch *(na de evaluatie)*  
+* annotaties zoeken *(na de evaluatie)*  
 * annotaties ophalen via het W3C Web Annotation Protocol: per jottem (AnnotationCollection uit de container) en per organisatie (aggregerende AnnotationCollection)  
 * per organisatie / project een IIIF collection opvragen  
-* per project een datasetbeschrijving, RSS-feed en aggregerende AnnotationCollection opvragen  
+* per project een RSS-feed en een aggregerende AnnotationCollection opvragen  
 * per jottem IIIF info.json + manifest opvragen  
 * per project een datasetbeschrijving (met datadump van alle jottems in RDF volgens schema.org AP NDE als distributie) ophalen; de platformbrede datacatalogus bundelt alle projectdatasets  
 * de open data van een besloten project op dezelfde manier ophalen als die van een openbaar project: de openbaarheid van een project beperkt alleen de webapplicatie, niet de machine-leesbare uitvoer
@@ -96,11 +101,11 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
 * lezen over het iotm platform, faq, privacy, auteursrecht  
 * de organisatie- en projectpagina’s lezen met informatie over doel, oproep tot actie  
   * mezelf registreren (waarmee je een gebruiker wordt)  
-  * gepubliceerde jottems bekijken/doorzoeken  
+  * gepubliceerde jottems bekijken (doorzoeken: na de evaluatie)  
   * bij een besloten project zie ik logo, intro en oproep, maar geen jottems: de pagina toont een inlogknop en de melding dat toegang tot dit project op uitnodiging is; ook de jottem-pagina's van dat project en de widgets zijn dan niet beschikbaar  
-  * favorieten van gebruikers bekijken
-  * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
-* via een interactieve kaart (gekoppeld aan de Gouda Tijdmachine) door tijd en plaats navigeren  
-* per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken  
-* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal  
+  * favorieten van gebruikers bekijken *(na de evaluatie)*
+  * een jottem delen via de Delen-knop (het deelmenu van mijn apparaat, of anders de link kopiëren); de gedeelde link toont een nette preview  
+* op een kaart de gepubliceerde jottems als speldjes zien en doorklikken naar de jottem  
+* per pand de opeenvolgende functies als tijdlijn bekijken (bij Smaak van Gouda: de eetgelegenheden), ook via een externe tijdmachine *(na de evaluatie)*  
+* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal, ook zonder account  
 * een annotatie of reactie rapporteren (spam, reclame, ongepast); de melding komt in de moderatieomgeving van de organisatie

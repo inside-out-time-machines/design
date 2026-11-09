@@ -16,26 +16,27 @@ niet andersom.
 Wie via een ander kanaal binnenkomt, moet zonder drempel kunnen meedoen. Daarom is
 inloggen laagdrempelig, inclusief **social login** via federatie: in de MVP Google,
 Microsoft en Facebook; Apple en Instagram volgen in fase 2 vanwege de aanvraag- en
-reviewdoorlooptijd. Authentik doet uitsluitend authenticatie; rollen komen uit de
+reviewdoorlooptijd. Authentik (de identity provider, zie [[#keuze-stack]]) doet uitsluitend authenticatie; rollen komen uit de
 database. Zie de [systeemarchitectuur](systeemarchitectuur/architectuur.html) voor de
 inrichting. *Status (augustus 2026): gerealiseerd.*
 
 ## Deelknoppen en Open Graph ## {#deelbaarheid-deelknoppen}
 
 Elke gepubliceerde jottem-pagina heeft een **Delen**-knop die het deelmenu van het
-apparaat opent via de Web Share API, en elke publiekspagina draagt **Open
+apparaat opent via de Web Share API (kan de browser dat niet, zoals veel desktopbrowsers,
+dan kopieert de knop de link naar het klembord), en elke publiekspagina draagt **Open
 Graph-metadata** zodat een gedeelde link een nette preview toont. De volledige
 uitwerking (knopplaatsing, OG-elementen en hun bronnen, canonical-beleid) staat in de
 [data-architectuur](data-architectuur/data-architectuur.html#uri-strategie).
 *Status (augustus 2026): gerealiseerd.*
 
-Nieuw in deze iteratie: de `og:title` en de Web Share-deeltekst van een jottem gebruiken
-niet langer de vaste oproep "weet jij hier meer van?", maar een **willekeurige, binnen
-het project actieve verrijkings-call-to-action** uit [[#verrijkingen]]. Een gedeelde
-link vraagt zo meteen om een concrete bijdrage ("Weet je wanneer dit was? Vul het
-jaartal in, ook een gok helpt.") en varieert per deelmoment, wat de kans vergroot dat
-één van de oproepen de ontvanger raakt. Heeft een project geen actieve verrijkingen,
-dan valt de titel terug op de vaste oproep.
+De **Web Share-deeltekst** van een jottem gebruikt een **willekeurige, binnen het project
+actieve verrijkings-call-to-action** uit [[#verrijkingen]], zodat een gedeelde link meteen om
+een concrete bijdrage vraagt ("Weet je wanneer dit was? Vul het jaartal in, ook een gok
+helpt."); die tekst maakt de browser per deelmoment, dus hij varieert echt. De `og:title`
+(en de titel in oEmbed) gebruikt daarentegen de **vaste oproep** "weet jij hier meer van?":
+sociale platforms bewaren de preview van een URL, dus een wisselende titel zou toch niet
+wisselen en alleen de eerst opgehaalde variant tonen.
 
 ## Widgets ## {#deelbaarheid-widget}
 
@@ -106,7 +107,7 @@ Voor WordPress is het iframe de eenvoudigste route (plakken in een
 "Aangepaste HTML"-blok); het script is het mooiste resultaat op sites die externe
 scripts toestaan. Een eigen WordPress-plugin of Gutenberg-block is bewust géén onderdeel
 van het ontwerp: het "Aangepaste HTML"-blok volstaat, en met het oEmbed-endpoint uit
-[[#deelbaarheid-fase2]] wordt zelfs dat plakken van code overbodig.
+[[#deelbaarheid-oembed]] wordt zelfs dat plakken van code overbodig.
 
 ### Widgetlinks in het projectbeheer ### {#deelbaarheid-widget-beheer}
 
@@ -171,14 +172,20 @@ D-1 t/m D-7 zijn in de huidige iteratie gerealiseerd, D-8 is fase 2.*
 * **D-4** Alle links in een widget verwijzen met volledige URL's en `target="_top"`
     naar de publiekspagina's; de jottems-widgets tonen onder de thumbnails een
     willekeurige actieve verrijkings-call-to-action van het project.
-* **D-5** De `og:title` en de Web Share-deeltekst van een jottem gebruiken een
-    willekeurige actieve verrijkings-call-to-action van het project, met de vaste oproep
-    "weet jij hier meer van?" als terugval.
+* **D-5** De Web Share-deeltekst van een jottem gebruikt een willekeurige actieve
+    verrijkings-call-to-action van het project, met de vaste oproep "weet jij hier meer
+    van?" als terugval; `og:title` en de oEmbed-titel gebruiken altijd die vaste oproep.
 * **D-6** De organisatiebeheerder ziet op de projectbeheerpagina de widget-URL's,
     kopieerbare voorbeeldcode voor beide inbedvormen en een levend voorbeeld.
 * **D-7** Het platform biedt een oEmbed-endpoint met discovery-links op project- en
     jottem-pagina's: projectpagina's leveren type `rich` (de jottems-widget als
     iframe), jottem-pagina's type `photo` (de duurzame IIIF-afbeelding met de
     verrijkings-CTA in de titel); `maxwidth`/`maxheight` worden gerespecteerd.
+* **D-9** Het script (`widget.js`) zet de widget in de pagina van de partner, dus op het
+    origin van die site. Het vertrouwt daarom niets wat het ophaalt: `data-src` moet van
+    hetzelfde origin komen als het script, en de opgehaalde HTML wordt vóór het invoegen
+    opgeschoond (alleen de elementen en attributen die de widgets gebruiken, geen
+    `on*`-attributen, links en beelden alleen via http(s)). Wie geen extern script wil
+    vertrouwen, gebruikt de iframe; die is volledig afgeschermd van de partnerpagina.
 * **D-8** *(fase 2)* Er is een Jottem-badge in huisstijl die naar een project of jottem
     verwijst.

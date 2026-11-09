@@ -11,7 +11,7 @@ info:
   version: "0.1"
 
 servers:
-  - url: https://api.iotm.nl/v1
+  - url: https://api.iotm.nl
     description: Productie server
 
 security:
@@ -81,8 +81,9 @@ paths:
       description: >
         Het project (`projectId`) staat in de body en bepaalt de organisatie en de licentie.
         In plaats van een geüpload bestand kan een externe bron worden meegegeven
-        (`externeBron` met soort `beeldbank` of `url`); de server valideert die opnieuw en
-        legt alleen een verwijzing vast. Bij het aanmaken wordt de afbeelding gecontroleerd
+        (`externeBron` met soort `beeldbank`, alleen van beeldbanken op de ingestelde lijst); de
+        server valideert die opnieuw en legt alleen een verwijzing vast. Bij een externe bron
+        is `licentieBevestigd` niet nodig: de rechten komen uit het manifest. Bij het aanmaken wordt de afbeelding gecontroleerd
         op herkenbare personen (Herkenbaar API); bij "herkenbaar: ja" zonder
         toestemmingsverklaring antwoordt de server met een 422, waarna de frontend de
         toestemmingsvraag stelt en opnieuw indient met `toestemming: ja` of `nee`.
@@ -103,16 +104,45 @@ paths:
         '422':
           description: Toestemmingsvraag (herkenbare personen gedetecteerd) of validatiefout
 
+  /jottem/{jottemId}/metadata:
+    put:
+      tags: [Moderatie]
+      summary: Corrigeer de gegevens van een gepubliceerde jottem (MO-8)
+      description: >
+        Rol moderator van de organisatie. Alleen meegegeven velden veranderen; `metadata`
+        vervangt per sleutel (lege waarde = verwijderen). Het Gebeurtenislog bewaart oude en
+        nieuwe waarden; RDF, IIIF-manifest, RSS en de datadump volgen.
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titel: { type: string }
+                beschrijving: { type: string }
+                genre: { type: string }
+                metadata:
+                  type: object
+                  additionalProperties: { type: string }
+                  description: "Bijv. jaarVan, jaarTot, lat, lon, datering, vervaardiger"
+                steekwoorden: { type: array, items: { type: string } }
+      responses:
+        '200': { description: Gecorrigeerd }
+        '409': { description: Jottem is niet gepubliceerd }
+
   /upload/externe-bron:
     post:
       tags: [Uploads]
-      summary: Valideer een beeldbank-permalink of foto-URL als externe fotobron
+      summary: Valideer een beeldbank-permalink als externe fotobron
       description: >
         Voor de popup in het uploadformulier: een beeldbank-permalink wordt herleid tot een
         IIIF Manifest of info.json (te beginnen met Memorix/SAMH; directe IIIF-links werken
-        ook), een foto-URL wordt server-side gecontroleerd op een werkende afbeelding
-        (statuscode en content-type). Het antwoord toont wat er opgeslagen gaat worden
-        (bron, bronUrl, preview, afmetingen); er wordt alleen verwezen, niets gekopieerd.
+        ook, mits de host op de ingestelde lijst staat; anders 422). Het antwoord toont wat er
+        opgeslagen gaat worden (bron, bronUrl, preview, afmetingen, rechten en
+        rechtenvermelding uit het manifest); er wordt alleen verwezen, niets gekopieerd.
       requestBody:
         required: true
         content:
@@ -121,13 +151,13 @@ paths:
               type: object
               required: [soort, url]
               properties:
-                soort: { type: string, enum: [beeldbank, url] }
+                soort: { type: string, enum: [beeldbank] }
                 url: { type: string, format: uri }
       responses:
         '200':
-          description: Gevalideerde externe bron (bron, bronUrl, previewUrl, service, afmetingen)
+          description: Gevalideerde externe bron (bron, bronUrl, previewUrl, service, afmetingen, rechten, rechtenvermelding)
         '422':
-          description: De link is geen herkende beeldbank-permalink of levert geen werkende afbeelding op
+          description: De link is geen herkende beeldbank-permalink, of de beeldbank staat niet op de ingestelde lijst
 
   /herkenbaar-check:
     post:
@@ -394,7 +424,8 @@ paths:
       description: >
         W3C Web Annotation; de API voegt de geauthenticeerde gebruiker als creator toe en
         schrijft de annotatie naar de annotatieserver. Reacties op annotaties zijn annotaties
-        met de bestaande annotatie als target.
+        met de bestaande annotatie als target. Een vlak-annotatie bij een jottem met
+        herkenbaar = ja wordt niet direct geschreven maar wacht op een moderator (202).
       parameters:
         - $ref: '#/components/parameters/jottemId'
       requestBody:
@@ -404,6 +435,7 @@ paths:
             schema: { type: object }
       responses:
         '201': { description: Annotatie aangemaakt }
+        '202': { description: "Vlak bij herkenbare personen: wacht op vrijgave door een moderator (MO-7)" }
 
   /annotation/{jottemId}/{annotationNaam}:
     put:
@@ -694,21 +726,16 @@ paths:
         heeft. De backend valideert eerst via PUT /datasets/validate van de
         Datasetregister-API (https://datasetregister.netwerkdigitaalerfgoed.nl/api/) en meldt
         daarna aan via POST /datasets met de URL van de datasetbeschrijving. Het domein
-        iotm.nl moet eenmalig op de allowlist van het register staan.
+        iotm.nl moet eenmalig op de allowlist van het register staan. Een aanmelding is
+        definitief (het register kent geen afmelding); buiten de productieomgeving wordt
+        daarom alleen gevalideerd (200, status "gevalideerd").
       parameters:
         - $ref: '#/components/parameters/projectId'
       responses:
+        '200': { description: "Gevalideerd, niet aangemeld (buiten de productieomgeving)" }
         '202': { description: Gevalideerd en aangemeld bij het Datasetregister }
         '409': { description: Geen openbare data, aanmelden niet mogelijk }
         '422': { description: Validatie tegen het SHACL-shape van het register faalde (details in response) }
-    delete:
-      tags: [Projecten]
-      summary: Meld de projectdatasetbeschrijving af bij het NDE Datasetregister
-      description: Rol organisatiebeheerder; gebruikt DELETE /datasets van de Datasetregister-API.
-      parameters:
-        - $ref: '#/components/parameters/projectId'
-      responses:
-        '204': { description: Afgemeld }
 
   /project/{projectId}/export:
     post:
@@ -833,9 +860,10 @@ paths:
   /verwijderverzoek:
     post:
       tags: [Verwijderverzoeken]
-      summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal
+      summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal (BE-4)
       description: >
-        **Nog niet gerealiseerd (gepland).**
+        Kan zonder account, met rate limiting. De indiener krijgt mail 6, de moderatoren
+        van de organisatie mail 7. Alleen voor een gepubliceerde jottem.
       security: []
       requestBody:
         required: true
@@ -848,9 +876,7 @@ paths:
   /organisatie/{organisatieSlug}/verwijderverzoeken:
     get:
       tags: [Verwijderverzoeken]
-      summary: Overzicht van openstaande verwijderverzoeken van de organisatie
-      description: >
-        **Nog niet gerealiseerd (gepland).**
+      summary: Overzicht van de verwijderverzoeken van de organisatie (MO-5)
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -865,9 +891,12 @@ paths:
   /verwijderverzoek/{verzoekId}:
     put:
       tags: [Verwijderverzoeken]
-      summary: Handel een verwijderverzoek af (bij honorering krijgt de jottem status "gedepubliceerd", incl. cache-purge en schoning van alle outputs; anders afwijzing met reden)
+      summary: Handel een verwijderverzoek af (MO-5)
       description: >
-        **Nog niet gerealiseerd (gepland).**
+        depubliceren - status "gedepubliceerd", schoning van alle outputs en cache-purge;
+        het origineel blijft als archiefexemplaar. wissen - daarnaast origineel, metadata,
+        annotaties en logpayloads verwijderd en de jottem op de wislijst. afgewezen - alleen
+        met toelichting. De indiener krijgt mail 8.
       parameters:
         - name: verzoekId
           in: path
@@ -881,10 +910,12 @@ paths:
               type: object
               required: [besluit]
               properties:
-                besluit: { type: string, enum: [gehonoreerd, afgewezen] }
+                besluit: { type: string, enum: [depubliceren, wissen, afgewezen] }
                 toelichting: { type: string }
       responses:
         '200': { description: Verzoek afgehandeld }
+        '409': { description: Verzoek al afgehandeld }
+        '422': { description: Afwijzen zonder toelichting }
 
   /annotation/{jottemId}/{annotationNaam}/melding:
     post:
@@ -921,6 +952,38 @@ paths:
               schema:
                 type: array
                 items: { $ref: '#/components/schemas/Melding' }
+
+  /organisatie/{organisatieSlug}/wachtende-annotaties:
+    get:
+      tags: [Meldingen]
+      summary: Vlak-annotaties bij jottems met herkenbare personen die op vrijgave wachten (MO-7)
+      parameters:
+        - $ref: '#/components/parameters/organisatieSlug'
+      responses:
+        '200': { description: Lijst van wachtende annotaties met jottem en voorgestelde W3C-annotatie }
+
+  /wachtende-annotatie/{wachtendeAnnotatieId}:
+    put:
+      tags: [Meldingen]
+      summary: Geef een wachtende annotatie vrij (wordt een W3C-annotatie) of wijs hem af; gelogd in het Gebeurtenislog
+      parameters:
+        - name: wachtendeAnnotatieId
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [besluit]
+              properties:
+                besluit: { type: string, enum: [vrijgegeven, afgewezen] }
+                toelichting: { type: string }
+      responses:
+        '200': { description: Afgehandeld }
+        '409': { description: Al afgehandeld }
 
   /melding/{meldingId}:
     put:
@@ -1003,8 +1066,9 @@ components:
           type: string
           format: uri
           description: >
-            Licentie/hergebruikvoorwaarden die de uploader (rechthebbende) aan de jottem
-            meegeeft; verschijnt als rights in IIIF en schema:license in de RDF.
+            Licentie/hergebruikvoorwaarden van de jottem; verschijnt als rights in IIIF en
+            schema:license in de RDF. Bij een upload de bevestigde projectlicentie, bij een
+            beeldbank-permalink de `rights` uit het manifest.
         vervaardiger: { type: string }
         datum: { type: string }
         plaats: { type: string }
@@ -1129,13 +1193,14 @@ components:
 
     Verwijderverzoek:
       type: object
-      required: [jottemId, reden, email]
+      required: [jottemId, soort, reden, email]
       properties:
         verzoekId: { type: string, readOnly: true }
         jottemId: { type: string }
-        reden: { type: string, description: "Bijv. eigen materiaal of herkenbaar in beeld" }
+        soort: { type: string, enum: [eigen-materiaal, herkenbaar, auteursrecht, anders] }
+        reden: { type: string, description: "Toelichting van de indiener" }
         email: { type: string, format: email, description: "Voor terugkoppeling over de afhandeling" }
-        status: { type: string, enum: [open, gehonoreerd, afgewezen], readOnly: true }
+        status: { type: string, enum: [open, gedepubliceerd, gewist, afgewezen], readOnly: true }
 
     Melding:
       type: object

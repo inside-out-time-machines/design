@@ -132,8 +132,7 @@ Platform: Jottem
 **Ik geef toestemming voor het volgende** (aankruisen wat van toepassing is):
 
 - [ ] Het interview mag worden **opgenomen** (geluid).
-- [ ] De opname mag worden **gepubliceerd** op het Jottem platform en duurzaam worden bewaard bij een bewaarplaats binnen de Europese Economische Ruimte (EER).
-- [ ] Er mag ook een **extra kopie** worden bewaard bij het **Internet Archive in de Verenigde Staten**. Ik begrijp dat mijn gegevens daarmee buiten de EER worden opgeslagen, waar andere regels voor gegevensbescherming gelden. *(Niet aangekruist? Dan blijft de opname alleen binnen de EER bewaard.)*
+- [ ] De opname mag worden **gepubliceerd** op het Jottem platform en duurzaam worden bewaard binnen de Europese Economische Ruimte (EER).
 - [ ] Mijn **naam** mag bij het interview worden vermeld.
   - [ ] Nee, publiceer het interview zonder mijn naam.
 - [ ] Er mogen **korte fragmenten** van het interview worden gebruikt in communicatie over het project (bijvoorbeeld nieuwsbrief of sociale media).
@@ -143,7 +142,7 @@ Platform: Jottem
 **Goed om te weten**
 
 - U mag tijdens het interview altijd zeggen dat iets niet voor publicatie is. Dat wordt genoteerd en gerespecteerd.
-- U mag uw toestemming later intrekken. Dat kan via het Meldpunt op de website of via [contactgegevens organisatie]. Intrekken geldt voor de toekomst: we halen het interview dan van het platform, stoppen met aanbieden via onze API's en sturen een verwijderverzoek naar de externe bewaarplaats.
+- U mag uw toestemming later intrekken. Dat kan via het Meldpunt op de website of via [contactgegevens organisatie]. Intrekken geldt voor de toekomst: we wissen het interview dan van het platform en stoppen met aanbieden via onze API's.
 - Eén ding kunnen we niet terugdraaien: heeft u hierboven een **hergebruiklicentie** aangekruist, dan blijft die gelden voor kopieën die anderen onder die licentie al hebben gemaakt. Dat is inherent aan zo'n licentie.
 - Vragen over privacy? Zie het Privacybeleid Jottem op de website of neem contact op via [contactgegevens].
 

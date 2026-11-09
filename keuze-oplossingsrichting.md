@@ -1,29 +1,50 @@
 # Keuze oplossingsrichting # {#keuze-oplossingsrichting}
 
 Dit document legt de gekozen oplossingsrichting en technologiestack vast en is het resultaat van
-de deelactiviteit "Keuze oplossingsrichting" uit het [[#activiteitenplan]]. Het bouwt voort op de
+de deelactiviteit "Keuze oplossingsrichting" uit het [activiteitenplan](activiteitenplan.html). Het bouwt voort op de
 [analyse van vier infrastructuurrichtingen](infra/analyse.html) en de
 [systeemarchitectuur](systeemarchitectuur/architectuur.html).
 *Status: concept, augustus 2026 - vast te stellen door de projectgroep.*
 
 ## Infrastructuurrichting: alles op de Jottem-server ## {#keuze-infra}
 
-Van de vier onderzochte richtingen (Wikimedia, Internet Archive, e-Depot, eigen server) is gekozen
-voor **richting 4: alles op de Jottem-server** - afbeeldingen, metadata en annotaties in één
+De [infra-analyse](infra/analyse.html) vergeleek vier richtingen:
+
+1. **Wikimedia Commons en Wikidata** als opslag: groot bereik, maar alleen vrije licenties en
+    weinig regie over moderatie en privacy;
+2. het **Internet Archive** (met Internet Archive Europe, **IAE**, de Amsterdamse Europese
+    tak): duurzame opslag met een IIIF-dienst, maar opslag buiten eigen beheer en deels in de VS;
+3. een **e-Depot** van een erfgoedinstelling: duurzaam, maar ingericht op archiefstukken, niet
+    op participatie en annoteren;
+4. **alles op de Jottem-server**: alle functies en regie in eigen beheer, maar duurzaamheid
+    hangt af van het eigen beheer.
+
+Gekozen is **richting 4: alles op de Jottem-server** - afbeeldingen, metadata en annotaties in één
 geïntegreerd systeem in eigen beheer.
+
+**Afwijking van het advies.** De analyse adviseerde een *gelaagde aanpak*: de Jottem-server als
+participatielaag, met daaronder minstens één duurzame externe laag (Internet Archive/IAE of een
+e-Depot). Voor de pilot wijken we daar bewust van af: de externe laag kost koppelwerk,
+doorgifte-afspraken en toestemming bij elke bijdrage, terwijl de pilot eerst moet aantonen dat
+de participatie werkt. De exit- en exportstrategie hieronder vangt de duurzaamheid voorlopig op.
+De externe laag wordt heroverwogen bij de evaluatie van de pilot, en in elk geval vóór de uitrol
+naar een tweede tijdmachine.
 
 **Onderbouwing:**
 
 * maximale functionaliteit en laagste drempel voor de participatieve kern (uploaden, annoteren, reageren);
 * volledige regie over het rechtenmodel: auteursrecht blijft bij de inzender, hergebruik onder aangegeven voorwaarden;
-* AVG: verwijderverzoeken zijn eenvoudig en volledig uitvoerbaar; dataresidentie in de EU;
+* AVG: een verwijderverzoek is volledig uit te voeren in eigen beheer (wissen van origineel,
+    afgeleiden, metadata en annotaties, en binnen de bewaartermijn van 35 dagen ook uit de
+    back-ups; zie [[#privacy-authenticity-copyright]]); dataresidentie in de EU;
 * geen afhankelijkheid van acceptatiecriteria of continuïteit van externe partijen.
 
 **Beheersmaatregelen** - de analyse benoemt duurzaamheid als zwakte van deze richting; die wordt
 als volgt ondervangen:
 
 * een expliciete **exit- en exportstrategie**: nachtelijkse offsite back-ups, periodieke publieke
-    datadumps (RDF plus originelen) en een jaarlijkse hersteltest van de export;
+    datadumps (alleen RDF; de originelen zitten in de offsite back-ups en, in fase 2, in de
+    e-depot-export) en een jaarlijkse hersteltest van de export;
 * afspraken in de [samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html) over
     voortzetting of overdracht van data en diensten bij einde van het project;
 * de **gelaagde aanpak blijft als uitbreiding mogelijk**: een externe preserveringskopie
@@ -32,7 +53,33 @@ als volgt ondervangen:
     natuurlijke doorzetmoment. De Internet Archive-integratie maakt daarmee **geen deel uit van de
     MVP**.
 
-## Besliste openstaande ontwerpvragen ## {#keuze-open-vragen}
+## Capaciteit en kosten ## {#keuze-capaciteit-kosten}
+
+**Capaciteit.** Alle diensten draaien op één server. De zwaarste stap per upload is de
+Herkenbaar-check (een YOLO-model op de processor, enkele seconden per foto); bij een
+verzameldag met veel gelijktijdige uploads lopen die checks na elkaar en wordt het
+uploadformulier trager, niet onbruikbaar, want de check is een hulpsignaal. De
+suggestiedienst staat bij de livegang uit (zie [[#verrijking-uploadsuggesties]]) en vraagt
+dus geen capaciteit. Bij aanhoudende drukte is de eerste maatregel de Herkenbaar-check naar
+de worker verplaatsen.
+
+**Kosten.** De lopende kosten voor de pilot, per jaar (bedragen nog in te vullen):
+
+<table class="data">
+<thead>
+<tr><th>Post</th><th>Toelichting</th><th>Per jaar</th></tr>
+</thead>
+<tbody>
+<tr><td>Server</td><td>de productieserver met alle diensten</td><td>`[ ]`</td></tr>
+<tr><td>Objectopslag</td><td>externe S3 in de EER, originelen en derivaten</td><td>`[ ]`</td></tr>
+<tr><td>Back-upopslag</td><td>offsite, 35 dagen bewaartermijn</td><td>`[ ]`</td></tr>
+<tr><td>Domein en certificaten</td><td>iotm.nl; certificaten via Let's Encrypt</td><td>`[ ]`</td></tr>
+<tr><td>Mail</td><td>de bestaande exim-relay</td><td>`[ ]`</td></tr>
+<tr><td>Beheer</td><td>uren voor onderhoud, updates en monitoring</td><td>`[ ]`</td></tr>
+</tbody>
+</table>
+
+## Genomen ontwerpbesluiten ## {#keuze-open-vragen}
 
 **ARK: uitgesteld naar een latere fase.** De MVP mint geen ARK's. Elke gepubliceerde jottem krijgt
 een duurzame platform-URL (met content negotiation naar HTML en RDF, zoals in
@@ -43,7 +90,8 @@ ARK-koppeling zonder linkbreuk kan.
 **Annotaties: bewerken en verwijderen door de annoteerder zelf.** Annoteerders kunnen hun eigen
 annotaties bewerken én verwijderen. De versiegeschiedenis wordt met volledige payload vastgelegd in het
 `Gebeurtenislog` van het platform, zodat herinneringen, aanvullingen en correcties herleidbaar
-blijven.
+blijven. Die volledige payloads blijven 12 maanden bewaard; bij het wissen van een jottem
+verdwijnen ze direct.
 
 ## Technologiestack ## {#keuze-stack}
 
@@ -55,7 +103,7 @@ genoemde kandidaten de volgende keuze gemaakt:
 <tr><th>Component</th><th>Keuze</th></tr>
 </thead>
 <tbody>
-<tr><td>Webfrontend (`www.iotm.nl`)</td><td>**Next.js** (React) met OpenSeadragon/Mirador (IIIF-viewer), Annotorious (annoteren) en MapLibre GL (kaart)</td></tr>
+<tr><td>Webfrontend (`www.iotm.nl`)</td><td>**Next.js** (React) met OpenSeadragon/Mirador (IIIF-viewer), Annotorious (annoteren), MapLibre GL (kaart) en Leaflet met Leaflet.GeotagPhoto (invoer van het zichtveld)</td></tr>
 <tr><td>Backend-API (`api.iotm.nl`)</td><td>**FastAPI** (Python) met iiif-prezi3</td></tr>
 <tr><td>Async workers</td><td>**Celery** met Valkey als broker</td></tr>
 <tr><td>Identity provider (`auth.iotm.nl`)</td><td>**Authentik** (OIDC, social login, 2FA via TOTP of passkey/WebAuthn) - *afwijkend van de architectuursuggestie (Keycloak): lichter in beheer bij gelijkwaardige functionaliteit (identity brokering, 2FA-afdwinging per rol, uitnodigingsflows)*</td></tr>
@@ -99,7 +147,7 @@ De salespitch belooft open source; de volgende besluiten maken dat concreet (aug
     copyleft-gedachte als de EUPL voor de platformcode. De repo's prototype, website en
     brand houden [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.nl) -
     hergebruik met naamsvermelding, passend bij de kennisdelingsbelofte uit het
-    [[#activiteitenplan]].
+    [activiteitenplan](activiteitenplan.html).
 
 Samengevat, het licentiebeeld van het Jottem-ecosysteem:
 
@@ -112,6 +160,7 @@ Samengevat, het licentiebeeld van het Jottem-ecosysteem:
 <tr><td>[Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api)</td><td>[AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html)</td></tr>
 <tr><td>Ontwerpdocumenten ([design](https://github.com/inside-out-time-machines/design))</td><td>[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.nl)</td></tr>
 <tr><td>[Prototype](https://github.com/inside-out-time-machines/prototype), [website](https://github.com/inside-out-time-machines/website) en [merkgids](https://github.com/inside-out-time-machines/brand)</td><td>[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.nl)</td></tr>
+<tr><td>[Suggesties API](https://github.com/inside-out-time-machines/suggesties-api)</td><td>[EUPL-1.2](https://eupl.eu/1.2/nl/)</td></tr>
 <tr><td>Lettertypes Fraunces en Albert Sans (huisstijl)</td><td>[SIL OFL 1.1](https://openfontlicense.org/)</td></tr>
 </tbody>
 </table>

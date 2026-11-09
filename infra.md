@@ -1,4 +1,4 @@
-# Infrastructuurkeuze
+# Infrastructuurkeuze # {#infrastructuurkeuze}
 
 - [Analyse van vier richtingen](infra/analyse.html)
 - [IOTM and the Wikimedia ecosystem: Commons and Wikidata as shared infrastructure](infra/wiki.html)

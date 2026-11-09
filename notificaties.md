@@ -1,8 +1,7 @@
 # Notificaties # {#notificaties}
 
 Alle notificatiemails op een rij: trigger, ontvanger en doel. Mails worden **asynchroon**
-verstuurd door de Celery-workers via de eigen mailserver (MTA, zie de
-[systeemarchitectuur](systeemarchitectuur/architectuur.html) en
+verstuurd door de Celery-workers (zie de stacktabel in [[#keuze-stack]]) via een bestaande mailrelay (zie
 [[#notificaties-afleverbaarheid]]), zijn Nederlandstalig en dragen
 de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
@@ -17,10 +16,10 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 <tr><td>2</td><td>Organisatiebeheerder voegt een moderator toe</td><td>uitgenodigde</td><td>idem als 1</td></tr>
 <tr><td>3</td><td>Moderator keurt een jottem goed</td><td>uploader</td><td>"je jottem staat online": duurzame link + oproep om te delen via sociale media (reacties en annotaties uitlokken)</td></tr>
 <tr><td>4</td><td>Moderator keurt een jottem af</td><td>uploader</td><td>afkeurreden + directe link om de jottem aan te passen en opnieuw in te dienen</td></tr>
-<tr><td>5</td><td>Er staan jottems in de moderatiewachtrij en/of er zijn onafgehandelde meldingen op annotaties/reacties</td><td>moderatoren van de organisatie</td><td>dagelijkse samenvatting (alleen verstuurd als er iets wacht) - voorkomt mail per upload of melding</td></tr>
+<tr><td>5</td><td>Er wacht iets: jottems in de wachtrij, meldingen, open verwijderverzoeken of vlakken bij herkenbare personen</td><td>moderatoren van de organisatie; ook de organisatiebeheerders als een verwijderverzoek langer dan 21 dagen openstaat</td><td>dagelijkse samenvatting met het aantal per soort (alleen verstuurd als er iets wacht) - voorkomt mail per upload of melding, en laat een verwijderverzoek niet ongemerkt over de wettelijke termijn van 30 dagen gaan</td></tr>
 <tr><td>6</td><td>Verwijderverzoek ingediend</td><td>indiener</td><td>ontvangstbevestiging + verwachte afhandeltermijn (30 dagen, zie de niet-functionele requirements)</td></tr>
 <tr><td>7</td><td>Verwijderverzoek ingediend</td><td>moderatoren van de organisatie</td><td>directe melding (juridische termijn loopt) met link naar de afhandelpagina</td></tr>
-<tr><td>8</td><td>Verwijderverzoek afgehandeld</td><td>indiener</td><td>uitkomst: gehonoreerd (jottem gedepubliceerd) of afgewezen met toelichting</td></tr>
+<tr><td>8</td><td>Verwijderverzoek afgehandeld</td><td>indiener</td><td>uitkomst: gedepubliceerd, gewist of afgewezen met toelichting</td></tr>
 <tr><td>9</td><td>E-depot-export gereed</td><td>organisatiebeheerder (aanvrager)</td><td>directe downloadlink naar het BagIt-pakket + de beperkte bewaartermijn</td></tr>
 <tr><td>10</td><td>Nieuwe annotatie of reactie op jouw jottem</td><td>uploader</td><td>*instelbaar in het profiel (standaard aan)*; gebundeld tot maximaal één mail per dag</td></tr>
 <tr><td>11</td><td>Reactie op jouw annotatie</td><td>annoteerder</td><td>*instelbaar in het profiel (standaard aan)*; gebundeld tot maximaal één mail per dag</td></tr>
@@ -43,34 +42,17 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
 ## Templates ## {#notificaties-templates}
 
-Alle mails zijn **template-gebaseerd**; de sjablonen leven in het monorepo onder
-[`api/templates/mail/`](https://github.com/inside-out-time-machines/jottem/tree/main/api/templates/mail)
-zodat ze onder versiebeheer en review vallen. Per notificatie zijn er drie sjablonen:
-
-<table class="data">
-<thead>
-<tr><th>Bestand</th><th>Rol</th></tr>
-</thead>
-<tbody>
-<tr><td>`nl/<slug>.mjml`</td><td>de HTML-mail, geschreven in [MJML](https://mjml.io/) - een buildstap (MJML-CLI) compileert dit naar robuuste, responsive e-mail-HTML in `dist/` (gegenereerd, niet in git)</td></tr>
-<tr><td>`nl/<slug>.subject.j2`</td><td>de onderwerpregel</td></tr>
-<tr><td>`nl/<slug>.txt.j2`</td><td>de platte-tekstversie</td></tr>
-</tbody>
-</table>
-
-De mailworker vult de sjablonen met **Jinja2** en verstuurt ze als
-`multipart/alternative` (HTML + tekst - beste afleverbaarheid en toegankelijkheid).
-Gedeelde *partials* leveren de kop (logo en kleur van de organisatiejottem) en de voet;
-de voet toont automatisch een uitschakellink wanneer `uitschakelUrl` is meegegeven
-(attenderingen 10 en 11). Variabelenconventie: `organisatie.*` (naam, logoUrl,
-kleurPrimair), `ontvangerNaam`, en `…Url` voor alle links; de variabelen per template staan
-gedocumenteerd in de README bij de sjablonen. De mapstructuur is per taal (`nl/`), zodat
-meertaligheid later zonder verbouwing kan.
+Alle mails zijn **template-gebaseerd**: per notificatie een HTML-sjabloon (MJML), een
+onderwerpregel en een platte-tekstversie, gevuld met Jinja2 en verstuurd als
+`multipart/alternative`. De sjablonen, de variabelen per sjabloon en de buildstap staan in het
+monorepo onder
+[`api/templates/mail/`](https://github.com/inside-out-time-machines/jottem/tree/main/api/templates/mail),
+met een README die per sjabloon de variabelen noemt.
 
 ## Regels ## {#notificaties-regels}
 
 * Afzender is het platform (bijv. `noreply@iotm.nl`) met de organisatienaam in de weergavenaam.
-* Transactionele mails (1 t/m 9) zijn niet uitschakelbaar; attenderingsmails (10, 11) zijn
+* Transactionele mails (1 t/m 9 en 12) zijn niet uitschakelbaar; attenderingsmails (10, 11) zijn
     instelbaar in het profiel en bevatten een directe uitschakellink én one-click
     unsubscribe-headers (zie [[#notificaties-afleverbaarheid]]).
 * Mails bevatten zo min mogelijk persoonsgegevens (AVG): geen inhoudelijke kopie van
@@ -81,14 +63,13 @@ meertaligheid later zonder verbouwing kan.
 ## Afleverbaarheid ## {#notificaties-afleverbaarheid}
 
 Mail heeft alleen waarde als hij aankomt, en aankomen blíjft. De grote providers (Gmail,
-Yahoo, Microsoft) handhaven sinds 2024-2026 harde afzendereisen; onderstaande maatregelen
+Yahoo, Microsoft) handhaven sinds 2024 (Google en Yahoo, februari) en 2025 (Microsoft, mei) harde afzendereisen; onderstaande maatregelen
 zorgen dat Jottem-mail daaraan voldoet en een goede verzendreputatie opbouwt en behoudt.
 
 *Status (augustus 2026): de ontwikkelomgeving verstuurt echt, via een bestaande
 exim-relay met gevestigde reputatie (SPF, DKIM met een 2048-bit sleutel op selector
 `jottem`, DMARC `p=none` met rapportage, kloppende PTR/HELO); de attenderingsmails
-dragen de RFC 8058-headers. De eigen MTA in de stack blijft het productiedoel
-hieronder; bouncebeheer en DMARC-aanscherping volgen richting livegang.*
+dragen de RFC 8058-headers. Bouncebeheer en DMARC-aanscherping volgen richting livegang.*
 
 **Authenticatie (verplicht).** Op het verzenddomein staan drie DNS-records ingeregeld:
 
@@ -107,16 +88,16 @@ zonder moeite vanaf kunnen; anders wordt de spamknop het uitschrijfmechanisme en
 klachten beschadigen de reputatie van het hele platform. Daarom dragen attenderingsmails
 naast de uitschakellink in de voettekst de headers `List-Unsubscribe` (mailto én https)
 en `List-Unsubscribe-Post: List-Unsubscribe=One-Click` ([RFC 8058](https://www.rfc-editor.org/rfc/rfc8058)),
-zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven werkt direct en
-zonder inloggen (de uitschakellink bevat een token) en wordt binnen 48 uur verwerkt
-(in de praktijk: meteen). Transactionele mails (1 t/m 9) vallen hier bewust buiten;
+zodat mailclients een eigen "Uitschrijven"-knop tonen. Uitschrijven kan zonder inloggen (de uitschakellink bevat een token);
+de grote providers eisen verwerking binnen 48 uur, het platform verwerkt het direct. Transactionele mails (1 t/m 9 en 12) vallen hier bewust buiten;
 die horen bij een handeling van de gebruiker zelf.
 
-**Verzendroute: eigen MTA.** De platformmail loopt via een eigen MTA (Postfix met
-DKIM-ondertekening, bijv. via rspamd of OpenDKIM) als container in de stack; een externe
-(betaalde) verzenddienst is op deze schaal niet nodig. Randvoorwaarden: een vast IPv4-adres
-met instelbare PTR, uitgaande poort 25 open bij de hostingprovider, en consistente
-HELO-/PTR-/A-records.
+**Verzendroute: de bestaande exim-relay, ook in productie.** De platformmail loopt via de
+exim-relay die al voor andere diensten verstuurt, met een gevestigde reputatie, DKIM
+(selector `jottem`) en kloppende PTR/HELO. Een eigen MTA in de stack zou die reputatie
+vanaf nul moeten opbouwen, en een externe (betaalde) verzenddienst is op deze schaal niet
+nodig. Staat de productieserver niet in hetzelfde privénet als de relay, dan verstuurt hij
+via een geauthenticeerde SMTP-verbinding (submission, TLS) in plaats van plat SMTP.
 
 **Reputatie.** Het platform schrijft alleen geverifieerde adressen aan (e-mailverificatie
 bij registratie is al verplicht). Bounces worden verwerkt: hard bounces gaan op een

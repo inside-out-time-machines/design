@@ -1,7 +1,13 @@
 # Door Bikeshed gegenereerde HTML — CI bouwt deze vers uit de bron
 /index.html
 /planvanaanpak-smaakvangouda.html
+/salespitch.html
+/activiteitenplan.html
+/verrijkingen-later.html
 /infra/*.html
 /juridisch/*.html
 /systeemarchitectuur/*.html
 /data-architectuur/*.html
+
+# Lokale reviewrapporten (EGM-review), bewust buiten git
+/egm-review/

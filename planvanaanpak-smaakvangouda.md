@@ -5,7 +5,10 @@ Dit plan beschrijft in drie fasen wat er moet gebeuren om het project in te rich
 te testen en in gebruik te nemen: welke instellingen gekozen worden en waarom, hoe we
 toetsen dat alles werkt, en wat er bij de lancering nodig is aan communicatie,
 moderatie en inbedding op de eigen website. De technische gang naar productie
-(infrastructuur, domeinen, beheer en exploitatie) valt buiten dit plan.
+(infrastructuur, domeinen, beheer en exploitatie) valt buiten dit plan en staat in de
+[productie-inrichting](./#realisatie-productie) van het realisatieplan. Productie start
+leeg: de inrichting uit fase 1 wordt daar herhaald, en testronde 2 en de startset
+gebeuren al op productie.
 
 Achtergrond: [pilot Smaak van Gouda](./#pilot-smaak-van-gouda), de
 [usecases](./#usecases) en de [acceptatiecriteria](./#acceptatiecriteria) in het
@@ -91,7 +94,7 @@ Door de organisatiebeheerder via Organisatiebeheer, Bewerken.
 <tr><th>Instelling</th><th>Keuze</th><th>Toelichting</th></tr>
 </thead>
 <tbody>
-<tr><td>Uploadwijzen</td><td>alle vier aan: bestand, camera, beeldbank-permalink, foto-URL</td><td>de beeldbank-permalink werkt met de Memorix-beeldbank van SAMH, zodat bestaand materiaal uit de eigen collectie als jottem kan worden toegevoegd zonder kopie</td></tr>
+<tr><td>Uploadwijzen</td><td>alle drie aan: bestand, camera, beeldbank-permalink</td><td>de beeldbank-permalink werkt met de Memorix-beeldbank van SAMH, zodat bestaand materiaal uit de eigen collectie als jottem kan worden toegevoegd zonder kopie</td></tr>
 <tr><td>Terminologiebronnen</td><td><strong>Goudse straten</strong>, GeoNames (Nederland, België en Duitsland), Cultuurhistorische Thesaurus, Rijksmonumentenregister, Wikidata: straten in Nederland</td><td>een korte lijst houdt de keuzelijsten bij het annoteren overzichtelijk; "Goudse straten" is de belangrijkste bron voor adressen. <code>[ ] keuze</code>: AAT of GTAA toevoegen voor materiaaltypen</td></tr>
 <tr><td>Verrijkingen</td><td>alle MVP-verrijkingen aan: herinneringen en verhalen, aanwijzen op de foto, steekwoorden, vragen stellen, externe bronnen koppelen, datering, begrippen uitleggen, standpunt van de fotograaf, zelfde object andere foto</td><td>"zelfde object, andere foto" is precies wat een reeks opvolgende zaken in één pand zichtbaar maakt; "datering" en "externe bronnen" dragen bij aan de pand-tijdlijn en de archiefkoppeling uit het pilotdocument</td></tr>
 </tbody>
@@ -123,7 +126,7 @@ Opleverpunt fase 1: de projectpagina op dev.iotm.nl staat ingericht, de beheerde
 moderatoren zijn ingelogd met tweestapsverificatie, en de keuzes hierboven zijn
 vastgelegd (de `[ ]`-punten zijn aangevinkt).
 
-# Fase 2: Testen (op dev.iotm.nl) # {#pva-fase-2-testen-op-dev-iotm-nl}
+# Fase 2: Testen (ronde 1 op dev.iotm.nl, ronde 2 op productie) # {#pva-fase-2-testen-op-dev-iotm-nl}
 
 Doel: elk pad dat een inwoner, moderator of beheerder straks bewandelt is één keer
 echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
@@ -131,20 +134,21 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
 
 ## Testscripts ## {#pva-2-1-testscripts}
 
-**Bezoeker zonder account (BE-1, BE-2, BE-6)**
+**Bezoeker zonder account (BE-1, BE-2, BE-3, BE-6)**
 
 1. Open de projectpagina; controleer oproep, beschrijving, licentie, aantal jottems.
 2. Open een jottem; zoom in de viewer, lees de annotaties, bekijk de gerelateerde jottems.
 3. Deel een jottem via de Delen-knop (telefoon) en plak de link in WhatsApp of
     LinkedIn: titel, oproep en afbeelding verschijnen in de preview.
 4. Rapporteer een annotatie (BE-7) en controleer dat de melding in de moderatie staat.
+5. Open de kaart van het project en klik via een speldje door naar een jottem (BE-3).
 
 **Inwoner als inzender (GE-1, GE-2, UP-criteria)**
 
 1. Registreer met e-mail en met een social login; stel in het profiel naam en foto in,
     en kies of de naam publiek is.
-2. Upload vanaf een telefoon: foto maken met de camera, met adres, speld op de kaart
-    en openings- en sluitingsjaar. Bevestig de licentie.
+2. Upload vanaf een telefoon: foto maken met de camera, met speld op de kaart en
+    begin- en eindjaar. Bevestig de licentie.
 3. Upload een menukaart als bestand met genre "menukaart".
 4. Voeg een Memorix-permalink toe uit de SAMH-beeldbank; controleer dat titel en
     datering worden overgenomen.
@@ -176,14 +180,16 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
     uploadformulier.
 2. Zet een testproject tijdelijk op besloten, nodig een lid uit, doorloop de
     wachtwoordmail en controleer de afscherming; zet daarna terug.
-3. Toon de datasetbeschrijving, valideer en meld aan bij het Datasetregister
-    (op dev tegen de testomgeving van het register).
+3. Toon de datasetbeschrijving en valideer die. Op dev wordt alleen gevalideerd en niet
+    aangemeld: een aanmelding bij het Datasetregister is definitief en hoort alleen met de
+    productie-URL's (fase 3).
 
 **Open data (AP-criteria)**
 
 1. Controleer IIIF-manifest en -collectie, RSS, de RDF-dump en de datasetbeschrijving
     op data.dev.iotm.nl; laad de collectie in een externe IIIF-viewer.
-2. Doe een SPARQL-vraag op de projectgraaf (bijvoorbeeld alle jottems met een adres).
+2. Controleer dat de datadump alle gepubliceerde jottems van het project bevat. (Het
+    publieke SPARQL-endpoint staat tijdens de pilot uit.)
 
 ## Werkwijze ## {#pva-2-2-werkwijze}
 
@@ -192,9 +198,11 @@ echt doorlopen, met echte mail en echte accounts. Toetsen tegen de
     observatie (schermdelen of naast elkaar zitten).
 * Bevindingen in één lijst (GitHub-issues in `inside-out-time-machines/jottem`) met
     prioriteit: blokkerend voor lancering, hinderlijk, cosmetisch.
-* Testmateriaal is herkenbaar (titel begint met "TEST") en wordt vóór de lancering
-    gedepubliceerd en verwijderd, zodat de productiedata schoon begint. Jottems die bij
-    het testen zijn ingediend met echt materiaal van SAMH mogen blijven.
+* Testronde 1 draait op dev.iotm.nl, testronde 2 op de productieomgeving zodra die is
+    ingericht. Testmateriaal is herkenbaar (titel begint met "TEST") en wordt vóór de
+    lancering gedepubliceerd en verwijderd, zodat de productiedata schoon begint. Jottems
+    die in testronde 2 met echt materiaal van SAMH zijn ingediend mogen blijven; jottems
+    uit testronde 1 (dev) worden op productie opnieuw ingevoerd als ze moeten blijven.
 
 Opleverpunt fase 2: alle blokkerende bevindingen zijn opgelost en opnieuw getest; de
 moderatoren hebben elk minstens tien jottems beoordeeld.
@@ -219,8 +227,8 @@ moderatoren hebben elk minstens tien jottems beoordeeld.
 
 ## Startmateriaal ## {#pva-3-2-startmateriaal}
 
-Een lege projectpagina nodigt niet uit. Vóór de lancering plaatst SAMH zelf een
-startset: `[ ] keuze` 20 tot 30 jottems uit de eigen beeldbank (via de
+Een lege projectpagina nodigt niet uit. Vóór de lancering plaatst SAMH zelf op
+productie een startset: `[ ] keuze` 20 tot 30 jottems uit de eigen beeldbank (via de
 Memorix-permalink, dus zonder kopie) met adres, datering en een eerste herinnering of
 vraag als annotatie. Daarmee werkt ook "zelfde object, andere foto" meteen zichtbaar.
 
@@ -279,7 +287,8 @@ Idem op goudatijdmachine.nl.
     (statistieken in het organisatiebeheer en het Gebeurtenislog); de oproeptekst en
     verrijkingen bijstellen als bepaalde oproepen niet aanslaan.
 * Na drie maanden: evaluatie met SAMH en IOTM: wat vraagt het platform nog
-    (pand-tijdlijn, kaartkoppeling met de Gouda Tijdmachine, audio) en wat betekent dat
+    (zoeken met facetten, favorieten, pand-tijdlijn, kaartkoppeling met de Gouda
+    Tijdmachine, audio) en wat betekent dat
     voor fase 2.
 
 # Checklist # {#pva-checklist}
@@ -303,6 +312,7 @@ Idem op goudatijdmachine.nl.
 
 **Fase 3, in gebruik nemen**
 
+- [ ] Organisatie en project op productie ingericht (zelfde keuzes als fase 1)
 - [ ] Moderatierooster, reactietijd en escalatie afgesproken
 - [ ] Startset jottems geplaatst en gepubliceerd
 - [ ] Widgets op samh.nl geplaatst

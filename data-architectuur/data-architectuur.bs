@@ -85,27 +85,28 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 <tbody>
 <tr><td>Jottem (duurzame link)</td><td>`https://www.iotm.nl/jottem/{mediaId}`</td></tr>
 <tr><td>Projectpagina (publiek)</td><td>`https://www.iotm.nl/{organisatieSlug}/{projectSlug}`</td></tr>
-<tr><td>Project (API)</td><td>`https://api.iotm.nl/v1/project/{projectId}`</td></tr>
+<tr><td>Project (API)</td><td>`https://api.iotm.nl/project/{projectId}`</td></tr>
 <tr><td>IIIF Image API</td><td>`https://iiif.iotm.nl/3/{mediaId}` (`/info.json`, tiles)</td></tr>
-<tr><td>IIIF Manifest</td><td>`https://api.iotm.nl/v1/jottem/{mediaId}/iiif/manifest`</td></tr>
-<tr><td>IIIF Collection</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/jottems/iiif/collection` en `https://api.iotm.nl/v1/project/{projectId}/iiif/collection`</td></tr>
+<tr><td>IIIF Manifest</td><td>`https://api.iotm.nl/jottem/{mediaId}/iiif/manifest`</td></tr>
+<tr><td>IIIF Canvas (doel van annotaties)</td><td>`https://api.iotm.nl/jottem/{mediaId}/iiif/manifest/canvas/1` (een vlak-annotatie verwijst hiernaar, met een `FragmentSelector`; viewers tekenen een vlak alleen als dit doel gelijk is aan de canvas-`id` in het manifest)</td></tr>
+<tr><td>IIIF Collection</td><td>`https://api.iotm.nl/organisatie/{slug}/jottems/iiif/collection` en `https://api.iotm.nl/project/{projectId}/iiif/collection`</td></tr>
 <tr><td>Annotaties van een jottem (container)</td><td>`https://anno.iotm.nl/w3c/{jottemId}/`</td></tr>
 <tr><td>Annotatie</td><td>`https://anno.iotm.nl/w3c/{jottemId}/{annotationId}`</td></tr>
-<tr><td>Annotaties van organisatie / project</td><td>`https://api.iotm.nl/v1/organisatie/{slug}/annotations` en `https://api.iotm.nl/v1/project/{projectId}/annotations`</td></tr>
+<tr><td>Annotaties van organisatie / project</td><td>`https://api.iotm.nl/organisatie/{slug}/annotations` en `https://api.iotm.nl/project/{projectId}/annotations`</td></tr>
 <tr><td>Projectdataset</td><td>`https://data.iotm.nl/project/{projectId}/dataset` (beschrijving), `https://data.iotm.nl/project/{projectId}/dump-{projectSlug}.nt.gz` (dump; de oude naam zonder slug verwijst permanent door), `https://data.iotm.nl/sparql` (endpoint)</td></tr>
 </tbody>
 </table>
 
-**Deelbaarheid.** (Zie ook het overkoepelende hoofdstuk [Deelbaarheid](../index.html#deelbaarheid), met onder meer de inbedbare widgets.) Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API tonen de knop niet. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
+**Deelbaarheid.** (Zie ook het overkoepelende hoofdstuk [Deelbaarheid](../index.html#deelbaarheid), met onder meer de inbedbare widgets.) Elke jottem-detailpagina heeft een **Delen**-knop (in de primaire kleur van de organisatie, rechtsboven bij de titel en rechtsonder bij de metadata) die het deelmenu van het apparaat opent via de [Web Share API](https://www.w3.org/TR/web-share/), met titel, de oproep "weet jij hier meer van?" en de duurzame jottem-URL. Zo lopen alle kanalen (sociale media, e-mail, link kopiëren) via de keuze die de bezoeker zelf al heeft; browsers zonder die API kopiëren met dezelfde knop de link naar het klembord. De HTML-weergave bevat Open Graph-metadata (gerealiseerd; ook op de home-, organisatie- en projectpagina's, die de tags elk zelf zetten), zodat gedeelde links (ook via de deel-oproep in de goedkeuringsmail) een nette preview tonen:
 
 <table class="data">
 <thead>
 <tr><th>Open Graph-element</th><th>Bron</th></tr>
 </thead>
 <tbody>
-<tr><td>`og:title`</td><td>`Media.titel` met daarachter een willekeurige, binnen het project actieve verrijkings-call-to-action (terugval: de vaste oproep "- weet jij hier meer van?"), zodat een gedeelde link meteen om een concrete bijdrage vraagt; zie het hoofdstuk [Deelbaarheid](../index.html#deelbaarheid)</td></tr>
+<tr><td>`og:title`</td><td>`Media.titel` met de vaste oproep "- weet jij hier meer van?" (geen wisselende tekst: platforms bewaren de preview van een URL); de wisselende verrijkings-call-to-action staat alleen in de Web Share-deeltekst, zie het hoofdstuk [Deelbaarheid](../index.html#deelbaarheid)</td></tr>
 <tr><td>`og:description`</td><td>`Media.beschrijving` (of, als die ontbreekt, een zin met project- en organisatienaam)</td></tr>
-<tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij bron `url` de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
+<tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij oudere jottems met bron `url` (losse foto-URL, niet meer toegestaan) de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
 <tr><td>`og:image:width/height`</td><td>berekend uit `Media.breedte`/`Media.hoogte` en de gevraagde IIIF-maat, dus de werkelijke afmetingen van de preview; onbekend = weglaten</td></tr>
 <tr><td>`og:url`</td><td>de duurzame jottem-URL</td></tr>
 <tr><td>`og:image:alt`</td><td>`Media.titel`</td></tr>
@@ -115,7 +116,7 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 
 Elke publiekspagina (home, organisatie, project, jottem) draagt daarnaast een zelfverwijzende `<link rel="canonical">`; op een projectoverzicht houdt een vervolgpagina zijn eigen `?pagina`-parameter in de canonical, zodat zoekmachines elke pagina van de reeks als eigen pagina indexeren.
 
-De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE (303-redirect naar `data.iotm.nl`). De `mediaId` en `projectId` zijn niet-herbruikbare, betekenisloze identifiers (UUID); duurzame data-URI's zijn daarop gebaseerd, terwijl publiekspagina's leesbare slugs gebruiken. Zo kan in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource worden gelegd.
+De duurzame jottem-URL ondersteunt **content negotiation**: `Accept: text/html` levert de HTML-weergave (IIIF-viewer + metadata + annotaties), `application/ld+json`, `text/turtle` of `application/rdf+xml` levert de RDF-representatie conform schema.org AP NDE: de webapplicatie antwoordt dan met een 303-redirect naar `https://api.iotm.nl/jottem/{mediaId}`, die de RDF levert (ook geframede JSON-LD met het framed-profiel). De API-URL beantwoordt zelf ook content negotiation en stuurt een HTML-verzoek met een 303 terug naar de duurzame URL. De duurzame URL `https://www.iotm.nl/jottem/{mediaId}` is permanent: elke toekomstige frontend moet deze route bedienen, ook als de webapplicatie wordt vervangen. De `mediaId` en `projectId` zijn niet-herbruikbare, betekenisloze identifiers (UUID); duurzame data-URI's zijn daarop gebaseerd, terwijl publiekspagina's leesbare slugs gebruiken. Zo kan in de latere ARK-fase (zie het [keuzedocument](../index.html#keuze-open-vragen)) een ARK `ark:/{NAAN}/{shoulder}{mediaId}` zonder linkbreuk op dezelfde resource worden gelegd.
 
 # IIIF # {#iiif}
 
@@ -196,7 +197,7 @@ Annotaties volgen het [W3C Web Annotation Data Model](https://www.w3.org/TR/anno
 <tr><td>`body` (identificatie persoon/gebouw/bedrijf/plaats/gebeurtenis)</td><td>SpecificResource met label + externe URI (zie [[#vocabulaires]])</td></tr>
 <tr><td>`body` (geo: standpunt fotograaf, zichtveld)</td><td>WKT/GeoJSON-body, zie [[#zoekindex-geo]]</td></tr>
 <tr><td>reactie op annotatie</td><td>annotatie met de bestaande annotatie als `target`</td></tr>
-<tr><td>`creator`</td><td>`Gebruiker.naam` indien `Gebruiker.naamPubliek`, anders geanonimiseerd</td></tr>
+<tr><td>`creator`</td><td>opgeslagen: alleen `id` (`urn:uuid:{Gebruiker.publiekeId}`) en `type` `Person`. De naam (`Gebruiker.naam` indien `Gebruiker.naamPubliek`, anders "Een deelnemer") wordt pas bij het lezen ingevuld, door de verzamelroutes van het platform en de publiekspagina; zie [[#annotaties]]</td></tr>
 </tbody>
 </table>
 
@@ -237,7 +238,7 @@ Een worker mapt elke gepubliceerde jottem naar RDF conform het [schema.org-profi
 <tr><td>`schema:dateCreated`</td><td>`Metadata` type datering</td></tr>
 <tr><td>`schema:creator`</td><td>`Metadata` type vervaardiger</td></tr>
 <tr><td>`schema:contentLocation`</td><td>`Metadata` type plaats/adres (`schema:Place`, `schema:sameAs` naar term-URI, `schema:geo` bij WKT/GeoJSON)</td></tr>
-<tr><td>`schema:temporalCoverage`</td><td>`Metadata` openings-/sluitingsjaar</td></tr>
+<tr><td>`schema:temporalCoverage`</td><td>`Metadata` begin- en eindjaar (`jaarVan`, `jaarTot`)</td></tr>
 <tr><td>`schema:about`</td><td>`Metadata`/annotaties: personen, gebouwen, bedrijven, gebeurtenissen (label + URI)</td></tr>
 <tr><td>`schema:keywords`</td><td>`Metadata` type steekwoord</td></tr>
 <tr><td>`schema:isBasedOn` / `schema:subjectOf`</td><td>`Metadata` type archiefbron (label + URI)</td></tr>
@@ -356,7 +357,7 @@ De datadump wordt per project on-the-fly gegenereerd uit PostgreSQL (dezelfde ma
 
 **SPARQL-endpoint met editor.** `/sparql` is het leesendpoint op Fuseki (intern `/ds/sparql`); een browser die er zonder query aanklopt (GET, lege querystring, `Accept: text/html`) wordt doorgestuurd naar een [YASGUI-editor](https://github.com/Matdata-eu/yasgui) op `/yasgui/` met het endpoint voorgevuld, naar het voorbeeld van sparql.goudatijdmachine.nl. Machineclients (GET met query, POST) merken niets van de redirect.
 
-**Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving - uitsluitend wanneer het project openbare (gepubliceerde) data heeft - valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`) en kan deze ook weer afmelden (`DELETE /datasets`). Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
+**Beheer en aanmelding.** De organisatiebeheerder bewerkt per project de velden waaruit de datasetbeschrijving wordt gegenereerd (`Project.naam`, `beschrijving`, `datasetLicentie`; publisher-gegevens uit de organisatie) en kan de beschrijving - uitsluitend wanneer het project openbare (gepubliceerde) data heeft - valideren en aanmelden bij het NDE Datasetregister via de [Datasetregister-API](https://datasetregister.netwerkdigitaalerfgoed.nl/api/): de backend valideert eerst tegen het SHACL-shape van het register (`PUT /datasets/validate`), meldt daarna de URL van de datasetbeschrijving aan (`POST /datasets`). Een aanmelding is definitief: het register kent geen afmelding. Daarom meldt alleen de productieomgeving aan; op dev en andere omgevingen valideert de backend uitsluitend, zodat er nooit URL's van een testomgeving in het register terechtkomen. Het domein `iotm.nl` moet daarvoor eenmalig op de allowlist van het register staan (`POST /allowed-domains`). Zie de bijbehorende endpoints in de [beheer-API](#api-beheer).
 
 ## Aanvullende distributies (verkenning) ## {#aanvullende-distributies}
 
@@ -427,8 +428,8 @@ Twee feedtypen conform de [RSS 2.0-specificatie](https://www.rssboard.org/rss-sp
 
 Vaste waardelijsten voorkomen vrije-tekstwildgroei en maken facetteren en linken mogelijk:
 
-* **Genre/materiaaltype** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, audio, overig - elk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)**, opgezocht via het NDE Termennetwerk (zie hieronder). De waardelijst met bijbehorende CHT-URI's is platformconfiguratie.
-* **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, openingsjaar, sluitingsjaar, persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
+* **Genre** (`Media.genre`): foto, menukaart, advertentie, folder, krantenartikel, vergunning, overig (audio volgt in fase 2) - waar mogelijk gekoppeld aan een term uit de **Cultuurhistorische Thesaurus (CHT)** of de AAT; voor krantenartikel en overig is er geen passende term. De waardelijst met bijbehorende term-URI's is platformconfiguratie. "Categorie" in de suggestiedienst is dit veld.
+* **Metadata-types** (`Metadata.type`): vervaardiger, datering, plaats, adres, begin- en eindjaar (`jaarVan`, `jaarTot`), persoon, gebouw, bedrijf, gebeurtenis, archiefbron, steekwoord, standpunt (WKT), zichtveld (WKT), herinnering.
 * **Annotatiemotivaties** (`motivation`, W3C-vocabulaire): `describing` (herinnering), `commenting` (reactie), `identifying` (persoon/gebouw/bedrijf op vlak), `tagging` (steekwoord), `linking` (archiefbron, gebeurtenis), `editing` (correctie).
 * **Term-URI's**: bij plaatsnamen, personen, gebeurtenissen en gebouwen wordt naast het label een URI vastgelegd (`Metadata.uri` resp. annotation body), zodat de RDF-output linkbaar is.
 
@@ -454,11 +455,20 @@ verdonkerd, zodat de contrastverhouding altijd minimaal 4,5:1 is.
 
 **Wie heeft dit geplaatst.** Bij een jottem, een annotatie en een reactie toont de
 publiekspagina de inzender in één regel: profielfoto (of een neutraal poppetje), naam en
-hoe lang geleden ("vandaag", "gisteren", "3 dagen geleden", daarna de datum). De naam
-zit al in de annotatie (`creator`); de bijbehorende profielfoto komt uit
-`GET /deelnemers?ids=...`, dat alleen gebruikers teruggeeft die hun naam publiek delen
+hoe lang geleden ("vandaag", "gisteren", "3 dagen geleden", daarna de datum). Naam en
+profielfoto komen uit `GET /deelnemers?ids=...` op basis van de creator-IRI in de
+annotatie; die route geeft alleen gebruikers terug die hun naam publiek delen
 (`Gebruiker.naamPubliek`). Staat die uit, dan toont de pagina de anonieme weergave
 zonder foto.
+
+**De naam staat niet in de annotatieserver (late binding).** Een annotatie draagt alleen de
+stabiele creator-IRI. De verzamelroutes van het platform (`/project/{id}/annotations`,
+`/organisatie/{slug}/annotations`) en de moderatieomgeving vullen de naam in bij het
+uitleveren. Een naamswijziging of het uitzetten van `naamPubliek` werkt daardoor direct
+door, zonder dat er annotaties herschreven worden, en er staan geen persoonsnamen in de
+annotatieserver (wat ook het wissen uit de [requirements](../index.html#privacy-authenticity-copyright) eenvoudiger
+maakt). De prijs: wie een container rechtstreeks op de annotatieserver leest, ziet alleen de
+creator-IRI.
 
 **Plaats van de organisatie.** De platformbeheerder kiest per organisatie een plaats uit GeoNames (`Organisatie.spatialUri` + `spatialNaam`); die vult `schema:spatialCoverage` in de datasetbeschrijvingen van de organisatie. Bij het opslaan haalt de backend eenmalig de coördinaten bij die URI op (content negotiation naar RDF, `wgs84_pos:lat`/`long`) en bewaart ze in `spatialLat`/`spatialLon`. Dat is afgeleide data: niet zichtbaar of bewerkbaar in de beheerinterface, en niet opgenomen in de datasetbeschrijving. De coördinaten dienen als startpunt van de kaarten, zodat elke organisatie in de eigen omgeving begint: de speld bij het uploaden en het standpunt van de fotograaf bij de zichtveld-annotatie. Een jottem met een eigen speld wint altijd van de organisatieplaats.
 
@@ -493,7 +503,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 </thead>
 <tbody>
 <tr><td>Geen titel/beschrijving als eigen velden</td><td>IIIF `label`/`summary`, RDF `schema:name`/`description`, RSS</td><td>`Media.titel`, `Media.beschrijving`</td></tr>
-<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (de uploader bevestigt bij het indienen de projectlicentie; die waarde wordt op de jottem vastgelegd)</td></tr>
+<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (bij een upload bevestigt de uploader de projectlicentie en wordt die waarde vastgelegd; bij een beeldbank-permalink komt de waarde uit `rights` van het manifest, en de `requiredStatement` als metadataregel `rechtenvermelding`)</td></tr>
 <tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
 <tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
 <tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>
@@ -507,6 +517,6 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
 
 * **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + AnnoRepo + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
-* **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
+* **Depublicatie en wissen**: bij een gedepubliceerde of gewiste jottem worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL. Bij wissen verdwijnen daarnaast het origineel, de metadata, de annotaties en de payloads in het Gebeurtenislog, en komt de jottem op de wislijst. Publieke datadumps bevatten alleen RDF, nooit originelen.
 * **Audio** *(fase 2)*: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

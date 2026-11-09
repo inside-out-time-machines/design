@@ -38,6 +38,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * gerapporteerde annotaties en reacties beoordelen: verbergen/verwijderen bij misbruik, of de melding afwijzen; de afhandeling wordt gelogd  
 * vlak-annotaties bij foto's met herkenbare personen beoordelen vóórdat ze openbaar worden: vrijgeven of afwijzen  
 * verwijderverzoeken afhandelen: depubliceren (origineel blijft als archiefexemplaar), wissen (alles weg, op de wislijst) of afwijzen met toelichting  
+* de gegevens van een gepubliceerde jottem corrigeren (titel, beschrijving, genre, begin- en eindjaar, locatie, datering, vervaardiger, steekwoorden), bijvoorbeeld naar aanleiding van een correctie-annotatie of een verzoek van de inzender; de wijziging wordt gelogd  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}

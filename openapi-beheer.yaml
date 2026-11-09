@@ -104,6 +104,35 @@ paths:
         '422':
           description: Toestemmingsvraag (herkenbare personen gedetecteerd) of validatiefout
 
+  /jottem/{jottemId}/metadata:
+    put:
+      tags: [Moderatie]
+      summary: Corrigeer de gegevens van een gepubliceerde jottem (MO-8)
+      description: >
+        Rol moderator van de organisatie. Alleen meegegeven velden veranderen; `metadata`
+        vervangt per sleutel (lege waarde = verwijderen). Het Gebeurtenislog bewaart oude en
+        nieuwe waarden; RDF, IIIF-manifest, RSS en de datadump volgen.
+      parameters:
+        - $ref: '#/components/parameters/jottemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titel: { type: string }
+                beschrijving: { type: string }
+                genre: { type: string }
+                metadata:
+                  type: object
+                  additionalProperties: { type: string }
+                  description: "Bijv. jaarVan, jaarTot, lat, lon, datering, vervaardiger"
+                steekwoorden: { type: array, items: { type: string } }
+      responses:
+        '200': { description: Gecorrigeerd }
+        '409': { description: Jottem is niet gepubliceerd }
+
   /upload/externe-bron:
     post:
       tags: [Uploads]

@@ -1,4 +1,4 @@
-# Juridisch
+# Juridisch # {#juridisch}
 
 Een platform als Jottem levert risico's op en dient te voldoen aan (inter)nationale wet- en regelgeving. Een eerste overzicht hiervan is opgenomen in het document [Risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html). 
 

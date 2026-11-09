@@ -1,7 +1,7 @@
 # Keuze oplossingsrichting # {#keuze-oplossingsrichting}
 
 Dit document legt de gekozen oplossingsrichting en technologiestack vast en is het resultaat van
-de deelactiviteit "Keuze oplossingsrichting" uit het [[#activiteitenplan]]. Het bouwt voort op de
+de deelactiviteit "Keuze oplossingsrichting" uit het [activiteitenplan](activiteitenplan.html). Het bouwt voort op de
 [analyse van vier infrastructuurrichtingen](infra/analyse.html) en de
 [systeemarchitectuur](systeemarchitectuur/architectuur.html).
 *Status: concept, augustus 2026 - vast te stellen door de projectgroep.*
@@ -147,7 +147,7 @@ De salespitch belooft open source; de volgende besluiten maken dat concreet (aug
     copyleft-gedachte als de EUPL voor de platformcode. De repo's prototype, website en
     brand houden [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.nl) -
     hergebruik met naamsvermelding, passend bij de kennisdelingsbelofte uit het
-    [[#activiteitenplan]].
+    [activiteitenplan](activiteitenplan.html).
 
 Samengevat, het licentiebeeld van het Jottem-ecosysteem:
 

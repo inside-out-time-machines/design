@@ -229,7 +229,7 @@ Coret). Platform en mailsjablonen gebruiken hem al. De merkgids omvat:
 * **vormtaal, beeldgebruik en motion-principes** met live voorbeelden;
 * **favicon** van het platform (voor www/design/prototype en als standaard voor organisaties
     zonder eigen favicon);
-* **slogan** - gekozen uit de opties in de [[#salespitch]]:
+* **slogan** - gekozen uit de opties in de [salespitch](salespitch.html):
     *"Maak erfgoed van iedereen, door iedereen"*.
 
 <img src="images/jottem-woordmerk.svg" alt="Jottem-woordmerk" style="max-width:100%; height:auto; background:white;">

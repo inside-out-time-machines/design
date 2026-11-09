@@ -61,14 +61,6 @@ path: begrippen.md
 </pre>
 
 <pre class="include">
-path: salespitch.md
-</pre>
-
-<pre class="include">
-path: activiteitenplan.md
-</pre>
-
-<pre class="include">
 path: pilot-smaak-van-gouda.md
 </pre>
 

@@ -36,7 +36,7 @@ Uitgewerkte lijst met functionele en niet-functionele requirements.
 
 Aanpak auteursrecht & participatie. 
 
-> **Status (augustus 2026):** de [functionele en niet-functionele requirements](#requirements) en [usecases per rol](#usecases) zijn uitgewerkt. Voor auteursrecht en participatie liggen er juridische conceptdocumenten (o.a. [risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html), [algemene voorwaarden](juridisch/algemene-voorwaarden.html) en een [handreiking moderatie](juridisch/handreiking-moderatie.html)), nog te toetsen door een jurist.
+> **Status (augustus 2026):** de [functionele en niet-functionele requirements](./#requirements) en [usecases per rol](./#usecases) zijn uitgewerkt. Voor auteursrecht en participatie liggen er juridische conceptdocumenten (o.a. [risico's en wet- en regelgeving](juridisch/risicos-en-wetgeving.html), [algemene voorwaarden](juridisch/algemene-voorwaarden.html) en een [handreiking moderatie](juridisch/handreiking-moderatie.html)), nog te toetsen door een jurist.
 
 ### Verkenning technische oplossingsrichting
 
@@ -75,7 +75,7 @@ Vaststellen van een gedragen en uitvoerbare oplossingsrichting.
 
 - Document met onderbouwing en selectie van gekozen oplossingsrichting. 
 
-> **Status (augustus 2026):** opgeleverd als het [keuzedocument](#keuze-oplossingsrichting): alles op de Jottem-server met een expliciete exit-/exportstrategie, een gekozen technologiestack en besliste openstaande vragen (o.a. ARK uitgesteld naar een latere fase).
+> **Status (augustus 2026):** opgeleverd als het [keuzedocument](./#keuze-oplossingsrichting): alles op de Jottem-server met een expliciete exit-/exportstrategie, een gekozen technologiestack en besliste openstaande vragen (o.a. ARK uitgesteld naar een latere fase).
 
 ### Implementatie per tijdmachine
 
@@ -95,7 +95,7 @@ Functionele toepassing waarmee gebruikers foto's/verhalen kunnen toevoegen en/of
 
 - Werkende participatievoorziening binnen elke tijdmachine. 
 
-> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)) en de bouw is begonnen; de stand per onderdeel staat in het [[#realisatie-mijlpalen|realisatieplan]]. De eerste implementatie is voor de pilot [Smaak van Gouda](#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [[#realisatieplan]].
+> **Status (augustus 2026):** het ontwerp voor de realisatie is gereed ([usecases](./#usecases), API-specificaties, [klikbaar prototype](https://prototype.iotm.nl/)) en de bouw is begonnen; de stand per onderdeel staat in het [realisatieplan](./#realisatie-mijlpalen). De eerste implementatie is voor de pilot [Smaak van Gouda](./#pilot-smaak-van-gouda), als eerste project op de organisatiejottem van Streekarchief Midden-Holland. Voor het aansluiten van (meer) organisaties is er een [salespitch voor organisaties](https://www.iotm.nl/jottem-voor-organisaties.html) (jaarlijkse bijdrage €100, inzet op communicatie en moderatie). De MVP-afbakening en fasering staan in het [realisatieplan](./#realisatieplan).
 
 ### Testen en nazorg
 
@@ -165,7 +165,7 @@ Duurzame borging van de oplossing.
 
 - Beheersplan en samenwerkingsovereenkomsten met lokale partners. 
 
-> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate). Tot het duurzame beheer hoort ook de afleverbaarheid van de platformmail: vóór livegang worden SPF, DKIM en DMARC op het verzenddomein ingeregeld en krijgen de attenderingsmails one-click unsubscribe, zodat gebruikers ze makkelijk uitzetten in plaats van ze als spam te markeren; het volledige pakket maatregelen (reverse DNS, eigen MTA, bouncebeheer, reputatiemonitoring) staat in de [afleverbaarheidssectie](#notificaties-afleverbaarheid) van het ontwerp.
+> **Status (augustus 2026):** er ligt een [concept-samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html); duurzame borging is verankerd in de exit-/exportstrategie van het [keuzedocument](./#keuze-infra) en de [e-depot-export per project](data-architectuur/data-architectuur.html#edepot-export) (BagIt + RO-Crate). Tot het duurzame beheer hoort ook de afleverbaarheid van de platformmail: vóór livegang worden SPF, DKIM en DMARC op het verzenddomein ingeregeld en krijgen de attenderingsmails one-click unsubscribe, zodat gebruikers ze makkelijk uitzetten in plaats van ze als spam te markeren; het volledige pakket maatregelen (reverse DNS, eigen MTA, bouncebeheer, reputatiemonitoring) staat in de [afleverbaarheidssectie](./#notificaties-afleverbaarheid) van het ontwerp.
 
 ## Relatie met de Faro-kernwaarden
 

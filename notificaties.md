@@ -42,29 +42,12 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
 ## Templates ## {#notificaties-templates}
 
-Alle mails zijn **template-gebaseerd**; de sjablonen leven in het monorepo onder
-[`api/templates/mail/`](https://github.com/inside-out-time-machines/jottem/tree/main/api/templates/mail)
-zodat ze onder versiebeheer en review vallen. Per notificatie zijn er drie sjablonen:
-
-<table class="data">
-<thead>
-<tr><th>Bestand</th><th>Rol</th></tr>
-</thead>
-<tbody>
-<tr><td>`nl/<slug>.mjml`</td><td>de HTML-mail, geschreven in [MJML](https://mjml.io/) - een buildstap (MJML-CLI) compileert dit naar robuuste, responsive e-mail-HTML in `dist/` (gegenereerd, niet in git)</td></tr>
-<tr><td>`nl/<slug>.subject.j2`</td><td>de onderwerpregel</td></tr>
-<tr><td>`nl/<slug>.txt.j2`</td><td>de platte-tekstversie</td></tr>
-</tbody>
-</table>
-
-De mailworker vult de sjablonen met **Jinja2** en verstuurt ze als
-`multipart/alternative` (HTML + tekst - beste afleverbaarheid en toegankelijkheid).
-Gedeelde *partials* leveren de kop (logo en kleur van de organisatiejottem) en de voet;
-de voet toont automatisch een uitschakellink wanneer `uitschakelUrl` is meegegeven
-(attenderingen 10 en 11). Variabelenconventie: `organisatie.*` (naam, logoUrl,
-kleurPrimair), `ontvangerNaam`, en `…Url` voor alle links; de variabelen per template staan
-gedocumenteerd in de README bij de sjablonen. De mapstructuur is per taal (`nl/`), zodat
-meertaligheid later zonder verbouwing kan.
+Alle mails zijn **template-gebaseerd**: per notificatie een HTML-sjabloon (MJML), een
+onderwerpregel en een platte-tekstversie, gevuld met Jinja2 en verstuurd als
+`multipart/alternative`. De sjablonen, de variabelen per sjabloon en de buildstap staan in het
+monorepo onder
+[`api/templates/mail/`](https://github.com/inside-out-time-machines/jottem/tree/main/api/templates/mail),
+met een README die per sjabloon de variabelen noemt.
 
 ## Regels ## {#notificaties-regels}
 

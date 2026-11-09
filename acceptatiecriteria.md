@@ -58,7 +58,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 * **AN-1** Ik kan een annotatie op de hele jottem plaatsen (plaats, gebeurtenis, archiefbron, vrije tekst) waarbij term-URI's gezocht worden via het Termennetwerk, beperkt tot de projectbronnen (OB-3).
 * **AN-2** Ik kan een vlak tekenen en daaraan een identificatie (persoon/gebouw/bedrijf, naam + URI) koppelen; het vlak is terug te zien op de jottem-detailpagina. Bij een jottem met `herkenbaar: ja` meldt het platform dat een moderator mijn vlak eerst bekijkt, en verschijnt het pas na vrijgave (MO-7).
 * **AN-3** Ik kan reageren op een annotatie; de reactie hangt als W3C-annotatie aan de oorspronkelijke annotatie.
-* **AN-4** Ik kan mijn eigen annotaties bewerken en verwijderen (andermans niet: 403); de versiegeschiedenis blijft bewaard in de annotatieserver; elke mutatie werkt `Media.wijzigingsDatum` bij (zichtbaar in Change Discovery).
+* **AN-4** Ik kan mijn eigen annotaties bewerken en verwijderen (andermans niet: 403); de versiegeschiedenis blijft bewaard in het Gebeurtenislog van het platform (volledige payload 12 maanden, daarna ingekort); elke mutatie werkt `Media.wijzigingsDatum` bij (zichtbaar in Change Discovery).
 
 ## API-gebruiker ## {#ac-api-gebruiker}
 

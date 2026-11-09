@@ -75,7 +75,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik een extra metadata aan een getekend vlak op de jottem toevoegen, zoals  
   * identificatie van persoon, gebouw, bedrijf (naam+URI)  
 * kan ik reageren op een annotatie in de vorm van vrije tekst (herinnering, aanvulling of correctie)  
-* kan ik mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in de annotatieserver
+* kan ik mijn eigen annotaties bewerken en verwijderen; de wijzigingsgeschiedenis blijft daarbij bewaard in het Gebeurtenislog van het platform (volledige inhoud 12 maanden)
 
 Zie [[#verrijkingen]] voor de volledige catalogus van verrijkingsmogelijkheden, met per
 mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotation.

@@ -5,3 +5,6 @@
 /juridisch/*.html
 /systeemarchitectuur/*.html
 /data-architectuur/*.html
+
+# Lokale reviewrapporten (EGM-review), bewust buiten git
+/egm-review/

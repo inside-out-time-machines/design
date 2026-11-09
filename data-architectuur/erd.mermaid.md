@@ -122,6 +122,7 @@
   Verwijderverzoek {
     int verzoekId PK
     uuid mediaId FK
+    string soort
     string reden
     string email
     string status
@@ -139,6 +140,11 @@
     string annotatieIri
     date creatieDatum
     date afhandelDatum
+  }
+
+  Wislijst {
+    uuid mediaId PK
+    date gewistOp
   }
 
   Melding {
@@ -185,7 +191,9 @@
   %% afgekeurd. Afgekeurde jottems kunnen door de uploader worden bijgewerkt en opnieuw
   %% ingediend (terug naar nieuw); gedepubliceerd volgt uit een gehonoreerd verwijderverzoek
   %% (tombstone op de duurzame URL, schoning van alle outputs).
-  %% Verwijderverzoek.status: open / gehonoreerd / afgewezen.
+  %% Verwijderverzoek.soort: eigen-materiaal / herkenbaar / auteursrecht / anders;
+  %% Verwijderverzoek.status: open / gedepubliceerd / gewist / afgewezen.
+  %% Wislijst: mediaId's van gewiste jottems, opnieuw af te spelen na het terugzetten van een back-up.
   %% Gebeurtenislog: bron voor statistieken (type: login, upload, goedkeuring, afkeuring,
   %% annotatie, ...); persoonsgebonden regels worden na een bewaartermijn geaggregeerd of
   %% geanonimiseerd (AVG).
@@ -241,6 +249,7 @@
   Gebruiker ||--o{ MediaRelatie : "legt"
 
   Media ||--o{ Verwijderverzoek : "betreft"
+  Media ||--o| Wislijst : "gewist"
   Media ||--o{ Melding : "betreft"
   Media ||--o{ WachtendeAnnotatie : "wacht_op"
   Gebruiker ||--o{ WachtendeAnnotatie : "plaatst"

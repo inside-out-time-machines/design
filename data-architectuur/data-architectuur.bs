@@ -508,6 +508,6 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 Aandachtspunten die geen datamodel-wijziging vragen maar wel een implementatieregel zijn:
 
 * **Reproduceerbaarheid**: Elasticsearch en Fuseki zijn volledig herbouwbaar uit PostgreSQL + AnnoRepo + Object Storage; een herindexeer-/hersync-taak hoort bij de beheervoorzieningen. Ook de [e-depot-export](#edepot-export) is volledig afleidbaar uit deze bronlagen.
-* **Depublicatie**: bij een gehonoreerd verwijderverzoek worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL.
+* **Depublicatie en wissen**: bij een gedepubliceerde of gewiste jottem worden alle outputs geschoond (index, RDF/named graph, feeds, IIIF-cache-purge) en resteert een tombstone op de duurzame URL. Bij wissen verdwijnen daarnaast het origineel, de metadata, de annotaties en de payloads in het Gebeurtenislog, en komt de jottem op de wislijst. Publieke datadumps bevatten alleen RDF, nooit originelen.
 * **Audio** *(fase 2)*: `duration` wordt bij verwerking van audio-uploads vastgelegd (technische metadata bij het mediabestand) ten behoeve van het IIIF-canvas.
 * **Vocabulaire-URI's** (genre e.d.) zijn configuratie, geen databasemodel; ze moeten wel versioneerbaar beheerd worden. De per project beschikbare terminologiebronnen komen uit `Project.terminologiebronnen` (zie [[#termennetwerk]]).

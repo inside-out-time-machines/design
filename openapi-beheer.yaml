@@ -831,9 +831,10 @@ paths:
   /verwijderverzoek:
     post:
       tags: [Verwijderverzoeken]
-      summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal
+      summary: Dien een verwijderverzoek in voor eigen of herkenbaar materiaal (BE-4)
       description: >
-        **Nog niet gerealiseerd (gepland).**
+        Kan zonder account, met rate limiting. De indiener krijgt mail 6, de moderatoren
+        van de organisatie mail 7. Alleen voor een gepubliceerde jottem.
       security: []
       requestBody:
         required: true
@@ -846,9 +847,7 @@ paths:
   /organisatie/{organisatieSlug}/verwijderverzoeken:
     get:
       tags: [Verwijderverzoeken]
-      summary: Overzicht van openstaande verwijderverzoeken van de organisatie
-      description: >
-        **Nog niet gerealiseerd (gepland).**
+      summary: Overzicht van de verwijderverzoeken van de organisatie (MO-5)
       parameters:
         - $ref: '#/components/parameters/organisatieSlug'
       responses:
@@ -863,9 +862,12 @@ paths:
   /verwijderverzoek/{verzoekId}:
     put:
       tags: [Verwijderverzoeken]
-      summary: Handel een verwijderverzoek af (bij honorering krijgt de jottem status "gedepubliceerd", incl. cache-purge en schoning van alle outputs; anders afwijzing met reden)
+      summary: Handel een verwijderverzoek af (MO-5)
       description: >
-        **Nog niet gerealiseerd (gepland).**
+        depubliceren - status "gedepubliceerd", schoning van alle outputs en cache-purge;
+        het origineel blijft als archiefexemplaar. wissen - daarnaast origineel, metadata,
+        annotaties en logpayloads verwijderd en de jottem op de wislijst. afgewezen - alleen
+        met toelichting. De indiener krijgt mail 8.
       parameters:
         - name: verzoekId
           in: path
@@ -879,10 +881,12 @@ paths:
               type: object
               required: [besluit]
               properties:
-                besluit: { type: string, enum: [gehonoreerd, afgewezen] }
+                besluit: { type: string, enum: [depubliceren, wissen, afgewezen] }
                 toelichting: { type: string }
       responses:
         '200': { description: Verzoek afgehandeld }
+        '409': { description: Verzoek al afgehandeld }
+        '422': { description: Afwijzen zonder toelichting }
 
   /annotation/{jottemId}/{annotationNaam}/melding:
     post:
@@ -1160,13 +1164,14 @@ components:
 
     Verwijderverzoek:
       type: object
-      required: [jottemId, reden, email]
+      required: [jottemId, soort, reden, email]
       properties:
         verzoekId: { type: string, readOnly: true }
         jottemId: { type: string }
-        reden: { type: string, description: "Bijv. eigen materiaal of herkenbaar in beeld" }
+        soort: { type: string, enum: [eigen-materiaal, herkenbaar, auteursrecht, anders] }
+        reden: { type: string, description: "Toelichting van de indiener" }
         email: { type: string, format: email, description: "Voor terugkoppeling over de afhandeling" }
-        status: { type: string, enum: [open, gehonoreerd, afgewezen], readOnly: true }
+        status: { type: string, enum: [open, gedepubliceerd, gewist, afgewezen], readOnly: true }
 
     Melding:
       type: object

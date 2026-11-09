@@ -40,8 +40,9 @@
 * beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
 * beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA (TOTP of passkey) voor beheer- en moderatorrollen; een wachtwoordreset voor een onbekend e-mailadres is niet te onderscheiden van een bekend adres (altijd dezelfde neutrale boodschap, geen accountenumeratie)
 * mail-afleverbaarheid: SPF, DKIM en DMARC (met alignment) zijn ingeregeld op het verzenddomein; attenderingsmails dragen one-click unsubscribe-headers (RFC 8058) naast de uitschakellink; zie [[#notificaties-afleverbaarheid]] voor het volledige pakket (reverse DNS, bouncebeheer, reputatiemonitoring)
-* privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge
-* back-up & herstel: nachtelijkse offsite back-ups; RPO 24 uur, RTO 1 werkdag; jaarlijkse hersteltest
+* privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge; volledige payloads in het Gebeurtenislog worden 12 maanden bewaard, daarna blijven alleen type, tijdstip en id's over
+* back-up & herstel: nachtelijkse offsite back-ups met een vaste bewaartermijn van 35 dagen (zo is een gewiste jottem binnen 35 dagen uit elke kopie verdwenen); RPO 24 uur, RTO 1 werkdag; jaarlijkse hersteltest, inclusief het afspelen van de wislijst
+* objectopslag: de externe S3-aanbieder verwerkt de data in de EER, onder een verwerkersovereenkomst
 * duurzaamheid/exit: periodieke publieke datadumps en een exportstrategie, zie [[#keuze-infra]]
 * monitoring: uptime-, logging- en alertvoorzieningen conform de [systeemarchitectuur](systeemarchitectuur/architectuur.html)
 
@@ -66,7 +67,10 @@
 * persoonsgegevens worden verwerkt conform de AVG
 * recente foto's van herkenbare personen worden alleen gepubliceerd met toestemming
 * elke upload wordt bij binnenkomst automatisch gecontroleerd op herkenbare personen via de [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (i.v.m. portretrecht); bij herkenbare personen wordt de uploader direct om een toestemmingsverklaring gevraagd en ziet de moderator het detectiesignaal (ja/nee + betrouwbaarheid) bij de kwaliteitscontrole; de detectie draait volledig op de eigen server, beelden verlaten het platform niet
-* inzenders kunnen verzoeken om verwijdering van hun materiaal
+* inzenders en afgebeelde personen kunnen verzoeken om verwijdering van een jottem (verwijderverzoek). Een moderator kiest per verzoek één van twee uitkomsten, of wijst het verzoek af met een toelichting:
+  * **depubliceren** - de jottem verdwijnt uit alle publieke weergaven en open data (tombstone 410 op de duurzame URL); het origineel blijft als archiefexemplaar bewaard, alleen bereikbaar voor moderatoren en organisatiebeheerders van de organisatie. Bedoeld voor bijvoorbeeld een auteursrechtkwestie of ongepaste inhoud, waarbij herstel mogelijk moet blijven;
+  * **wissen** - daarnaast worden het origineel, de derivaten, de metadata, de annotaties en de volledige payloads in het Gebeurtenislog verwijderd; alleen de tombstone en een kale logregel (wie, wanneer, welk besluit) blijven. Bedoeld voor een AVG-verzoek van een afgebeelde persoon of een inzender die zijn bijdrage intrekt;
+* een gewiste jottem komt op de **wislijst**; na het terugzetten van een back-up wordt de wislijst opnieuw afgespeeld, zodat gewist materiaal niet terugkomt
 * bijdragen worden waar mogelijk voorzien van bronvermelding
 * persoonlijke herinneringen worden onderscheiden van historisch verifieerbare feiten
 * het auteursrecht blijft bij de inzender; door inzending wordt toestemming gegeven voor publicatie binnen het project, hergebruik door derden alleen onder de aangegeven voorwaarden

@@ -454,7 +454,7 @@ Aanvullend op de kernstack: Prometheus + Grafana + Loki + Alertmanager voor moni
 
 # Doorsnijdende aspecten
 
-**Privacy en auteursrecht.** Persoonsgegevens staan uitsluitend in PostgreSQL en Authentik; verwijderingsverzoeken worden ondersteund doordat originelen alleen via de API bereikbaar zijn en gepubliceerde jottems een depubliceer-workflow kennen (verwijderen uit index, cache-purge in Varnish, tombstone op de duurzame URL). Toestemming voor herkenbare personen en het onderscheid herinnering versus verifieerbaar feit zijn metadatavelden in de moderatieworkflow, geen infrastructuurcomponent.
+**Privacy en auteursrecht.** Persoonsgegevens staan uitsluitend in PostgreSQL en Authentik; een verwijderverzoek eindigt in depubliceren (uit index, cache-purge in Varnish, tombstone op de duurzame URL; het origineel blijft als archiefexemplaar, alleen voor moderatoren en organisatiebeheerders) of wissen (daarnaast origineel, metadata, annotaties en logpayloads weg, en een regel op de wislijst die na een restore opnieuw wordt afgespeeld). Back-ups hebben een vaste bewaartermijn van 35 dagen. Toestemming voor herkenbare personen en het onderscheid herinnering versus verifieerbaar feit zijn metadatavelden in de moderatieworkflow, geen infrastructuurcomponent.
 
 **Multi-tenancy.** Organisatiejottems delen dezelfde stack; scheiding gebeurt via organisatie-id in de database, named graphs in Fuseki, prefixen in S3 en Elasticsearch, identiteiten in Authentik (rollen in de database) en shoulders binnen de ARK NAAN. Huisstijl (logo, kleurenpalet, favicon) is configuratie in de database die de frontend per organisatie-slug toepast.
 

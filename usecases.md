@@ -37,6 +37,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
   * bij goedkeuring krijgt de jottem een duurzame link en wordt deze gepubliceerd (ARK-minting en een externe preserveringskopie volgen in een latere fase, zie [[#keuze-oplossingsrichting]]) en ontvangt de uploader een e-mail bericht dat de jottem online is geplaatst en oproep om deze te delen via sociale media om reacties en aanvullende informatie bij de jottem te krijgen door annoteerders  
 * gerapporteerde annotaties en reacties beoordelen: verbergen/verwijderen bij misbruik, of de melding afwijzen; de afhandeling wordt gelogd  
 * vlak-annotaties bij foto's met herkenbare personen beoordelen vóórdat ze openbaar worden: vrijgeven of afwijzen  
+* verwijderverzoeken afhandelen: depubliceren (origineel blijft als archiefexemplaar), wissen (alles weg, op de wislijst) of afwijzen met toelichting  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
 ## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
@@ -103,5 +104,5 @@ mogelijkheid de call-to-action, de technische impact en de vorm als Web Annotati
   * een jottem delen via de deelknoppen (sociale media, e-mail, link kopiëren); de gedeelde link toont een nette preview  
 * op een kaart de gepubliceerde jottems als speldjes zien en doorklikken naar de jottem  
 * per pand de opeenvolgende eetgelegenheden als tijdlijn bekijken, ook via de Gouda Tijdmachine *(na de evaluatie)*  
-* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal  
+* een verwijderingsverzoek indienen voor eigen of herkenbaar materiaal, ook zonder account  
 * een annotatie of reactie rapporteren (spam, reclame, ongepast); de melding komt in de moderatieomgeving van de organisatie

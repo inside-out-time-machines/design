@@ -16,7 +16,9 @@ geïntegreerd systeem in eigen beheer.
 
 * maximale functionaliteit en laagste drempel voor de participatieve kern (uploaden, annoteren, reageren);
 * volledige regie over het rechtenmodel: auteursrecht blijft bij de inzender, hergebruik onder aangegeven voorwaarden;
-* AVG: verwijderverzoeken zijn eenvoudig en volledig uitvoerbaar; dataresidentie in de EU;
+* AVG: een verwijderverzoek is volledig uit te voeren in eigen beheer (wissen van origineel,
+    afgeleiden, metadata en annotaties, en binnen de bewaartermijn van 35 dagen ook uit de
+    back-ups; zie [[#privacy-authenticity-copyright]]); dataresidentie in de EU;
 * geen afhankelijkheid van acceptatiecriteria of continuïteit van externe partijen.
 
 **Beheersmaatregelen** - de analyse benoemt duurzaamheid als zwakte van deze richting; die wordt
@@ -43,7 +45,8 @@ ARK-koppeling zonder linkbreuk kan.
 **Annotaties: bewerken en verwijderen door de annoteerder zelf.** Annoteerders kunnen hun eigen
 annotaties bewerken én verwijderen. De versiegeschiedenis wordt met volledige payload vastgelegd in het
 `Gebeurtenislog` van het platform, zodat herinneringen, aanvullingen en correcties herleidbaar
-blijven.
+blijven. Die volledige payloads blijven 12 maanden bewaard; bij het wissen van een jottem
+verdwijnen ze direct.
 
 ## Technologiestack ## {#keuze-stack}
 

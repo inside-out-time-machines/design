@@ -22,7 +22,7 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     hoort niet bij de MVP en staat bij de livegang uit; hij gaat aan zodra de meting op
     pilotmateriaal uit de AI-toets is geslaagd (zie [[#verrijking-uploadsuggesties]])
 * **Moderatie** - wachtrij, goedkeuren/afkeuren met reden, bewerken en opnieuw indienen door
-    de uploader, depubliceren via verwijderverzoeken, afhandelen van meldingen (gerapporteerde
+    de uploader, verwijderverzoeken (depubliceren of wissen, met wislijst), afhandelen van meldingen (gerapporteerde
     annotaties en reacties)
 * **Publicatie** - duurzame link met content negotiation, jottem-detailpagina
     (IIIF-viewer + metadata + annotaties), publiceren binnen het project

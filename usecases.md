@@ -1,5 +1,7 @@
 # Usecases per rol # {#usecases}
 
+De rollen en hoe lidmaatschap werkt staan in [[#begrippen-rollen]].
+
 Ter ondersteuning van onderstaande usescases is er een [prototype](https://prototype.iotm.nl/).
 
 ## Als platformbeheerder kan ik ## {#platformbeheerder}
@@ -41,7 +43,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * de gegevens van een gepubliceerde jottem corrigeren (titel, beschrijving, genre, begin- en eindjaar, locatie, datering, vervaardiger, steekwoorden), bijvoorbeeld naar aanleiding van een correctie-annotatie of een verzoek van de inzender; de wijziging wordt gelogd  
 * kan ik statistieken bekijken, zoals het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties
 
-## Als gebruiker (binnen een organisatie) kan ik ## {#gebruiker}
+## Als gebruiker kan ik ## {#gebruiker}
 
 * kan ik via "wachtwoord vergeten" op de loginpagina een wachtwoordreset per e-mail starten; de resetlink verloopt na korte tijd  
 
@@ -52,7 +54,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik mijn favoriete jottems als openbaar instellen waardoor er een deelbare link beschikbaar komt (is geen duurzame link) *(na de evaluatie)*
 * kan ik, als ik voor een besloten project ben uitgenodigd, na inloggen de jottems van dat project bekijken, uploaden en annoteren zoals in elk ander project; ben ik geen lid, dan meldt de projectpagina dat toegang op uitnodiging is  
 
-## Als gebruiker/uploader (binnen een organisatie) kan ik ## {#gebruiker-uploader}
+## Als gebruiker/uploader kan ik ## {#gebruiker-uploader}
 
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, in het project van waaruit ik het uploadformulier opende  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
@@ -65,7 +67,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  
 * kan ik afgekeurdde jottems verwijderen (goedgekeurde jottems niet!)
 
-## Als gebruikers/annoteerder (binnen een organisatie) kan ik ## {#gebruiker-annoteerder}
+## Als gebruiker/annoteerder kan ik ## {#gebruiker-annoteerder}
 
 * kan ik een extra metadata aan de gehele jottem toevoegen, waarbij term-URI's gezocht worden via het NDE Termennetwerk binnen de voor het project ingestelde terminologiebronnen, zoals  
   * een plaatsnaam (label+URI)  

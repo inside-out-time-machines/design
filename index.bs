@@ -57,6 +57,10 @@ path: introductie.md
 </pre>
 
 <pre class="include">
+path: begrippen.md
+</pre>
+
+<pre class="include">
 path: salespitch.md
 </pre>
 

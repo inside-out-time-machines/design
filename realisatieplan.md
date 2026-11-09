@@ -130,6 +130,7 @@ Checklist (de technische stappen staan in de README van de
     met verwerkersovereenkomst; buckets aangemaakt (op dev doet `minio-init` dat, in
     productie niet).
 2. **Configuratie** - productie-`.env` met `OMGEVING=productie`, `DEV_AUTH=0`,
+    `CHANGE_DISCOVERY=0`, `SPARQL_PUBLIEK=0`, `ALERT_ONTVANGER` (rol-adres),
     `COMPOSE_PROFILES=prod`, lege `SUGGESTIES_URL` (zie [[#verrijking-uploadsuggesties]]),
     `S3_ENDPOINT`/`S3_PUBLIEK`, `SMTP_HOST`/`SMTP_PORT`; vooraf gecontroleerd met
     `docker compose --profile prod config`.
@@ -148,21 +149,46 @@ Checklist (de technische stappen staan in de README van de
 
 ## Livegang-criteria ## {#realisatie-criteria}
 
-De pilot gaat live wanneer aantoonbaar:
+**Go/no-go.** Bob Coret en de projectleider van SAMH besluiten samen over de livegang, op
+basis van de ingevulde tabel hieronder (datum: `[ ] in te vullen`, vóór de geplande
+verzameldag). Is een criterium niet gehaald, dan kiezen zij een nieuwe datum; een criterium
+laten vallen kan alleen schriftelijk, met reden.
 
-1. de kritieke keten (registratie → upload → moderatie → publicatie → annotatie →
-    verwijderverzoek)
-    end-to-end werkt en de [[#acceptatiecriteria]] van de MVP-usecases zijn aangetoond,
-    incl. de e2e-test uit de systeemarchitectuur;
-2. de outputcontrole uit de [data-architectuur](data-architectuur/data-architectuur.html#outputcontrole)
-    klopt en de datasetbeschrijving valideert tegen het NDE Datasetregister;
-3. de juridische documenten door een jurist zijn getoetst en de DPIA is afgerond;
-4. moderatie is ingericht (getrainde moderatoren, [handreiking](juridisch/handreiking-moderatie.html));
-5. back-ups, monitoring en alerting draaien en de hersteltest is uitgevoerd;
-6. SPF, DKIM en DMARC staan op het productie-verzenddomein en een testmail bereikt de
-    inbox van de grote providers (Gmail, Outlook) zonder spammarkering
-    (zie [[#notificaties-afleverbaarheid]]);
-7. de productieomgeving is ingericht volgens de checklist in [[#realisatie-productie]].
+<table class="data">
+<thead>
+<tr><th>#</th><th>Criterium</th><th>Toets</th><th>Slaagt als</th><th>Eigenaar</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>De kritieke keten werkt (registratie → upload → moderatie → publicatie → annotatie → verwijderverzoek) en de [[#acceptatiecriteria]] van de MVP zijn aangetoond. Buiten scope: GE-4, BE-5 en AP-3 (na de evaluatie) en AP-1 (uit in productie)</td><td>de testscripts van testronde 2 uit het [plan van aanpak](planvanaanpak-smaakvangouda.html) op productie; daarna `python3 -m pytest` (contracttests) en `node tests/e2e/smoke.mjs` tegen productie</td><td>alle testscripts doorlopen zonder open blokkerende bevinding; contracttests en rooktest groen</td><td>platformontwikkelaar</td></tr>
+<tr><td>2</td><td>De open data is valide</td><td>IIIF Presentation-validator op een manifest en de projectcollectie (AP-5); "Valideer" van de datasetbeschrijving tegen het Datasetregister (AP-6); de datadump tegen het NDE-schemaprofiel</td><td>geen fouten</td><td>platformontwikkelaar</td></tr>
+<tr><td>3</td><td>De juridische documenten voor de pilot zijn getoetst</td><td>toetsing door een jurist van de documenten uit [[#juridisch]] die bij de pilotscope horen; DPIA vastgesteld</td><td>schriftelijk akkoord van de jurist; DPIA door SAMH vastgesteld</td><td>Bob Coret</td></tr>
+<tr><td>4</td><td>Moderatie is ingericht</td><td>training met de [handreiking](juridisch/handreiking-moderatie.html); rooster en reactietijd uit het plan van aanpak</td><td>minimaal twee moderatoren van SAMH getraind, elk minstens tien jottems beoordeeld</td><td>projectleider SAMH</td></tr>
+<tr><td>5</td><td>Back-up en herstel werken</td><td>hersteltest: de back-up terugzetten in een lege stack, daarna de wislijst afspelen</td><td>hersteld binnen 1 werkdag (RTO); contracttests groen op de herstelde stack; de wislijst is afgespeeld; een testalert is ontvangen</td><td>platformontwikkelaar</td></tr>
+<tr><td>6</td><td>Mail komt aan</td><td>SPF, DKIM en DMARC op het verzenddomein; testmail naar een Gmail- en een Outlook.com-adres (zie [[#notificaties-afleverbaarheid]])</td><td>beide in de inbox, niet in spam; DMARC `pass`</td><td>platformontwikkelaar</td></tr>
+<tr><td>7</td><td>Productie is ingericht</td><td>de checklist in [[#realisatie-productie]]</td><td>alle punten afgevinkt</td><td>Bob Coret</td></tr>
+<tr><td>8</td><td>De securitytoets is afgerond</td><td>de bevindingen uit de securityanalyse in de jottem-repo (`analysis/jottem/ASSESSMENT.md`) elk met een status; `tests/contract/test_afscherming.py` tegen productie; controle dat de API weigert te starten met `DEV_AUTH=1` en `OMGEVING=productie`</td><td>geen open bevinding met hoog risico; middel opgelost of schriftelijk geaccepteerd; afschermingstest groen</td><td>platformontwikkelaar</td></tr>
+</tbody>
+</table>
+
+De geautomatiseerde ketentest die de systeemarchitectuur beschrijft (Playwright over de hele
+keten) volgt na de pilot. Tot die tijd dekken de testscripts uit het plan van aanpak de keten.
+
+## Werkpakketten vóór livegang ## {#realisatie-werkpakketten}
+
+Naast de functionele punten uit de mijlpalentabel (kaart, verwijderverzoeken) vragen de
+criteria om deze werkpakketten:
+
+<table class="data">
+<thead>
+<tr><th>Werkpakket</th><th>Inhoud</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>Back-ups</td><td>nachtelijks offsite, bewaartermijn 35 dagen: PostgreSQL van platform en Authentik, MongoDB van AnnoRepo, en de originelen in de objectopslag. Fuseki, derivaten en de zoekindex zijn herbouwbaar en gaan niet mee. Alert als de laatste geslaagde back-up ouder is dan 26 uur</td><td>niet gestart</td></tr>
+<tr><td>Monitoring in productie</td><td>scrape-configuratie zonder de dev-only MinIO; API en leeftijd van de outbox; health-check op Herkenbaar; opslaggebruik per organisatie met alert; alert-ontvanger uit de configuratie (een rol-adres, geen persoonlijk adres). Grafana-toegang loopt via de Authentik-groep "Platformbeheerders": een bewuste uitzondering op "GebruikerRol leidend", bij een rolwijziging met de hand gelijk te houden</td><td>alert-ontvanger: gereed; overige: niet gestart</td></tr>
+<tr><td>Securitytoets</td><td>de bevindingen uit `analysis/jottem/ASSESSMENT.md` doorlopen en per bevinding een status vastleggen</td><td>niet gestart</td></tr>
+<tr><td>Uitzetten in productie</td><td>schakelaars voor IIIF Change Discovery met de aggregaten en voor het publieke SPARQL-endpoint (zie [[#realisatie-mvp]]); in productie uit</td><td>gereed</td></tr>
+</tbody>
+</table>
 
 ## Huisstijl Jottem-platform ## {#realisatie-huisstijl}
 

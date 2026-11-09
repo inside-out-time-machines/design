@@ -81,8 +81,9 @@ paths:
       description: >
         Het project (`projectId`) staat in de body en bepaalt de organisatie en de licentie.
         In plaats van een geüpload bestand kan een externe bron worden meegegeven
-        (`externeBron` met soort `beeldbank` of `url`); de server valideert die opnieuw en
-        legt alleen een verwijzing vast. Bij het aanmaken wordt de afbeelding gecontroleerd
+        (`externeBron` met soort `beeldbank`, alleen van beeldbanken op de ingestelde lijst); de
+        server valideert die opnieuw en legt alleen een verwijzing vast. Bij een externe bron
+        is `licentieBevestigd` niet nodig: de rechten komen uit het manifest. Bij het aanmaken wordt de afbeelding gecontroleerd
         op herkenbare personen (Herkenbaar API); bij "herkenbaar: ja" zonder
         toestemmingsverklaring antwoordt de server met een 422, waarna de frontend de
         toestemmingsvraag stelt en opnieuw indient met `toestemming: ja` of `nee`.
@@ -106,13 +107,13 @@ paths:
   /upload/externe-bron:
     post:
       tags: [Uploads]
-      summary: Valideer een beeldbank-permalink of foto-URL als externe fotobron
+      summary: Valideer een beeldbank-permalink als externe fotobron
       description: >
         Voor de popup in het uploadformulier: een beeldbank-permalink wordt herleid tot een
         IIIF Manifest of info.json (te beginnen met Memorix/SAMH; directe IIIF-links werken
-        ook), een foto-URL wordt server-side gecontroleerd op een werkende afbeelding
-        (statuscode en content-type). Het antwoord toont wat er opgeslagen gaat worden
-        (bron, bronUrl, preview, afmetingen); er wordt alleen verwezen, niets gekopieerd.
+        ook, mits de host op de ingestelde lijst staat; anders 422). Het antwoord toont wat er
+        opgeslagen gaat worden (bron, bronUrl, preview, afmetingen, rechten en
+        rechtenvermelding uit het manifest); er wordt alleen verwezen, niets gekopieerd.
       requestBody:
         required: true
         content:
@@ -121,13 +122,13 @@ paths:
               type: object
               required: [soort, url]
               properties:
-                soort: { type: string, enum: [beeldbank, url] }
+                soort: { type: string, enum: [beeldbank] }
                 url: { type: string, format: uri }
       responses:
         '200':
-          description: Gevalideerde externe bron (bron, bronUrl, previewUrl, service, afmetingen)
+          description: Gevalideerde externe bron (bron, bronUrl, previewUrl, service, afmetingen, rechten, rechtenvermelding)
         '422':
-          description: De link is geen herkende beeldbank-permalink of levert geen werkende afbeelding op
+          description: De link is geen herkende beeldbank-permalink, of de beeldbank staat niet op de ingestelde lijst
 
   /herkenbaar-check:
     post:
@@ -1003,8 +1004,9 @@ components:
           type: string
           format: uri
           description: >
-            Licentie/hergebruikvoorwaarden die de uploader (rechthebbende) aan de jottem
-            meegeeft; verschijnt als rights in IIIF en schema:license in de RDF.
+            Licentie/hergebruikvoorwaarden van de jottem; verschijnt als rights in IIIF en
+            schema:license in de RDF. Bij een upload de bevestigde projectlicentie, bij een
+            beeldbank-permalink de `rights` uit het manifest.
         vervaardiger: { type: string }
         datum: { type: string }
         plaats: { type: string }

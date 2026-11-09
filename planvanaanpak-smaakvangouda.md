@@ -94,7 +94,7 @@ Door de organisatiebeheerder via Organisatiebeheer, Bewerken.
 <tr><th>Instelling</th><th>Keuze</th><th>Toelichting</th></tr>
 </thead>
 <tbody>
-<tr><td>Uploadwijzen</td><td>alle vier aan: bestand, camera, beeldbank-permalink, foto-URL</td><td>de beeldbank-permalink werkt met de Memorix-beeldbank van SAMH, zodat bestaand materiaal uit de eigen collectie als jottem kan worden toegevoegd zonder kopie</td></tr>
+<tr><td>Uploadwijzen</td><td>alle drie aan: bestand, camera, beeldbank-permalink</td><td>de beeldbank-permalink werkt met de Memorix-beeldbank van SAMH, zodat bestaand materiaal uit de eigen collectie als jottem kan worden toegevoegd zonder kopie</td></tr>
 <tr><td>Terminologiebronnen</td><td><strong>Goudse straten</strong>, GeoNames (Nederland, België en Duitsland), Cultuurhistorische Thesaurus, Rijksmonumentenregister, Wikidata: straten in Nederland</td><td>een korte lijst houdt de keuzelijsten bij het annoteren overzichtelijk; "Goudse straten" is de belangrijkste bron voor adressen. <code>[ ] keuze</code>: AAT of GTAA toevoegen voor materiaaltypen</td></tr>
 <tr><td>Verrijkingen</td><td>alle MVP-verrijkingen aan: herinneringen en verhalen, aanwijzen op de foto, steekwoorden, vragen stellen, externe bronnen koppelen, datering, begrippen uitleggen, standpunt van de fotograaf, zelfde object andere foto</td><td>"zelfde object, andere foto" is precies wat een reeks opvolgende zaken in één pand zichtbaar maakt; "datering" en "externe bronnen" dragen bij aan de pand-tijdlijn en de archiefkoppeling uit het pilotdocument</td></tr>
 </tbody>

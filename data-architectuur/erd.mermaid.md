@@ -72,7 +72,7 @@
     string beschrijving
     string bestandsnaam
     string bron "upload | iiif | url"
-    string bronUrl "manifest-/info.json-/foto-URL bij externe bron"
+    string bronUrl "manifest-/info.json-URL bij beeldbankbron"
     string externeIiifService "image service-basis bij een beeldbank-bron"
     string genre
     string licentie

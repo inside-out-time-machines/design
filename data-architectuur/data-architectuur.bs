@@ -106,7 +106,7 @@ Elke gepubliceerde jottem krijgt een **duurzame platform-URL** die als identifie
 <tbody>
 <tr><td>`og:title`</td><td>`Media.titel` met daarachter een willekeurige, binnen het project actieve verrijkings-call-to-action (terugval: de vaste oproep "- weet jij hier meer van?"), zodat een gedeelde link meteen om een concrete bijdrage vraagt; zie het hoofdstuk [Deelbaarheid](../index.html#deelbaarheid)</td></tr>
 <tr><td>`og:description`</td><td>`Media.beschrijving` (of, als die ontbreekt, een zin met project- en organisatienaam)</td></tr>
-<tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij bron `url` de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
+<tr><td>`og:image`</td><td>de IIIF Image API-afbeelding (eigen service of beeldbank): `full/!1200,1200` en `full/max` zodra het bronbeeld kleiner is dan 1200 px, want `!` mag in IIIF 3 niet vergroten. Bij oudere jottems met bron `url` (losse foto-URL, niet meer toegestaan) de foto-URL zelf; presigned URL's uit de Object Storage verlopen en zijn ongeschikt voor previews</td></tr>
 <tr><td>`og:image:width/height`</td><td>berekend uit `Media.breedte`/`Media.hoogte` en de gevraagde IIIF-maat, dus de werkelijke afmetingen van de preview; onbekend = weglaten</td></tr>
 <tr><td>`og:url`</td><td>de duurzame jottem-URL</td></tr>
 <tr><td>`og:image:alt`</td><td>`Media.titel`</td></tr>
@@ -494,7 +494,7 @@ De veld→bron-tabellen in de voorgaande secties vormen de controle of alle beno
 </thead>
 <tbody>
 <tr><td>Geen titel/beschrijving als eigen velden</td><td>IIIF `label`/`summary`, RDF `schema:name`/`description`, RSS</td><td>`Media.titel`, `Media.beschrijving`</td></tr>
-<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (de uploader bevestigt bij het indienen de projectlicentie; die waarde wordt op de jottem vastgelegd)</td></tr>
+<tr><td>Geen licentie/rechten per jottem</td><td>IIIF `rights`, RDF `schema:license`, herbruikvoorwaarden</td><td>`Media.licentie` (bij een upload bevestigt de uploader de projectlicentie en wordt die waarde vastgelegd; bij een beeldbank-permalink komt de waarde uit `rights` van het manifest, en de `requiredStatement` als metadataregel `rechtenvermelding`)</td></tr>
 <tr><td>Geen afbeeldingsdimensies/formaat</td><td>IIIF `info.json` en canvas, RDF `schema:width`/`height`/`encodingFormat`</td><td>`Media.breedte`, `Media.hoogte`, `Media.mimeType` (vastgelegd bij verwerking upload)</td></tr>
 <tr><td>Geen wijzigingsdatum</td><td>IIIF Change Discovery `Update`, RDF `schema:dateModified`</td><td>`Media.wijzigingsDatum` + regel: elke relevante mutatie (ook annotaties) werkt deze bij</td></tr>
 <tr><td>Geen organisatiebeschrijving/website</td><td>publisher-informatie, IIIF `provider`, RSS-channel</td><td>`Organisatie.beschrijving`, `Organisatie.website`</td></tr>

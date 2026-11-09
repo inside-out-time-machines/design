@@ -23,7 +23,7 @@ geïntegreerd systeem in eigen beheer.
 als volgt ondervangen:
 
 * een expliciete **exit- en exportstrategie**: nachtelijkse offsite back-ups, periodieke publieke
-    datadumps (RDF plus originelen) en een jaarlijkse hersteltest van de export;
+    datadumps (RDF plus de originelen van geüploade jottems; jottems die naar een beeldbank verwijzen hebben geen eigen origineel) en een jaarlijkse hersteltest van de export;
 * afspraken in de [samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html) over
     voortzetting of overdracht van data en diensten bij einde van het project;
 * de **gelaagde aanpak blijft als uitbreiding mogelijk**: een externe preserveringskopie

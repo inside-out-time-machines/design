@@ -210,7 +210,7 @@ Privacy-uitgangspunt: de inferentie draait volledig op de eigen server; beelden 
 
 ## Uploaden in twee stappen
 
-Het uploadformulier loopt in twee stappen: eerst alleen de foto (bestand, camera, een permalink uit een beeldbank of een foto-URL), dan de gegevens erbij. Die knip verlaagt de drempel, en levert bovendien een moment op waarop het beeld al bekend is en het platform kan meedenken.
+Het uploadformulier loopt in twee stappen: eerst alleen de foto (bestand, camera of een permalink uit een beeldbank), dan de gegevens erbij. Die knip verlaagt de drempel, en levert bovendien een moment op waarop het beeld al bekend is en het platform kan meedenken.
 
 **Afweging.** Een vroege terugkeer per stap binnen dezelfde pagina (gekozen) tegenover een eigen route per stap, of alles op één pagina met alleen visuele groepering. De eerste wint omdat de ingevulde gegevens vanzelf blijven staan en het patroon er al was voor het toestemmingsscherm bij herkenbare personen; een eigen route zou de halve upload deelbaar maken via een URL, wat niets oplevert en de terugkeer na inloggen ingewikkelder maakt.
 
@@ -222,7 +222,7 @@ Het vangnet blijft bestaan. De backend draait de controle bij het indienen altij
 
 **De wachtverzachter.** De suggestiedienst start meteen na de foto en loopt door terwijl de inzender de toestemmingsvraag leest. Is hij daarna nog bezig, dan verschijnt een wachtscherm met een geanimeerde vis, getekend naar het beeldmerk. Dat scherm blijft minstens ruim een seconde staan zodat het niet knippert, hooguit vijftien seconden zodat een trage of afwezige dienst niemand ophoudt, en is met "ga alvast verder" over te slaan. De beweging is CSS, zodat de platformbrede regel voor `prefers-reduced-motion` hem uitzet.
 
-**Alle vier de uploadwijzen gelijk.** Ook een beeldbank-permalink en een foto-URL doorlopen deze volgorde. De controle- en suggestie-endpoints accepteren daarvoor naast een `mediaId` ook een externe bron, die de server zelf ophaalt (voor IIIF een verkleinde versie), zoals hij bij het indienen al deed. Eerder sloegen die twee wijzen beide controles over en kwam de toestemmingsvraag daar pas als de server bij het indienen weigerde.
+**Alle uploadwijzen gelijk.** Ook een beeldbank-permalink doorloopt deze volgorde. De controle- en suggestie-endpoints accepteren daarvoor naast een `mediaId` ook een externe bron, die de server zelf ophaalt (voor IIIF een verkleinde versie), zoals hij bij het indienen al deed. Eerder sloeg die wijze beide controles over en kwam de toestemmingsvraag daar pas als de server bij het indienen weigerde.
 
 **Gegevens uit de beeldbank.** Bij een permalink bevat het IIIF-manifest de beschrijving al: titel, samenvatting, datering en vervaardiger. Die worden overgenomen als voorstel, met een regel eronder waar ze vandaan komen. In de praktijk blijkt het manifestlabel niet altijd bruikbaar (een beeldbank kan er letterlijk "No title" of de archiefcode van het scanbestand in zetten), dus de titel komt uit de eerste kandidaat die als titel doorgaat, met de beschrijving uit het metadatablok als terugval.
 

@@ -44,7 +44,7 @@ Criteria bij fase 2-functionaliteit zijn gemarkeerd met *(fase 2)*.
 
 ## Uploader ## {#ac-uploader}
 
-* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF, tot 50 MB; daarboven of ander type: duidelijke weigering; PDF en audio volgen in fase 2) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie (speld op de kaart); ik bevestig de projectlicentie; de projectkeuze is verplicht - zonder project geen upload. Op een apparaat met camera kan ik in plaats van een bestand te kiezen direct een foto maken; op een apparaat zonder camera verschijnt die optie niet.
+* **UP-1** Ik kan een bestand uploaden (JPG/PNG/TIFF, tot 50 MB; daarboven of ander type: duidelijke weigering; PDF en audio volgen in fase 2) met titel/beschrijving, genre (CHT-lijst), metadata, steekwoorden en locatie (speld op de kaart); ik bevestig de projectlicentie (bij een beeldbank-permalink niet: dan worden de rechten uit het manifest overgenomen en getoond); een permalink van een beeldbank die niet op de ingestelde lijst staat wordt geweigerd (422); de projectkeuze is verplicht - zonder project geen upload. Op een apparaat met camera kan ik in plaats van een bestand te kiezen direct een foto maken; op een apparaat zonder camera verschijnt die optie niet.
 * **UP-1b** Het uploadformulier loopt in twee stappen: eerst kies ik mijn foto, daarna
     vul ik de gegevens in. Bij een permalink uit een beeldbank staan titel, beschrijving,
     datering en vervaardiger al voorgevuld, met vermelding waar ze vandaan komen; ik kan

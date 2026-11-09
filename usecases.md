@@ -18,7 +18,7 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik statistieken bekijken, zoals het aantal logins per dag, het aantal geuploadde jottems/afgekeurd/goedgekeurd/annotaties, ook per project
 * kan ik projecten aanmaken en beheren (naam, slug, beschrijving, oproep, periode, afbeelding, datasetlicentie, status); elke organisatie heeft minstens één project en elke jottem hoort bij precies één project  
 * kan ik per project instellen welke terminologiebronnen uit het [NDE Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/) beschikbaar zijn voor term-URI's (standaard: alle bronnen)  
-* kan ik per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink, foto-URL), met altijd minstens één actieve wijze (standaard: alle vier)  
+* kan ik per project instellen welke uploadwijzen actief zijn (bestand kiezen, foto maken met de camera, beeldbank-permalink), met altijd minstens één actieve wijze (standaard: alle drie)  
 * kan ik per project de openbaarheid instellen: **openbaar** (standaard) of **besloten**; bij een besloten project ziet alleen wie is uitgenodigd de jottems, de projectinformatie (logo, intro, oproep) blijft voor iedereen leesbaar en de open data van het project blijft openbaar  
   * kan ik bij een besloten project leden (naam, e-mail) toevoegen; de ledenadministratie hoort bij het project, niet bij de organisatie  
   * bij toevoegen wordt het lid als gebruiker klaargezet en krijgt het een account bij de identity provider; het lid ontvangt een e-mail met uitleg over het besloten project, de projectlink en een link naar de wachtwoord-vergeten-functie waarmee het een wachtwoord instelt (wie al een account heeft, logt direct in)  
@@ -54,9 +54,9 @@ Ter ondersteuning van onderstaande usescases is er een [prototype](https://proto
 * kan ik een afbeelding uploaden en voorzien van metadata (beschrijving, vervaardiger, datum, plaats, personen op afbeelding leven mogelijk nog) en steekwoorden, en kies ik daarbij het project (van de organisatie) waaraan ik bijdraag  
   * bij het uploaden wordt de afbeelding automatisch gecontroleerd op herkenbare personen (Herkenbaar API); zijn die er, dan krijg ik direct de vraag of ik een toestemmingsverklaring van de afgebeelde personen kan afleggen  
   * kan ik die verklaring niet afleggen, dan kies ik zelf: de upload annuleren, of tóch indienen; in dat laatste geval gaat de jottem met de vlag "herkenbaar: ja, toestemming: nee" de moderatiewachtrij in en weegt de moderator af of publicatie kan  
-  * bevestig ik bij het indienen de licentie van het project (vastgelegd op de jottem)  
+  * bevestig ik bij het indienen van een eigen bestand de licentie van het project (vastgelegd op de jottem); bij beeldbankmateriaal neemt het platform de rechten van de bron over  
 * kan ik op een apparaat met camera (zoals mijn telefoon) direct een foto maken in plaats van een bestand te kiezen  
-* kan ik in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; herkenning start met de Memorix-beeldbank van SAMH) of een **foto-URL van een website** (het platform controleert dat de link een werkende afbeelding oplevert); extern materiaal wordt niet gekopieerd, alleen verwezen  
+* kan ik in plaats van een bestand een **permalink uit een beeldbank** opgeven (het platform herleidt die tot een IIIF Manifest of info.json en verwijst daarnaar; alleen beeldbanken op de ingestelde lijst, te beginnen met de Memorix-beeldbank van SAMH); beeldbankmateriaal wordt niet gekopieerd, alleen verwezen  
 * kan ik bij het uploaden een materiaaltype/genre kiezen (bijv. foto, menukaart, advertentie, folder, krantenartikel, vergunning)  
 * kan ik begin- en eindjaar toevoegen en de locatie als speld op de kaart prikken (dat levert de coördinaten), zodat de jottem op de kaart verschijnt; adres en pand-tijdlijn volgen na de evaluatie  
 * kan ik een afgekeurde jottem aanpassen (n.a.v. de afkeurreden) en opnieuw indienen ter beoordeling  

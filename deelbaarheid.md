@@ -29,13 +29,13 @@ uitwerking (knopplaatsing, OG-elementen en hun bronnen, canonical-beleid) staat 
 [data-architectuur](data-architectuur/data-architectuur.html#uri-strategie).
 *Status (augustus 2026): gerealiseerd.*
 
-Nieuw in deze iteratie: de `og:title` en de Web Share-deeltekst van een jottem gebruiken
-niet langer de vaste oproep "weet jij hier meer van?", maar een **willekeurige, binnen
-het project actieve verrijkings-call-to-action** uit [[#verrijkingen]]. Een gedeelde
-link vraagt zo meteen om een concrete bijdrage ("Weet je wanneer dit was? Vul het
-jaartal in, ook een gok helpt.") en varieert per deelmoment, wat de kans vergroot dat
-één van de oproepen de ontvanger raakt. Heeft een project geen actieve verrijkingen,
-dan valt de titel terug op de vaste oproep.
+De **Web Share-deeltekst** van een jottem gebruikt een **willekeurige, binnen het project
+actieve verrijkings-call-to-action** uit [[#verrijkingen]], zodat een gedeelde link meteen om
+een concrete bijdrage vraagt ("Weet je wanneer dit was? Vul het jaartal in, ook een gok
+helpt."); die tekst maakt de browser per deelmoment, dus hij varieert echt. De `og:title`
+(en de titel in oEmbed) gebruikt daarentegen de **vaste oproep** "weet jij hier meer van?":
+sociale platforms bewaren de preview van een URL, dus een wisselende titel zou toch niet
+wisselen en alleen de eerst opgehaalde variant tonen.
 
 ## Widgets ## {#deelbaarheid-widget}
 
@@ -171,9 +171,9 @@ D-1 t/m D-7 zijn in de huidige iteratie gerealiseerd, D-8 is fase 2.*
 * **D-4** Alle links in een widget verwijzen met volledige URL's en `target="_top"`
     naar de publiekspagina's; de jottems-widgets tonen onder de thumbnails een
     willekeurige actieve verrijkings-call-to-action van het project.
-* **D-5** De `og:title` en de Web Share-deeltekst van een jottem gebruiken een
-    willekeurige actieve verrijkings-call-to-action van het project, met de vaste oproep
-    "weet jij hier meer van?" als terugval.
+* **D-5** De Web Share-deeltekst van een jottem gebruikt een willekeurige actieve
+    verrijkings-call-to-action van het project, met de vaste oproep "weet jij hier meer
+    van?" als terugval; `og:title` en de oEmbed-titel gebruiken altijd die vaste oproep.
 * **D-6** De organisatiebeheerder ziet op de projectbeheerpagina de widget-URL's,
     kopieerbare voorbeeldcode voor beide inbedvormen en een levend voorbeeld.
 * **D-7** Het platform biedt een oEmbed-endpoint met discovery-links op project- en

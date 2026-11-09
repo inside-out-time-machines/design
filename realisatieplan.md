@@ -138,7 +138,8 @@ Checklist (de technische stappen staan in de README van de
     (zie [[#domains]]); de frontend gebouwd met de productiewaarden.
 4. **Inloggen** - Authentik-blueprints toegepast; redirect-URI's bij Google, Microsoft en
     Facebook naar de productie-`auth`-host.
-5. **Mail** - verzendroute voor productie ingericht en getest (livegang-criterium 6).
+5. **Mail** - productie verstuurt via de bestaande exim-relay (zie [[#notificaties-afleverbaarheid]]),
+    buiten het privénet via geauthenticeerde SMTP; getest volgens livegang-criterium 6.
 6. **www-overdracht** - `www.iotm.nl` gaat van de huidige website (repo `website`) naar het
     platform; de projectinformatie van de huidige site krijgt een plek.
 7. **Open-data-landingspagina** - de hosts in de repo `data` wijzen naar productie.

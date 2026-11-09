@@ -35,8 +35,8 @@ wat het is." en "Ken je iemand op deze foto? Klik op die persoon."
 
 **Moderatie vooraf bij herkenbare personen.** Een vlak met een naam erbij kan een persoon
 identificeren, terwijl de foto zelf alleen met toestemming openbaar werd. Daarom wordt een
-vlak-annotatie bij een jottem waarop de Herkenbaar-check personen vond (`herkenbaar: ja`) niet
-direct in de annotatieserver geschreven. Hij wacht als `WachtendeAnnotatie` in PostgreSQL tot
+vlak-annotatie bij een jottem waarop de Herkenbaar-check personen vond (`herkenbaar: ja`), of
+waarbij de controle niet kon worden uitgevoerd, niet direct in de annotatieserver geschreven. Hij wacht als `WachtendeAnnotatie` in PostgreSQL tot
 een moderator hem vrijgeeft; pas dan wordt hij een W3C-annotatie met een eigen IRI. Wijst de
 moderator hem af, dan wordt hij nooit openbaar. De annoteerder ziet direct dat zijn bijdrage
 eerst wordt bekeken. Alle andere annotaties blijven achteraf gemodereerd (V-7).
@@ -210,7 +210,8 @@ sluit aan op het GTM-koppelvlak (fase 2) en op de geo-requirements (WKT/GeoJSON)
 *middel* (extra UI op de kaart). De invoer gebruikt
 [Leaflet.GeotagPhoto](https://github.com/nypl-spacetime/Leaflet.GeotagPhoto)
 (`L.geotagPhoto.camera`), dezelfde interactie als in de Gouda Tijdmachine: versleep de
-camera en het doelpunt en knijp de beeldhoek. Opgeslagen wordt een Feature met het
+camera en het doelpunt en knijp de beeldhoek. Wie niet kan slepen (WCAG 2.5.7), zet de
+camera met een tik en vult kijkrichting en beeldhoek als getal in. Opgeslagen wordt een Feature met het
 camerapunt als geometry en `properties: { bearing, fov, target: [lon, lat] }`; het
 doelpunt maakt herbewerken mogelijk.
 

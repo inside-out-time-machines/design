@@ -33,11 +33,11 @@
 *Onderstaande waarden zijn richtwaarden (concept), vast te stellen door de projectgroep.*
 
 * taal: de interface en redactionele content zijn Nederlandstalig
-* toegankelijkheid: de publieke site voldoet aan WCAG 2.2 niveau AA
+* toegankelijkheid: de publieke site voldoet aan WCAG 2.2 niveau AA. Elke sleepinteractie heeft een alternatief zonder slepen (WCAG 2.5.7): de speld zet je ook met een tik, een vlak tekenen kan ook als annotatie op de hele jottem, en kijkrichting en beeldhoek van het zichtveld zijn ook als getal in te vullen
 * browsers: de laatste twee versies van evergreen browsers (Chrome, Firefox, Safari, Edge) op desktop en mobiel (iOS Safari, Android Chrome); de site is responsive
 * performance: publiekspagina's laden binnen 2 seconden (LCP); IIIF-tiles en manifests worden uit cache geserveerd; zoekresultaten binnen 1 seconde
 * capaciteit: eerste jaar orde van grootte 10.000 jottems verdeeld over 4 organisaties; uploads tot 50 MB per bestand; opslag- en verwerkingsgebruik per organisatie wordt gemonitord met alerts (harde quota per organisatie in een latere fase)
-* beschikbaarheid: richtwaarde 99,5% per maand; gepland onderhoud wordt aangekondigd
+* beschikbaarheid: richtwaarde 99% per kalenderjaar, gelijk aan de [SLA-bijlage](juridisch/sla-bijlage.html); gepland onderhoud wordt aangekondigd. Met één server en een hersteltijd (RTO) van één werkdag is meer niet waar te maken; een warme standby is voor de pilot niet nodig
 * beveiliging: OWASP Top 10 wordt aantoonbaar afgedekt, TLS op alle verbindingen, rate limiting op publieke endpoints, verplichte 2FA (TOTP of passkey) voor beheer- en moderatorrollen; een wachtwoordreset voor een onbekend e-mailadres is niet te onderscheiden van een bekend adres (altijd dezelfde neutrale boodschap, geen accountenumeratie)
 * mail-afleverbaarheid: SPF, DKIM en DMARC (met alignment) zijn ingeregeld op het verzenddomein; attenderingsmails dragen one-click unsubscribe-headers (RFC 8058) naast de uitschakellink; zie [[#notificaties-afleverbaarheid]] voor het volledige pakket (reverse DNS, bouncebeheer, reputatiemonitoring)
 * privacy: verwijderverzoeken worden binnen 30 dagen afgehandeld, inclusief depublicatie en cache-purge; volledige payloads in het Gebeurtenislog worden 12 maanden bewaard, daarna blijven alleen type, tijdstip en id's over
@@ -66,7 +66,7 @@
 
 * persoonsgegevens worden verwerkt conform de AVG
 * recente foto's van herkenbare personen worden alleen gepubliceerd met toestemming
-* elke upload wordt bij binnenkomst automatisch gecontroleerd op herkenbare personen via de [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (i.v.m. portretrecht); bij herkenbare personen wordt de uploader direct om een toestemmingsverklaring gevraagd en ziet de moderator het detectiesignaal (ja/nee + betrouwbaarheid) bij de kwaliteitscontrole; de detectie draait volledig op de eigen server, beelden verlaten het platform niet
+* elke upload wordt bij binnenkomst automatisch gecontroleerd op herkenbare personen via de [Herkenbaar API](https://github.com/inside-out-time-machines/herkenbaar-api) (i.v.m. portretrecht). Lukt de controle niet (de dienst is onbereikbaar), dan faalt hij dicht: de uploader krijgt de toestemmingsvraag tóch, en de moderator ziet "niet gecontroleerd" in plaats van "nee"; bij herkenbare personen wordt de uploader direct om een toestemmingsverklaring gevraagd en ziet de moderator het detectiesignaal (ja/nee + betrouwbaarheid) bij de kwaliteitscontrole; de detectie draait volledig op de eigen server, beelden verlaten het platform niet
 * inzenders en afgebeelde personen kunnen verzoeken om verwijdering van een jottem (verwijderverzoek). Een moderator kiest per verzoek één van twee uitkomsten, of wijst het verzoek af met een toelichting:
   * **depubliceren** - de jottem verdwijnt uit alle publieke weergaven en open data (tombstone 410 op de duurzame URL); het origineel blijft als archiefexemplaar bewaard, alleen bereikbaar voor moderatoren en organisatiebeheerders van de organisatie. Bedoeld voor bijvoorbeeld een auteursrechtkwestie of ongepaste inhoud, waarbij herstel mogelijk moet blijven;
   * **wissen** - daarnaast worden het origineel, de derivaten, de metadata, de annotaties en de volledige payloads in het Gebeurtenislog verwijderd; alleen de tombstone en een kale logregel (wie, wanneer, welk besluit) blijven. Bedoeld voor een AVG-verzoek van een afgebeelde persoon of een inzender die zijn bijdrage intrekt;

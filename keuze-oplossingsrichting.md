@@ -25,7 +25,8 @@ geïntegreerd systeem in eigen beheer.
 als volgt ondervangen:
 
 * een expliciete **exit- en exportstrategie**: nachtelijkse offsite back-ups, periodieke publieke
-    datadumps (RDF plus de originelen van geüploade jottems; jottems die naar een beeldbank verwijzen hebben geen eigen origineel) en een jaarlijkse hersteltest van de export;
+    datadumps (alleen RDF; de originelen zitten in de offsite back-ups en, in fase 2, in de
+    e-depot-export) en een jaarlijkse hersteltest van de export;
 * afspraken in de [samenwerkingsovereenkomst](juridisch/samenwerkingsovereenkomst.html) over
     voortzetting of overdracht van data en diensten bij einde van het project;
 * de **gelaagde aanpak blijft als uitbreiding mogelijk**: een externe preserveringskopie
@@ -33,6 +34,32 @@ als volgt ondervangen:
     subset kunnen in een latere fase worden toegevoegd; de moderatiestap blijft daarvoor het
     natuurlijke doorzetmoment. De Internet Archive-integratie maakt daarmee **geen deel uit van de
     MVP**.
+
+## Capaciteit en kosten ## {#keuze-capaciteit-kosten}
+
+**Capaciteit.** Alle diensten draaien op één server. De zwaarste stap per upload is de
+Herkenbaar-check (een YOLO-model op de processor, enkele seconden per foto); bij een
+verzameldag met veel gelijktijdige uploads lopen die checks na elkaar en wordt het
+uploadformulier trager, niet onbruikbaar, want de check is een hulpsignaal. De
+suggestiedienst staat bij de livegang uit (zie [[#verrijking-uploadsuggesties]]) en vraagt
+dus geen capaciteit. Bij aanhoudende drukte is de eerste maatregel de Herkenbaar-check naar
+de worker verplaatsen.
+
+**Kosten.** De lopende kosten voor de pilot, per jaar (bedragen nog in te vullen):
+
+<table class="data">
+<thead>
+<tr><th>Post</th><th>Toelichting</th><th>Per jaar</th></tr>
+</thead>
+<tbody>
+<tr><td>Server</td><td>de productieserver met alle diensten</td><td>`[ ]`</td></tr>
+<tr><td>Objectopslag</td><td>externe S3 in de EER, originelen en derivaten</td><td>`[ ]`</td></tr>
+<tr><td>Back-upopslag</td><td>offsite, 35 dagen bewaartermijn</td><td>`[ ]`</td></tr>
+<tr><td>Domein en certificaten</td><td>iotm.nl; certificaten via Let's Encrypt</td><td>`[ ]`</td></tr>
+<tr><td>Mail</td><td>de bestaande exim-relay</td><td>`[ ]`</td></tr>
+<tr><td>Beheer</td><td>uren voor onderhoud, updates en monitoring</td><td>`[ ]`</td></tr>
+</tbody>
+</table>
 
 ## Besliste openstaande ontwerpvragen ## {#keuze-open-vragen}
 

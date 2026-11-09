@@ -1,8 +1,7 @@
 # Notificaties # {#notificaties}
 
 Alle notificatiemails op een rij: trigger, ontvanger en doel. Mails worden **asynchroon**
-verstuurd door de Celery-workers via de eigen mailserver (MTA, zie de
-[systeemarchitectuur](systeemarchitectuur/architectuur.html) en
+verstuurd door de Celery-workers via een bestaande mailrelay (zie
 [[#notificaties-afleverbaarheid]]), zijn Nederlandstalig en dragen
 de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 
@@ -17,7 +16,7 @@ de huisstijl (logo, kleuren) van de betreffende organisatiejottem.
 <tr><td>2</td><td>Organisatiebeheerder voegt een moderator toe</td><td>uitgenodigde</td><td>idem als 1</td></tr>
 <tr><td>3</td><td>Moderator keurt een jottem goed</td><td>uploader</td><td>"je jottem staat online": duurzame link + oproep om te delen via sociale media (reacties en annotaties uitlokken)</td></tr>
 <tr><td>4</td><td>Moderator keurt een jottem af</td><td>uploader</td><td>afkeurreden + directe link om de jottem aan te passen en opnieuw in te dienen</td></tr>
-<tr><td>5</td><td>Er staan jottems in de moderatiewachtrij en/of er zijn onafgehandelde meldingen op annotaties/reacties</td><td>moderatoren van de organisatie</td><td>dagelijkse samenvatting (alleen verstuurd als er iets wacht) - voorkomt mail per upload of melding</td></tr>
+<tr><td>5</td><td>Er wacht iets: jottems in de wachtrij, meldingen, open verwijderverzoeken of vlakken bij herkenbare personen</td><td>moderatoren van de organisatie; ook de organisatiebeheerders als een verwijderverzoek langer dan 21 dagen openstaat</td><td>dagelijkse samenvatting met het aantal per soort (alleen verstuurd als er iets wacht) - voorkomt mail per upload of melding, en laat een verwijderverzoek niet ongemerkt over de wettelijke termijn van 30 dagen gaan</td></tr>
 <tr><td>6</td><td>Verwijderverzoek ingediend</td><td>indiener</td><td>ontvangstbevestiging + verwachte afhandeltermijn (30 dagen, zie de niet-functionele requirements)</td></tr>
 <tr><td>7</td><td>Verwijderverzoek ingediend</td><td>moderatoren van de organisatie</td><td>directe melding (juridische termijn loopt) met link naar de afhandelpagina</td></tr>
 <tr><td>8</td><td>Verwijderverzoek afgehandeld</td><td>indiener</td><td>uitkomst: gedepubliceerd, gewist of afgewezen met toelichting</td></tr>
@@ -87,8 +86,7 @@ zorgen dat Jottem-mail daaraan voldoet en een goede verzendreputatie opbouwt en 
 *Status (augustus 2026): de ontwikkelomgeving verstuurt echt, via een bestaande
 exim-relay met gevestigde reputatie (SPF, DKIM met een 2048-bit sleutel op selector
 `jottem`, DMARC `p=none` met rapportage, kloppende PTR/HELO); de attenderingsmails
-dragen de RFC 8058-headers. De eigen MTA in de stack blijft het productiedoel
-hieronder; bouncebeheer en DMARC-aanscherping volgen richting livegang.*
+dragen de RFC 8058-headers. Bouncebeheer en DMARC-aanscherping volgen richting livegang.*
 
 **Authenticatie (verplicht).** Op het verzenddomein staan drie DNS-records ingeregeld:
 
@@ -112,11 +110,12 @@ zonder inloggen (de uitschakellink bevat een token) en wordt binnen 48 uur verwe
 (in de praktijk: meteen). Transactionele mails (1 t/m 9) vallen hier bewust buiten;
 die horen bij een handeling van de gebruiker zelf.
 
-**Verzendroute: eigen MTA.** De platformmail loopt via een eigen MTA (Postfix met
-DKIM-ondertekening, bijv. via rspamd of OpenDKIM) als container in de stack; een externe
-(betaalde) verzenddienst is op deze schaal niet nodig. Randvoorwaarden: een vast IPv4-adres
-met instelbare PTR, uitgaande poort 25 open bij de hostingprovider, en consistente
-HELO-/PTR-/A-records.
+**Verzendroute: de bestaande exim-relay, ook in productie.** De platformmail loopt via de
+exim-relay die al voor andere diensten verstuurt, met een gevestigde reputatie, DKIM
+(selector `jottem`) en kloppende PTR/HELO. Een eigen MTA in de stack zou die reputatie
+vanaf nul moeten opbouwen, en een externe (betaalde) verzenddienst is op deze schaal niet
+nodig. Staat de productieserver niet in hetzelfde privénet als de relay, dan verstuurt hij
+via een geauthenticeerde SMTP-verbinding (submission, TLS) in plaats van plat SMTP.
 
 **Reputatie.** Het platform schrijft alleen geverifieerde adressen aan (e-mailverificatie
 bij registratie is al verplicht). Bounces worden verwerkt: hard bounces gaan op een

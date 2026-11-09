@@ -26,6 +26,31 @@ Hoe het project wordt ingericht, getest en in gebruik genomen (instellingen en k
 testscripts, moderatie, communicatie en widgets) staat in het
 [plan van aanpak Smaak van Gouda](planvanaanpak-smaakvangouda.html).
 
+## Doelen en niet-doelen ## {#pilot-doelen}
+
+De pilot moet laten zien dat inwoners via Jottem materiaal en herinneringen bijdragen, dat
+SAMH dat met een kleine groep moderatoren zorgvuldig kan beoordelen, en dat het resultaat als
+open data bruikbaar is. Na drie maanden worden deze metrieken gemeten, rechtstreeks uit de
+database en het Gebeurtenislog (een statistiekendashboard is er pas in fase 2):
+
+<table class="data">
+<thead>
+<tr><th>Metriek</th><th>Streefwaarde na 3 maanden</th></tr>
+</thead>
+<tbody>
+<tr><td>Gepubliceerde jottems</td><td>`[ ]` (vast te stellen met SAMH)</td></tr>
+<tr><td>Verschillende inzenders</td><td>`[ ]`</td></tr>
+<tr><td>Annotaties en reacties</td><td>`[ ]`</td></tr>
+<tr><td>Doorlooptijd moderatie (mediaan, van indienen tot besluit)</td><td>`[ ]` werkdagen</td></tr>
+<tr><td>Verwijderverzoeken afgehandeld binnen 30 dagen</td><td>alle</td></tr>
+</tbody>
+</table>
+
+**Niet-doelen van de pilot:** uitrol naar de andere tijdmachines; zoeken met facetten,
+favorieten en een pand-tijdlijn; een externe duurzame bewaarplaats of opslag bij het
+Internet Archive; statistiekendashboards. Wat de evaluatie daarvan nodig blijkt te maken,
+komt op de backlog voor fase 2 (zie [[#realisatie-fase2]]).
+
 ## Wat dit van het platform vraagt ## {#pilot-platformeisen}
 
 * **Getypeerd bronmateriaal** - naast foto's ook menukaarten, advertenties, folders,

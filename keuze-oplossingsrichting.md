@@ -8,9 +8,27 @@ de deelactiviteit "Keuze oplossingsrichting" uit het [[#activiteitenplan]]. Het 
 
 ## Infrastructuurrichting: alles op de Jottem-server ## {#keuze-infra}
 
-Van de vier onderzochte richtingen (Wikimedia, Internet Archive, e-Depot, eigen server) is gekozen
-voor **richting 4: alles op de Jottem-server** - afbeeldingen, metadata en annotaties in één
+De [infra-analyse](infra/analyse.html) vergeleek vier richtingen:
+
+1. **Wikimedia Commons en Wikidata** als opslag: groot bereik, maar alleen vrije licenties en
+    weinig regie over moderatie en privacy;
+2. het **Internet Archive** (met Internet Archive Europe, **IAE**, de Amsterdamse Europese
+    tak): duurzame opslag met een IIIF-dienst, maar opslag buiten eigen beheer en deels in de VS;
+3. een **e-Depot** van een erfgoedinstelling: duurzaam, maar ingericht op archiefstukken, niet
+    op participatie en annoteren;
+4. **alles op de Jottem-server**: alle functies en regie in eigen beheer, maar duurzaamheid
+    hangt af van het eigen beheer.
+
+Gekozen is **richting 4: alles op de Jottem-server** - afbeeldingen, metadata en annotaties in één
 geïntegreerd systeem in eigen beheer.
+
+**Afwijking van het advies.** De analyse adviseerde een *gelaagde aanpak*: de Jottem-server als
+participatielaag, met daaronder minstens één duurzame externe laag (Internet Archive/IAE of een
+e-Depot). Voor de pilot wijken we daar bewust van af: de externe laag kost koppelwerk,
+doorgifte-afspraken en toestemming bij elke bijdrage, terwijl de pilot eerst moet aantonen dat
+de participatie werkt. De exit- en exportstrategie hieronder vangt de duurzaamheid voorlopig op.
+De externe laag wordt heroverwogen bij de evaluatie van de pilot, en in elk geval vóór de uitrol
+naar een tweede tijdmachine.
 
 **Onderbouwing:**
 

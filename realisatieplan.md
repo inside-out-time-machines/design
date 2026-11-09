@@ -53,7 +53,9 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
 
 ## Fase 2 (voorjaar 2027) ## {#realisatie-fase2}
 
-Na de evaluatie van de pilot, als de pilot erom vraagt:
+Fase 2 is een geordende backlog, geen vaste toezegging: de volgorde en wat erin komt worden
+vastgesteld bij de evaluatie van de pilot na drie maanden (zie [[#pilot-doelen]]). Kandidaten
+die direct uit de pilotscope zijn gehaald, als de pilot erom vraagt:
 
 * Zoeken met facetten (Elasticsearch met afgebakende zoek-DSL, AP-3)
 * Favorieten, met openbare deellink (GE-4, BE-5)
@@ -61,7 +63,7 @@ Na de evaluatie van de pilot, als de pilot erom vraagt:
 * IIIF Change Discovery, de aggregaten per organisatie en platform, en het publieke
     SPARQL-endpoint in productie aanzetten (AP-1)
 
-Verder gepland:
+Overige kandidaten:
 
 * Social login via Apple en Instagram (MVP: Google, Microsoft en Facebook; de Apple-aanvraag start eerder vanwege de doorlooptijd; eigenaar Bob Coret)
 * IIIF-collectie-import (bestaande collecties toevoegen; ontwerp-uitwerking gaat vooraf)
@@ -185,6 +187,25 @@ criteria om deze werkpakketten:
 <tr><td>Monitoring in productie</td><td>scrape-configuratie zonder de dev-only MinIO; API en leeftijd van de outbox; health-check op Herkenbaar; opslaggebruik per organisatie met alert; alert-ontvanger uit de configuratie (een rol-adres, geen persoonlijk adres). Grafana-toegang loopt via de Authentik-groep "Platformbeheerders": een bewuste uitzondering op "GebruikerRol leidend", bij een rolwijziging met de hand gelijk te houden</td><td>alert-ontvanger: gereed; overige: niet gestart</td></tr>
 <tr><td>Securitytoets</td><td>de bevindingen uit `analysis/jottem/ASSESSMENT.md` doorlopen en per bevinding een status vastleggen</td><td>niet gestart</td></tr>
 <tr><td>Uitzetten in productie</td><td>schakelaars voor IIIF Change Discovery met de aggregaten en voor het publieke SPARQL-endpoint (zie [[#realisatie-mvp]]); in productie uit</td><td>gereed</td></tr>
+</tbody>
+</table>
+
+## Risico's ## {#realisatie-risicos}
+
+De risico's die na de scopekeuzes overblijven:
+
+<table class="data">
+<thead>
+<tr><th>Risico</th><th>Gevolg</th><th>Maatregel</th></tr>
+</thead>
+<tbody>
+<tr><td>Te weinig inzendingen</td><td>de pilot toont niet wat hij moet tonen</td><td>startset van 20-30 jottems vóór de lancering, verzameldagen met partners, wekelijks een jottem delen (plan van aanpak)</td></tr>
+<tr><td>Moderatie loopt achter</td><td>inzenders haken af, meldingen blijven liggen</td><td>minimaal twee getrainde moderatoren, dagelijkse digest (MO-4), rooster in de lanceringsweken</td></tr>
+<tr><td>Verwijderverzoek over de wettelijke termijn</td><td>AVG-overtreding</td><td>melding aan moderatoren bij indienen (mail 7), escalatie naar organisatiebeheerders na 21 dagen</td></tr>
+<tr><td>Uitval van de enige server</td><td>platform onbereikbaar tot herstel</td><td>nachtelijkse offsite back-ups, geteste hersteltest (criterium 5), RTO van één werkdag; 99% beschikbaarheid per jaar</td></tr>
+<tr><td>Juridische toetsing te laat</td><td>livegang schuift op</td><td>alleen de pilotset laten toetsen (criterium 3), tijdig aanvragen, doorlooptijd van de jurist in de planning</td></tr>
+<tr><td>Herkenbaar mist een gezicht of valt uit</td><td>foto met herkenbare persoon zonder toestemming online</td><td>check faalt dicht, moderator beoordeelt elke upload, vlakken bij herkenbare personen eerst langs de moderator, verwijderverzoek als vangnet</td></tr>
+<tr><td>Beeldbankmateriaal verandert bij de bron</td><td>de jottem toont iets anders dan is goedgekeurd</td><td>alleen beeldbanken op de ingestelde lijst; verwijderen bij de bron is aan de bronorganisatie</td></tr>
 </tbody>
 </table>
 

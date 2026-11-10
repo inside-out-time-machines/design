@@ -47,7 +47,7 @@ De MVP omvat alles wat nodig is om de pilot van begin tot eind te laten draaien:
     ([data-architectuur](data-architectuur/data-architectuur.html#frames)), op te vragen met
     het framed-profiel (`Accept: application/ld+json;profile="http://www.w3.org/ns/json-ld#framed"`);
     één schema.org-namespace en één annotatieprefix in alle serialisaties; content
-    negotiation op de duurzame www-URL (303 naar de API, AP-7)
+    negotiation op de duurzame www-URL (303 naar de API, AP-7; gereed)
 * **Fundament** - e-mailnotificaties, back-ups, monitoring/alerting (Prometheus/Grafana, alleen
     voor platformbeheerders) en de contracttests (zie [[#realisatie-werkpakketten]])
 
@@ -83,7 +83,7 @@ harde opslagquota per organisatie (MVP: monitoring met alerts).
 
 ## Mijlpalen 2026 ## {#realisatie-mijlpalen}
 
-Stand van zaken op 9 november 2026. Statuswaarden: **gereed** (gebouwd en op dev
+Stand van zaken op 10 november 2026. Statuswaarden: **gereed** (gebouwd en op dev
 aangetoond), **bezig**, **niet gestart**, **open** (geen bouwwerk, nog niet aantoonbaar
 afgerond), **uitgesteld** (naar [[#realisatie-fase2]]) en **uit in productie** (gebouwd,
 maar tijdens de pilot uitgeschakeld).
@@ -95,13 +95,14 @@ maar tijdens de pilot uitgeschakeld).
 <tbody>
 <tr><td>september</td><td>**Fundament staat**: docker-compose-stack op de ontwikkelomgeving (Authentik, PostgreSQL, Valkey, S3-compatibele objectopslag, backend-skelet), datamodel geïmplementeerd, upload→moderatie→publicatie-keten end-to-end werkend (kaal); **huisstijl Jottem ontworpen** (zie [[#realisatie-huisstijl]])</td><td>stack, datamodel en keten: gereed (augustus 2026; op dev draait MinIO als objectopslag). Merkgids: gereed; vaststelling door de projectgroep: open, niet blokkerend</td></tr>
 <tr><td>oktober</td><td>**Publieksomgeving**: jottem-detailpagina met IIIF-viewer, annoteren met Termennetwerk, kaart met speldjes, huisstijl SAMH, Herkenbaar-integratie, begin- en eindjaar in het uploadformulier</td><td>detailpagina, annoteren, huisstijl SAMH en Herkenbaar: gereed. Kaart met speldjes: niet gestart. Begin- en eindjaar in het formulier: niet gestart. Zoeken met facetten en pand-tijdlijn: uitgesteld</td></tr>
-<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), testronde 1 met SAMH-medewerkers (zie het [plan van aanpak](planvanaanpak-smaakvangouda.html#pva-2-2-werkwijze)), juridische toetsing gestart, alle notificatiemails van de MVP werkend (zie [[#notificaties]])</td><td>open-data-outputs, validatie en aanmelding: gereed. Change Discovery en SPARQL: uit in productie. Mails 1-4 en 10-12: gereed. Mail 5 (moderatiedigest) en mails 6-8 (verwijderverzoeken): niet gestart. Testronde 1 en juridische toetsing: open</td></tr>
-<tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, [[#realisatie-productie]], testronde 2 met inwoners (op productie), securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow: niet gestart. Overige punten: open</td></tr>
+<tr><td>november</td><td>**Open data & toetsing**: IIIF/RSS/RDF-outputs, datasetbeschrijving + Datasetregister-validatie (NDE-compatibel), testronde 1 met SAMH-medewerkers (zie het [plan van aanpak](planvanaanpak-smaakvangouda.html#pva-2-2-werkwijze)), juridische toetsing gestart, alle notificatiemails van de MVP werkend (zie [[#notificaties]])</td><td>open-data-outputs, validatie en aanmelding: gereed. Change Discovery en SPARQL: uit in productie. Mails 1-12 van de MVP: gereed (mail 9 hoort bij fase 2). Testronde 1 en juridische toetsing: open</td></tr>
+<tr><td>december</td><td>**Hardening & livegang**: verwijderverzoeken-flow, [[#realisatie-productie]], testronde 2 met inwoners (op productie), securitytoets, monitoring/back-ups aantoonbaar werkend, mail-afleverbaarheid ingeregeld (SPF/DKIM/DMARC, one-click unsubscribe, zie [[#notificaties-afleverbaarheid]]), DPIA en juridische toetsing afgerond, moderatoren getraind, verzameldag/oproep → **pilot live**</td><td>one-click unsubscribe: gereed. SPF en DKIM voor iotm.nl: gereed; DMARC staat op `p=none`. Monitoring: gereed op dev. Verwijderverzoeken-flow met depubliceren, wissen en wislijst: gereed. Overige punten: open</td></tr>
 </tbody>
 </table>
 
-**Cut-lijn.** Twee onderdelen zijn nog niet gestart en blijven in de MVP: de
-verwijderverzoeken-flow (met mails 5-8) en de kaart met speldjes. Ze wegen niet even zwaar:
+**Cut-lijn.** Van de onderdelen die in de MVP blijven, was op 9 november alleen de kaart met
+speldjes nog niet gebouwd; de verwijderverzoeken-flow (met mails 5-8) is op 10 november
+opgeleverd. Ze wegen niet even zwaar:
 
 * De **verwijderverzoeken-flow** is een harde voorwaarde voor livegang. Zonder die flow kan het
     platform een verzoek op grond van de AVG of het portretrecht niet binnen de termijn van
